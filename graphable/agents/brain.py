@@ -155,7 +155,8 @@ async def _agent_answer(bus, q: str) -> tuple[str, list[str], int] | None:  # pr
     agent = create_react_agent(llm, tools, prompt=BRAIN_PROMPT)
     try:
         res = await asyncio.wait_for(agent.ainvoke({"messages": [("user", q)]}, {"recursion_limit": 14}), 45)
-    except Exception:
+    except Exception as e:  # fall back to hybrid search, but leave a trace in the server log
+        print(f"brain agent failed: {type(e).__name__}: {str(e)[:300]}")
         return None
     text = res["messages"][-1].content if res.get("messages") else ""
     if isinstance(text, list):
