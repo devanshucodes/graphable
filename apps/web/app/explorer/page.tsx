@@ -6,6 +6,12 @@ import NetGraph, { dagLayers, type NEdge, type NNode } from "@/components/NetGra
 import OwnershipHistory from "@/components/OwnershipHistory";
 import { AlertTriangle, Search } from "lucide-react";
 
+/** Expertise signal types (org_experts) in plain words. */
+const EVIDENCE: Record<string, string> = {
+  fixer: "fixed incidents", postmortem: "postmortems", change: "changes", review: "reviews", ticket: "tickets", runbook: "runbooks",
+  answer: "answers in chat", commander: "led incidents", helper: "helped on incidents", design: "design docs", wiki: "wiki pages",
+};
+
 export default function Explorer() {
   const [list, setList] = useState<any[]>([]);
   const [sel, setSel] = useState("svc_checkout");
@@ -125,7 +131,7 @@ export default function Explorer() {
                       {e.experts.experts.map((x: any) => (
                         <div key={x.id} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_96px] items-center gap-4 px-4 py-2.5 text-[13px]">
                           <Person name={x.name} />
-                          <span className="truncate text-[12.5px] text-ink-3">{[...new Set(x.top_evidence.map((t: any) => t.type))].join(", ")}</span>
+                          <span className="truncate text-[12.5px] text-ink-3">{[...new Set(x.top_evidence.map((t: any) => EVIDENCE[t.type] ?? String(t.type).replaceAll("_", " ")))].join(" · ")}</span>
                           <Meter value={x.score / (e.experts.experts[0]?.score || 1)} />
                         </div>
                       ))}
@@ -171,7 +177,7 @@ export default function Explorer() {
                       <Prop k="Owner">{e.ownership.owner?.team ?? "—"}</Prop>
                       <Prop k="On call"><div className="space-y-1 py-1">{e.ownership.oncall?.map((o: any) => <div key={o.id} title={o.level}><Person name={o.name} /></div>)}</div></Prop>
                       <Prop k="Blast radius">{e.blast_radius.n} services</Prop>
-                      <Prop k="Bus factor"><span className={e.experts.bus_factor <= 1 ? "text-[#a35200]" : ""}>{e.experts.bus_factor}</span></Prop>
+                      <Prop k="Bus factor" title="How many people would have to leave before nobody knows this service"><span className={e.experts.bus_factor <= 1 ? "text-[#a35200]" : ""}>{e.experts.bus_factor}</span></Prop>
                       <Prop k="Source">{e.ownership.owner?.source ?? "—"}</Prop>
                     </Props>
                   </Section>

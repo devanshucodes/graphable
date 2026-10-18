@@ -29,9 +29,9 @@ export default function CausalChain({ nodes, edges, rowLabels }: { nodes: CNode[
     if (Math.abs(ac.y - bc.y) < 1) return ac.x < bc.x ? [{ x: a.x + W, y: ac.y }, { x: b.x, y: bc.y }] : [{ x: a.x, y: ac.y }, { x: b.x + W, y: bc.y }];
     return ac.y < bc.y ? [{ x: ac.x, y: a.y + H }, { x: bc.x, y: b.y }] : [{ x: ac.x, y: a.y }, { x: bc.x, y: b.y + H }];
   };
-  // drawn 1:1 (the parent scrolls sideways when it is narrower), so text stays at its real size
+  // 1:1 when it fits; a narrower parent scales it down to fit (never below 55%, past that the parent scrolls sideways)
   return (
-    <svg width={vw} height={vh} viewBox={`0 0 ${vw} ${vh}`} className="mx-auto block">
+    <svg width={vw} height={vh} viewBox={`0 0 ${vw} ${vh}`} className="mx-auto block h-auto" style={{ width: "100%", maxWidth: vw, minWidth: Math.round(vw * 0.55) }}>
       <defs>
         {[["n", "#b9b9b4"], ["h", "#e5484d"], ["d", "#8f7fe0"]].map(([k, c]) => (
           <marker key={k} id={`cc-${k}`} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">

@@ -121,6 +121,7 @@ export function Sev({ level, compact = false }: { level?: number | null; compact
 
 const STATUS: Record<string, [string, string, boolean?]> = {
   investigating: ["#f5a623", "Investigating", true], mitigating: ["#f5a623", "Mitigating", true], awaiting_approval: ["#6e56cf", "Awaiting approval", true], closed: ["#30a46c", "Mitigated"],
+  closed_rejected: ["#e5484d", "Closed, page rejected"],
   open: ["#f5a623", "Open"], resolved: ["#30a46c", "Resolved"], mitigated: ["#30a46c", "Mitigated"], executed: ["#30a46c", "Done"],
   approved: ["#30a46c", "Approved"], rejected: ["#e5484d", "Rejected"], proposed: ["#b4b4ae", "Proposed"],
 };
@@ -155,10 +156,10 @@ export function Meter({ value, color = "#1c1c1a", width }: { value: number; colo
 }
 
 export function Props({ children }: { children: ReactNode }) { return <dl className="space-y-0.5">{children}</dl>; }
-export function Prop({ k, children }: { k: string; children: ReactNode }) {
+export function Prop({ k, title, children }: { k: string; title?: string; children: ReactNode }) {
   return (
     <div className="grid min-h-8 grid-cols-[104px_minmax(0,1fr)] items-center gap-2 text-[13px]">
-      <dt className="text-ink-3">{k}</dt><dd className="min-w-0 text-ink">{children}</dd>
+      <dt title={title} className={`text-ink-3 ${title ? "w-fit cursor-help underline decoration-[#c9c9c4] decoration-dotted underline-offset-[3px]" : ""}`}>{k}</dt><dd className="min-w-0 text-ink">{children}</dd>
     </div>
   );
 }

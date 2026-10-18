@@ -13,10 +13,12 @@ const GROUPS = [
 ];
 const INTENT: Record<string, string> = {
   ownership: "Ownership history", experts: "Expertise, computed from evidence", decision: "Decision trace", blast_radius: "Blast radius",
-  staleness: "Staleness rules", who_fixed: "Incident memory", search: "Hybrid search + Gemini", error: "Error",
+  staleness: "Staleness rules", who_fixed: "Incident memory", search: "Hybrid search", agent: "Gemini chose the graph tools", error: "Error",
 };
 const newSession = () => "s_" + Math.random().toString(36).slice(2, 12);
 const EARLIER = /^\(About (.+?), from earlier in this conversation\.\)\s*/;
+/** Citation summaries are tool output: a list (or a Python-style list string) is tidied; other text only gets ids shown as names. */
+const summary = (s: unknown) => (Array.isArray(s) ? clean(s.map(String).join(", ")) : typeof s === "string" && /\[[^\]]*\]/.test(s) ? clean(s) : pretty(String(s ?? "")));
 
 export default function BrainPage() {
   const [q, setQ] = useState("");
@@ -109,7 +111,7 @@ function Exchange({ it }: { it: any }) {
           {none && it.citations?.length > 0 && (
             <div className="mt-2 text-[13px] text-ink-2">
               <div className="text-[12px] text-ink-3">Closest sources it found:</div>
-              <ul className="mt-1 list-disc space-y-0.5 pl-5">{it.citations.slice(0, 3).map((c: any) => <li key={c.id}>{clean(c.summary)}</li>)}</ul>
+              <ul className="mt-1 list-disc space-y-0.5 pl-5">{it.citations.slice(0, 3).map((c: any) => <li key={c.id}>{summary(c.summary)}</li>)}</ul>
             </div>
           )}
           {it.citations?.length > 0 && (
@@ -120,7 +122,7 @@ function Exchange({ it }: { it: any }) {
                     <span className="flex h-4 w-4 items-center justify-center rounded bg-hover text-[10px] font-medium text-ink-2">{i + 1}</span>
                     <span className="mono">{c.tool}</span><span className="mono ml-auto">{c.id}</span>
                   </div>
-                  <div className="mt-1 line-clamp-2 text-[12.5px] leading-snug text-ink-2">{clean(c.summary)}</div>
+                  <div className="mt-1 line-clamp-2 text-[12.5px] leading-snug text-ink-2">{summary(c.summary)}</div>
                   <div className="mt-1 text-[11.5px] text-ink-3">{c.nodes?.length ?? 0} graph nodes{c.edges?.length ? ` · ${c.edges.length} edges` : ""}</div>
                 </div>
               ))}

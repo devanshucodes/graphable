@@ -100,8 +100,10 @@ const trunc = (s: string, n = 26) => (s.length > n ? s.slice(0, Math.max(1, n - 
 export default function NetGraph({ nodes, edges, height = 520, dir = "lr", lanes: laneLabels, focus, onNodeClick, gutter = 104 }: {
   nodes: NNode[]; edges: NEdge[]; height?: number; dir?: Dir; lanes?: Record<number, string>; focus?: string | null; onNodeClick?: (id: string) => void; gutter?: number;
 }) {
+  const outer = useRef<HTMLDivElement>(null);
   const wrap = useRef<HTMLDivElement>(null);
   const [w, setW] = useState(0);
+  const [ow, setOw] = useState(0); // available width: below 640px a left-to-right graph keeps 960px and scrolls sideways
   const [t, setT] = useState({ k: 1, x: 0, y: 0 });
   const [hover, setHover] = useState<string | null>(null);
   const [pin, setPin] = useState<string | null>(null);
@@ -119,6 +121,11 @@ export default function NetGraph({ nodes, edges, height = 520, dir = "lr", lanes
     };
     el.addEventListener("wheel", wheel, { passive: false });
     return () => { ro.disconnect(); el.removeEventListener("wheel", wheel); };
+  }, []);
+  useEffect(() => {
+    const el = outer.current; if (!el) return;
+    const ro = new ResizeObserver(() => setOw(el.clientWidth)); ro.observe(el); setOw(el.clientWidth);
+    return () => ro.disconnect();
   }, []);
   useEffect(() => { setT({ k: 1, x: 0, y: 0 }); setPin(null); }, [nodes, edges]);
 
@@ -144,74 +151,84 @@ export default function NetGraph({ nodes, edges, height = 520, dir = "lr", lanes
   const labelled = onEdges.filter((e) => { const k = `${e.type}|${byId.get(e.source === active ? e.target : e.source)?.layer}`; return !seenLabel.has(k) && !!seenLabel.add(k); });
   const showLabels = !!active && labelled.length <= 6 && onTypes.size > 1; // one shared type adds nothing; it is shown in the info bar
   const an = active ? byId.get(active) : null, nConn = an ? lay?.adj.get(an.id)?.size ?? 0 : 0;
+  const narrow = dir === "lr" && ow > 0 && ow < 640; // lane titles need ~150px each, so a narrow screen scrolls instead of squeezing
+  const hint = "Hover a node to trace its connections · drag to pan · pinch or ⌘-scroll to zoom";
+  const info = an ? `${an.type} · ${an.detail ?? an.label} · ${nConn} ${nConn === 1 ? "connection" : "connections"}${onTypes.size === 1 ? ` (${[...onTypes][0].replaceAll("_", " ").toLowerCase()})` : ""}` : hint;
 
   return (
-    <div ref={wrap} className="relative w-full select-none overflow-hidden rounded-lg border border-line bg-panel" style={{ height: H }}>
-      {lay && (
-        <svg width={w} height={H} className="block touch-none"
-          onPointerDown={(e) => { if ((e.target as Element).tagName === "svg" || (e.target as Element).getAttribute("data-bg")) { drag.current = { x: e.clientX, y: e.clientY, tx: t.x, ty: t.y, moved: false }; setDragging(true); (e.currentTarget as Element).setPointerCapture(e.pointerId); } }}
-          onPointerMove={(e) => { const d = drag.current; if (!d) return; const dx = e.clientX - d.x, dy = e.clientY - d.y; if (Math.abs(dx) + Math.abs(dy) > 3) d.moved = true; setT((o) => ({ ...o, x: d.tx + dx, y: d.ty + dy })); }}
-          onPointerUp={() => { if (drag.current && !drag.current.moved) setPin(null); drag.current = null; setDragging(false); }}
-          onPointerCancel={() => { drag.current = null; setDragging(false); }}
-          style={{ cursor: dragging ? "grabbing" : "grab" }}>
-          <defs>
-            {[["on", "#6e56cf"], ["hot", "#e5484d"]].map(([id, c]) => (
-              <marker key={id} id={`ng-${id}`} viewBox="0 0 10 10" refX={19} refY={5} markerWidth={7} markerHeight={7} markerUnits="userSpaceOnUse" orient="auto">
-                <path d="M0,0 L10,5 L0,10 z" fill={c} />
-              </marker>
-            ))}
-          </defs>
-          <rect data-bg="1" width={w} height={H} fill="transparent" />
-          <g transform={`translate(${t.x},${t.y}) scale(${t.k})`}>
-            {laneLabels && lay.lanes.map((l, i) => laneLabels[l.layer] && (dir === "lr" ? (
-              <text key={l.layer} x={l.pos - 7} y={22} fontSize={11.5} fontWeight={500} fill="#4f4f4b">{laneLabels[l.layer]}<tspan fill="#6f6f69"> {l.n}</tspan></text>
-            ) : (
-              <g key={l.layer}>
-                {i > 0 && <line x1={0} x2={w} y1={l.pos - 32} y2={l.pos - 32} stroke="#f0f0ee" />}
-                <text x={16} y={l.pos + 4} fontSize={11.5} fontWeight={500} fill="#4f4f4b">{laneLabels[l.layer]}</text>
-              </g>
-            )))}
-            {sorted.map((e, i) => {
-              const a = lay.xy.get(e.source)!, b = lay.xy.get(e.target)!, on = isOn(e);
-              const stroke = e.hot ? "#e5484d" : on ? "#6e56cf" : "#c9c9c4";
-              const op = active ? (on ? 1 : e.hot ? 0.3 : 0.07) : e.hot ? 1 : e.faint ? 0.45 : 0.65;
-              return <path key={i} d={curve(a, b)} fill="none" stroke={stroke} strokeOpacity={op} strokeWidth={e.hot ? 2.2 : on ? 1.6 : 1}
-                strokeDasharray={e.faint && !on ? "3 3" : undefined} markerEnd={on || (e.hot && !active) ? `url(#ng-${e.hot ? "hot" : "on"})` : undefined} />;
-            })}
-            {showLabels && labelled.map((e, i) => {
-              const a = lay.xy.get(e.source)!, b = lay.xy.get(e.target)!;
-              return <text key={`l${i}`} x={(a.x + b.x) / 2} y={(a.y + b.y) / 2 - 3} textAnchor="middle" fontSize={9.5} fontWeight={600} fill={e.hot ? "#ce2c31" : "#5746af"}
-                stroke="#fff" strokeWidth={3} paintOrder="stroke" strokeLinejoin="round" letterSpacing=".2">{e.type.replaceAll("_", " ")}</text>;
-            })}
-            {nodes.map((n) => {
-              const p = lay.xy.get(n.id); if (!p) return null;
-              const r = n.strong ? 7.5 : 6, dim = near && !near.has(n.id), isA = n.id === active, ring = isA || n.id === focus;
-              const lx = dir === "lr" ? p.x + r + 6 : p.x, ly = dir === "lr" ? p.y + 4 : p.y + r + 14;
-              return (
-                <g key={n.id} opacity={dim ? 0.2 : 1} style={{ cursor: "pointer" }}
-                  onPointerEnter={() => setHover(n.id)} onPointerLeave={() => setHover(null)}
-                  onClick={(ev) => { ev.stopPropagation(); setPin((x) => (x === n.id ? null : n.id)); onNodeClick?.(n.id); }}>
-                  <circle cx={p.x} cy={p.y} r={r + 7} fill="transparent" />
-                  {(n.ring || ring) && <circle cx={p.x} cy={p.y} r={r + 4} fill="none" stroke={ring ? "#6e56cf" : n.ring} strokeWidth={2} />}
-                  {n.square
-                    ? <rect x={p.x - r} y={p.y - r} width={r * 2} height={r * 2} rx={2.5} fill={n.color} stroke="#fff" strokeWidth={1.5} />
-                    : <circle cx={p.x} cy={p.y} r={r} fill={n.color} stroke="#fff" strokeWidth={1.5} />}
-                  <text x={lx} y={ly} textAnchor={dir === "lr" ? "start" : "middle"} fontSize={12} fontWeight={n.strong || isA ? 600 : 400}
-                    fill={n.strong || isA ? "#1c1c1a" : "#4b4b47"} stroke="#fff" strokeWidth={4} paintOrder="stroke" strokeLinejoin="round">{trunc(n.label, n.strong ? 34 : lay.chars.get(n.id))}</text>
-                </g>
-              );
-            })}
-          </g>
-        </svg>
-      )}
-      <div className="absolute bottom-2 right-2 flex items-center gap-0.5 rounded-md border border-line bg-panel p-0.5 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
-        <button title="Zoom in" aria-label="Zoom in" onClick={() => zoom(1.25)} className="rounded p-1.5 text-ink-3 hover:bg-hover hover:text-ink"><Plus size={14} /></button>
-        <button title="Zoom out" aria-label="Zoom out" onClick={() => zoom(0.8)} className="rounded p-1.5 text-ink-3 hover:bg-hover hover:text-ink"><Minus size={14} /></button>
-        <button title="Reset view" aria-label="Reset view" onClick={() => setT({ k: 1, x: 0, y: 0 })} className="rounded p-1.5 text-ink-3 hover:bg-hover hover:text-ink"><Maximize2 size={14} /></button>
+    <div ref={outer} className="w-full">
+      {/* toolbar above the canvas, so hover details and zoom are never below the fold */}
+      <div className="mb-2 flex min-h-7 items-center gap-3">
+        <div className="min-w-0 flex-1 truncate text-[12px] text-ink-2" title={info}>
+          {an ? <><i className="mr-1.5 inline-block h-2 w-2 rounded-full align-middle" style={{ background: an.color }} /><b className="font-medium text-ink">{an.type}</b> · {an.detail ?? an.label} · {nConn} {nConn === 1 ? "connection" : "connections"}{onTypes.size === 1 ? ` (${[...onTypes][0].replaceAll("_", " ").toLowerCase()})` : ""}</>
+            : <span className="text-ink-3">{hint}</span>}
+        </div>
+        <div className="flex shrink-0 items-center gap-0.5 rounded-md border border-line bg-panel p-0.5 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
+          <button title="Zoom in" aria-label="Zoom in" onClick={() => zoom(1.25)} className="rounded p-1 text-ink-3 hover:bg-hover hover:text-ink"><Plus size={14} /></button>
+          <button title="Zoom out" aria-label="Zoom out" onClick={() => zoom(0.8)} className="rounded p-1 text-ink-3 hover:bg-hover hover:text-ink"><Minus size={14} /></button>
+          <button title="Reset view" aria-label="Reset view" onClick={() => setT({ k: 1, x: 0, y: 0 })} className="rounded p-1 text-ink-3 hover:bg-hover hover:text-ink"><Maximize2 size={14} /></button>
+        </div>
       </div>
-      <div className="pointer-events-none absolute bottom-2 left-2 max-w-[calc(100%-120px)] truncate rounded-md border border-line bg-panel/95 px-2.5 py-1 text-[12px] text-ink-2 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
-        {an ? <><i className="mr-1.5 inline-block h-2 w-2 rounded-full align-middle" style={{ background: an.color }} /><b className="font-medium text-ink">{an.type}</b> · {an.detail ?? an.label} · {nConn} {nConn === 1 ? "connection" : "connections"}{onTypes.size === 1 ? ` (${[...onTypes][0].replaceAll("_", " ").toLowerCase()})` : ""}</>
-          : "Hover a node to trace its connections · drag to pan · pinch or ⌘-scroll to zoom"}
+      <div className={narrow ? "scroll overflow-x-auto rounded-lg border border-line" : ""}>
+        <div ref={wrap} className={`relative w-full select-none overflow-hidden bg-panel ${narrow ? "" : "rounded-lg border border-line"}`} style={{ height: H, minWidth: narrow ? 960 : undefined }}>
+          {lay && (
+            <svg width={w} height={H} className="block"
+              onPointerDown={(e) => { if (narrow && e.pointerType === "touch") return; /* let the finger scroll the strip */ if ((e.target as Element).tagName === "svg" || (e.target as Element).getAttribute("data-bg")) { drag.current = { x: e.clientX, y: e.clientY, tx: t.x, ty: t.y, moved: false }; setDragging(true); (e.currentTarget as Element).setPointerCapture(e.pointerId); } }}
+              onPointerMove={(e) => { const d = drag.current; if (!d) return; const dx = e.clientX - d.x, dy = e.clientY - d.y; if (Math.abs(dx) + Math.abs(dy) > 3) d.moved = true; setT((o) => ({ ...o, x: d.tx + dx, y: d.ty + dy })); }}
+              onPointerUp={() => { if (drag.current && !drag.current.moved) setPin(null); drag.current = null; setDragging(false); }}
+              onPointerCancel={() => { drag.current = null; setDragging(false); }}
+              style={{ cursor: dragging ? "grabbing" : "grab", touchAction: narrow ? "pan-x pan-y" : "none" }}>
+              <defs>
+                {[["on", "#6e56cf"], ["hot", "#e5484d"]].map(([id, c]) => (
+                  <marker key={id} id={`ng-${id}`} viewBox="0 0 10 10" refX={19} refY={5} markerWidth={7} markerHeight={7} markerUnits="userSpaceOnUse" orient="auto">
+                    <path d="M0,0 L10,5 L0,10 z" fill={c} />
+                  </marker>
+                ))}
+              </defs>
+              <rect data-bg="1" width={w} height={H} fill="transparent" />
+              <g transform={`translate(${t.x},${t.y}) scale(${t.k})`}>
+                {laneLabels && lay.lanes.map((l, i) => laneLabels[l.layer] && (dir === "lr" ? (
+                  <text key={l.layer} x={l.pos - 7} y={22} fontSize={11.5} fontWeight={500} fill="#4f4f4b">{laneLabels[l.layer]}<tspan fill="#6f6f69"> {l.n}</tspan></text>
+                ) : (
+                  <g key={l.layer}>
+                    {i > 0 && <line x1={0} x2={w} y1={l.pos - 32} y2={l.pos - 32} stroke="#f0f0ee" />}
+                    <text x={16} y={l.pos + 4} fontSize={11.5} fontWeight={500} fill="#4f4f4b">{laneLabels[l.layer]}</text>
+                  </g>
+                )))}
+                {sorted.map((e, i) => {
+                  const a = lay.xy.get(e.source)!, b = lay.xy.get(e.target)!, on = isOn(e);
+                  const stroke = e.hot ? "#e5484d" : on ? "#6e56cf" : "#c9c9c4";
+                  const op = active ? (on ? 1 : e.hot ? 0.3 : 0.07) : e.hot ? 1 : e.faint ? 0.45 : 0.65;
+                  return <path key={i} d={curve(a, b)} fill="none" stroke={stroke} strokeOpacity={op} strokeWidth={e.hot ? 2.2 : on ? 1.6 : 1}
+                    strokeDasharray={e.faint && !on ? "3 3" : undefined} markerEnd={on || (e.hot && !active) ? `url(#ng-${e.hot ? "hot" : "on"})` : undefined} />;
+                })}
+                {showLabels && labelled.map((e, i) => {
+                  const a = lay.xy.get(e.source)!, b = lay.xy.get(e.target)!;
+                  return <text key={`l${i}`} x={(a.x + b.x) / 2} y={(a.y + b.y) / 2 - 3} textAnchor="middle" fontSize={9.5} fontWeight={600} fill={e.hot ? "#ce2c31" : "#5746af"}
+                    stroke="#fff" strokeWidth={3} paintOrder="stroke" strokeLinejoin="round" letterSpacing=".2">{e.type.replaceAll("_", " ")}</text>;
+                })}
+                {nodes.map((n) => {
+                  const p = lay.xy.get(n.id); if (!p) return null;
+                  const r = n.strong ? 7.5 : 6, dim = near && !near.has(n.id), isA = n.id === active, ring = isA || n.id === focus;
+                  const lx = dir === "lr" ? p.x + r + 6 : p.x, ly = dir === "lr" ? p.y + 4 : p.y + r + 14;
+                  return (
+                    <g key={n.id} opacity={dim ? 0.2 : 1} style={{ cursor: "pointer" }}
+                      onPointerEnter={() => setHover(n.id)} onPointerLeave={() => setHover(null)}
+                      onClick={(ev) => { ev.stopPropagation(); setPin((x) => (x === n.id ? null : n.id)); onNodeClick?.(n.id); }}>
+                      <circle cx={p.x} cy={p.y} r={r + 7} fill="transparent" />
+                      {(n.ring || ring) && <circle cx={p.x} cy={p.y} r={r + 4} fill="none" stroke={ring ? "#6e56cf" : n.ring} strokeWidth={2} />}
+                      {n.square
+                        ? <rect x={p.x - r} y={p.y - r} width={r * 2} height={r * 2} rx={2.5} fill={n.color} stroke="#fff" strokeWidth={1.5} />
+                        : <circle cx={p.x} cy={p.y} r={r} fill={n.color} stroke="#fff" strokeWidth={1.5} />}
+                      <text x={lx} y={ly} textAnchor={dir === "lr" ? "start" : "middle"} fontSize={12} fontWeight={n.strong || isA ? 600 : 400}
+                        fill={n.strong || isA ? "#1c1c1a" : "#4b4b47"} stroke="#fff" strokeWidth={4} paintOrder="stroke" strokeLinejoin="round">{trunc(n.label, n.strong ? 34 : lay.chars.get(n.id))}</text>
+                    </g>
+                  );
+                })}
+              </g>
+            </svg>
+          )}
+        </div>
       </div>
     </div>
   );
