@@ -102,7 +102,7 @@ export default function Sidebar() {
             <div className="flex items-center gap-2"><i className={`h-1.5 w-1.5 rounded-full ${dbDot}`} />FalkorDB<span className="ml-auto text-ink-3 num">{fmtK(ov?.nodes)} nodes</span></div>
             <div className="text-right text-ink-3 num">{fmtK(ov?.edges)} edges</div>
           </div>
-          <div className="flex items-center gap-2"><i className={`h-1.5 w-1.5 rounded-full ${h?.llm ? "bg-green" : "bg-[#c9c9c4]"}`} />Gemini<span className="ml-auto text-ink-3">{h == null ? "—" : h.llm ? "on" : "offline"}</span></div>
+          <div className="flex items-center gap-2"><i className={`h-1.5 w-1.5 rounded-full ${h?.llm ? "bg-green" : "bg-[#c9c9c4]"}`} />Gemini<span className="ml-auto text-ink-3">{h == null ? "—" : h.llm ? "on" : "off · graph-only"}</span></div>
         </div>
       </aside>
     </>

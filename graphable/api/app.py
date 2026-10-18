@@ -136,6 +136,12 @@ def _summ(out: dict) -> dict:
 
 
 # ------------------------------------------------------------------ endpoints
+@app.get("/", include_in_schema=False)
+def index():
+    return {"name": "Graphable API", "web_app": os.getenv("WEB_URL"), "docs": "/docs", "health": "/v1/health",
+            "mcp": "/mcp (streamable HTTP; header Authorization: Bearer <tenant key>)" if SERVE_MCP else None}
+
+
 @app.get("/v1/health")
 def health():
     try:

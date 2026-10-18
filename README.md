@@ -20,7 +20,15 @@
 
 **https://graphable.onrender.com**: the whole product on free hosting. The demo graph is in FalkorDB Cloud, the API and the MCP server run as one service on Render, and the web app is a static site.
 
-- On the Incidents page, pick a scenario and click **Run**. If someone ran it before you, click **Reset demo** first.
+**A 3-minute tour** (click **Reset demo** first if someone ran things before you):
+
+1. **Incidents → Run H1 "Repeat offender"** *(tracks 1 and 2)*. The crew names a silent config change on `redis-cache` as the cause, not the newest deploy. *How it connects* shows the graph path. Every claim is verified against the graph. Memory recalls INC-0287 and who fixed it. The **Timeline** tab shows each MCP tool call and the Cypher it ran.
+2. **Approve** the page, then mark the diagnosis **Correct** *(track 2)*. The feedback is written to the graph as a lesson; see the **Memory** page.
+3. **Run H4 "Not a change"** *(tracks 1 and 3)*. A certificate expired: no deploy is blamed, the runbook is flagged as stale, and the crew warns that the expert has left.
+4. **Live ingest**, send example 1 *(track 3)*. One chat message closes the old `OWNS` edge (kept as history) and opens a new one, with the message as its source.
+5. **Ask the Brain** *(track 3)*: "Who owned checkout during INC-0287?" and "Why did we decide ADR-001?". Each answer cites its source.
+6. **Evaluation**: measured results against baselines on 40 held-out incidents.
+
 - Free-plan timing: after a quiet spell the backend needs about a minute to wake up, and a crew run takes about 20–30 s (about 2 s locally).
 - The live demo runs in graph-only mode, without Gemini. [Run it locally](#quickstart) with a Gemini key to see the review step and the written Brain answers.
 - MCP: `https://graphable-api.onrender.com/mcp` with the header `Authorization: Bearer dev-demo` (outside clients get the read-only tools). API docs: https://graphable-api.onrender.com/docs

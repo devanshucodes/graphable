@@ -358,7 +358,7 @@ export default function Incidents() {
         </>} />
         <div className="max-w-[1240px] px-4 py-6 sm:px-6">
           <h1 className="text-[22px] font-semibold tracking-[-0.015em]">Incidents</h1>
-          <p className="mt-1 max-w-[720px] text-[13.5px] text-ink-2">An on-call crew (Triage → Investigator → Responder) diagnoses incidents by querying Acme&apos;s FalkorDB graph of services, changes, people and past fixes. Run a scenario to watch it.</p>
+          <p className="mt-1 max-w-[720px] text-[13.5px] text-ink-2">An on-call crew (Triage → Investigator → Responder) diagnoses incidents by querying Acme&apos;s FalkorDB graph of services, changes, people and past fixes. Every answer cites the graph path behind it. New here? Press <b className="font-medium text-ink">Run</b> on H1, Repeat offender.</p>
           {err && <div className="mt-5"><Note tone="red">{err}</Note></div>}
           <div className="box mt-6 grid grid-cols-2 overflow-hidden sm:grid-cols-3 xl:grid-cols-6">
             {stats.map(([l, v], i) => (
@@ -453,7 +453,8 @@ export default function Incidents() {
 
           <div className="mt-4 flex items-center rounded-lg border border-line px-3.5 py-2.5">
             <ol className="flex flex-wrap items-center gap-y-1">
-              {STEPS.map(([s, sub], i) => {
+              {STEPS.map(([s, sub0], i) => {
+                const sub = i === 2 && ov && !ov.llm ? "code verifier" : sub0; // graph-only mode: no Gemini review
                 const st = step(i), human = i === 4 && st === "active", rejected = i === 4 && st === "done" && pageRejected, dead = st === "active" && failed;
                 return (
                   <li key={s} className="flex items-center" title={sub}>
