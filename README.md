@@ -8,7 +8,7 @@
 
 **Team Graphable:** Devanshu Saxena (lead) · Prins Kumar · Vaibhav Tyagi
 
-- **Finds the cause, not the latest deploy.** The agents walk service dependencies and score each recent change by how much of the alerting it explains. On 32 held-out change-caused incidents with planted traps, following the graph ranks the right change first **more than 4× as often as picking a recent change** (75% vs 18%), beats "blame the newest deploy" **24 to 0**, and has the real cause in its **top 3 for 9 in 10** incidents.
+- **Finds the cause, not the latest deploy.** The agents walk service dependencies and score each recent change by how much of the alerting it explains. On 32 held-out change-caused incidents with planted traps, following the graph ranks the right change first **more than 4× as often as picking a recent change** (75% vs 18%), beats "blame the newest deploy" **24 to 0**, and has the real cause in its **top 3 for nearly 9 in 10** incidents (88%).
 - **Agents remember and coordinate through the graph.** Handoff notes, task claims (compare-and-set), idempotent actions, lessons and conversation history are graph nodes. **20 agents racing for one task produce 1 claim; 20 simultaneous pages produce 1 page.**
 - **A company brain that cites its sources.** Ownership, expertise and decisions are extracted from docs, tickets and chats with provenance and kept bi-temporal, so "who owned it in June?" has a correct answer. **29/30** Brain questions correct, **100%** cited, **0** stale answers after a reorg.
 
