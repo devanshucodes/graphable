@@ -14,7 +14,7 @@ const HERO: Record<string, { title: string; tests: string; tracks: string[] }> =
   H4: { title: "Not a change", tests: "An expired certificate, not a deploy. Graphable blames no one and warns that the expert has left.", tracks: ["Connected data", "Company brain"] },
 };
 const TERMS: Record<string, [string, string]> = {
-  Cov: ["Explains the alerts", "Share of alerting services that depend on it, discounted for hubs"],
+  Cov: ["Fits the failure pattern", "How many failing services depend on it, balanced against how many of its dependents are fine"],
   F: ["Most specific cause", "No deeper component explains as much"],
   K: ["Risky kind of change (learned)", "How often this kind of change was rolled back or confirmed as a cause"],
   R: ["How recent", "How shortly before detection it landed"],
@@ -270,7 +270,8 @@ export default function Incidents() {
     path.slice(0, -1).forEach((p, i) => edges.push({ from: p, to: path[i + 1], label: "depends on", hot: true }));
     const rc = path[k - 1];
     const rootN = nodes.find((n) => n.id === rc)!;
-    rootN.sub = root.type === "change" ? `explains ${Math.round((root.breakdown?.Cov ?? root.breakdown?.E ?? 0) * 100)}% of alerts` : fault(root.fault_type);
+    const nA = inc?.intake?.alerting?.length ?? 0, nDep = Math.round((root.breakdown?.E ?? 0) * nA); // E = share of alerting services upstream of it
+    rootN.sub = root.type === "change" ? (nA ? `${nDep} of ${nA} failing services use it` : "root cause") : fault(root.fault_type);
     if (root.change_id) {
       const [what, ...rest] = cfg(root.summary).split(" ");
       nodes.push({ id: root.change_id, label: what || "change", sub: arrow(rest.join(" ")) || root.change_id, kind: "change", col: k + 1, row: 0 });
@@ -638,7 +639,7 @@ function PlainWords({ inc, inv, root, resp, tri, nw, actions }: any) {
   const items: any[] = [
     <>{n ? `${n} services started failing at once` : "Several services started failing"}{tri?.severity ? ` (severity SEV${tri.severity})` : ""}.</>,
     root.type === "change"
-      ? <><b className="font-medium">Cause:</b> someone changed <b className="font-medium">{root.entity_name}</b>{m != null ? ` ${Math.round(m)} minutes before the alerts` : ""}{what ? ` (${what})` : ""}.</>
+      ? <><b className="font-medium">Cause:</b> someone changed <b className="font-medium">{root.entity_name}</b>{m != null ? ` ${Math.round(m)} minutes before the alerts` : ""}{what ? ` (${what})` : ""}.{n && root.breakdown?.E != null ? (root.breakdown.E >= 0.999 ? ` All ${n} failing services depend on it.` : ` ${Math.round(root.breakdown.E * n)} of the ${n} failing services depend on it.`) : ""}</>
       : <><b className="font-medium">Cause:</b> not a recent change. Most likely origin: <b className="font-medium">{root.entity_name}</b>{root.fault_type && root.fault_type !== "unknown" ? ` (${fault(root.fault_type)})` : ""}.</>,
   ];
   if (decoy) items.push(<>It is <b className="font-medium">not the newest change</b> ({arrow(cfg(decoy.summary))} on {decoy.entity_name}); that one does not explain the failures.</>);
