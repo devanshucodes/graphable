@@ -97,7 +97,7 @@ WITH DISTINCT i
 RETURN i.id AS id, i.key AS key, i.title AS title, i.started_at AS t, i.sev AS sev,
        [(i)-[:AFFECTED]->(x) | x.id] AS affected, [(i)<-[:PART_OF]-(a:Alert) | a.name] AS alerts,
        [(i)-[:CAUSED_BY]->(c:Change)-[:CHANGED]->(r) | [c.id, c.kind, r.id]] AS causes,
-       [(i)-[:CAUSED_BY]->(r:Component) | r.id] AS nc_roots,
+       [(i)-[:CAUSED_BY]->(rc:Component) | rc.id] AS nc_roots,   // a new name: FalkorDB 4.22 would reuse the r above
        [(i)-[:RESOLVED_BY]->(p:Person) | [p.id, p.name, p.handle, p.left_at]] AS resolvers,
        [(i)-[:MITIGATED_WITH]->(rb:Runbook) | [rb.id, rb.key]] AS runbooks
 ```
@@ -166,22 +166,28 @@ A runbook is stale if:
 MATCH (d:Decision {id:$id})
 RETURN d.id AS id, d.key AS key, d.title AS title, d.status AS status, d.decided_at AS decided_at,
        [(d)-[:DOCUMENTED_IN]->(doc:Doc) | {id: doc.id, title: doc.title, snippet: substring(doc.text, 0, 600)}] AS docs,
-       [(d)-[r:DISCUSSED_IN]->(t:Thread) | {id: t.id, channel: t.channel, source: r.source_id}] AS threads,
        [(d)-[:DECIDED_BY]->(p:Person) | {id: p.id, name: p.name}] AS decided_by,
        [(d)-[:SUPERSEDES]->(o:Decision) | {id: o.id, key: o.key, title: o.title}] AS supersedes,
        [(n:Decision)-[:SUPERSEDES]->(d) | {id: n.id, key: n.key, title: n.title}] AS superseded_by,
-       [(d)-[:AFFECTS]->(c:Component) | {id: c.id, name: c.name}] AS affects
+       [(d)-[:AFFECTS]->(c:Component) | {id: c.id, name: c.name}] AS affects,
+       [(d)-[r:DISCUSSED_IN]->(t:Thread) | {id: t.id, channel: t.channel, source: r.source_id}] AS threads
 ```
+`threads` stays last: on FalkorDB 6.0.2, a comprehension with a named relationship (`r`) empties the comprehensions after it.
+The Brain answers "why" from the ADR document's own sections: Context, the rejected options and Consequences.
 A decision key (e.g. `ADR-042`) is matched exactly; free text is matched to a decision through the `Doc` full-text index (§16).
 
 ## 8. Graph-based alert correlation (intake)
 Alerts correlate when their components are related, through a direct dependency or a 2-hop path whose middle node is **not a hub**, *and* the alerts are within 5 minutes of each other.
 ```cypher
+MATCH (u:Component)-[:DEPENDS_ON]->(n:Component) WITH n, count(u) AS deg WHERE deg >= 10
+RETURN n.id AS h                                                         // hubs: 10+ direct dependents
+
 MATCH p=(a:Component)-[:DEPENDS_ON*1..2]-(b:Component) WHERE a.id IN $E AND b.id IN $E AND a.id < b.id
   AND all(x IN relationships(p) WHERE x.valid_to IS NULL OR x.valid_to > $t)
-  AND all(n IN nodes(p) WHERE n = a OR n = b OR size([(n)<-[:DEPENDS_ON]-(u) | u]) < 10)
+  AND all(n IN nodes(p) WHERE n = a OR n = b OR NOT n.id IN $hubs)
 RETURN DISTINCT a.id AS a, b.id AS b
 ```
+The hub list is computed first and passed in (`$hubs`): FalkorDB 4.22 cannot run a pattern comprehension inside this path filter.
 
 ## 9. Coordination: atomic compare-and-set task claim (one writer per graph)
 The triage, investigate and respond phases each claim their `Task` before they start. If the claim returns no row, another worker holds the task and the phase stops. The worker id is the agent role plus the crew run (`investigator:3f9a…`), so a second crew on the same incident loses the claim even with the same role; the claim is re-entrant for its current holder while the task is `WORKING`.
@@ -283,7 +289,7 @@ RETURN node.id AS id, node.name AS name, score ORDER BY score DESC, id          
 CALL algo.betweenness({nodeLabels:['Component'], relationshipTypes:['DEPENDS_ON'], samplingSize:64, samplingSeed:42})
 YIELD node, score RETURN node.id AS id, node.name AS name, score ORDER BY score DESC, id // chokepoints (fixed seed => reproducible)
 ```
-`graph_hubs` returns the top k, plus the rank of specific components when asked. Triage uses it to report where the alerting components rank by PageRank. The `algo.*` procedures see every `DEPENDS_ON` edge, including edges closed with `valid_to`.
+`graph_hubs` returns the top k, plus the rank of specific components when asked. PageRank scores are reported as each component's share of the total (computed in Python), because FalkorDB 4.x normalizes over the whole graph and 6.x over the components. Triage uses it to report where the alerting components rank by PageRank. The `algo.*` procedures see every `DEPENDS_ON` edge, including edges closed with `valid_to`.
 ```cypher
 MATCH (a:{L1} {id:$a}), (b:{L2} {id:$b}) WITH a, b
 MATCH p=allShortestPaths((a)-[:DEPENDS_ON|OWNS|CHANGED|…*..{L}]-(b))           // explain a connection

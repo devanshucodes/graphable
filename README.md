@@ -62,7 +62,7 @@ flowchart LR
 - Code does traversal, scoring, verification and gating. The LLM reviews, explains and drafts.
 - Agents may only cite `evidence_id`s that tools returned. A code verifier re-checks that every cited relationship existed at incident time.
 - Facts are never deleted, only closed (`valid_to`), so history stays queryable.
-- The tenant comes from the auth token, never from the LLM. The MCP server enforces each agent role's tool list; external clients get the read-only tools.
+- The tenant comes from the auth token, never from the LLM. The MCP server gives each of our agent roles only its own tools, and trusts the role header only together with a server-side agent key; every other client gets the read-only tools.
 - A ticket is filed automatically only with a verified path and enough confidence. A page needs human approval, except for SEV1 incidents with a verified path and very high confidence (on the shared demo every page waits, so visitors can try the approval step). A rollback is only ever proposed.
 
 **Agents**
@@ -159,7 +159,7 @@ Every query and algorithm the product depends on is in **[docs/QUERIES.md](docs/
 | **Keeping knowledge current**: a chat message closes the old `OWNS` edge and opens a new one with provenance | `... SET o.valid_to = $vf, o.invalidated_by = $src ... CREATE (t)-[:OWNS {valid_from:$vf, source_id:$src, span:$span}]->(c)` | `ingest/pipeline.py` |
 | **Hybrid search** for the Brain | `CALL db.idx.fulltext.queryNodes(...)` and `CALL db.idx.vector.queryNodes(...)`, fused by reciprocal rank | `knowledge_search` |
 
-**FalkorDB features used:** one graph per tenant · `GRAPH.COPY` snapshots · `GRAPH.RO_QUERY` with per-query timeouts · `GRAPH.EXPLAIN` before running agent-written Cypher · unique constraints · range indexes on node and relationship properties · full-text indexes (including fuzzy matching for typos) · HNSW vector indexes with `vecf32` and `vec.cosineDistance` · `algo.pageRank` and `algo.betweenness` · `allShortestPaths`.
+**FalkorDB features used:** one graph per tenant · `GRAPH.COPY` snapshots · `GRAPH.RO_QUERY` with per-query timeouts · `GRAPH.EXPLAIN` before running agent-written Cypher · unique constraints · range indexes on node and relationship properties · full-text indexes (including fuzzy matching for typos) · HNSW vector indexes with `vecf32` and `vec.cosineDistance` · `algo.pageRank` (Triage) and `algo.betweenness` (MCP tool) · `allShortestPaths`.
 
 ## Quickstart
 
@@ -223,11 +223,11 @@ Synthetic data and small samples: read these as a demonstration, not a benchmark
 
 | Capability | Result | Baseline / note | Source |
 |---|---|---|---|
-| Root cause, change-caused incidents (n=32) | **top-1 75% · top-3 88% · MRR 0.88** | untuned weights 47% · random recent change 18% · fewest hops, then newest 16% · newest change 0%. Wrongly said "not a change": 16% | `rca_test.json` |
-| Incidents not caused by a change (n=8) | correctly declined to blame a change 75%, right origin 100% | look-alike traps (n=4): 100% · multi-root (n=4): 50% | `rca_test.json` |
-| Claims backed by real graph relationships | 100% (graph-only crew) · 96% with Gemini review | rejected claims are shown as rejected, never acted on | `system_mcp.json`, `crew_gemini_mcp.json` |
+| Root cause, change-caused incidents (n=32) | **top-1 75% · top-3 88% · MRR 0.88** | untuned weights 47% · random recent change 18% · fewest hops, then newest 16% · newest change 0%. Includes look-alike traps (n=4): 100% and multi-root (n=4): 50%. Wrongly said "not a change": 16% | `rca_test.json` |
+| Incidents not caused by a change (n=8) | correctly declined to blame a change 75%, right origin 100% |  | `rca_test.json` |
+| Claims backed by real graph relationships | 100% (graph-only crew) · 96% with Gemini review | the graph-only 100% is expected by construction (its claims come from the tools); the Gemini figure is the real test. Rejected claims are shown as rejected, never acted on | `system_mcp.json`, `crew_gemini_mcp.json` |
 | Cited paths that exist at incident time | 100% |  | `system_mcp.json` |
-| Paged the correct team | 82% |  | `system_mcp.json` |
+| Routed to the correct owning team | 33/40 (82%) | the page then waits for approval | `system_mcp.json` |
 | Concurrency | 20 racing claims → 1 · 20 simultaneous pages → 1 action |  | `system_mcp.json` |
 | Tenant isolation | 0 leaks | second tenant with identical service names | `system_mcp.json` |
 | Brain questions | 29/30 correct, 100% cited | weakest: why decision (5/6) | `system_mcp.json` |
@@ -235,9 +235,9 @@ Synthetic data and small samples: read these as a demonstration, not a benchmark
 | Learning a new failure pattern | wrong 3×, then 5/5 | after on-call corrections are written to the graph | `system_mcp.json` |
 | Fact extraction from docs, tickets, chats | Gemini precision 0.86 / recall 0.90 | rules 0.86 / 0.86 | `extraction_*.json` |
 | Gemini review of the ranking | 4 incidents marked contested for a human (1 of them actually wrong) · 0 overrides | review unavailable on 8 of 40 (API timeout): the graph's answer stands | `crew_gemini_mcp.json` |
-| Per incident | 21 MCP calls, 2.3 s (graph only) · 24 calls, 126 s average with Gemini review | review time depends on Gemini API latency; the UI shows the graph's answer within a second and marks it provisional | `system_mcp.json`, `crew_gemini_mcp.json` |
+| Per incident | 21 MCP calls, 2.5 s (graph only) · 24 calls, 126 s average with Gemini review | review time depends on Gemini API latency; the UI shows the graph's answer within a second and marks it provisional | `system_mcp.json`, `crew_gemini_mcp.json` |
 
-**What the LLM adds, measured:** letting Gemini override the graph's ranking fixed 1 incident and broke 3 look-alike traps. So a disagreement now marks the incident *contested* for a human, and the graph's answer stands.
+**What the LLM adds, measured:** Gemini disagreed with the graph on 4 test incidents. Letting it override would have fixed 1 (TS-27) and broken 3 correct answers (a non-change, a multi-root and a look-alike incident). So a disagreement now marks the incident *contested* for a human, and the graph's answer stands.
 
 Reproduce: `uv run python -m graphable.evals.rca --set test --tuned` · `uv run python -m graphable.evals.system --bus mcp` (MCP server started with `GRAPHABLE_ALLOW_EVAL_TOKENS=1`) · `uv run pytest -q`.
 
@@ -256,7 +256,7 @@ Reproduce: `uv run python -m graphable.evals.rca --set test --tuned` · `uv run 
 
 "Acme Commerce" is a fictional marketplace with generated names on a fictional domain:
 - 40 services, 15 datastores, 131 people and 11 teams;
-- 12 months of history: 9.7k changes, 397 incidents, 7.1k alerts, 15k chat messages, 2.9k tickets, 440 docs, 170 runbooks, 120 decisions;
+- 12 months of history: 9.7k changes, 397 incidents, 7.1k alerts, 15k chat messages, 2.9k tickets, 439 docs, 170 runbooks, 120 decisions;
 - about 41k nodes and 108k relationships once loaded and extracted (the sidebar shows the live counts).
 
 The history includes a reorg, a new team, departures, a sale-week capacity spike and a year-end freeze. It also includes deliberate traps: decoy deploys, silent root causes, look-alike incidents, service aliases and typos, two people with the same first name, stale runbooks, superseded decisions, prompt-injection strings in tickets, and a second tenant (`globex`) with identical service names.

@@ -63,8 +63,8 @@ async def triage_offline(bus, st: dict) -> dict:
                        confidence=0.9,
                        claim=f"SEV{sev}: {len(alerting)} components alerting; upstream impact reaches entry points {entry or 'none'}. {hub_txt}".strip())
     top_sim = (sim.get("similar") or [])[:3]
-    summary = (f"SEV{sev}. Alerting: {', '.join(alerting[:6])}. Paged team: {own.get('owner', {}).get('team') if own.get('owner') else '?'}. "
-               + (f"Looks like {top_sim[0]['key']} ({top_sim[0]['similarity']}). " if top_sim else "No close past incident. ") + hub_txt).strip()
+    summary = (f"SEV{sev}. Alerting: {', '.join(alerting[:6])}{f' and {len(alerting) - 6} more' if len(alerting) > 6 else ''}. Paged team: {own.get('owner', {}).get('team') if own.get('owner') else '?'}. "
+               + (f"Looks like {top_sim[0]['key']} ({round(top_sim[0]['similarity'] * 100)}% similar). " if top_sim else "No close past incident. ") + hub_txt).strip()
     await bus.call("memory_handoff", incident_id=inc, to_role="investigator", summary=summary,
                    open_questions=["Which change or component is the root cause?", "Is this a change-induced incident?"],
                    evidence_ids=ev + [s["evidence_id"] for s in top_sim if s.get("evidence_id")] + ([hubs["evidence_id"]] if hubs.get("evidence_id") else []))
@@ -281,7 +281,8 @@ async def investigate_gemini(bus, st: dict) -> dict:  # pragma: no cover - needs
         llm = {"decision": out.decision, "root_change_id": out.root_change_id, "root_entity_id": out.root_entity_id,
                "agrees": agree, "applied": False}
         if not agree:
-            # Measured on 40 test incidents: letting the LLM override fixed 1 and broke 3 (look-alike traps).
+            # Measured on 40 test incidents (evals_out/crew_gemini_mcp.json, 4 contested): letting the LLM override would have
+            # fixed 1 (TS-27) and broken 3 correct answers (a non-change, a multi-root and a look-alike incident).
             # So dissent is treated as uncertainty: the deterministic answer stands, the incident is marked contested,
             # confidence is halved (no auto-ticket, human sees both views).
             base["contested"] = {"llm_decision": out.decision, "llm_root_change_id": out.root_change_id,

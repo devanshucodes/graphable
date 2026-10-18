@@ -36,7 +36,7 @@ export default function Scoreboard() {
   const checks: [string, string, boolean][] = sys ? [
     ["Claims verified by code (graph-only crew)", pct(sys.crew.claims_verified), true],
     ["Cited graph paths that exist", pct(sys.crew.path_validity), true],
-    ["Pages held for human approval", `${sys.crew.pages.awaiting_approval}/${sys.crew.n}`, true],
+    ["Pages that waited for a human (by design)", `${sys.crew.pages.awaiting_approval}/${sys.crew.n}`, true],
     ["Tenant isolation, identical service names", sys.isolation.pass ? "Pass" : "Fail", sys.isolation.pass],
     ["Concurrency: CAS claims, idempotent pages", sys.concurrency.pass ? "Pass" : "Fail", sys.concurrency.pass],
     ["Stale answers after org changes", `${sys.probes.knowledge_update.stale_answers}`, sys.probes.knowledge_update.stale_answers === 0],
@@ -46,7 +46,7 @@ export default function Scoreboard() {
   const metrics: [string, string, string][] = [
     ["Root cause, top-1", pct(t?.ac1), t ? `top-3 ${pct(t.ac3)} · random ${pct(d.base_random)}` : ""],
     ["Cited paths that exist", sys ? pct(sys.crew.path_validity) : "—", "every edge re-checked by code"],
-    ["Racing pages → actions", sys ? `${sys.concurrency.concurrent_pages} → ${sys.concurrency.page_actions_created}` : "—", sys ? `${sys.concurrency.successful_claims} ${sys.concurrency.concurrent_claims != null ? `of ${sys.concurrency.concurrent_claims} ` : ""}racing claims won` : ""],
+    ["Simultaneous pages → pages sent", sys ? `${sys.concurrency.concurrent_pages} → ${sys.concurrency.page_actions_created}` : "—", sys ? `${sys.concurrency.successful_claims}${sys.concurrency.concurrent_claims != null ? ` of ${sys.concurrency.concurrent_claims}` : ""} agents won the same task` : ""],
     ["Brain answers correct", sys ? `${sys.probes.brain_qa.correct}/${sys.probes.brain_qa.n}` : "—", sys ? `${pct(sys.probes.brain_qa.cited_rate)} cited · ${sys.probes.knowledge_update.stale_answers} stale` : ""],
   ];
 
@@ -122,7 +122,7 @@ export default function Scoreboard() {
             </Chart>
 
             <Section title="System tests" className="min-w-0" count={checks.length}>
-              <p className="-mt-1.5 mb-3 text-[12.5px] text-ink-3">Run against the real MCP server over HTTP.</p>
+              <p className="-mt-1.5 mb-3 text-[12.5px] text-ink-3">Crew runs call the real MCP server over HTTP; the concurrency, isolation and Brain checks call the same tools in-process.</p>
               <div className="box divide-y divide-line">
                 {checks.map(([l, v, ok]) => (
                   <div key={l} className="flex h-10 items-center gap-3 px-4 text-[13px]">
@@ -154,7 +154,7 @@ export default function Scoreboard() {
               </Section>
             )}
 
-            {(ev.crew_gemini_mcp || ev.crew_offline_mcp) && (
+            {(ev.crew_gemini_mcp || ev.system_mcp || ev.crew_offline_mcp) && (
               <Section title="Graph ranker alone vs. with Gemini review" className="min-w-0">
                 <p className="-mt-1.5 mb-3 text-[12.5px] text-ink-3">Same 40 incidents, same MCP tools.</p>
                 <div className="box overflow-hidden">
@@ -163,12 +163,12 @@ export default function Scoreboard() {
                     <tbody>
                       {([["Root cause correct", "root_correct", pct], ["Claims verified", "claims_verified", pct], ["Contested for human review", "contested", (x: any) => x ?? 0],
                         ["MCP tool calls per incident", "avg_tool_calls", dec], ["Seconds per incident", "avg_seconds", dec]] as [string, string, (x: any) => any][]).map(([l, k, f]) => (
-                        <tr key={k} className="h-9 border-b border-line last:border-0"><td className="px-4">{l}</td><td className="mono px-4 text-right text-[12.5px] num">{f(ev.crew_offline_mcp?.crew?.[k])}</td><td className="mono px-4 text-right text-[12.5px] num">{f(ev.crew_gemini_mcp?.crew?.[k])}</td></tr>
+                        <tr key={k} className="h-9 border-b border-line last:border-0"><td className="px-4">{l}</td><td className="mono px-4 text-right text-[12.5px] num">{f((ev.system_mcp ?? ev.crew_offline_mcp)?.crew?.[k])}</td><td className="mono px-4 text-right text-[12.5px] num">{f(ev.crew_gemini_mcp?.crew?.[k])}</td></tr>
                       ))}
                     </tbody>
                   </table>
                   <div className="border-t border-line px-4 py-3 text-[12.5px] leading-relaxed text-ink-2">
-                    <span className="font-medium text-ink">Finding.</span> Letting the LLM override the graph fixed 1 incident and broke 3 look-alike traps. Now a disagreement marks the incident contested for a human, so accuracy holds and the LLM acts as a second opinion.
+                    <span className="font-medium text-ink">Finding.</span> Letting the LLM override the graph would have fixed 1 incident and broken 3 correct answers (a non-change, a multi-root and a look-alike incident). Now a disagreement marks the incident contested for a human, so accuracy holds and the LLM acts as a second opinion.
                   </div>
                 </div>
               </Section>

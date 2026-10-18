@@ -236,7 +236,8 @@ def incident_rank_root_causes(ctx: Ctx, incident_id: str, window_min: int = 120,
       Prec = alerting share of c's 3-hop up-closure  (precision: hubs only win if nearly everything alerts)
       Cov  = sqrt(E * Prec)                          (Ochiai, TraceRCA/MicroRank)
       F    = 1 if no candidate downstream of c explains as much (minimal explanation; Groot/CIRCA)
-    For each change x on c in the window: S = .30 R + .30 Cov + .15 F + .10 K + .05 P + .10 H
+    For each change x on c in the window: S = sum of weights x features. Production uses the tuned W
+    (Cov .541, K .209, F .145, P .055, R .046, H .003); W_PRIOR (.30 R, .30 Cov, .15 F, .10 K, .10 H, .05 P) is the untuned start
       R recency (changes after detection heavily discounted), K kind prior (rollbacks / confirmed causes),
       H history (past incidents caused by the same kind of change on c), P = 2/(2+hops) (ChangeRCA depth).
     Abstain (non-change) when the best change scores below theta."""

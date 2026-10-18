@@ -60,6 +60,12 @@ def _date(s: str, now: int | None = None) -> int | None:
     return _utc(y, mi, day)
 
 
+def _section(md: str, name: str) -> str | None:
+    """Body of a '## <name>' section of a markdown doc (ADRs put a blank line after the heading, or not)."""
+    m = re.search(rf"^##\s*{re.escape(name)}\s*\n+(.*?)(?=\n##|\Z)", md, re.S | re.M)
+    return m.group(1).strip() if m else None
+
+
 def _source(tg: TenantGraph, sid: str | None) -> str:
     """Provenance in words: msg_h3_0001 -> a message in #announcements from Lena Vogel on 2026-10-12."""
     if not sid or not sid.startswith("msg_"):
@@ -237,13 +243,15 @@ async def ask(tenant: str, question: str, now: int | None = None, bus_mode: str 
         if e:
             r = await bus.call("org_ownership", entity_id=e["id"], at=at) if at else await bus.call("org_ownership", entity_id=e["id"])
             o = r.get("owner") or {}
-            when = (f" during {during} ({datetime.fromtimestamp(at / 1000, tz=timezone.utc).date()})" if during else
-                    f" on {datetime.fromtimestamp(at / 1000, tz=timezone.utc).date()}") if at else " now"
+            day = datetime.fromtimestamp(at / 1000, tz=timezone.utc).date() if at else None
+            src = f"source: {_source(tg, o.get('source'))}" if o.get("source") else ""
+            when = (f" during {during} ({'; '.join(filter(None, [str(day), src]))})" if during else f" on {day}") if at else ""
+            what = f"The {e['name']} {'datastore' if e['id'].startswith('ds_') else 'service'}"
             if not o.get("team"):
-                ans = f"{e['name']} had no owner{when}." if at else f"{e['name']} has no current owner."
+                ans = f"{what} had no owner{when}." if at else f"{what} has no current owner."
             else:
-                ans = (f"{e['name']} was owned by {o.get('team')}{when}" if at else f"{e['name']} is owned by {o.get('team')}") + \
-                      (f" (source: {_source(tg, o.get('source'))})." if o.get("source") else ".")
+                ans = (f"{what} was owned by the {o['team']} team{when}" if at else f"{what} is owned by the {o['team']} team") + \
+                      (f" ({src})." if src and not during else ".")
             if not at and r.get("oncall"):
                 ans += f" On-call: {', '.join(x['name'] for x in r['oncall'])}."
             if len(r.get("history", [])) > 1:
@@ -273,8 +281,15 @@ async def ask(tenant: str, question: str, now: int | None = None, bus_mode: str 
             if d.get("decided_by"):
                 ans += f", decided by {d['decided_by'][0]['name']}"
             if d.get("docs"):
-                m = re.search(r"## Context\n(.+?)\n", d["docs"][0]["snippet"] or "")
-                ans += f". Context: {m.group(1) if m else d['docs'][0]['title']}"
+                doc = d["docs"][0]["snippet"] or ""
+                ctx_ = _section(doc, "Context")
+                ans += f". Why: {ctx_.splitlines()[0].rstrip('.') if ctx_ else d['docs'][0]['title']}"
+                rejected = [re.sub(r"\s*\(rejected\)\s*$", "", x.lstrip("- ").strip())
+                            for x in (_section(doc, "Options considered") or "").splitlines() if "(rejected)" in x]
+                if rejected:
+                    ans += f". Rejected: {', '.join(rejected)}"
+                if cons := _section(doc, "Consequences"):
+                    ans += f". Expected consequence: {cons.splitlines()[0].rstrip('.')}"
             if d.get("threads"):
                 ans += f". Discussed in {d['threads'][0]['channel']}"
             if d.get("superseded_by"):

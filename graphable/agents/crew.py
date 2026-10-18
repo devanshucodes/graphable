@@ -76,7 +76,7 @@ async def triage_node(st: CrewState, config=None) -> dict:
     tg.write("MATCH (i:Incident {id:$i}) SET i.sev = $s", {"i": st["incident_id"], "s": out["severity"]})
     complete_task(tg, f"task_{st['incident_id']}_triage", "investigate", st["incident_id"], st["now"])
     bus.log.end(out["summary"])
-    _emit_fn(config)({"type": "handoff", "from": "triage", "to": "investigator", "summary": out["summary"]})
+    _emit_fn(config)({"type": "handoff", "from": "triage", "to": "investigator", "summary": out["summary"], "triage": out})
     return {"triage": out, "last_run": bus.log.run_id, "events": [{"phase": "triage", "calls": len(bus.calls)}]}
 
 

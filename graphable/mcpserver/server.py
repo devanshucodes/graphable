@@ -46,7 +46,8 @@ def _ctx(c: Context | None, incident_id: str | None = None) -> Ctx:
     h = req.headers if req is not None else {}
     # server-side tool policy: our agents only get their role's tools; unknown/external clients get the read-only tools
     tool = getattr(c, "_graphable_tool", None) if c else None
-    agent = (h.get("x-agent") or "external") if req is not None else None
+    trusted = not settings.agent_key or h.get("x-agent-key") == settings.agent_key  # the role header alone proves nothing
+    agent = ((h.get("x-agent") if trusted else None) or "external") if req is not None else None
     if tool and agent is not None:
         allowed = T.ROLE_TOOLS.get(agent)
         if allowed is not None and tool not in allowed:

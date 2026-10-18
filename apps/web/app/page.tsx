@@ -226,7 +226,8 @@ export default function Incidents() {
   const result = detail?.run?.result;
   const final = result?.investigation;
   const isProv = !final && !!prov; // showing the graph's ranking while Gemini reviews it
-  const tri = result?.triage, inv = final ?? prov, ver = result?.verification, resp = result?.response;
+  const tri = result?.triage ?? events.find((e: any) => e.type === "handoff" && e.triage)?.triage; // triage is streamed before the final result
+  const inv = final ?? prov, ver = result?.verification, resp = result?.response;
   const root = inv?.root;
   const noRun = !!detail && !detail.run; // the API no longer holds this run (it restarted): show what the graph stored
   const rs: string | undefined = detail?.run?.status;
@@ -425,7 +426,7 @@ export default function Incidents() {
   const detected: number | undefined = inc.intake?.detected_at;
   const waiting = status === "awaiting_approval" ? detail?.actions?.find((a: any) => a.status === "awaiting_approval") : null;
   const pend = noRun ? <span className="text-ink-3">—</span> : <Pending />;
-  const similar: any[] = [...(inv?.similar ?? [])].sort((a, b) => b.similarity - a.similarity);
+  const similar: any[] = inv?.similar ?? []; // the investigator's order, same as the Memory row in How it connects
   return (
     <>
       <PageBar crumbs={[{ label: "Incidents", onClick: () => back() }, inc.key]} actions={<>
@@ -513,7 +514,6 @@ export default function Incidents() {
                 )}
                 {others.length > 0 && (
                   <Section title="Other suspects" count={others.length} right="ranked lower by the same scoring">
-                    {decoy && <p className="-mt-1 mb-2.5 text-[12.5px] text-ink-2">The newest change ({arrow(cfg(decoy.summary))} on {decoy.entity_name}, {mins(decoy.minutes_before_detection)} before detection) was ruled out: it does not explain the alerts.</p>}
                     <div className="overflow-x-auto">
                       <table className="w-full min-w-[520px] text-[13px]">
                         <thead><tr className="border-b border-line text-left text-[12px] text-ink-3"><th className="h-8 w-[160px] font-normal">Component</th><th className="font-normal">Change</th><th className="w-[100px] font-normal">Landed</th><th className="w-[140px] text-right font-normal">Score</th></tr></thead>
@@ -557,9 +557,9 @@ export default function Incidents() {
               {hub && (() => {
                 const name = hub.name ?? nameOf(hub.id), of = tri.n_components ? ` of ${tri.n_components}` : "";
                 return (
-                  <Prop k="Most central alerting">
+                  <Prop k="Hub rank (PageRank)">
                     <span className="block truncate" title={`${name} ranks #${hub.rank}${of} by FalkorDB PageRank over the dependency graph`}>
-                      <span className="mono text-[12.5px]">{name}</span><span className="text-ink-3"> · #{hub.rank}{of} (PageRank)</span>
+                      <span className="mono text-[12.5px]">{name}</span><span className="text-ink-3"> · #{hub.rank}{of}</span>
                     </span>
                   </Prop>
                 );
@@ -770,7 +770,7 @@ function Timeline({ events, busy, moves, detected }: { events: Ev[]; busy: boole
   }
   // after its handoff, further investigator calls come from the Gemini second-opinion review
   const last = events[events.length - 1];
-  const reviewing = busy && last?.agent === "investigator" && events.some((e) => e.type === "tool_call" && e.agent === "investigator" && e.tool === "memory_handoff");
+  const reviewing = busy && (last?.agent === "investigator" || last?.type === "provisional") && events.some((e) => e.type === "tool_call" && e.agent === "investigator" && e.tool === "memory_handoff");
   if (!rows.length && !moves.length) {
     return busy
       ? <div className="flex items-center gap-2 py-8 text-[13px] text-ink-2"><Loader2 size={14} className="animate-spin" /> Correlating alerts and starting triage…</div>

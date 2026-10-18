@@ -64,7 +64,7 @@ flowchart LR
 | Analytics | FalkorDB `algo.pageRank` and `algo.betweenness` (importance, never cause); root-cause scoring in plain Python | Built-in algorithms run where the data is |
 | API | **FastAPI** + Uvicorn, **SSE** for live agent events | Simple streaming |
 | Web | **Next.js (App Router) + TypeScript + Tailwind**, Recharts for charts, a custom SVG graph view (`apps/web/components/NetGraph.tsx`) | Deterministic layouts: the same data always draws the same picture |
-| Deploy | **Docker Compose** locally: FalkorDB, bootstrap, MCP server, API, web (one backend image) | The supported setup. A hosted deployment (e.g. FalkorDB Cloud + Cloud Run + Vercel) is optional and not set up in this repo |
+| Deploy | **Docker Compose** locally: FalkorDB, bootstrap, MCP server, API, web (one backend image) | The full local setup. The hosted demo (`render.yaml`: one backend service with MCP mounted at `/mcp`, FalkorDB Cloud free tier, web app on Vercel) is described in §13 |
 | Secrets | `.env` (git-ignored; template in `.env.example`) | No keys in the repo |
 | Quality | `pytest` integration tests against a bootstrapped FalkorDB (`tests/test_system.py`); eval harness (§14) | — |
 
@@ -139,6 +139,8 @@ Full field lists for the generator are in DATA_SPEC.md. This section is the arch
 
 ### 5.3 Relationship types (direction is semantic)
 
+> Design schema. Not created by the current code: `ASSERTED_BY`, `IMPLEMENTS`, `APPROVED_BY`, `DEPLOYED_IN`, `REFUTED_BY`, and the `Topic` and `Claim` labels (`Claim` only has an index). The implemented model is `graphable/core/schema.py` and the README's graph data model.
+
 | Domain | Relationships |
 |---|---|
 | Org | `(Person)-[:MEMBER_OF†]->(Team)`, `(Team)-[:OWNS†]->(Service)` (exactly one active), `(Person)-[:HAS_SHIFT]->(OnCallShift)-[:COVERS]->(Team)`, `(Person)-[:REPORTS_TO†]->(Person)` |
@@ -166,6 +168,8 @@ Full field lists for the generator are in DATA_SPEC.md. This section is the arch
 ---
 
 ## 6. Ingestion pipeline: how the company brain stays current (Track 3)
+
+> Implemented: deterministic loaders, Gemini or rules extraction, resolution by id/handle/alias, full-text and vector search, validation, and the functional-relation check that closes the old `OWNS` edge and opens the new one. Design only: the LLM confirm step in resolution, an LLM contradiction check, the `RELATED_TO` escape hatch and graph-change events over SSE.
 
 ```mermaid
 flowchart LR

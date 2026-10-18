@@ -111,6 +111,7 @@ class McpBus(Bus):
             from langchain_mcp_adapters.client import MultiServerMCPClient
             client = MultiServerMCPClient({"graphable": {"transport": "streamable_http", "url": self.url, "headers": {
                 "Authorization": f"Bearer {self.token}", "X-Sim-Now": str(self.now), "X-Agent": self.agent, "X-Run-Id": self.log.run_id,
+                **({"X-Agent-Key": settings.agent_key} if settings.agent_key else {}),
                 **({"X-Incident-Id": self.incident_id} if self.incident_id else {})}}})
             allowed = set(T.ROLE_TOOLS.get(self.agent, T.TOOLS))
             self._tools = {t.name: t for t in await client.get_tools() if t.name in allowed}

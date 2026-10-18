@@ -151,7 +151,8 @@ export default function NetGraph({ nodes, edges, height = 520, dir = "lr", lanes
   const labelled = onEdges.filter((e) => { const k = `${e.type}|${byId.get(e.source === active ? e.target : e.source)?.layer}`; return !seenLabel.has(k) && !!seenLabel.add(k); });
   const showLabels = !!active && labelled.length <= 6 && onTypes.size > 1; // one shared type adds nothing; it is shown in the info bar
   const an = active ? byId.get(active) : null, nConn = an ? lay?.adj.get(an.id)?.size ?? 0 : 0;
-  const narrow = dir === "lr" && ow > 0 && ow < 640; // lane titles need ~150px each, so a narrow screen scrolls instead of squeezing
+  const lanes = new Set(nodes.map((n) => n.layer)).size;
+  const narrow = dir === "lr" && ow > 0 && ow < Math.max(480, lanes * 160); // lane titles need ~150px each, so a narrow box scrolls instead of squeezing
   const hint = "Hover a node to trace its connections · drag to pan · pinch or ⌘-scroll to zoom";
   const info = an ? `${an.type} · ${an.detail ?? an.label} · ${nConn} ${nConn === 1 ? "connection" : "connections"}${onTypes.size === 1 ? ` (${[...onTypes][0].replaceAll("_", " ").toLowerCase()})` : ""}` : hint;
 

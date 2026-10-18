@@ -7,9 +7,9 @@ import { ArrowUp, ArrowUpRight, History, Loader2, RotateCcw } from "lucide-react
 const GROUPS = [
   { title: "People and ownership", qs: ["Who knows vault best and what is the bus factor?", "Who owns promotions?", "Who should I ask about the redis cache?"], then: "Are its runbooks stale?" },
   { title: "Time travel", qs: ["Who owned promotions on 2026-06-15?", "Who owned the ledger on 2026-03-01?"] },
-  { title: "Impact and history", qs: ["What breaks if redis-cache goes down?", "Who has fixed INC-0287 before?"] },
+  { title: "Impact, history and decisions", qs: ["What breaks if redis-cache goes down?", "Who has fixed INC-0287 before?", "Why did we decide ADR-007?"] },
   { title: "Knowledge health", qs: ["Are the search runbooks stale?", "Are the vault runbooks stale?"] },
-  { title: "Open questions, answered by Gemini from the graph", qs: ["How do we safely restart the service mesh?", "Why did we decide ADR-007?"] },
+  { title: "Open questions, answered by Gemini from the graph", qs: ["How do we safely restart the service mesh?"] },
 ];
 const INTENT: Record<string, string> = {
   ownership: "Ownership history", experts: "Expertise, computed from evidence", decision: "Decision trace", blast_radius: "Blast radius",

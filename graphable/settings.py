@@ -1,5 +1,6 @@
 """Runtime configuration from environment (ARCHITECTURE §13)."""
 import os
+import secrets
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -36,6 +37,10 @@ class Settings:
     tenant_keys: dict = field(default_factory=lambda: dict(
         kv.split(":", 1) for kv in os.getenv("TENANT_KEYS", "dev-acme:acme,dev-globex:globex,dev-demo:demo_main").split(",") if ":" in kv))
     data_dir: Path = Path(os.getenv("DATA_DIR", str(ROOT / "datagen" / "out")))
+    # shared secret our own agents send (X-Agent-Key) so the MCP server trusts their X-Agent role header. With SERVE_MCP=1
+    # the API and the MCP server are one process, so a random per-process key is generated. Unset otherwise = trust the
+    # header (local dev only); set AGENT_KEY on both processes when the MCP server is reachable by others.
+    agent_key: str = os.getenv("AGENT_KEY") or (secrets.token_hex(16) if os.getenv("SERVE_MCP") == "1" else "")
 
     @property
     def llm_enabled(self) -> bool:

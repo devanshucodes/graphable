@@ -71,7 +71,10 @@ def ensure_demo():
 
 @asynccontextmanager
 async def lifespan(app):
-    ensure_demo()
+    try:
+        ensure_demo()
+    except Exception as e:  # start anyway: /v1/health reports the database as down and retries the restore
+        print(f"demo graph not ready at startup: {e}")
     if SERVE_MCP:
         async with mcp_server.mcp.session_manager.run():
             yield
@@ -98,6 +101,7 @@ class Run:
 
 
 RUNS: dict[tuple, Run] = {}  # keyed by (tenant, incident_id)
+INTAKE = asyncio.Lock()  # one scenario replay + alert correlation at a time, so two visitors never take each other's alerts
 
 
 async def _bus_mode() -> str:
@@ -189,9 +193,10 @@ async def sim_play(req: PlayReq, tenant: str = Depends(tenant_dep)):
     if SNAPSHOT and tenant == DEMO and _played(tg) >= MAX_PLAYED:
         await _reset()  # the shared hosted graph grows with every run; the free database tier has 100 MB
     tag = uuid.uuid4().hex[:6]
-    n = await asyncio.to_thread(play, tg, sc, None, tag)
     inc_id = f"inc_{req.sid.lower().replace('-', '')}_{tag[:4]}"
-    inc = await asyncio.to_thread(intake, tg, sc["t0"], inc_id, f"INC-{req.sid.upper()}-{tag[:4].upper()}")
+    async with INTAKE:
+        n = await asyncio.to_thread(play, tg, sc, None, tag)
+        inc = await asyncio.to_thread(intake, tg, sc["t0"], inc_id, f"INC-{req.sid.upper()}-{tag[:4].upper()}")
     if not inc:
         raise HTTPException(409, "No alerts to correlate. Click Reset demo and try again.")
     run = Run(tenant, inc_id)
@@ -250,9 +255,9 @@ def _ownership_moves(tg: TenantGraph, incident_id: str) -> list[dict]:
         OPTIONAL MATCH (m:Message {id:o.source_id})-[:IN]->(th:Thread)
         OPTIONAL MATCH (au:Person)-[:SENT]->(m)
         OPTIONAL MATCH (p:Person)-[:HAS_SHIFT]->(s:OnCallShift)-[:COVERS]->(nt) WHERE s.start <= t0 AND s.end > t0
-        RETURN c.id AS entity_id, c.name AS entity_name, ot.name AS from_team, nt.name AS to_team, o.source_id AS source_id,
-               th.channel AS source_channel, au.name AS source_author, o.valid_from AS valid_from,
-               collect(DISTINCT {id: p.id, name: p.name}) AS oncall""", {"id": incident_id})
+        RETURN c.id AS entity_id, c.name AS entity_name, coalesce(ot.name, '') AS from_team, nt.name AS to_team, o.source_id AS source_id,
+               coalesce(th.channel, '') AS source_channel, coalesce(au.name, '') AS source_author, o.valid_from AS valid_from,
+               collect(DISTINCT {id: p.id, name: p.name}) AS oncall""", {"id": incident_id})  # coalesce: no null grouping keys
 
 
 class Decision(BaseModel):

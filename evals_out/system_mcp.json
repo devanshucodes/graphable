@@ -23,7 +23,7 @@
    "executed": 1
   },
   "avg_tool_calls": 21.175,
-  "avg_seconds": 2.535,
+  "avg_seconds": 2.451,
   "rows": [
    {
     "id": "TS-01",
@@ -41,7 +41,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 1.51
+    "seconds": 1.48
    },
    {
     "id": "TS-02",
@@ -59,7 +59,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 3.32
+    "seconds": 2.32
    },
    {
     "id": "TS-03",
@@ -77,7 +77,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 2.49
+    "seconds": 3.17
    },
    {
     "id": "TS-04",
@@ -95,7 +95,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 3.51
+    "seconds": 4.15
    },
    {
     "id": "TS-05",
@@ -113,7 +113,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 2.36
+    "seconds": 1.34
    },
    {
     "id": "TS-06",
@@ -131,7 +131,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 2.12
+    "seconds": 2.97
    },
    {
     "id": "TS-07",
@@ -149,7 +149,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 2.12
+    "seconds": 1.28
    },
    {
     "id": "TS-08",
@@ -167,7 +167,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 1.22
+    "seconds": 1.3
    },
    {
     "id": "TS-09",
@@ -185,7 +185,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 3.62
+    "seconds": 3.32
    },
    {
     "id": "TS-10",
@@ -203,7 +203,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 19,
-    "seconds": 2.78
+    "seconds": 0.99
    },
    {
     "id": "TS-11",
@@ -221,7 +221,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 19,
-    "seconds": 1.92
+    "seconds": 1.83
    },
    {
     "id": "TS-12",
@@ -239,7 +239,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 2.97
+    "seconds": 2.78
    },
    {
     "id": "TS-13",
@@ -257,7 +257,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 19,
-    "seconds": 2.63
+    "seconds": 3.29
    },
    {
     "id": "TS-14",
@@ -275,7 +275,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 2.8
+    "seconds": 2.65
    },
    {
     "id": "TS-15",
@@ -293,7 +293,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 2.71
+    "seconds": 1.7
    },
    {
     "id": "TS-16",
@@ -311,7 +311,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 2.77
+    "seconds": 2.7
    },
    {
     "id": "TS-17",
@@ -329,7 +329,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 3.48
+    "seconds": 2.62
    },
    {
     "id": "TS-18",
@@ -365,7 +365,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 2.67
+    "seconds": 2.71
    },
    {
     "id": "TS-20",
@@ -383,7 +383,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 2.71
+    "seconds": 2.69
    },
    {
     "id": "TS-21",
@@ -401,7 +401,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 2.68
+    "seconds": 2.63
    },
    {
     "id": "TS-22",
@@ -419,7 +419,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 20,
-    "seconds": 2.56
+    "seconds": 2.53
    },
    {
     "id": "TS-23",
@@ -437,7 +437,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 19,
-    "seconds": 2.57
+    "seconds": 2.53
    },
    {
     "id": "TS-24",
@@ -455,7 +455,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 2.89
+    "seconds": 2.73
    },
    {
     "id": "TS-25",
@@ -473,7 +473,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 2.78
+    "seconds": 2.72
    },
    {
     "id": "TS-26",
@@ -491,7 +491,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 2.52
+    "seconds": 2.79
    },
    {
     "id": "TS-27",
@@ -509,7 +509,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 2.7
+    "seconds": 2.8
    },
    {
     "id": "TS-28",
@@ -527,7 +527,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 2.85
+    "seconds": 2.73
    },
    {
     "id": "TS-29",
@@ -545,7 +545,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 19,
-    "seconds": 1.69
+    "seconds": 2.46
    },
    {
     "id": "TS-30",
@@ -563,7 +563,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 2.73
+    "seconds": 2.71
    },
    {
     "id": "TS-31",
@@ -581,7 +581,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 2.86
+    "seconds": 2.68
    },
    {
     "id": "TS-32",
@@ -599,7 +599,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 2.9
+    "seconds": 2.69
    },
    {
     "id": "TS-33",
@@ -617,7 +617,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 2.81
+    "seconds": 2.77
    },
    {
     "id": "TS-34",
@@ -635,7 +635,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 2.83
+    "seconds": 2.82
    },
    {
     "id": "TS-35",
@@ -653,7 +653,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 2.81
+    "seconds": 3.01
    },
    {
     "id": "TS-36",
@@ -671,7 +671,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 21,
-    "seconds": 2.75
+    "seconds": 3.07
    },
    {
     "id": "TS-37",
@@ -689,7 +689,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 2.82
+    "seconds": 3.03
    },
    {
     "id": "TS-38",
@@ -707,7 +707,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 1.87
+    "seconds": 1.91
    },
    {
     "id": "TS-39",
@@ -725,7 +725,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 0.78
+    "seconds": 0.84
    },
    {
     "id": "TS-40",
@@ -743,7 +743,7 @@
     "llm_error": null,
     "contested": false,
     "tool_calls": 22,
-    "seconds": 0.59
+    "seconds": 0.62
    }
   ]
  },
@@ -774,25 +774,25 @@
     {
      "q": "Who owns promotions now?",
      "gold": "Orbit",
-     "answer": "promotions is owned by Orbit (source: catalog). On-call: Nick Hawkins, John Weihmann. History: Checkout from 2023-04-15 to 2026-07-01; Orbit from 2026-07-01.",
+     "answer": "The promotions service is owned by the Orbit team (source: catalog). On-call: Nick Hawkins, John Weihmann. History: Checkout from 2023-04-15 to 2026-07-01; Orbit from 2026-07-01.",
      "ok": true
     },
     {
      "q": "Who owned promotions on 2026-06-15?",
      "gold": "Checkout",
-     "answer": "promotions was owned by Checkout on 2026-06-15 (source: catalog). History: Checkout from 2023-04-15 to 2026-07-01; Orbit from 2026-07-01.",
+     "answer": "The promotions service was owned by the Checkout team on 2026-06-15 (source: catalog). History: Checkout from 2023-04-15 to 2026-07-01; Orbit from 2026-07-01.",
      "ok": true
     },
     {
      "q": "Who owns ledger now?",
      "gold": "Payments",
-     "answer": "ledger is owned by Payments (source: catalog). On-call: John de Gruil, Herminio C\u00e9spedes. History: Money from 2023-04-15 to 2026-04-15; Payments from 2026-04-15.",
+     "answer": "The ledger service is owned by the Payments team (source: catalog). On-call: John de Gruil, Herminio C\u00e9spedes. History: Money from 2023-04-15 to 2026-04-15; Payments from 2026-04-15.",
      "ok": true
     },
     {
      "q": "Who owned ledger on 2026-03-01?",
      "gold": "Money",
-     "answer": "ledger was owned by Money on 2026-03-01 (source: catalog). History: Money from 2023-04-15 to 2026-04-15; Payments from 2026-04-15.",
+     "answer": "The ledger service was owned by the Money team on 2026-03-01 (source: catalog). History: Money from 2023-04-15 to 2026-04-15; Payments from 2026-04-15.",
      "ok": true
     },
     {
@@ -869,42 +869,42 @@
      "type": "why_decision",
      "q": "Why did we decide: Standardize retry and backoff for scheduler?",
      "ok": true,
-     "answer": "ADR-037 \"Standardize retry and backoff for scheduler\" (superseded), decided by Conny Sykes. Context: The scheduler requires a change to standardize its retry and backoff mechanism.. Discussed in #team",
+     "answer": "ADR-037 \"Standardize retry and backoff for scheduler\" (superseded), decided by Conny Sykes. Why: The scheduler requires a change to standardize its retry and backoff mechanism. Rejected: Rewrite the s",
      "cited": true
     },
     {
      "type": "why_decision",
      "q": "Why did we decide: Require two reviewers for search config?",
      "ok": true,
-     "answer": "ADR-088 \"Require two reviewers for search config\" (accepted), decided by Karen Sahota. Context: ADR-088: Require two reviewers for search config. Discussed in #team-discovery.",
+     "answer": "ADR-088 \"Require two reviewers for search config\" (accepted), decided by Karen Sahota. Why: Search needs a change: require two reviewers for search config. Rejected: rewrite the service, add more repl",
      "cited": true
     },
     {
      "type": "why_decision",
      "q": "Why did we decide: Use idempotency keys in payouts writes?",
      "ok": true,
-     "answer": "ADR-041 \"Use idempotency keys in payouts writes\" (accepted), decided by Nathalie Walton. Context: payouts needs a change: use idempotency keys in payouts writes. Discussed in #team-money.",
+     "answer": "ADR-041 \"Use idempotency keys in payouts writes\" (accepted), decided by Nathalie Walton. Why: payouts needs a change: use idempotency keys in payouts writes. Rejected: rewrite the service, buy a vendo",
      "cited": true
     },
     {
      "type": "why_decision",
      "q": "Why did we decide: Run config-service in three regions?",
      "ok": true,
-     "answer": "ADR-032 \"Run config-service in three regions\" (superseded), decided by Conny Sykes. Context: config-service needs a change: run config-service in three regions. Discussed in #team-platform. Superseded",
+     "answer": "ADR-032 \"Run config-service in three regions\" (superseded), decided by Conny Sykes. Why: config-service needs a change: run config-service in three regions. Rejected: add more replicas, add a cache la",
      "cited": true
     },
     {
      "type": "why_decision",
      "q": "Why did we decide: Standardize retry and backoff for scheduler?",
      "ok": false,
-     "answer": "ADR-037 \"Standardize retry and backoff for scheduler\" (superseded), decided by Conny Sykes. Context: The scheduler requires a change to standardize its retry and backoff mechanism.. Discussed in #team",
+     "answer": "ADR-037 \"Standardize retry and backoff for scheduler\" (superseded), decided by Conny Sykes. Why: The scheduler requires a change to standardize its retry and backoff mechanism. Rejected: Rewrite the s",
      "cited": true
     },
     {
      "type": "why_decision",
      "q": "Why did we decide: Cap search client timeouts at 2x dependency p99?",
      "ok": true,
-     "answer": "ADR-044 \"Cap search client timeouts at 2x dependency p99\" (accepted), decided by Karen Sahota. Context: search needs a change: cap search client timeouts at 2x dependency p99.",
+     "answer": "ADR-044 \"Cap search client timeouts at 2x dependency p99\" (accepted), decided by Karen Sahota. Why: search needs a change: cap search client timeouts at 2x dependency p99. Rejected: buy a vendor produ",
      "cited": true
     },
     {
@@ -995,28 +995,28 @@
      "type": "as_of_owner",
      "q": "Who owned promotions on 2026-06-01?",
      "ok": true,
-     "answer": "promotions was owned by Checkout on 2026-06-01 (source: catalog). History: Checkout from 2023-04-15 to 2026-07-01; Orbit from 2026-07-01.",
+     "answer": "The promotions service was owned by the Checkout team on 2026-06-01 (source: catalog). History: Checkout from 2023-04-15 to 2026-07-01; Orbit from 2026-07-01.",
      "cited": true
     },
     {
      "type": "as_of_owner",
      "q": "Who owned promotions on 2026-08-01?",
      "ok": true,
-     "answer": "promotions was owned by Orbit on 2026-08-01 (source: catalog). History: Checkout from 2023-04-15 to 2026-07-01; Orbit from 2026-07-01.",
+     "answer": "The promotions service was owned by the Orbit team on 2026-08-01 (source: catalog). History: Checkout from 2023-04-15 to 2026-07-01; Orbit from 2026-07-01.",
      "cited": true
     },
     {
      "type": "as_of_owner",
      "q": "Who owned billing on 2026-02-01?",
      "ok": true,
-     "answer": "billing was owned by Money on 2026-02-01 (source: catalog). History: Money from 2023-04-15 to 2026-04-15; Payments from 2026-04-15.",
+     "answer": "The billing service was owned by the Money team on 2026-02-01 (source: catalog). History: Money from 2023-04-15 to 2026-04-15; Payments from 2026-04-15.",
      "cited": true
     },
     {
      "type": "as_of_owner",
      "q": "Who owned billing on 2026-05-01?",
      "ok": true,
-     "answer": "billing was owned by Payments on 2026-05-01 (source: catalog). History: Money from 2023-04-15 to 2026-04-15; Payments from 2026-04-15.",
+     "answer": "The billing service was owned by the Payments team on 2026-05-01 (source: catalog). History: Money from 2023-04-15 to 2026-04-15; Payments from 2026-04-15.",
      "cited": true
     },
     {
@@ -1136,5 +1136,5 @@
    }
   ]
  },
- "seconds": 61.1
+ "seconds": 59.3
 }
