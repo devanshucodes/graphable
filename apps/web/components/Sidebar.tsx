@@ -9,7 +9,7 @@ const GROUPS = [
   { items: [{ href: "/", label: "Incidents", icon: Siren }, { href: "/brain", label: "Ask the Brain", icon: MessageSquareText }] },
   { title: "Company graph", items: [{ href: "/explorer", label: "Services", icon: Boxes }, { href: "/ingest", label: "Live ingest", icon: Inbox }] },
   { title: "Agents", items: [{ href: "/memory", label: "Memory", icon: BookOpen }, { href: "/scoreboard", label: "Evaluation", icon: BarChart3 }] },
-  { title: "About", items: [{ href: "/blog", label: "Blog: how we built it", icon: Newspaper }] },
+  { title: "About", items: [{ href: "/blog", label: "Blog: how we built it ↗", icon: Newspaper }] },
 ];
 const isActive = (path: string, href: string) => (href === "/" ? path === "/" : path.startsWith(href));
 const fmtK = (n?: number) => (n == null ? "—" : n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n));
@@ -58,7 +58,7 @@ export default function Sidebar() {
           {GROUPS.flatMap((g) => g.items).map(({ href, label, icon: Icon }) => {
             const active = isActive(path, href);
             return (
-              <Link key={href} href={href} aria-current={active ? "page" : undefined}
+              <Link key={href} href={href} aria-current={active ? "page" : undefined} {...(href === "/blog" ? { target: "_blank", rel: "noopener" } : {})}
                 className={`flex h-7 shrink-0 items-center gap-1.5 rounded-md px-2 text-[12.5px] ${active ? ACTIVE : "text-ink-2 hover:bg-[#e8e8e5] hover:text-ink"}`}>
                 <Icon size={14} strokeWidth={1.8} className={active ? "text-ink" : "text-ink-3"} />{label}
               </Link>
@@ -88,7 +88,7 @@ export default function Sidebar() {
                 {g.items.map(({ href, label, icon: Icon }) => {
                   const active = isActive(path, href);
                   return (
-                    <Link key={href} href={href} aria-current={active ? "page" : undefined}
+                    <Link key={href} href={href} aria-current={active ? "page" : undefined} {...(href === "/blog" ? { target: "_blank", rel: "noopener" } : {})}
                       className={`flex h-[30px] items-center gap-2.5 rounded-md px-2 text-[13px] ${active ? ACTIVE : "text-ink-2 hover:bg-[#e8e8e5] hover:text-ink"}`}>
                       <Icon size={15} strokeWidth={1.8} className={active ? "text-ink" : "text-ink-3"} />{label}
                     </Link>
