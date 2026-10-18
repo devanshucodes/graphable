@@ -209,7 +209,23 @@ def incident(incident_id: str, tenant: str = Depends(tenant_dep)):
     if not r:
         raise HTTPException(404)
     run = RUNS.get((tenant, incident_id))
-    return {**r[0], "run": {"status": run.status, "result": run.result} if run else None}
+    return {**r[0], "ownership_moves": _ownership_moves(tg, incident_id), "run": {"status": run.status, "result": run.result} if run else None}
+
+
+def _ownership_moves(tg: TenantGraph, incident_id: str) -> list[dict]:
+    """Alerting services whose owner changed (from a chat message, not the catalog) in the 7 days before the incident:
+    their alerts now page the new team, while history keeps the old owner."""
+    return tg.read("""MATCH (i:Incident {id:$id})<-[:PART_OF]-(:Alert)-[:FIRED_ON]->(c:Component)
+        WITH DISTINCT i, c, coalesce(i.detected_at, i.started_at) AS t0
+        MATCH (nt:Team)-[o:OWNS]->(c) WHERE o.valid_from <= t0 AND o.valid_from > t0 - 7 * 86400000
+          AND (o.valid_to IS NULL OR o.valid_to > t0) AND coalesce(o.source_id, 'catalog') <> 'catalog'
+        OPTIONAL MATCH (ot:Team)-[prev:OWNS]->(c) WHERE prev.valid_to = o.valid_from
+        OPTIONAL MATCH (m:Message {id:o.source_id})-[:IN]->(th:Thread)
+        OPTIONAL MATCH (au:Person)-[:SENT]->(m)
+        OPTIONAL MATCH (p:Person)-[:HAS_SHIFT]->(s:OnCallShift)-[:COVERS]->(nt) WHERE s.start <= t0 AND s.end > t0
+        RETURN c.id AS entity_id, c.name AS entity_name, ot.name AS from_team, nt.name AS to_team, o.source_id AS source_id,
+               th.channel AS source_channel, au.name AS source_author, o.valid_from AS valid_from,
+               collect(DISTINCT {id: p.id, name: p.name}) AS oncall""", {"id": incident_id})
 
 
 class Decision(BaseModel):
@@ -231,7 +247,7 @@ async def decide(action_id: str, decision: str, tenant: str = Depends(tenant_dep
     if run and run.status == "awaiting_approval":
         run.status = "resuming"  # set before the first await: a double click cannot resume the crew twice
         pending = tg.read("MATCH (a:Action)-[:FOR]->(:Incident {id:$i}) WHERE a.status = 'awaiting_approval' RETURN a.id AS id", {"i": iid})
-        decisions = {p["id"]: (decision if p["id"] == action_id else "approve") for p in pending}
+        decisions = {action_id: decision}  # only the action the human decided on; any others stay pending
         try:
             out = await resume_crew(tenant, iid, decisions, emit=run.emit, thread_id=f"{tenant}:{iid}")
         except Exception as e:

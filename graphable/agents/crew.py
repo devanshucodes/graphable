@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import operator
 import time
+import uuid
 from typing import Annotated, Any, Callable, TypedDict
 
 from langgraph.checkpoint.memory import InMemorySaver
@@ -38,6 +39,7 @@ class CrewState(TypedDict, total=False):
     response: dict
     gate: dict
     attempts: int
+    crew_id: str
     last_run: str
     scribe: dict
     events: Annotated[list, operator.add]
@@ -55,7 +57,8 @@ def _bus(st: CrewState, agent: str, config):
 
 def _claim(tg: TenantGraph, st: "CrewState", phase: str, agent: str) -> None:
     """Compare-and-set task claim in the graph; a second worker on the same task stops here instead of duplicating work."""
-    if not claim_task(tg, f"task_{st['incident_id']}_{phase}", agent, st["now"]):
+    worker = f"{agent}:{st.get('crew_id', '')}"  # one crew run = one worker: a second crew on the same task loses the claim
+    if not claim_task(tg, f"task_{st['incident_id']}_{phase}", worker, st["now"]):
         raise RuntimeError(f"task '{phase}' for {st['incident_id']} is already claimed by another worker")
 
 
@@ -175,7 +178,8 @@ async def run_crew(tenant: str, incident: dict, now: int, bus_mode: str = "direc
                    emit: Callable | None = None, policy: str | None = None, thread_id: str | None = None) -> dict:
     t = time.time()
     st = {"tenant": tenant, "incident_id": incident["incident_id"], "key": incident.get("key"), "alerting": incident["alerting"],
-          "now": now, "bus_mode": bus_mode, "policy": policy or policy_mode(), "auto_approve": auto_approve, "attempts": 0, "events": []}
+          "now": now, "bus_mode": bus_mode, "policy": policy or policy_mode(), "auto_approve": auto_approve, "attempts": 0, "events": [],
+          "crew_id": uuid.uuid4().hex[:8]}
     cfg = {"configurable": {"thread_id": thread_id or f"{tenant}:{incident['incident_id']}", "emit": emit}}
     out = await GRAPH.ainvoke(st, cfg)
     out["elapsed_s"] = round(time.time() - t, 2)

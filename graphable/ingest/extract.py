@@ -51,9 +51,12 @@ class Gazetteer:
 
     def __init__(self, tg: TenantGraph):
         self.comp, self.people, self.teams = {}, {}, {}
-        for r in tg.read("MATCH (c:Component) RETURN c.id AS id, c.name AS name, c.aliases AS aliases"):
-            for a in [r["name"]] + (r["aliases"] or []):
-                self.comp[a.lower()] = r["id"]
+        rows = tg.read("MATCH (c:Component) RETURN c.id AS id, c.name AS name, c.aliases AS aliases")
+        for r in rows:  # canonical names first: an alias never overrides another component's real name ("search" is the service)
+            self.comp[r["name"].lower()] = r["id"]
+        for r in rows:
+            for a in r["aliases"] or []:
+                self.comp.setdefault(a.lower(), r["id"])
         for r in tg.read("MATCH (p:Person) RETURN p.id AS id, p.handle AS h, p.former_handles AS fh, p.name AS name"):
             for h in [r["h"]] + (r["fh"] or []):
                 self.people[h.lower()] = r["id"]

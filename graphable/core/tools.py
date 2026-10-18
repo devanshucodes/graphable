@@ -66,9 +66,12 @@ def graph_resolve(ctx: Ctx, text: str, kinds: list[str] | None = None, k: int = 
     for lbl, prop in (("Incident", "key"), ("Runbook", "key"), ("Decision", "key"), ("Ticket", "key")):
         hits += ctx.tg.read(f"MATCH (n:{lbl}) WHERE toUpper(n.{prop}) = toUpper($t) RETURN n.id AS id, '{lbl}' AS kind, n.{prop} AS name, 1.0 AS score", {"t": t})
     norm = re.sub(r"[-_\s]+", " ", low).strip()
+    # exact name beats alias; on equal footing a service beats a datastore ("search" = the search service, not es-search)
     hits += ctx.tg.read("MATCH (c:Component) WHERE c.name = $l OR replace(c.name, '-', ' ') = $n OR "
                         "any(a IN c.aliases WHERE toLower(a) = $l OR replace(toLower(a), '-', ' ') = $n) "
-                        "RETURN c.id AS id, 'Component' AS kind, c.name AS name, 0.95 AS score", {"l": low, "n": norm})
+                        "RETURN c.id AS id, 'Component' AS kind, c.name AS name, "
+                        "CASE WHEN c.name = $l OR replace(c.name, '-', ' ') = $n THEN 0.99 ELSE 0.95 END "
+                        "  - CASE WHEN c:Datastore THEN 0.005 ELSE 0 END AS score", {"l": low, "n": norm})
     hits += ctx.tg.read("MATCH (p:Person) WHERE p.handle = $l OR toLower(p.name) = $l OR $l IN p.former_handles "
                         "RETURN p.id AS id, 'Person' AS kind, p.name AS name, 0.95 AS score", {"l": low})
     hits += ctx.tg.read("MATCH (tm:Team) WHERE toLower(tm.name) = $l OR tm.key = $l RETURN tm.id AS id, 'Team' AS kind, tm.name AS name, 0.95 AS score", {"l": low})
@@ -88,14 +91,17 @@ def graph_resolve(ctx: Ctx, text: str, kinds: list[str] | None = None, k: int = 
                                     f"RETURN node.id AS id, '{lbl}' AS kind, node.name AS name, score / 10.0 AS score LIMIT 5", {"q": q})
             except Exception:
                 pass
-    if not hits:  # typo tolerance: RediSearch fuzzy matching (Levenshtein distance 1) on the full-text index
+    if not hits:  # typo tolerance: fuzzy matching on the full-text index
         words = [w for w in _ft(t).split(" | ") if len(w) > 3]
-        if words:
-            q = " | ".join(f"%{w}%" for w in words)
+        for dist in ("%", "%%"):  # Levenshtein distance 1, then 2 (swapped letters: "paymnets", "vualt")
+            if hits or not words:
+                break
+            q = " | ".join(f"{dist}{w}{dist}" for w in words)
             for lbl in ("Component", "Person"):
                 try:
-                    hits += ctx.tg.read(f"CALL db.idx.fulltext.queryNodes('{lbl}', $q) YIELD node, score "
-                                        f"RETURN node.id AS id, '{lbl}' AS kind, node.name AS name, score / 20.0 AS score LIMIT 5", {"q": q})
+                    hits += [h for h in ctx.tg.read(f"CALL db.idx.fulltext.queryNodes('{lbl}', $q) YIELD node, score "
+                                                    f"RETURN node.id AS id, '{lbl}' AS kind, node.name AS name, score / 20.0 AS score LIMIT 5",
+                                                    {"q": q}) if h["score"] >= 0.1]  # weak fuzzy hits are noise
                 except Exception:
                     pass
     seen, out = set(), []
@@ -325,8 +331,13 @@ def incident_rank_root_causes(ctx: Ctx, incident_id: str, window_min: int = 120,
         x["evidence_id"] = register(ctx, "incident_rank_root_causes", {"incident_id": incident_id, "candidate": x.get("change_id", x["entity_id"])},
                                     [n for n in nodes if n], edges,
                                     f"{x['type']} candidate {x.get('change_id', '')} on {x['entity_name']} score {x['score']}")
+    names = {r["c"]: r["name"] for r in cand}
+    before = [x for x in changes if x["ts"] <= t0]
+    nw = max(before, key=lambda x: x["ts"]) if before else None  # "blame the newest change" would pick this one
+    newest = {"change_id": nw["id"], "entity_id": nw["c"], "entity_name": names.get(nw["c"], nw["c"]), "summary": nw["summary"],
+              "minutes_before_detection": round((t0 - nw["ts"]) / MIN, 1)} if nw else None
     return {"incident_id": incident_id, "t0": t0, "alerting": A, "alert_names": alert_names, "n_candidate_components": len(C),
-            "n_changes_in_window": len(changes), "candidates": out[:top_k], "non_change_candidates": nc[:3], "abstain": abstain,
+            "n_changes_in_window": len(changes), "newest_change": newest, "candidates": out[:top_k], "non_change_candidates": nc[:3], "abstain": abstain,
             "theta": theta, "weights": w}
 
 
@@ -748,7 +759,9 @@ def memory_note(ctx: Ctx, incident_id: str, kind: str, claim: str, evidence_ids:
     return {"hypothesis_id": hid, "status": status}
 
 
-def memory_handoff(ctx: Ctx, incident_id: str, to_role: str, summary: str, open_questions: list[str], evidence_ids: list[str]) -> dict:
+def memory_handoff(ctx: Ctx, incident_id: str, to_role: str, summary: str, open_questions: list[str], evidence_ids: list[str],
+                   root_type: str | None = None, root_entity_id: str | None = None, root_change_id: str | None = None,
+                   confidence: float | None = None) -> dict:
     if to_role not in ("triage", "investigator", "responder", "scribe"):
         return {"error": "to_role must be triage|investigator|responder|scribe"}
     hid = "hand_" + uuid.uuid4().hex[:10]
@@ -756,13 +769,14 @@ def memory_handoff(ctx: Ctx, incident_id: str, to_role: str, summary: str, open_
         MERGE (ta:Agent {id:$to}) ON CREATE SET ta.name = $ton
         WITH i, fa, ta
         CREATE (h:Handoff {id:$id, from_agent:$fromn, to_agent:$ton, summary:$s, open_questions:$oq, verification_status:'unverified',
-                ts:$ts, mem:'episodic'})
+                ts:$ts, recorded_at:timestamp(), root_type:$rt, root_entity_id:$re, root_change_id:$rc, confidence:$cf, mem:'episodic'})
         CREATE (h)-[:FOR]->(i), (h)-[:FROM]->(fa), (h)-[:TO]->(ta)
         WITH h OPTIONAL MATCH (e:Evidence) WHERE e.id IN $ev
         FOREACH (_ IN CASE WHEN e IS NULL THEN [] ELSE [1] END | CREATE (h)-[:CARRIES]->(e))
         RETURN DISTINCT h.id AS id""",
                  {"inc": incident_id, "from": f"agent_{ctx.agent}", "to": f"agent_{to_role}", "id": hid, "fromn": ctx.agent,
-                  "ton": to_role, "s": summary[:1000], "oq": open_questions[:10], "ts": ctx.now, "ev": evidence_ids})
+                  "ton": to_role, "s": summary[:1000], "oq": open_questions[:10], "ts": ctx.now, "ev": evidence_ids,
+                  "rt": root_type, "re": root_entity_id, "rc": root_change_id, "cf": None if confidence is None else float(confidence)})
     if not rows:
         return {"error": "unknown incident"}
     return {"handoff_id": hid}
@@ -772,10 +786,11 @@ def memory_inbox(ctx: Ctx, incident_id: str, role: str | None = None) -> dict:
     """Read the latest handoff addressed to this agent from the graph (shared state between agents) and mark it accepted.
     The evidence it carries can be cited directly by the receiving agent."""
     role = role or ctx.agent
-    rows = ctx.tg.read("""MATCH (h:Handoff {to_agent:$role})-[:FOR]->(:Incident {id:$inc})
+    rows = ctx.tg.read("""MATCH (:Incident {id:$inc})<-[:FOR]-(h:Handoff) WHERE h.to_agent = $role
         OPTIONAL MATCH (h)-[:CARRIES]->(e:Evidence)
-        WITH h, collect(e.id) AS ev ORDER BY h.ts DESC, h.id DESC LIMIT 1
-        RETURN h.id AS id, h.from_agent AS from_agent, h.summary AS summary, h.open_questions AS open_questions, ev""",
+        WITH h, collect(e.id) AS ev ORDER BY coalesce(h.recorded_at, 0) DESC, h.ts DESC LIMIT 1
+        RETURN h.id AS id, h.from_agent AS from_agent, h.summary AS summary, h.open_questions AS open_questions, ev,
+               h.root_type AS root_type, h.root_entity_id AS root_entity_id, h.root_change_id AS root_change_id, h.confidence AS confidence""",
                        {"role": role, "inc": incident_id})
     if not rows:
         return {"handoff": None}
@@ -783,7 +798,8 @@ def memory_inbox(ctx: Ctx, incident_id: str, role: str | None = None) -> dict:
     ctx.tg.write("MATCH (h:Handoff {id:$id}) SET h.verification_status = 'accepted', h.accepted_by = $agent, h.accepted_at = $now",
                  {"id": h["id"], "agent": ctx.agent, "now": ctx.now})
     return {"handoff": {"id": h["id"], "from": h["from_agent"], "summary": h["summary"], "open_questions": h["open_questions"] or [],
-                        "evidence_ids": [e for e in h["ev"] if e]}}
+                        "evidence_ids": [e for e in h["ev"] if e],
+                        "root": {k: h[k] for k in ("root_type", "root_entity_id", "root_change_id", "confidence")} if h["root_entity_id"] else None}}
 
 
 def memory_recall(ctx: Ctx, entity_id: str | None = None, query: str | None = None, k: int = 5) -> dict:

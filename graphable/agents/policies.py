@@ -40,16 +40,19 @@ def _sev(blasts: list[dict], n_alerting: int) -> int:
 # ====================================================================== offline procedures
 async def triage_offline(bus, st: dict) -> dict:
     inc, alerting = st["incident_id"], st["alerting"]
+    # FalkorDB PageRank over DEPENDS_ON decides where Triage looks first: the most depended-on alerting services
+    # have the widest blast radius, so they set severity and get the first page.
+    hubs = await bus.call("graph_hubs", metric="pagerank", k=5, of=alerting, incident_id=inc)
+    ranked_all = sorted(hubs.get("ranked") or [], key=lambda r: r["rank"]) if "error" not in hubs else []
+    order = [r["id"] for r in ranked_all] + [a for a in alerting if a not in {r["id"] for r in ranked_all}]
+    hub_ranked = ranked_all[:3]
     blasts = []
-    for e in alerting[:3]:
+    for e in order[:3]:
         b = await bus.call("incident_blast_radius", entity_id=e, max_hops=2, incident_id=inc)
         if "error" not in b:
             blasts.append(b)
-    own = await bus.call("org_ownership", entity_id=alerting[0], incident_id=inc)
+    own = await bus.call("org_ownership", entity_id=order[0], incident_id=inc)
     sim = await bus.call("incident_similar", incident_id=inc, phase="triage", k=3)
-    # FalkorDB PageRank over DEPENDS_ON: is a heavily-depended-on hub among the alerting components?
-    hubs = await bus.call("graph_hubs", metric="pagerank", k=5, of=alerting, incident_id=inc)
-    hub_ranked = sorted(hubs.get("ranked") or [], key=lambda r: r["rank"])[:3] if "error" not in hubs else []
     sev = _sev(blasts, len(alerting))
     ev = [b["evidence_id"] for b in blasts if b.get("evidence_id")]
     entry = sorted({e for b in blasts for e in b.get("entry_points_hit", [])})
@@ -68,6 +71,10 @@ async def triage_offline(bus, st: dict) -> dict:
     return {"severity": sev, "entry_points": entry, "similar": top_sim, "paged_owner": own.get("owner"), "summary": summary,
             "evidence_ids": ev, "hubs": [{"id": r["id"], "name": r["name"], "rank": r["rank"], "score": r["score"]} for r in hub_ranked],
             "n_components": hubs.get("n_components")}
+
+
+def _path(ids: list[str]) -> str:
+    return " -> ".join(i.split("_", 1)[1] if i.startswith(("svc_", "ds_")) else i for i in ids)
 
 
 def _fault_type(alert_names: list[str], entity: str, engine: str | None = None) -> str:
@@ -91,8 +98,9 @@ async def investigate_offline(bus, st: dict) -> dict:
         root = {"type": "change", "change_id": top["change_id"], "entity_id": top["entity_id"], "entity_name": top["entity_name"],
                 "change_kind": top["change_kind"], "summary": top["change_summary"], "score": top["score"], "author_id": top["author_id"],
                 "path": top["path"], "breakdown": top["breakdown"], "evidence_id": top["evidence_id"]}
-        claims.append({"role": "root_cause", "text": f"Root cause: change {top['change_id']} ({top['change_summary']}) on {top['entity_name']}, "
-                       f"{top['minutes_before_detection']} min before detection; impact path {' -> '.join(top['path'])}.",
+        what = (top["change_summary"] or "").split(": ", 1)[-1]
+        claims.append({"role": "root_cause", "text": f"Root cause: the {top['change_kind']} change on {top['entity_name']} ({what}), "
+                       f"{round(top['minutes_before_detection'])} min before detection; impact path {_path(top['path'])}.",
                        "evidence_ids": [top["evidence_id"]], "entity_ids": [top["change_id"], top["entity_id"]]})
         if len(cands) > 1 and top["score"] - cands[1]["score"] >= 0.08:
             notes.append(("ruled_out", f"Ruled out {cands[1]['change_id']} on {cands[1]['entity_name']} (score {cands[1]['score']} vs {top['score']})",
@@ -109,7 +117,7 @@ async def investigate_offline(bus, st: dict) -> dict:
                else "no change landed in the window")
         label = {"cert_expiry": "certificate expiry", "external_outage": "third-party outage"}.get(ftype, ftype.replace("_", " "))
         claims.append({"role": "root_cause", "text": f"Not change-induced: {why}. Most likely origin: {nc['entity_name']} ({label}); "
-                       f"impact path {' -> '.join(nc['path'])}.",
+                       f"impact path {_path(nc['path'])}.",
                        "evidence_ids": [nc["evidence_id"]], "entity_ids": [nc["entity_id"]]})
         sim = await bus.call("incident_similar", incident_id=inc, phase="post", root_entity_id=nc["entity_id"], k=3)
     similar = [s for s in (sim.get("similar") or []) if s["similarity"] >= 0.45][:3]
@@ -119,7 +127,7 @@ async def investigate_offline(bus, st: dict) -> dict:
         s = max(near, key=lambda x: (any(p.get("active") for p in x["fixed_by"]), x["started_at"]))
         similar = [s] + [x for x in similar if x is not s]
         fixers = [p["id"] for p in s["fixed_by"]]
-        claims.append({"role": "memory", "text": f"Matches {s['key']} ({s['similarity']}), fixed by "
+        claims.append({"role": "memory", "text": f"Matches past incident {s['key']} ({round(s['similarity'] * 100)}% similar), fixed by "
                        f"{', '.join(p['name'] for p in s['fixed_by']) or 'unknown'}" +
                        (f" using {s['runbooks'][0]['key']}." if s["runbooks"] else "."),
                        "evidence_ids": [s["evidence_id"]], "entity_ids": [s["incident_id"]] + fixers})
@@ -136,8 +144,11 @@ async def investigate_offline(bus, st: dict) -> dict:
         await bus.call("memory_note", incident_id=inc, kind=kind, claim=text, evidence_ids=ev, confidence=0.2, about_id=about)
     await bus.call("memory_handoff", incident_id=inc, to_role="responder", summary=claims[0]["text"],
                    open_questions=["Who owns the root component and who is on call?", "Which remediation is safest?"],
-                   evidence_ids=[e for c in claims for e in c["evidence_ids"]])
+                   evidence_ids=[e for c in claims for e in c["evidence_ids"]],
+                   root_type=root["type"], root_entity_id=root["entity_id"], root_change_id=root.get("change_id"), confidence=root["score"])
+    nw = rc.get("newest_change")
     return {"root": root, "claims": claims, "confidence": root["score"], "abstain": root["type"] == "non_change",
+            "newest_change": {**nw, "is_root": nw["change_id"] == root.get("change_id")} if nw else None,
             "similar": similar, "runbook": pick, "hypothesis_id": hyp.get("hypothesis_id"),
             "candidates": [{k: c.get(k) for k in ("change_id", "entity_id", "entity_name", "score", "breakdown", "change_summary",
                                                    "minutes_before_detection", "evidence_id", "path")} for c in cands],
@@ -147,6 +158,10 @@ async def investigate_offline(bus, st: dict) -> dict:
 async def respond_offline(bus, st: dict) -> dict:
     inc, inv = st["incident_id"], st["investigation"]
     root = inv.get("root")
+    hand = ((st.get("inbox") or {}).get("root")) or {}
+    if hand.get("root_entity_id") and root and hand["root_entity_id"] != root.get("entity_id"):
+        # the graph handoff is the source of truth for what the Investigator concluded
+        root = {**root, "entity_id": hand["root_entity_id"], "change_id": hand.get("root_change_id"), "type": hand.get("root_type") or root["type"]}
     if not root:
         return {"actions": [], "status_update": "Investigating; no root cause identified yet."}
     e = root["entity_id"]
@@ -236,6 +251,9 @@ def _wrap_tools(bus, mcp_tools: dict, budget: int = 6):
 
 async def investigate_gemini(bus, st: dict) -> dict:  # pragma: no cover - needs API key
     base = await investigate_offline(bus, st)  # deterministic proposal (+ memory writes, handoff)
+    # show the graph's answer right away; Gemini's review follows and may only mark it contested
+    bus.emit({"type": "provisional", "investigation": {k: base.get(k) for k in
+                                                        ("root", "claims", "candidates", "similar", "runbook", "newest_change", "confidence")}})
     if not hasattr(bus, "tools"):
         base["llm"] = {"skipped": "Gemini review requires the MCP bus"}
         return base
@@ -244,7 +262,7 @@ async def investigate_gemini(bus, st: dict) -> dict:  # pragma: no cover - needs
         from langgraph.prebuilt import create_react_agent
         tools = _wrap_tools(bus, await bus.tools())
         llm = ChatGoogleGenerativeAI(model=settings.gemini_model_pro, temperature=0, google_api_key=settings.gemini_api_key,
-                                     timeout=45, max_retries=1)
+                                     timeout=120, max_retries=1)
         agent = create_react_agent(llm, tools, prompt=INVESTIGATOR_PROMPT, response_format=InvestigationOut)
         hand = st.get("inbox") or {}  # Triage's handoff, read from the graph
         brief = {"incident_id": st["incident_id"], "triage": hand.get("summary") or st["triage"]["summary"],
@@ -255,7 +273,7 @@ async def investigate_gemini(bus, st: dict) -> dict:  # pragma: no cover - needs
                  "evidence_by_claim": [{"text": c["text"], "evidence_ids": c["evidence_ids"]} for c in base.get("claims", [])],
                  "similar_past_incidents": [{k: s[k] for k in ("key", "similarity", "root_cause", "fixed_by", "evidence_id")} for s in base.get("similar", [])]}
         # bounded: if Gemini is slow or down, the graph-based conclusion stands on its own (caught below)
-        res = await asyncio.wait_for(agent.ainvoke({"messages": [("user", json.dumps(brief, default=str))]}, {"recursion_limit": 40}), 100)
+        res = await asyncio.wait_for(agent.ainvoke({"messages": [("user", json.dumps(brief, default=str))]}, {"recursion_limit": 40}), 180)
         out: InvestigationOut = res["structured_response"]
         root = base.get("root") or {}
         agree = (out.decision == "accept" and (not out.root_change_id or out.root_change_id == root.get("change_id"))) or \

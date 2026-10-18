@@ -14,6 +14,9 @@ from .evidence import fetch
 from .tools import label_of
 
 
+ID_RE = re.compile(r"\b(?:svc|ds|chg|per|rb|inc)_[a-z0-9][a-z0-9_-]*[a-z0-9]\b|\bINC-[A-Z0-9]+(?:-[A-Z0-9]+)?\b")
+
+
 def _norm(e: str) -> str:
     """Claims may name incidents by key (INC-0287); evidence stores ids (inc_0287)."""
     return e.lower().replace("-", "_") if re.match(r"^INC-[A-Za-z0-9-]+$", e) else e
@@ -34,7 +37,8 @@ def _edges_exist(tg: TenantGraph, keys: set[str], at: int | None = None) -> set[
     ok = set()
     for (ls, rel, ld), pairs in groups.items():
         rows = tg.read(f"UNWIND $p AS p MATCH (a:{ls} {{id:p[0]}})-[r:{rel}]->(b:{ld} {{id:p[1]}}) "
-                       f"WHERE $at IS NULL OR r.valid_to IS NULL OR r.valid_to > $at RETURN DISTINCT p[0] + '|{rel}|' + p[1] AS k",
+                       f"WHERE $at IS NULL OR ((r.valid_to IS NULL OR r.valid_to > $at) AND (r.valid_from IS NULL OR r.valid_from <= $at)) "
+                       f"RETURN DISTINCT p[0] + '|{rel}|' + p[1] AS k",
                        {"p": pairs, "at": at})
         ok |= {r["k"] for r in rows}
     return ok
@@ -65,7 +69,8 @@ def verify(tg: TenantGraph, incident_id: str, claims: list[dict]) -> dict:
         if missing:
             reasons.append(f"{len(missing)} cited relationship(s) did not exist at incident time")
         nodes = {n for x in cited for n in (x["n"] or [])}
-        not_on_path = [e for e in c.get("entity_ids", []) if _norm(e) not in nodes]
+        named = set(c.get("entity_ids", [])) | set(ID_RE.findall(c.get("text", "")))  # self-reported ids + ids written in the text
+        not_on_path = sorted(e for e in named if _norm(e) not in nodes)
         if not_on_path:
             reasons.append("names something its evidence does not contain: " + ", ".join(_show(e) for e in not_on_path))
         out.append({**c, "verified": not reasons, "reasons": reasons})

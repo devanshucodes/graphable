@@ -106,5 +106,53 @@ def test_hero_scenarios(sid, expect):
         assert got == expect
         assert out["verification"]["path_validity"] == 1.0
         assert all(c["verified"] for c in out["investigation"]["claims"])
+        # coordination through the graph: each receiving agent read the handoff left for it, and the Responder got the root
+        assert out["investigation"]["inbox"] and out["investigation"]["inbox"]["from"] == "triage"
+        assert out["response"]["inbox"]["root"]["root_entity_id"] == root["entity_id"]
+        assert tg.read("MATCH (h:Handoff) WHERE h.verification_status = 'accepted' RETURN count(h) AS n")[0]["n"] == 2
+        # Triage used FalkorDB PageRank to rank the alerting services
+        assert out["triage"]["hubs"] and out["triage"]["hubs"][0]["rank"] >= 1
     finally:
         drop_tenant(et)
+
+
+def test_typo_tolerant_resolution(acme):
+    ctx = Ctx(acme, register=False)
+    assert T.graph_resolve(ctx, "chekout")["matches"][0]["id"] == "svc_checkout"   # one edit
+    assert T.graph_resolve(ctx, "paymnets")["matches"][0]["id"] == "svc_payments"  # swapped letters (two edits)
+    assert all(m["score"] < 0.2 for m in T.graph_resolve(ctx, "the lunch menu")["matches"])  # only weak candidates: the Brain ignores them
+
+
+def test_task_claim_is_per_crew_run():
+    tg = fresh_tenant("acme", "eval_pytest_claim")
+    try:
+        tg.write("CREATE (:Task {id:'task_r', status:'SUBMITTED', version:0})")
+        assert claim_task(tg, "task_r", "triage:crewA", NOW) is True
+        assert claim_task(tg, "task_r", "triage:crewB", NOW) is False   # same role, different crew run: loses
+        assert claim_task(tg, "task_r", "triage:crewA", NOW) is True    # the holder can continue its own task
+    finally:
+        drop_tenant("eval_pytest_claim")
+
+
+def test_brain_session_follow_up_does_not_hijack_named_entity():
+    from graphable.agents.brain import ask
+    et = "eval_pytest_brain"
+    fresh_tenant("acme", et)
+    try:
+        a = asyncio.run(ask(et, "Who knows vault best?", NOW, session_id="t1"))
+        assert "vault" in a["answer"].lower() and a["turn"] == 1
+        b = asyncio.run(ask(et, "Who owns checkout?", NOW, session_id="t1"))     # names a different service: no carry-over
+        assert b["entity"]["id"] == "svc_checkout"
+        c = asyncio.run(ask(et, "Are its runbooks stale?", NOW, session_id="t1"))  # pronoun: follows the conversation
+        assert c["entity"]["id"] == "svc_checkout" and c["turn"] == 3
+        n = TenantGraph(et).read("MATCH (:Session {id:'t1'})-[:HAS_TURN]->(t:Turn) RETURN count(t) AS n")[0]["n"]
+        assert n == 3
+    finally:
+        drop_tenant(et)
+
+
+def test_decision_trace_does_not_guess():
+    ctx = Ctx(TenantGraph("acme"), register=False)
+    assert T.decision_trace(ctx, "ADR-999")["decision"] is None
+    assert T.decision_trace(ctx, "adopt quantum blockchain for the cafeteria menu")["decision"] is None
+    assert T.decision_trace(ctx, "Use idempotency keys in payouts writes")["decision"]["key"] == "ADR-041"
