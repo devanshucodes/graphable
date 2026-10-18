@@ -42,5 +42,16 @@
   "top1": 0.062,
   "top3": 0.531,
   "mrr": 0.343
+ },
+ "untuned weights": {
+  "switched_off": [],
+  "top1": 0.469,
+  "top3": 0.844,
+  "mrr": 0.647
+ },
+ "baselines": {
+  "random_recent_change": 0.176,
+  "newest_change": 0.0,
+  "hops_then_recency": 0.156
  }
 }

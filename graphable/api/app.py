@@ -470,7 +470,7 @@ async def reset():
 def eval_results():
     d = ROOT / "evals_out"
     out = {}
-    for name in ("rca_test", "rca_train", "system_mcp", "crew_gemini_mcp", "crew_offline_mcp"):
+    for name in ("rca_test", "rca_train", "system_mcp", "crew_gemini_mcp", "crew_offline_mcp", "ablation_test"):
         p = d / f"{name}.json"
         if p.exists():
             out[name] = json.loads(p.read_text())

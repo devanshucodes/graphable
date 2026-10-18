@@ -36,6 +36,10 @@ def main():
         r = evaluate(rows, {k: (0.0 if k in off else v) for k, v in w.items()}, 0.0)
         out[name] = {"switched_off": sorted(off), "top1": r["ac1"], "top3": r["ac3"], "mrr": r["mrr"]}
         print(f"{name:55s} top-1 {r['ac1']:.2f}  top-3 {r['ac3']:.2f}")
+    r = evaluate(rows, T.W_PRIOR, 0.0)  # the same ranker before tuning (research-prior weights), also forced to pick
+    out["untuned weights"] = {"switched_off": [], "top1": r["ac1"], "top3": r["ac3"], "mrr": r["mrr"]}
+    out["baselines"] = {"random_recent_change": r["base_random"], "newest_change": r["base_recent"], "hops_then_recency": r["base_toy"]}
+    print(f"{'untuned weights':55s} top-1 {r['ac1']:.2f}  top-3 {r['ac3']:.2f}")
     (d / "ablation_test.json").write_text(json.dumps(out, indent=1))
 
 

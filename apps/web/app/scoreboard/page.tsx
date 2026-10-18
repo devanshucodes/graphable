@@ -26,9 +26,11 @@ export default function Scoreboard() {
   const [err, setErr] = useState<string | null>(null);
   useEffect(() => { get("/eval").then(setEv).catch((e) => setErr(e.message)); }, []);
   const t = ev?.rca_test?.tuned, d = ev?.rca_test?.default, sys = ev?.system_mcp;
+  // "must name one change": the ranker's top pick vs. baselines that always pick (evals_out/ablation_test.json)
+  const ab = ev?.ablation_test, pick = ab?.["all signals (as shipped)"]?.top1 ?? t?.ac1, pickUntuned = ab?.["untuned weights"]?.top1 ?? d?.ac1;
   const byK = t ? Object.entries(t.by_distractors).map(([k, v]: any) => ({ k: Number(k), ours: v.ours, toy: v.toy, random: v.random, recent: v.recent })) : [];
   const overall = t ? [
-    { name: "Graphable", v: t.ac1, c: C.ours }, { name: "Graphable, untuned", v: d.ac1, c: C.prior },
+    { name: "Graphable", v: pick, c: C.ours }, { name: "Graphable, untuned", v: pickUntuned, c: C.prior },
     { name: "Hops, then recency", v: d.base_toy, c: "#dcdcd8" }, { name: "Random in window", v: d.base_random, c: "#dcdcd8" }, { name: "Most recent change", v: d.base_recent, c: "#dcdcd8" },
   ] : [];
   const lc = sys?.learning_curve?.rows ?? [];
@@ -44,7 +46,7 @@ export default function Scoreboard() {
     ["Auto-filed ticket precision", pct(sys.crew.auto_ticket_precision), false],
   ] : [];
   const metrics: [string, string, string][] = [
-    ["Right cause ranked first", pct(t?.ac1), t ? `${(t.ac1 / d.base_random).toFixed(1)}× a random pick · top-3 ${pct(t.ac3)} · newest deploy ${pct(d.base_recent)}` : ""],
+    ["Right change ranked first", pct(pick), t ? `${(pick / d.base_random).toFixed(1)}× a random pick · newest deploy ${pct(d.base_recent)} · top-3 ${pct(t.ac3)}` : ""],
     ["Cited paths that exist", sys ? pct(sys.crew.path_validity) : "—", "every edge re-checked by code"],
     ["Simultaneous pages → pages sent", sys ? `${sys.concurrency.concurrent_pages} → ${sys.concurrency.page_actions_created}` : "—", sys ? `${sys.concurrency.successful_claims}${sys.concurrency.concurrent_claims != null ? ` of ${sys.concurrency.concurrent_claims}` : ""} agents won the same task` : ""],
     ["Brain answers correct", sys ? `${sys.probes.brain_qa.correct}/${sys.probes.brain_qa.n}` : "—", sys ? `${pct(sys.probes.brain_qa.cited_rate)} cited · ${sys.probes.knowledge_update.stale_answers} stale` : ""],
@@ -70,7 +72,7 @@ export default function Scoreboard() {
         {err && <div className="mt-6"><Note tone="red">{err}</Note></div>}
         {!ev ? !err && <div className="skeleton mt-8 h-80" /> : (
           <div className="mt-10 grid gap-x-10 gap-y-10 xl:grid-cols-2">
-            <Chart title="Right cause ranked first: following the graph vs. simpler methods" sub="Held-out test set with planted traps, never seen during tuning.">
+            <Chart title="Right change ranked first: following the graph vs. simpler methods" sub="Every method names one change. Held-out incidents with planted traps, never seen during tuning.">
               <ResponsiveContainer width="100%" height={240}>
                 <BarChart data={overall} layout="vertical" margin={{ left: 4, right: 44, top: 0, bottom: 0 }}>
                   <CartesianGrid stroke={grid} horizontal={false} />

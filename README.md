@@ -8,7 +8,7 @@
 
 **Team Graphable:** Devanshu Saxena (lead) · Prins Kumar · Vaibhav Tyagi
 
-- **Finds the cause, not the latest deploy.** The agents walk service dependencies and score each recent change by how much of the alerting it explains. On 32 held-out change-caused incidents with planted traps, following the graph ranks the right change first **more than 4× as often as picking a recent change** (75% vs 18%), beats "blame the newest deploy" **24 to 0**, and has the real cause in its **top 3 for nearly 9 in 10** incidents (88%). Switch off the graph signals and the same ranker drops from 84% to 6% ([ablation](#is-it-the-graph-an-ablation)).
+- **Finds the cause, not the latest deploy.** The agents walk service dependencies and score each recent change by how much of the alerting it explains. On 32 held-out change-caused incidents with planted traps, following the graph ranks the right change first in **84%** (27 of 32): **almost 5× a random recent change** (18%) and **27 to 0** against "blame the newest deploy". Switch off the graph signals and it drops to **6%** ([ablation](#is-it-the-graph-an-ablation)). When it is not confident it says so instead of guessing, so it commits to the right cause in 75%.
 - **Agents remember and coordinate through the graph.** Handoff notes, task claims (compare-and-set), idempotent actions, lessons and conversation history are graph nodes. **20 agents racing for one task produce 1 claim; 20 simultaneous pages produce 1 page.**
 - **A company brain that cites its sources.** Ownership, expertise and decisions are extracted from docs, tickets and chats with provenance and kept bi-temporal, so "who owned it in June?" has a correct answer. **29/30** Brain questions correct, **100%** cited, **0** stale answers after a reorg.
 
@@ -265,7 +265,7 @@ Synthetic data and small samples: read these as a demonstration, not a benchmark
 
 | Capability | Result | Baseline / note | Source |
 |---|---|---|---|
-| Root cause, change-caused incidents (n=32) | **top-1 75%, more than 4× a random recent change (18%) · beats "newest deploy" 24 to 0 · top-3 88% · MRR 0.88** | untuned weights 47% · random recent change 18% · fewest hops, then newest 16% · newest change 0%. Includes look-alike traps (n=4): 100% and multi-root (n=4): 50%. Wrongly said "not a change": 16% | `rca_test.json` |
+| Root cause, change-caused incidents (n=32) | **right change ranked first 84% (27/32), almost 5× a random recent change (18%), 27 to 0 against "newest deploy" · committed answer right 75% (it declines when unsure) · top-3 88% · MRR 0.88** | untuned weights 47% · random recent change 18% · fewest hops, then newest 16% · newest change 0%. Includes look-alike traps (n=4): 100% and multi-root (n=4): 50%. Wrongly said "not a change": 16% | `rca_test.json` |
 | Incidents not caused by a change (n=8) | correctly declined to blame a change 75%, right origin 100% |  | `rca_test.json` |
 | Claims backed by real graph relationships | 100% (graph-only crew) · 96% with Gemini review | the graph-only 100% is expected by construction (its claims come from the tools); the Gemini figure is the real test. Rejected claims are shown as rejected, never acted on | `system_mcp.json`, `crew_gemini_mcp.json` |
 | Cited paths that exist at incident time | 100% |  | `system_mcp.json` |
@@ -286,6 +286,7 @@ The same 32 test incidents, re-scored with groups of signals switched off (`eval
 | Signals the ranking may use | Right cause first | In the top 3 |
 |---|---|---|
 | All signals (as shipped) | **84%** | 88% |
+| Untuned weights (before learning from the training incidents) | 47% | 84% |
 | Graph signals only (recency switched off) | **84%** | 88% |
 | Without dependency coverage and minimality (`DEPENDS_ON` paths) | 66% | 75% |
 | Without past-incident history (`CAUSED_BY` edges) | 69% | 81% |
