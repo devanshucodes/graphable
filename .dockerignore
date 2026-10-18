@@ -1,6 +1,11 @@
+.git
+.env
 .venv
 **/__pycache__
+**/*.log
+.pytest_cache
 apps
-datagen/out
+apps/web/node_modules
+apps/web/.next
 datagen/.cache
 tests

@@ -1,7 +1,8 @@
 # Graphable: System Architecture
 
+> Design document. Where it differs from the code, README.md and the code are authoritative.
+
 **What it is:** a graph-native, multi-agent incident response system with a company brain. **FalkorDB is the system of record** for the company's knowledge, the agents' memory and the agents' coordination.
-**Status:** design document. The implementation is in this repo; README.md has setup and current results.
 **Grounding:** every major decision cites RESEARCH.md (`R§n` = RESEARCH.md section n).
 
 ---
@@ -42,7 +43,7 @@ flowchart LR
   MCP --> CORE[Graph Core\ntemplates · scoring · verifier · evidence registry]
   ORCH --> SCRIBE[Scribe: consolidation and learning]
   SCRIBE --> CORE
-  CORE --> FDB[(FalkorDB Cloud\none graph per tenant)]
+  CORE --> FDB[(FalkorDB\none graph per tenant)]
   ORCH & ING & SCRIBE --> GEM[Gemini API\nLLM + embeddings]
 ```
 
@@ -52,20 +53,20 @@ flowchart LR
 
 | Layer | Choice | Why |
 |---|---|---|
-| Graph DB | **FalkorDB**: Cloud in production, Docker locally (pinned tag) | Required; per-tenant graphs; vector and full-text indexes; algorithms (R§1) |
+| Graph DB | **FalkorDB 6.0.2** in Docker (pinned tag) | Required; per-tenant graphs; vector and full-text indexes; algorithms (R§1) |
 | Language | **Python 3.12**, `uv` for environments and locking | `falkordb` client 1.7.x needs ≥ 3.10 |
-| Graph client | `falkordb` (async), one connection pool per process | Async to suit FastAPI and LangGraph |
-| Contracts | **Pydantic v2** models for every tool input/output, extraction schema and event | Typed boundaries between LLM output and the graph |
-| MCP server | Official `mcp` Python SDK (**FastMCP**), **streamable HTTP** transport, bearer auth | Real MCP that judges can plug into their own clients (Track 1) |
+| Graph client | `falkordb` Python client (synchronous), one cached client per process | Shared by the API, the MCP server and the workers |
+| Contracts | Typed Python tool signatures (FastMCP derives the MCP input schemas from them); **Pydantic v2** for API requests and the Gemini Investigator's structured output | Typed boundaries between LLM output and the graph |
+| MCP server | Official `mcp` Python SDK (**FastMCP**), **streamable HTTP** transport, bearer auth | Real MCP that any MCP client can use (Track 1) |
 | Agents | **LangGraph** (StateGraph, interrupts, checkpointer) + `langchain-google-genai` + `langchain-mcp-adapters` | Explicit state machine, human-approval gate, MCP tool loading (R§3.5) |
-| LLM | **Gemini**: Pro-class for Investigator and Brain; Flash-class for Triage, Responder, Ingestor, Scribe | Reasoning where it matters, speed and cost everywhere else |
-| Embeddings | Gemini embeddings, **768-dim** (output dimensionality reduced) | Keeps vector memory small enough for the Cloud tier |
-| Analytics | `networkx` for personalized PageRank on incident subgraphs; FalkorDB `algo.*` for global metrics | FalkorDB PageRank isn't personalized (R§1.2) |
-| API | **FastAPI** + Uvicorn, **SSE** for live agent events | Simple streaming; works through Cloud Run |
-| Web | **Next.js (App Router) + TypeScript + Tailwind + shadcn/ui + TanStack Query + `@falkordb/canvas`** | Polished UI with FalkorDB's own graph rendering |
-| Deploy | DB on FalkorDB Cloud · API + MCP on **Google Cloud Run** (2 services, 1 image) · Web on **Vercel** | Locked decision 6 |
-| Secrets | Cloud Run Secret Manager / Vercel env | No keys in the repo |
-| Quality | `pytest` + a fixture graph, `ruff`, `mypy` on core; Playwright smoke test of the web app (optional) | — |
+| LLM | **Gemini** (optional): Pro for the Investigator's review of the ranking; Flash for knowledge extraction and grounded Brain answers. Triage, Responder and Scribe are deterministic code | Reasoning where it matters, speed and cost everywhere else |
+| Embeddings | Gemini embeddings, **768-dim** (output dimensionality reduced) | Keeps vector memory small |
+| Analytics | FalkorDB `algo.pageRank` and `algo.betweenness` (importance, never cause); root-cause scoring in plain Python | Built-in algorithms run where the data is |
+| API | **FastAPI** + Uvicorn, **SSE** for live agent events | Simple streaming |
+| Web | **Next.js (App Router) + TypeScript + Tailwind**, Recharts for charts, a custom SVG graph view (`apps/web/components/NetGraph.tsx`) | Deterministic layouts: the same data always draws the same picture |
+| Deploy | **Docker Compose** locally: FalkorDB, bootstrap, MCP server, API, web (one backend image) | The supported setup. A hosted deployment (e.g. FalkorDB Cloud + Cloud Run + Vercel) is optional and not set up in this repo |
+| Secrets | `.env` (git-ignored; template in `.env.example`) | No keys in the repo |
+| Quality | `pytest` integration tests against a bootstrapped FalkorDB (`tests/test_system.py`); eval harness (§14) | — |
 
 ---
 
@@ -73,29 +74,31 @@ flowchart LR
 
 ### 4.1 Graph Core (`graphable.core`), the heart of the system
 - **Connection and tenancy:** `TenantGraph(tenant_id)` maps to graph `t_<tenant>`. Every query goes through it. The read path uses `ro_query` with timeouts.
-- **Query templates:** a registry of named, parameterized Cypher templates. Hop bounds and relationship types come from allowlists and are inlined after validation (FalkorDB can't parameterize them). The `coalesce()` rule is applied to every grouping key.
+- **Query templates:** parameterized Cypher inside the tool functions in `graphable/core/tools.py` (all listed in `docs/QUERIES.md`). Hop bounds and relationship types come from allowlists and are inlined after validation (FalkorDB can't parameterize them). Nullable grouping keys are `coalesce()`d (FalkorDB issue #3150).
 - **Evidence registry:** every read tool registers what it returned as an `Evidence` node:
-  - `{id, tool, params_hash, node_ids, edge_keys, ts}`, linked to the `AgentStep` that made the call.
-  - Edges are identified by a stable key `(src_id, TYPE, dst_id, valid_from)`, never by internal IDs.
+  - `{id, tool, params, node_ids, edge_keys, summary, ts, incident_id, agent, run_id}`, linked to its `Incident` and to the `AgentStep` that made the call.
+  - Edges are identified by a stable key `src_id|TYPE|dst_id`, never by internal IDs.
 - **Scoring:** root cause (§9.1), similarity (§9.2), expertise (§9.3), action-gate score (§9.4). These are pure functions over tool results, so they can be unit-tested.
 - **Verifier:** checks claims against the evidence registry (§8.4).
-- **Analytics jobs:** after load and nightly, compute PageRank, seeded betweenness, transitive-dependent counts and change-failure-rate priors, stored as properties with `computed_at`.
+- **Analytics:** PageRank and seeded betweenness are computed on demand by `graph_hubs` (FalkorDB `algo.*`). Change-risk priors are computed at query time inside the root-cause ranker.
 
-### 4.2 Graphable MCP Server (`graphable.mcp`)
+### 4.2 Graphable MCP Server (`graphable.mcpserver`)
 - FastMCP over streamable HTTP. One bearer token per tenant **resolves the tenant**; the LLM never passes it.
-- Tools are thin wrappers over Graph Core and return `structuredContent` with Pydantic output schemas. Errors come back as `isError` with an actionable message.
-- Annotations: `readOnlyHint` on reads; `destructiveHint=false, idempotentHint=true` on memory writes; actions marked `destructiveHint=true`.
+- Tools are thin wrappers over Graph Core (`graphable/core/tools.py`) and return JSON. Exceptions come back as MCP errors (`isError`); rejected inputs come back as an `error` field with an actionable message.
+- Annotations: `readOnlyHint` on reads; `destructiveHint=false` on memory writes; actions marked `destructiveHint=true`.
+- DNS-rebinding protection is on; allowed Host headers come from `MCP_ALLOWED_HOSTS`.
 - Tool catalogue: §7.
 
 ### 4.3 Agent Runtime (`graphable.agents`)
 - **Incident Crew** (a LangGraph StateGraph): Triage → Investigator → Verifier → Responder → Action Gate → Close (§8).
-- **Brain:** a ReAct agent for company-brain Q&A with citations (Track 3).
-- **Scribe:** a background consolidation and learning worker (Track 2).
-- Agents load MCP tools through `MultiServerMCPClient` and are **filtered to role-specific subsets** of ≤ 9 tools.
+- **Brain:** company-brain Q&A with citations (Track 3): an intent router over MCP tools; free-form questions use hybrid search and, with a Gemini key, an answer written only from the retrieved sources. Conversations are stored as `Session` → `Turn` → `Answer`.
+- **Scribe:** consolidation and learning when an incident closes (Track 2).
+- Agents load MCP tools through `MultiServerMCPClient` and are **filtered to role-specific subsets** (`ROLE_TOOLS` in `graphable/core/tools.py`).
+- Agents call tools through the MCP server (`McpBus`) or, as a fallback and for fast evals, in-process (`DirectBus`). Both log every call as an `AgentStep`.
 
 ### 4.4 Ingestion Pipeline (`graphable.ingest`)
 - **Structured records** (changes, alerts, on-call, org changes, ticket metadata) go to deterministic loaders with templated `MERGE`.
-- **Prose** (threads, tickets, docs) goes to the **Ingestor** (LLM extraction): normalize → extract → resolve → validate → contradiction check → write with provenance → embed (§6).
+- **Prose** (threads, tickets, docs) goes to the **Ingestor**: a rules extractor (always) plus Gemini extraction (when a key is set) → resolve → validate against the schema allowlist → templated write with provenance (§6). Embeddings are a separate bootstrap step.
 
 ### 4.5 API Gateway (`graphable.api`)
 REST endpoints for ingestion, incidents, approvals, Brain Q&A, entity pages and eval results, plus SSE streams of agent events (§11).
@@ -103,8 +106,8 @@ REST endpoints for ingestion, incidents, approvals, Brain Q&A, entity pages and 
 ### 4.6 Web App (`apps/web`)
 Six screens (§12).
 
-### 4.7 Scenario Player and Eval Harness (`graphable.sim`, `eval/`)
-- Replays a scenario's event stream into the API in accelerated time; this drives the live demo.
+### 4.7 Scenario Player and Eval Harness (`graphable.sim`, `graphable.evals`)
+- Writes a scenario's events (changes, alerts, messages) into a tenant graph, then runs graph-based intake; this drives the live demo.
 - Runs test scenarios headless and computes the scoreboard (§14).
 
 ---
@@ -125,7 +128,7 @@ Full field lists for the generator are in DATA_SPEC.md. This section is the arch
 | Group | Labels |
 |---|---|
 | Org (semantic) | `Person`, `Team`, `OnCallShift` |
-| Systems (semantic) | `Service`, `Endpoint`, `Datastore`, `FeatureFlag`, `Region` |
+| Systems (semantic) | `Service`, `Endpoint`, `Datastore`, `FeatureFlag`, `Region` (`Service` and `Datastore` also carry the shared label `Component`) |
 | Change and ops (episodic sources) | `Change`, `Alert` |
 | Knowledge sources (PROV Entities) | `Thread`, `Message`, `Ticket`, `Doc` (kind: postmortem, design, wiki), `Runbook`, `Step` |
 | Knowledge (semantic) | `Decision`, `Claim`, `Topic` (optional) |
@@ -147,17 +150,17 @@ Full field lists for the generator are in DATA_SPEC.md. This section is the arch
 | Procedural | `(Runbook)-[:HAS_STEP]->(Step)-[:NEXT]->(Step)`, `(Runbook)-[:MITIGATES]->(Service)`, `(Runbook)-[:SUPERSEDES]->(Runbook)`, `(Lesson)-[:DERIVED_FROM]->(Incident)`, `(Lesson)-[:ABOUT]->(Service\|Runbook)` |
 | Agent coordination | `(Task)-[:FOR]->(Incident)`, `(Handoff)-[:FOR]->(Incident)`, `(Handoff)-[:FROM]->(Agent)`, `(Handoff)-[:TO]->(Agent)`, `(Handoff)-[:CARRIES]->(Hypothesis\|Evidence)`, `(AgentRun)-[:OF]->(Agent)`, `(AgentRun)-[:WORKED_ON]->(Incident)`, `(AgentRun)-[:INFORMED_BY]->(AgentRun)` (PROV wasInformedBy), `(AgentStep)-[:IN_RUN]->(AgentRun)`, `(AgentStep)-[:NEXT]->(AgentStep)`, `(AgentStep)-[:PRODUCED]->(Evidence)`, `(Action)-[:FOR]->(Incident)`, `(Action)-[:JUSTIFIED_BY]->(Evidence)`, `(Action)-[:APPROVED_BY]->(Person)` |
 | Q&A memory | `(Person)-[:HAS_SESSION]->(Session)-[:HAS_TURN]->(Turn)-[:NEXT]->(Turn)`, `(Answer)-[:CITES {verdict}]->(*)`, `(Answer)-[:GENERATED_BY]->(AgentRun)` |
-| Derived (computed, never ground truth) | `(Person)-[:KNOWS {score, evidence_count, last_evidence_at, computed_at}]->(Service)` (materialized by the Scribe; can also be computed on demand) |
+| Derived (computed, never ground truth) | `(Person)-[:KNOWS {score, evidence_count, last_evidence_at, computed_at}]->(Service)` (design only: expertise is computed on demand by `org_experts` and not materialized) |
 
 ### 5.4 Indexes and constraints (created by the migration step)
-- **Range indexes:** `id` on every label; `Service.name`; `Change.ts`; `Alert.ts`; `Incident.started_at`; `Message.ts`; `Person.handle`; `Task.status`.
-- **Unique constraints** (`GRAPH.CONSTRAINT`, after the range index): `id` on core labels; `Action.idem_key`.
-- **Full-text indexes** (DDL form only; the procedure form is broken on 6.x): `Runbook(title, body)`, `Doc(title, text)`, `Ticket(title, text)`, `Thread(summary)`, `Service(name, aliases_text)`, `Person(name, handle)`.
-- **Vector indexes** (768-dim, cosine; always write with `vecf32()`): `Incident.embedding`, `Thread.embedding`, `Doc.embedding` (per section), `Ticket.embedding`, `Runbook.embedding`. Messages are **not** embedded individually, to save memory.
+- **Range indexes:** `id` on every label in `graphable/core/schema.py`; also `Component.name`, `Service.name`, `Datastore.name`, `Change.ts`, `Alert.ts`, `Incident.started_at`, `Incident.key`, `Message.ts`, `Person.handle`, `Task.status`, `Runbook.key`, `Decision.key`, `Ticket.key`, `Action.idem_key`, and `valid_to` on `DEPENDS_ON` and `OWNS`.
+- **Unique constraints** (`GRAPH.CONSTRAINT`, after the range index): `id` on Component, Person, Team, Change, Incident, Message, Thread, Ticket, Doc, Runbook, Decision, Evidence and Action.
+- **Full-text indexes** (DDL form only; the procedure form is broken on 6.x): `Runbook(title, text)`, `Doc(title, text)`, `Ticket(title, text)`, `Message(text)`, `Component(name, aliases_text)`, `Person(name, handle)`, `Incident(title)`.
+- **Vector indexes** (768-dim, cosine; always write with `vecf32()`; created only when Gemini embeddings are enabled): `Incident.embedding`, `Thread.embedding`, `Doc.embedding`, `Ticket.embedding`, `Runbook.embedding`. Messages are **not** embedded individually, to save memory.
 
 ### 5.5 Tenancy
-- **One graph per tenant:** `t_acme` (main demo company) and `t_globex` (a small second company with **identical service names**, for the isolation demo).
-- **Golden snapshots:** `golden_acme` gets copied to `t_acme` (`GRAPH.COPY`) for a one-click demo reset.
+- **One graph per tenant:** `t_acme` (main company) and `t_globex` (a small second company with **identical service names**, for the isolation tests).
+- **Golden snapshots:** bootstrap saves `golden_acme` and `golden_globex`. The web app's demo tenant `t_demo_main` is a `GRAPH.COPY` of `golden_acme`, and `POST /v1/admin/reset` restores it. Every eval scenario also runs on a fresh copy.
 - **Shared nothing:** no cross-graph queries, so tenant isolation is structural.
 
 ---
@@ -189,49 +192,51 @@ flowchart LR
 - Each run creates an `ExtractionRun{model, prompt_version, at}` node, and every extracted edge points to it.
 - **Prompt-injection hygiene:** source text goes inside a delimited "DATA" block, the model is told to treat it as data, and extraction output has no tool-calling ability.
 
-**Staleness detector** (Scribe job; DOCER rules, R§4.6): flag a `Runbook` or `Doc` when
-- it mentions a missing entity,
-- `last_verified_at` is earlier than the latest `Change` to its service,
-- its author has `left_at` set, or
-- it cites a superseded `Decision`.
+**Staleness** (DOCER rules, R§4.6) is computed when `knowledge_for_entity` reads a runbook. A `Runbook` is flagged when
+- it mentions a dependency that has been removed,
+- it is active and its `last_verified_at` is more than 90 days before the latest `Change` to its service, or
+- its author has `left_at` set.
+
+Docs are returned with an `author_left` flag.
 
 ---
 
 ## 7. MCP tool catalogue (Graphable MCP Server)
 
-Names are namespaced with underscores. Every read returns `evidence_ids` and a compact, ranked payload (most important first).
+Names are namespaced with underscores. Most reads register what they returned as `Evidence` and return its `evidence_id`, with a compact, ranked payload (most important first). Signatures below match `graphable/mcpserver/server.py`; many tools also accept an optional `incident_id` that ties their evidence to an incident.
 
 | # | Tool | Purpose | Notes |
 |---|---|---|---|
-| 1 | `graph_resolve(text, kinds?, k=5)` | Entity linking | exact/alias → full-text → vector |
+| 1 | `graph_resolve(text, kinds?, k=5)` | Entity linking | exact id/key/name/alias → full-text → fuzzy full-text |
 | 2 | `graph_schema()` | Labels and relationships, **with direction in English** | "A DEPENDS_ON B: A calls B; if B fails, A is impacted" |
-| 3 | `graph_neighbors(node_id, rel_types?, direction, limit=25)` | Local exploration | **Hub rule:** degree > 40 with no filter → counts by relationship type only |
-| 4 | `incident_blast_radius(service_id, max_hops≤4, at?)` | Upstream impact | hops, entry points, owners, tiers |
-| 5 | `incident_rank_root_causes(incident_id, window_min=120, max_hops≤5)` | Root-cause candidates with a **score breakdown** | §9.1 |
-| 6 | `graph_explain_connection(from_id, to_id, max_len≤4, k=3)` | Paths between two entities | `algo.SPpaths` / `allShortestPaths` |
-| 7 | `incident_similar(incident_id, phase: triage\|post, k=5)` | Hybrid similarity | fixer, runbook, linking paths |
-| 8 | `org_ownership(service_id, at?)` | Owner team, on-call, escalation, **as of a time** | bi-temporal |
-| 9 | `org_experts(service_id? \| query?, k=5)` | KNOWS ranking, top-3 evidence each, **bus factor** | §9.3 |
-| 10 | `knowledge_for_entity(node_id, kinds, k=3)` | Runbooks, decisions, postmortems, with staleness flags | "graph to find, text to explain" |
-| 11 | `knowledge_search(query, kinds?, k=8)` | Hybrid vector + full-text + graph search over sources | Brain |
-| 12 | `decision_trace(decision_id \| query)` | Decision → discussions → people → superseded-by chain | Track 3 |
-| 13 | `graph_hubs(metric, k=10)` | Precomputed PageRank / betweenness (fixed seed) | importance, **not** cause |
-| 14 | `graph_cypher_readonly(cypher, params, purpose)` | Guarded escape hatch | ro_query, EXPLAIN pre-check, bounded `*`, ≤ 50 rows, shown in the UI |
-| 15 | `memory_note(incident_id, kind: hypothesis\|finding\|ruled_out, claim, evidence_ids, confidence)` | Write to the blackboard | rejects unknown evidence |
+| 3 | `graph_neighbors(node_id, rel_types?, direction="both", limit=25)` | Local exploration | **Hub rule:** degree > 40 with no filter → counts by relationship type only |
+| 4 | `incident_blast_radius(entity_id, max_hops=3)` | Upstream impact (`max_hops` 1–4) | hops, entry points, owners, tiers |
+| 5 | `incident_rank_root_causes(incident_id, window_min=120, max_hops=5, top_k=5)` | Root-cause candidates with a **score breakdown** | §9.1 |
+| 6 | `graph_explain_connection(from_id, to_id, max_len=4, k=3, rel_types?)` | Paths between two entities (`max_len` 1–5) | `allShortestPaths` |
+| 7 | `incident_similar(incident_id, phase="triage"\|"post", k=5, root_entity_id?, root_kind?)` | Structural + vector similarity | fixer, runbook |
+| 8 | `org_ownership(entity_id, at?)` | Owner team, on-call, escalation, **as of a time** | bi-temporal |
+| 9 | `org_experts(entity_id, k=5)` | Expertise ranking, top-3 evidence each, **bus factor** | §9.3 |
+| 10 | `knowledge_for_entity(node_id, kinds?, k=3)` | Runbooks (with staleness reasons), docs, decisions, lessons | "graph to find, text to explain" |
+| 11 | `knowledge_search(query, kinds?, k=8)` | Full-text search, plus vector search when a Gemini key is set, fused by reciprocal rank | Brain |
+| 12 | `decision_trace(decision)` | ADR key, id or text → docs, discussions, decider, supersedes chain, affected components | Track 3 |
+| 13 | `graph_hubs(metric="pagerank"\|"betweenness", k=10, of?)` | FalkorDB PageRank / betweenness (fixed seed), computed on demand; `of` returns the rank of given components | importance, **not** cause |
+| 14 | `graph_cypher_readonly(cypher, purpose, params?)` | Guarded escape hatch | write clauses rejected, bounded `*` (≤ 5), only full-text, vector and `algo` procedures, EXPLAIN pre-check, ≤ 50 rows |
+| 15 | `memory_note(incident_id, kind: hypothesis\|finding\|ruled_out, claim, evidence_ids, confidence, about_id?)` | Write to the blackboard | rejects unknown or foreign evidence |
 | 16 | `memory_handoff(incident_id, to_role, summary, open_questions, evidence_ids)` | Structured handoff | MAST fields |
-| 17 | `memory_recall(scope, query, k)` | Retrieve lessons, reflections, past sessions | role-filtered (LEGOMem) |
-| 18 | `action_create_ticket(...)` | Gated T1 | idempotency key |
-| 19 | `action_page_oncall(...)` | Gated T2 | idempotency key |
-| 20 | `action_propose_remediation(...)` | T3, always pending | — |
+| 17 | `memory_recall(entity_id, k=5)` | Lessons (votes > 0) and reflections about a component | procedural memory |
+| 18 | `action_create_ticket(incident_id, team_id, title, body, evidence_ids)` | Gated T1 | idempotency key |
+| 19 | `action_page_oncall(incident_id, person_id, reason, evidence_ids)` | Gated T2 | idempotency key |
+| 20 | `action_propose_remediation(incident_id, kind, target_id, rationale, evidence_ids)` | T3, always a proposal | idempotency key |
+| 21 | `memory_inbox(incident_id, role?)` | Read the latest handoff addressed to this agent and mark it accepted | coordination through the graph |
 
-**Role subsets (≤ 9 each):**
+**Role subsets** (`ROLE_TOOLS`):
 
 | Agent | Tools |
 |---|---|
 | Triage | 1, 4, 7, 8, 13, 15, 16 |
-| Investigator | 1, 3, 5, 6, 7, 10, 14, 15, 16 |
-| Responder | 8, 9, 10, 17, 15, 18, 19, 20 |
-| Brain | 1, 2, 3, 6, 8, 9, 11, 12, 14 |
+| Investigator | 21, 1, 3, 5, 6, 7, 10, 14, 15, 16 |
+| Responder | 21, 8, 9, 10, 17, 15, 18, 19, 20 |
+| Brain | 1, 3, 4, 8, 9, 10, 11, 12, 14 |
 
 Scribe and Ingestor call Graph Core directly; they are workers, not tool-selecting agents.
 
@@ -243,12 +248,12 @@ Scribe and Ingestor call Graph Core directly; they are workers, not tool-selecti
 
 | Agent | Type | Model | Memory it reads | Memory it writes |
 |---|---|---|---|---|
-| **Triage** | ReAct inside a fixed procedure | Flash | semantic (topology, ownership), episodic (similar incidents) | Hypothesis seeds, severity, Handoff |
-| **Investigator** | Procedure, then bounded ReAct (≤ 10 tool calls) | Pro | all three | Hypotheses (proposed/ruled_out), notes, Handoff |
-| **Responder** | Procedure + drafting | Flash | procedural (runbooks, lessons), org | Actions (gated), drafts, Handoff |
-| **Brain** | ReAct Q&A with citations | Pro | everything, read-only | Session, Turn, Answer + CITES |
-| **Scribe** | Background worker | Flash | the closed incident's subgraph | Summary, embedding, SIMILAR_TO, Lessons (votes), KNOWS, proposed Runbook, staleness flags |
-| **Ingestor** | Pipeline worker | Flash | resolution indexes | Knowledge facts with provenance |
+| **Triage** | Fixed procedure (code) | none | semantic (topology, ownership, PageRank rank of the alerting components), episodic (similar incidents) | finding note, severity, Handoff |
+| **Investigator** | Fixed procedure; with a Gemini key, a bounded ReAct review (tool budget enforced in code) | Pro (review only) | all three | Hypotheses (proposed/ruled_out), notes, Handoff |
+| **Responder** | Fixed procedure (code) | none | procedural (runbooks, lessons), org | Actions (gated), status update |
+| **Brain** | Intent router + hybrid search, with citations | Flash (grounded answers, optional) | everything, read-only | Session, Turn, Answer + CITES |
+| **Scribe** | Runs when an incident closes (code) | none | the closed incident's investigation | SUSPECTED_CAUSE, SIMILAR_TO, Lesson, proposed Runbook; on feedback: CAUSED_BY, lesson votes, Reflection |
+| **Ingestor** | Pipeline worker | Flash (optional; rules otherwise) | resolution indexes | Knowledge facts with provenance |
 
 ### 8.2 Incident Crew state machine
 
@@ -271,29 +276,28 @@ stateDiagram-v2
 
 **LangGraph state (thin):** `{tenant, incident_id, run_ids, brief_id, phase, budget_left, hypothesis_ids, verified_claim_ids, pending_action_ids}`. Everything substantive is read from and written to FalkorDB (P1).
 
-**Checkpointer:** the LangGraph checkpointer (the FalkorDB checkpointer if it works on our version, otherwise Redis/SQLite) is used only to **resume runs and interrupts**. Durable memory is our graph.
+**Checkpointer:** LangGraph's in-memory checkpointer (`InMemorySaver`) is used only to **resume runs and interrupts** inside the API process. Durable memory is our graph.
 
 ### 8.3 Intake: graph-based alert correlation
 Alerts within 5 minutes of each other whose services are connected within 2 `DEPENDS_ON` hops (in either direction) are grouped into one `Incident`. This is a small graph query and avoids opening one incident per alert. The Task claim is a single-statement CAS (R§3.6), so concurrent intakes never double-open an incident.
 
 ### 8.4 Verifier (pure code)
 For each claim:
-1. Every `evidence_id` exists **and** belongs to this incident's runs.
-2. Every edge key in that evidence still exists (re-matched by `(src, TYPE, dst, valid_from)`).
+1. Every `evidence_id` exists **and** belongs to this incident.
+2. Every edge key in that evidence exists in the graph (re-matched by `src|TYPE|dst`) and was valid at incident time.
 3. Every entity the claim names (resolved IDs) appears in the cited evidence's node set.
-4. Root-cause claims must cite a `rank_root_causes` evidence that includes the candidate.
 
-Failing claims are dropped and logged as `Reflection{reason}`. The output records `path_validity_rate` for the scoreboard.
+Failing claims are marked unverified with their reasons and shown as rejected, not as fact. The output records `path_validity` for the scoreboard.
 
 ### 8.5 Prompts and contracts
-- System prompts include: role, procedure, the **direction-annotated schema**, 2–3 worked trajectories (Graph-CoT), "cite evidence_ids or say 'insufficient evidence'", the tool budget, and the **IncidentBrief**, which is the working memory (capped at ~1.5k tokens).
-- Outputs are Pydantic models (Gemini structured output). Any invalid output gets one repair retry, then fails.
+- The Gemini Investigator gets a system prompt plus a JSON brief: Triage's handoff (read from the graph), the ranked change and non-change candidates, the deterministic choice, the evidence behind each claim and similar past incidents.
+- Its output is a Pydantic model (Gemini structured output). Its tool budget is enforced in code, and any LLM failure or timeout leaves the deterministic conclusion in place.
 
 ### 8.6 Concurrency
 - Several incidents can run at once; each crew is its own LangGraph thread.
 - Graph writes are single-statement and idempotent, and task claims use CAS with leases.
 - `Action.idem_key` is unique, so the same page is never sent twice.
-- A test runs N crews × M incidents and asserts zero duplicate claims and zero duplicate pages.
+- The tests and the system eval race many workers for one task and one page, and assert exactly one successful claim and one `Action`.
 
 ---
 
@@ -312,30 +316,30 @@ Failing claims are dropped and logged as `Reflection{reason}`. The output record
    | K | Smoothed change-failure prior for (kind, service), plus a canary bonus |
    | H | Similarity to past incidents with the same (service, kind) |
 
-3. **Tie-break:** personalized PageRank on the incident subgraph, with alert severity as the seed (networkx).
+3. **Ties:** no separate tie-break step. Candidates are sorted by score with Python's stable sort, so equal scores keep the order the changes query returned.
 4. **Abstain:** if `max S < θ`, return non-change hypotheses (frontier or coverage service with a fault-type guess).
 5. **Output:** ranked candidates with a per-term breakdown and evidence IDs. The UI shows the breakdown as a bar.
 
-Weights and θ are tuned on training seeds only and frozen before the test run.
+Weights and θ are tuned on training seeds only and frozen before the test run. The formula above is the original design; the code keeps research-prior weights (`W_PRIOR`) and the tuned weights it uses (`W`, `ABSTAIN_THETA`) in `graphable/core/tools.py`. The term definitions in code are in `docs/QUERIES.md` §2.
 
 ### 9.2 Similarity (`incident_similar`)
 `sim = 0.35·s_root + 0.20·s_kind + 0.15·J(symptoms) + 0.15·J(blast) + 0.15·cos(text)`
 - **Triage phase:** no root yet, so only the J, J and cos terms, renormalized.
-- **Post-investigation:** an expectation over the top-3 hypotheses.
-- **Retrieval:** vector top-20, then graph rerank, plus recency `0.99^days`, plus a verified-outcome bonus.
+- **Post-investigation:** uses the top root candidate (`root_entity_id`, `root_kind`).
+- **Retrieval:** incidents that share affected components, plus HNSW vector neighbours (top 40) when the incident is embedded. Final score `0.9·sim + 0.05·0.99^days`, plus 0.05 when the past incident has a runbook.
 - The query incident and anything after `t0` are excluded (no leakage).
 
 ### 9.3 Expertise (`org_experts`)
-`KNOWS(p,s) = active(p)·Σ w(type)·2^(−Δt/H) + 0.3·Σ_{neighbors} KNOWS₀`
-- **Weights:** fixer 5, postmortem/ADR author 4, runbook author 3, ticket resolver 3, change author 2, reviewer 1.5, helper 1.5, chat answer 1 (max 1 per thread).
+`score(p,s) = Σ w(type)·2^(−Δt/H)`, computed on demand by `org_experts` (no materialized `KNOWS` edge); departed people are listed separately.
+- **Weights:** fixer 5, postmortem/design author 4, runbook author 3, ticket resolver 3, change author 2, wiki author 2, reviewer 1.5, commander 1.5, helper 1.5, help-thread answer 1 (max 1 per thread).
 - **Half-life H:** 180 days, or 365 for designs.
 - **Bus factor:** the number of active people with normalized score ≥ 0.75. Departed experts are listed with ranked successors.
 
 ### 9.4 Action gate score
-`G = S_top × verified_path(0/1) × agreement` (agreement across 3 Investigator samples, if enabled). Tiers: T0 automatic; T1 automatic if `G ≥ 0.6`; T2 needs approval unless SEV-1 and `G ≥ 0.8`; T3 always proposal only. Thresholds are calibrated on training scenarios.
+`G = confidence × verified_path(0/1)`, where confidence is the top candidate's score, halved when the Gemini review disagrees (the incident is then marked contested). Tiers: T0 automatic; T1 automatic if `G ≥ 0.6` and the path is verified; T2 needs approval unless SEV-1 and `G ≥ 0.8` with a verified path; T3 always proposal only. The gate is enforced server-side in the action tools.
 
 ### 9.5 Memory retrieval (`memory_recall`)
-Score = min-max normalized `relevance + recency + importance`, where importance comes from severity or vote count (Generative Agents). Results are role-filtered: Triage gets plans and runbook summaries, Responder gets steps and lessons. Decay is applied at ranking time only; nothing is deleted.
+`memory_recall(entity_id)` returns the component's lessons with votes > 0 (highest votes first) and its reflections (newest first). Among the agents, only the Responder uses it. Nothing is deleted; retired lessons stay in the graph.
 
 ---
 
@@ -343,22 +347,19 @@ Score = min-max normalized `relevance + recency + importance`, where importance 
 
 | CoALA memory | Where | Written by | Updated how | Read by |
 |---|---|---|---|---|
-| Working | `IncidentBrief` | Orchestrator only (single writer) | Rewritten at each phase transition, capped size | Every agent prompt |
+| Working | LangGraph crew state and the latest `Handoff` | Orchestrator, agents | Per phase | The next agent (`memory_inbox`) |
 | Episodic | Incident, Alert, AgentRun/Step, Hypothesis, Evidence, Action, Session/Turn | Agents (append-only) | Never mutated; status on Hypothesis/Task only | Triage, Investigator (similar incidents), Brain |
-| Semantic | Org, topology, decisions, knowledge facts | Loaders, Ingestor, Scribe (KNOWS) | Bi-temporal invalidate-and-open | All |
-| Procedural | Runbook/Step (versioned), Lesson (votes), Reflection | Scribe (proposals), humans (approval) | `proposed → active` only on verified mitigation or approval (Voyager); votes ±1 per outcome, retired at 0 (ExpeL) | Responder, Investigator |
+| Semantic | Org, topology, decisions, knowledge facts | Loaders, Ingestor | Bi-temporal invalidate-and-open | All |
+| Procedural | Runbook/Step, Lesson (votes), Reflection | Scribe (proposals), humans (feedback) | Lessons: `proposed → active` on confirmed feedback, votes ±1 per outcome, retired at 0 (ExpeL). Induced runbooks stay `proposed` (Voyager gate) | Responder |
 | Coordination | Task (A2A states), Handoff, Agent, AgentRun `INFORMED_BY` | Agents | CAS claims with leases | Orchestrator, agents |
 
 **Scribe consolidation on close:**
-1. Incident summary and embedding.
-2. `SIMILAR_TO` edges (top-5).
-3. Lesson upvotes/downvotes, or a new Lesson.
-4. Step success/failure counts.
-5. Materialized `KNOWS`.
-6. A *proposed* runbook induced from the Responder trace (AWM).
-7. Staleness flags.
+1. The agents' conclusion as `SUSPECTED_CAUSE` (never as fact).
+2. `SIMILAR_TO` edges (top 3).
+3. A `proposed` Lesson about the root component.
+4. A *proposed* runbook when the component has no active runbook.
 
-Each is a separate idempotent job keyed by `incident_id + job + version`.
+The suspected cause, `SIMILAR_TO` links and Lesson use `MERGE`. Human feedback (`POST /v1/incidents/{id}/feedback`) then promotes the suspicion to `CAUSED_BY` and upvotes the lesson, or downvotes it and records the real cause plus a `Reflection`. Incident embeddings are written at intake, not by the Scribe.
 
 ---
 
@@ -366,19 +367,23 @@ Each is a separate idempotent job keyed by `incident_id + job + version`.
 
 | Method | Path | Purpose |
 |---|---|---|
-| POST | `/v1/events` | Ingest a batch of events (alert, change, message, ticket, doc, org_change) |
-| GET | `/v1/incidents?status=` | List incidents |
-| GET | `/v1/incidents/{id}` | Incident with brief, hypotheses, actions, evidence |
-| GET | `/v1/incidents/{id}/stream` | **SSE**: agent events (`step`, `tool_call`, `evidence`, `handoff`, `claim_verified`, `action_proposed`, `awaiting_approval`, `closed`) |
+| GET | `/v1/health` | Liveness, LLM on/off, demo tenant |
+| GET | `/v1/overview` | Graph counts, recent incidents, teams |
+| GET | `/v1/scenarios` | Playable scenarios |
+| POST | `/v1/sim/play` | Play a scenario into the tenant graph, run intake, start the crew |
+| GET | `/v1/incidents/{id}/stream` | **SSE**: live agent events for a run |
+| GET | `/v1/incidents/{id}` | Incident with alerts, hypotheses, actions, handoffs, suspected and confirmed causes, similar incidents |
 | POST | `/v1/actions/{id}/approve` · `/reject` | Resume the LangGraph interrupt |
-| POST | `/v1/brain/ask` (SSE) | Company-brain Q&A with citations and paths |
-| GET | `/v1/entities/{id}` | Service, person or decision page data (owners, experts, bus factor, timeline, staleness) |
-| GET | `/v1/graph/subgraph?center=&hops=&at=` | Subgraph for the canvas (bounded) |
-| POST | `/v1/sim/scenarios/{id}/play` | Scenario Player (demo) |
-| POST | `/v1/admin/reset` | `GRAPH.COPY` golden → tenant (demo only) |
-| GET | `/v1/eval/latest` | Scoreboard JSON |
+| POST | `/v1/incidents/{id}/feedback` | Human feedback on the diagnosis (Scribe learning) |
+| POST | `/v1/brain/ask` | Company-brain Q&A with citations and paths |
+| GET | `/v1/entities` · `/v1/entities/{id}` | Component list; component page data (ownership and history, experts, bus factor, knowledge, dependencies, recent changes, incidents) |
+| GET | `/v1/graph/topology` · `/v1/graph/incident/{id}` | Graph data for the web app's graph views |
+| POST | `/v1/ingest/message` | Live ingest of a chat message (extraction with provenance) |
+| GET | `/v1/memory` · `/v1/people` | Agent memory overview; people list |
+| POST | `/v1/admin/reset` | `GRAPH.COPY` `golden_acme` → demo tenant |
+| GET | `/v1/eval` | Evaluation results from `evals_out/` |
 
-Auth: one API key per tenant for the demo, which resolves the tenant (P7). The CORS allowlist covers the Vercel domain only.
+Auth: the `X-API-Key` header maps to a tenant through `TENANT_KEYS` (P7); a request without the header uses the demo tenant (`DEMO_TENANT`). CORS origins come from `CORS_ORIGINS` (default `*`). `graphable/api/app.py` is authoritative for the route list.
 
 ---
 
@@ -397,7 +402,7 @@ Auth: one API key per tenant for the demo, which resolves the tenant (P7). The C
 5. **Live ingest:** paste a message or doc and watch the extracted facts appear with provenance, including invalidations ("OWNS checkout→Payments ended; OWNS checkout→Orbit started").
 6. **Scoreboard:** eval metrics vs baselines (§14), including the headline chart AC@1 vs number of concurrent changes.
 
-A tenant switcher (acme ↔ globex) demonstrates isolation.
+Graphs are drawn with a custom SVG component (`apps/web/components/NetGraph.tsx`). The web app uses the demo tenant; tenant isolation (acme ↔ globex) is checked by the tests and the system eval.
 
 ---
 
@@ -405,19 +410,20 @@ A tenant switcher (acme ↔ globex) demonstrates isolation.
 
 ```mermaid
 flowchart LR
-  V[Vercel: Next.js web] -->|HTTPS| R1[Cloud Run: graphable-api\nFastAPI + LangGraph + workers]
-  R1 -->|streamable HTTP, bearer| R2[Cloud Run: graphable-mcp\nFastMCP server]
-  R1 --> F[(FalkorDB Cloud)]
-  R2 --> F
-  R1 --> G[Gemini API]
-  J[External MCP clients] --> R2
+  W[web: Next.js] -->|REST + SSE| A[api: FastAPI + LangGraph crew]
+  A -->|streamable HTTP, bearer| M[mcp: FastMCP server]
+  A --> F[(falkordb 6.0.2)]
+  M --> F
+  I[init: bootstrap] --> F
+  A --> G[Gemini API, optional]
+  M --> G
+  J[External MCP clients] --> M
 ```
-- **One container image, two entrypoints** (`api`, `mcp`).
-- `min-instances=1` on the API during judging to avoid cold starts. The SSE timeout is set in Cloud Run.
-- **FalkorDB Cloud:** measure the graph size after loading; if it's over 100 MB, use the paid tier for the judging window. Reseed from the golden snapshot before judging; the free tier is deleted after 7 idle days.
-- **Local:** `docker compose up` brings up FalkorDB (pinned), API, MCP and web. These are the full local setup instructions rule 10 requires.
+- **Supported setup: local Docker Compose** (`docker compose up --build`): FalkorDB (pinned 6.0.2), a one-shot `init` bootstrap, the MCP server, the API and the web app. These are the full local setup instructions rule 10 requires.
+- **One backend image, several entrypoints** (`init`, `mcp`, `api`); the web app has its own image.
+- **Hosted deployment (optional, not set up in this repo):** the same images could run on a container platform (e.g. Cloud Run) with FalkorDB Cloud and the web app on Vercel.
 
-**Configuration (env):** `FALKORDB_URL`, `GEMINI_API_KEY`, `GEMINI_MODEL_PRO`, `GEMINI_MODEL_FLASH`, `EMBED_MODEL`, `EMBED_DIM=768`, `TENANT_KEYS`, `MCP_URL`, `MCP_TOKEN`. On the server: `TIMEOUT_DEFAULT`, `TIMEOUT_MAX`, `RESULTSET_SIZE`, AOF on.
+**Configuration (env):** see `.env.example`. Main variables: `GEMINI_API_KEY`, `GEMINI_MODEL_PRO`, `GEMINI_MODEL_FLASH`, `EMBED_MODEL`, `EMBED_DIM=768`, `FALKORDB_HOST`, `FALKORDB_PORT`, `FALKORDB_USERNAME`, `FALKORDB_PASSWORD`, `QUERY_TIMEOUT_MS`, `TENANT_KEYS`, `MCP_URL`, `MCP_ALLOWED_HOSTS`, `DATA_DIR`. On the FalkorDB server (`FALKORDB_ARGS` in docker-compose.yml): `TIMEOUT_DEFAULT 10000 TIMEOUT_MAX 120000`.
 
 ---
 
@@ -425,41 +431,39 @@ flowchart LR
 - **Input:** ~40 held-out test scenarios with ground truth (DATA_SPEC §8), never loaded as history.
 - **Runner:** plays each scenario into a fresh `GRAPH.COPY` of the golden tenant, runs the crew headless, and records outputs.
 - **Metrics:**
-  - AC@1/3, MRR, abstention P/R
-  - path-validity rate
-  - similar-incident recall@3 (no memory vs vector vs hybrid)
-  - learning curve
-  - stale-answer count after an ownership change
+  - AC@1/3, MRR, abstention and non-change origin accuracy (`graphable/evals/rca.py`)
+  - path validity and claims verified, routing to the correct team, auto-ticket precision, tool calls and latency (`graphable/evals/system.py`)
   - duplicate claims and pages under concurrency
   - tenant leakage
-  - expertise P@1
-  - citation precision/recall
-  - extraction edge P/R
-  - tool calls, tokens and latency
-- **Baselines:** random, most-recent change, toy (hops→recency), weighted score, weighted + LLM rerank, LLM without graph.
-- **Output:** `eval/results/*.json`, shown on the Scoreboard.
+  - stale answers after ownership changes (knowledge-update probes)
+  - Brain Q&A accuracy and citation rate
+  - learning curve
+  - extraction precision/recall (`graphable/evals/extraction.py`)
+- **Baselines:** random change in the window, most-recent change, toy (hops → recency), research-prior weights; with a Gemini key, the crew with the Gemini review.
+- **Output:** `evals_out/*.json`, shown on the Scoreboard (`GET /v1/eval`).
 
 ---
 
 ## 15. Repository layout
 ```
-graphable/
-  apps/web/                  Next.js app
-  src/graphable/
-    core/                    tenancy, templates (queries/*.cypher), evidence, scoring, verifier, analytics
-    mcp/                     FastMCP server (tools → core)
-    agents/                  LangGraph crew, brain, scribe, prompts, contracts
-    ingest/                  loaders, extractor, resolver, contradiction, writer
+graphable/                   (repo root)
+  graphable/
+    core/                    tenancy (db), schema, domain tools with their Cypher, evidence registry, verifier, embeddings
+    mcpserver/               FastMCP server (tools → core)
+    agents/                  LangGraph crew, policies (offline + Gemini), Brain, Scribe, tool buses (MCP / direct)
+    ingest/                  loader (systems of record), extractors, pipeline (prose → facts with provenance)
     api/                     FastAPI routes, SSE
-    sim/                     scenario player
-  datagen/                   synthetic world generator (DATA_SPEC)
-  eval/                      runner, metrics, baselines, results
-  tests/                     fixture graph, template tests, concurrency, tenancy
-  infra/                     Dockerfile, docker-compose.yml, cloudrun/*.yaml
-  docs/                      DATA_MODEL.md, QUERIES.md (all Cypher, a submission requirement), ARCHITECTURE.md
-  README.md                  setup, data model, tracks, AI-use disclosure
+    sim/                     scenario player + graph-based intake
+    evals/                   RCA, extraction and system evaluation
+    bootstrap.py, settings.py
+  apps/web/                  Next.js app
+  datagen/                   synthetic world generator (DATA_SPEC); out/ holds the committed dataset
+  docs/                      ARCHITECTURE.md, RESEARCH.md, DATA_SPEC.md, QUERIES.md
+  tests/                     integration tests against a bootstrapped FalkorDB
+  evals_out/                 evaluation results
+  Dockerfile, docker-compose.yml, .env.example, README.md
 ```
-Every Cypher template lives in `core/queries/*.cypher` and is listed in `docs/QUERIES.md`, which covers the "Cypher queries the product depends on" submission requirement.
+The Cypher lives inline in the Python modules (mostly `graphable/core/tools.py`) and is listed in `docs/QUERIES.md`, which covers the "Cypher queries the product depends on" submission requirement.
 
 ---
 
@@ -468,7 +472,7 @@ Every Cypher template lives in `core/queries/*.cypher` and is listed in `docs/QU
 - **Query safety:** reads use `ro_query`; relationship types, labels and hop bounds are allowlisted; the escape-hatch Cypher gets an EXPLAIN pre-check, bounded paths and row caps.
 - **Prompt injection:** all artifact text is treated as data (delimited); actions come only from verified evidence; procedural memory is gated (AgentPoison/MINJA, R§3.3).
 - **Actions:** tiered gate, idempotency keys, an approver recorded on each `Action`. No real pager or rollback integrations exist; actions are simulated and recorded.
-- **Secrets:** Secret Manager or Vercel env; MCP bearer tokens per tenant.
+- **Secrets:** `.env` (git-ignored); MCP bearer tokens and API keys per tenant (`TENANT_KEYS`).
 - **Data:** 100% synthetic, fictional company and people (rule 6).
 
 ## 17. Performance budgets
@@ -487,15 +491,15 @@ Every Cypher template lives in `core/queries/*.cypher` and is listed in `docs/QU
 | Risk | Impact | Mitigation |
 |---|---|---|
 | FalkorDB 6.x crash (#3150) | Demo down | `coalesce()` rule, template tests, pinned tag, golden reset |
-| Cloud free tier size or deletion | Live deploy fails | Measure size; paid tier for judging; reseed script; local compose as fallback |
+| Cloud free tier size or deletion | Live deploy fails | Measure size; reseed from the committed data; local Docker Compose is the supported setup |
 | Gemini rate limits | Slow generation or extraction | Paid key, concurrency limits, retries, cache extraction results by idempotency key |
 | LangGraph + MCP adapter friction | Agents can't load tools | 1-hour spike first; fallback: direct core calls behind the same Pydantic contracts |
 | FalkorDB LangGraph checkpointer immature | Resume breaks | Fall back to Redis/SQLite checkpointer (durable memory is ours anyway) |
-| Scope (2 days) | Unfinished | Strict build order (§19); "Could" items cut first |
+| Scope | Unfinished | Strict build order (§19); "Could" items cut first |
 | LLM nondeterminism in the demo | Inconsistent run | Fixed seeds/temperature 0, recorded demo run as backup, deterministic scoring core |
 
 ## 19. Build order
-1. **Spike (1h):** FalkorDB Cloud connection; FastMCP + LangGraph + Gemini tool call end-to-end.
+1. **Spike (1h):** FalkorDB connection; FastMCP + LangGraph + Gemini tool call end-to-end.
 2. **Data:** datagen world + timeline + prose (§DATA_SPEC), then load. Run in the background while building the next steps.
 3. **Core:** schema migration, templates, evidence registry, scoring, verifier, plus tests.
 4. **MCP server:** tools 1–10, 15–16, 18–19 first.
@@ -511,6 +515,6 @@ Must / Should / Could priorities follow R§10, with the scale and extraction sco
 ## 20. Demo script (3–4 min), with hero scenarios from DATA_SPEC §9
 1. **"Repeat offender"** (Tracks 1+2): an alert storm. Triage blast radius → Investigator ranks a config change; memory surfaces the 4-month-old twin incident, its fixer and its runbook. Verified path shown → ticket auto-created; page awaits approval → approve.
 2. **"Decoy deploy"** (Track 1): 9 concurrent changes, the newest one innocent. The score breakdown shows why the silent cache config wins. Compare with the "most recent change" baseline on the Scoreboard.
-3. **"The org moved"** (Tracks 3+2): paste the chat message "checkout moves to Orbit" into Live ingest → the OWNS edge closes/opens with provenance → rerun: the page goes to Orbit. Brain: "who owned checkout during INC-311?" → the old team, with citations.
+3. **"The org moved"** (Tracks 3+2): paste the chat message "checkout moves to Orbit" into Live ingest → the OWNS edge closes/opens with provenance → rerun: the page goes to Orbit. Brain: "who owned checkout during INC-0287?" → the old team, with citations.
 4. **"Not a change"** (Tracks 1+3): a cert-expiry incident → the agent abstains from blaming deploys, finds the cert runbook, and flags **bus factor = 1** (the vault expert left) with ranked successors.
 5. **Close:** the Scoreboard (AC@1 vs number of concurrent changes, 100% path validity, 0 duplicate pages, 0 tenant leaks), and Claude Desktop connected to our MCP server to show it works outside our UI.

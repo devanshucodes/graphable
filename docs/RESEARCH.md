@@ -1,5 +1,7 @@
 # Research Study: Graph-Native Multi-Agent Incident Response on FalkorDB
 
+> Design document. Where it differs from the code, README.md and the code are authoritative.
+
 **Project:** an AI on-call team that learns from every incident (Graph Hacks, all 3 tracks)
 **Method:** 5 parallel research streams: Track 1 (graph-reasoning agents), Track 2 (memory and coordination), Track 3 (company brain), the domain (AIOps / root-cause analysis), and FalkorDB capabilities. FalkorDB claims were tested against a live local instance. Each paper was checked against its arXiv/venue page; anything not fully confirmed is flagged in §13.
 
@@ -22,7 +24,7 @@
 | 11 | **Actions are gated by a deterministic evidence score, never by the LLM's stated confidence.** Tiered: notes are automatic, tickets need a score threshold, paging needs approval, rollback is propose-only. | Xiong et al. (ICLR 2024): verbalized confidence is overconfident. ToolEmu (ICLR 2024). The MCP spec asks for a human in the loop. |
 | 12 | **We show our own scoreboard on synthetic scenarios with deliberate traps, not public memory benchmarks.** | Published LoCoMo scores for the same system vary by 20+ points depending on who ran them. "When to use Graphs in RAG" (ICLR 2026): the demo needs truly multi-hop questions. |
 
-**Novelty claim (word it carefully):** none of the 5 streams found a published system that combines a shared temporal knowledge graph, three-tier agent memory, multi-agent handoffs and verified path-grounded explanations for incident response. The closest are STRATUS (multi-agent, state machine, no graph memory), Groot (event graph + PageRank, no agents or memory), and RCACopilot / Zhang et al. (historical-incident retrieval, no graph).
+**Novelty:** none of the 5 streams found a published system that combines a shared temporal knowledge graph, three-tier agent memory, multi-agent handoffs and verified path-grounded explanations for incident response. The closest are STRATUS (multi-agent, state machine, no graph memory), Groot (event graph + PageRank, no agents or memory), and RCACopilot / Zhang et al. (historical-incident retrieval, no graph).
 
 ---
 
@@ -34,7 +36,7 @@ The installed version is **FalkorDB v6.0.2**, the new Rust engine released Sep 2
 - **Open bug #3150:** an aggregation with a *null grouping key* crashes the whole server. A research probe triggered it by accident; the container was restarted and the data was intact.
   - **Rule if we stay on 6.x:** wrap every grouping key in `coalesce()`.
   - #3226 (an index scan with LIMIT followed by SET or `CALL {}` can abort the server) is reported on main and untested.
-- **Decision needed (§12):** pin `falkordb/falkordb:v4.22.0` (more mature, and it also has A*, Leiden/Louvain and CCH) or stay on 6.0.2 with strict query hygiene.
+- **Decision (§12):** stay on 6.0.2 (pinned) with strict query hygiene. The alternative was `falkordb/falkordb:v4.22.0` (more mature, and it also has A*, Leiden/Louvain and CCH).
 
 ### 1.2 Can / can't / workaround
 
@@ -62,13 +64,13 @@ The installed version is **FalkorDB v6.0.2**, the new Rust engine released Sep 2
 | Piece | Verdict | Why |
 |---|---|---|
 | `falkordb` Python client 1.7.1 | **Use** | Needs **Python ≥ 3.10**; the Mac has 3.9.6, so install 3.11+. Has an async client. |
-| Official FalkorDB MCP server | **Dev aid only** | Generic raw-Cypher tools. Judges want *domain* tools selected through MCP, so we build our own Python MCP server (FastMCP). |
+| Official FalkorDB MCP server | **Dev aid only** | Generic raw-Cypher tools. Track 1 asks for *domain* tools selected through MCP, so we build our own Python MCP server (FastMCP). |
 | Graphiti | **Skip as a dependency; copy its ideas** | The released 0.30.2 breaks on FalkorDB 6.x (issue #1947, fix not released) and has open group_id bugs. (The Track 3 stream rated it easy; the FalkorDB stream's live/issue check overrides that.) |
 | GraphRAG-SDK | **Optional** | Its full-text index uses the broken procedure form, so it fails silently on 6.x. Use only if bulk prose ingestion becomes core. |
 | QueryWeaver | Not relevant | It's Text2**SQL**. |
 | LangChain / LlamaIndex / Cognee | Skip | Not needed for our design. |
-| FalkorDB Browser / `@falkordb/canvas` | **Use for the demo** | Graph canvas, query history. The canvas web component can be embedded in our UI. |
-| FalkorDB Cloud free tier | **Risky for "live deployment"** | 100 MB, no TLS or backups, **stops after 1 idle day, deleted after 7 days**. Either reseed just before judging or run docker on a small VM. |
+| FalkorDB Browser / `@falkordb/canvas` | **Browser: use for exploring the graph** | Graph canvas, query history. The Browser runs in the Docker setup (port 3000). The web app draws its own SVG graph (`apps/web/components/NetGraph.tsx`) rather than embedding the canvas. |
+| FalkorDB Cloud free tier | **Risky for "live deployment"** | 100 MB, no TLS or backups, **stops after 1 idle day, deleted after 7 days**. Reseed before use, or run Docker on a small VM. |
 
 ---
 
@@ -151,7 +153,7 @@ CoALA actions map to tool name prefixes: `retrieve_*`, `learn_*`, `ground_*` (ex
 | **Zep / Graphiti** [2501.13956](https://arxiv.org/abs/2501.13956) | arXiv 2025 | Bi-temporal edges (`t_valid`/`t_invalid` + `created`/`expired`); invalidate on contradiction; **template-only Cypher writes**; hybrid retrieval (cosine + BM25 + BFS) | All of it, implemented ourselves |
 | Mem0 / Mem0g [2504.19413](https://arxiv.org/abs/2504.19413) | arXiv 2025 | ADD/UPDATE/DELETE/NOOP via tool call; the graph variant invalidates | The 4-operation JSON contract for semantic writes (with DELETE turned into invalidate) |
 | A-MEM [2502.12110](https://arxiv.org/abs/2502.12110) | NeurIPS 2025 | Zettelkasten notes, auto-linking, "evolution" | Auto-link postmortems with `SIMILAR_TO {score, basis}`. **Don't** rewrite old notes. |
-| HippoRAG 1/2 [2405.14831](https://arxiv.org/abs/2405.14831), [2502.14802](https://arxiv.org/abs/2502.14802) | NeurIPS 2024 / ICML 2025 | Personalized PageRank from seed nodes | PPR seeded at the alerting services (networkx) |
+| HippoRAG 1/2 [2405.14831](https://arxiv.org/abs/2405.14831), [2502.14802](https://arxiv.org/abs/2502.14802) | NeurIPS 2024 / ICML 2025 | Personalized PageRank from seed nodes | Considered, not used: FalkorDB's `algo.pageRank` has no personalization, and root-cause ranking uses coverage scoring (§7.1) |
 | MIRIX [2507.07957](https://arxiv.org/abs/2507.07957) | arXiv 2025 | 6 typed stores, sensitivity flag | Field lists for episodic/procedural nodes; a `sensitivity` flag for pasted secrets |
 | AriGraph [2407.04363](https://arxiv.org/abs/2407.04363) | IJCAI 2025 | Episodic vertices linked to the triples they produced | The `(Episode)-[:ASSERTED]->(fact)` provenance pattern |
 | Hindsight [2512.12818](https://arxiv.org/abs/2512.12818) | arXiv 2025 | Separates facts, experiences and beliefs | Keep `Evidence` and `Hypothesis` separate (proposed/confirmed/refuted) |
@@ -184,7 +186,7 @@ CoALA actions map to tool name prefixes: `retrieve_*`, `learn_*`, `ground_*` (ex
 - **Blackboard architecture** (Nii 1986; Hayes-Roth 1985; Hearsay-II): independent knowledge sources, a shared board and a separate control component. Our board is the Incident subgraph.
 - **LLM blackboard papers:** Han & Zhang [2507.01701](https://arxiv.org/abs/2507.01701) (a control unit cut tokens 3×); Salemi et al. [2510.01285](https://arxiv.org/abs/2510.01285) (agents volunteer for posted requests, +13–57%).
 - **MetaGPT** (ICLR 2024): structured documents instead of chat; role-based publish/subscribe.
-- **STRATUS** (NeurIPS 2025): detection, diagnosis and mitigation agents with a state machine and a "Transactional No-Regression" property; ≥1.5× over prior SRE agents. **Our closest prior art; cite it.**
+- **STRATUS** (NeurIPS 2025): detection, diagnosis and mitigation agents with a state machine and a "Transactional No-Regression" property; ≥1.5× over prior SRE agents. **Our closest prior art.**
 - **MAST** (NeurIPS 2025 D&B) [2503.13657](https://arxiv.org/abs/2503.13657): 14 failure modes, mostly design and misalignment. Handoffs need explicit `open_questions`, `verification_status` and a termination rule.
 - **A2A v1.0:** reuse the *state names* (SUBMITTED, WORKING, INPUT_REQUIRED, COMPLETED, FAILED, …) and `contextId` = incident id. Don't implement the HTTP protocol.
 - **AutoGen and CAMEL:** the shared state is the chat transcript. Cite them as the contrast to our design.
@@ -211,7 +213,7 @@ LoCoMo (ACL 2024), LongMemEval (ICLR 2025), DMR and MemoryAgentBench are chat-as
 ### 4.1 Framing
 - **Organizational memory** (Walsh & Ungson, AMR 1991): memory is scattered across retention facilities (people, structures, transformations). The brain indexes them all.
 - **Answer Garden** (Ackerman, TOIS 1998): when the knowledge base can't answer, route the question to a human expert and capture the reply back into the store. **Our loop:** low confidence → page the top expert → the reply becomes a Source with provenance.
-- **Transactive memory** (Wegner 1986/87; Lewis 2003: specialization, credibility, coordination): the "who knows what" directory. This is pitch vocabulary.
+- **Transactive memory** (Wegner 1986/87; Lewis 2003: specialization, credibility, coordination): the "who knows what" directory. This frames the expertise features.
 - **Lesson from Microsoft Viva Topics** (retired Feb 2025): topic mining with no workflow attached didn't survive as a product. Tie the brain to a concrete workflow (incident response). ✔
 
 ### 4.2 Industry precedents
@@ -225,7 +227,7 @@ LoCoMo (ACL 2024), LongMemEval (ICLR 2025), DMR and MemoryAgentBench are chat-as
 ### 4.3 Expertise ("who knows what")
 - **Balog Model 2** (SIGIR 2006): document-centric, `p(q|ca) = Σ_d p(q|d)·p(d|ca)`, and it consistently wins. Implement as a vector search over sources followed by aggregation over linked people.
 - **Experience atoms** (Mockus & Herbsleb, ICSE 2002): every deploy, fix, review and postmortem is a timestamped evidence edge.
-- **Degree-of-Authorship / truck factor** (Avelino et al., ICPC 2016, [1604.06766](https://arxiv.org/abs/1604.06766), formula confirmed): `DOA = 3.293 + 1.098·FA + 0.164·DL − 0.321·ln(1+AC)`. Gives a **bus factor per service** and a "bus factor = 1" warning, a strong demo moment.
+- **Degree-of-Authorship / truck factor** (Avelino et al., ICPC 2016, [1604.06766](https://arxiv.org/abs/1604.06766), formula confirmed): `DOA = 3.293 + 1.098·FA + 0.164·DL − 0.321·ln(1+AC)`. Gives a **bus factor per service** and a "bus factor = 1" warning (used in the vault scenario).
 - **Temporal expertise profiling** (ECIR 2014): use recency decay, plus a "was the expert, moved on" badge.
 - **Who should fix this bug** (ICSE 2006) and ticket routing (KDD 2008): record the *resolver* separately from the *assignee*, and page the resolver.
 - **Ownership and quality** (Bird et al., FSE 2011): a deploy by a low-expertise contributor to a high-tier service is a risk feature for the Investigator.
@@ -270,7 +272,7 @@ LoCoMo (ACL 2024), LongMemEval (ICLR 2025), DMR and MemoryAgentBench are chat-as
 
 ## 5. Domain: AIOps and root-cause analysis
 
-### 5.1 Graph-based RCA: what's feasible in 2 days
+### 5.1 Graph-based RCA: what's feasible here
 
 | Method | Venue | Core idea | Feasible? |
 |---|---|---|---|
@@ -342,9 +344,9 @@ LoCoMo (ACL 2024), LongMemEval (ICLR 2025), DMR and MemoryAgentBench are chat-as
                                │
               Custom Python MCP server (FastMCP): domain tools
      read tools (ro_query, allowlists, hop caps) · memory writes · gated actions
-     evidence registry · scoring (Python/networkx) · tenant scope from context
+     evidence registry · scoring (Python) · tenant scope from context
                                │
-                 FalkorDB: one graph per tenant (e.g. oncall_acme)
+                 FalkorDB: one graph per tenant (e.g. t_acme)
    semantic (bi-temporal) · episodic (append-only) · procedural (gated)
    coordination blackboard · provenance (PROV) · vector + full-text indexes
 ```
@@ -447,7 +449,7 @@ LoCoMo (ACL 2024), LongMemEval (ICLR 2025), DMR and MemoryAgentBench are chat-as
 | K, kind prior | `(fails+1)/(changes+2)` for the change kind and service, computed in Cypher; + canary bonus | Gandalf |
 | H, history | Maximum similarity to past incidents caused by the same (service, kind) | Zhang et al. 2024 |
 
-- **Ties:** break with personalized PageRank in networkx on the incident subgraph, with alert severity as the personalization (MicroRCA).
+- **Ties:** no separate tie-break step in the implementation; candidates are sorted by score (a stable sort). Personalized PageRank (MicroRCA) was considered but is not implemented.
 - **Abstain:** if max S < θ, return a non-change hypothesis (frontier or coverage service plus a guessed fault type).
 - **Weights:** grid-search on *training* seeds only.
 
@@ -501,7 +503,7 @@ Verify each artifact against the ground truth.
 
 ---
 
-## 9. Evaluation: the scoreboard we show judges
+## 9. Evaluation shown in the app
 
 | Metric | Track | Target / what it shows |
 |---|---|---|
@@ -530,13 +532,13 @@ Verify each artifact against the ground truth.
 
 ---
 
-## 10. Scope for ~2 days of build time
+## 10. Scope and priorities
 
 | Priority | Item |
 |---|---|
 | **Must** | Schema + deterministic world/scenario generator · tools 1–8, 13–16 · custom MCP server · 3 agents + state machine · code verifier · evidence registry · consolidation (SIMILAR_TO, lessons) · UI with path highlight · demo script · README (data model + Cypher) · AI-use disclosure |
 | **Should** | Mini scoreboard (AC@1 vs baselines, path validity, recall@3) · ownership-change live demo + as-of query · KNOWS + bus factor · action gate UI (approve button) · per-tenant graphs with GRAPH.COPY reset |
-| **Could** | LLM extraction from a handful of postmortems/chats with provenance (Track 3 "docs, tickets, chats") · vector similarity · networkx personalized PageRank · runbook induction + promotion · citation verifier on free-form Q&A · learning-curve plot · blog post (AirPods) |
+| **Could** | LLM extraction from a handful of postmortems/chats with provenance (Track 3 "docs, tickets, chats") · vector similarity · networkx personalized PageRank · runbook induction + promotion · citation verifier on free-form Q&A · learning-curve plot |
 | **Won't** | Causal discovery, GNNs, fine-tuning, Microsoft GraphRAG indexer, Graphiti dependency, HTTP A2A, real telemetry time series |
 
 ---
@@ -559,15 +561,16 @@ Verify each artifact against the ground truth.
 
 ---
 
-## 12. Decisions for Devanshu (you own the architecture)
-1. **FalkorDB version:** v4.22.0 (mature; A*, Leiden) or 6.0.2 (latest Rust engine, crash bug #3150)? *Suggestion:* rerun the probe suite on both and pick one.
-2. **LLM:** Claude via the Anthropic SDK. Embeddings need a separate provider (Voyage or a local sentence-transformers model). *Or* skip vectors and rely on structural + full-text similarity.
-3. **Agent runtime:** plain Python state machine + MCP client (recommended; maximally explainable) vs LangGraph.
-4. **Real MCP loop vs direct function calling:** the judging criterion says "tool selection through MCP", so a real MCP client loop is the safer choice.
-5. **UI:** Streamlit (fastest) vs a small web app with `@falkordb/canvas` (prettier graph).
-6. **Deployment:** FalkorDB Cloud free tier (reseed before judging; deletes after 7 days) vs docker on a small VM.
-7. **Scale of the synthetic world:** ~40 services / 30 people / 15 incidents, or smaller.
-8. **How much Track 3 prose extraction to build** (Could → Should?), since Track 3 explicitly names "docs, tickets, and chats".
+## 12. Design decisions
+Each item lists the options this study considered and what the implementation chose.
+1. **FalkorDB version:** v4.22.0 (mature; A*, Leiden) or 6.0.2 (latest Rust engine, crash bug #3150). **Chosen:** 6.0.2, pinned, with `coalesce()` on nullable grouping keys.
+2. **LLM and embeddings:** an LLM provider plus a separate embeddings provider, or no vectors at all (structural + full-text similarity only). **Chosen:** Gemini for both (Pro for the Investigator's review, Flash for extraction and Brain answers, Flash-Lite for dataset prose, 768-d Gemini embeddings). Everything also runs without a key, in a deterministic offline mode.
+3. **Agent runtime:** a plain Python state machine + MCP client, or LangGraph. **Chosen:** LangGraph (a StateGraph with an interrupt for human approval).
+4. **Real MCP loop vs direct function calling:** Track 1 lists "tool selection through MCP". **Chosen:** a real MCP client loop (`langchain-mcp-adapters` over streamable HTTP), with an in-process fallback for fast evals.
+5. **UI:** Streamlit (fastest) or a small web app with `@falkordb/canvas`. **Chosen:** a Next.js web app with its own SVG graph view.
+6. **Deployment:** FalkorDB Cloud free tier (deleted after 7 idle days) or Docker on a small VM. **Chosen:** local Docker Compose is the supported setup; a hosted deployment is optional.
+7. **Scale of the synthetic world:** ~40 services / 30 people / 15 incidents, or smaller. **Chosen:** larger: 40 services, 15 datastores, 11 teams, 131 people and 397 historical incidents (`datagen/out/acme/manifest.json`).
+8. **How much Track 3 prose extraction to build**, since Track 3 explicitly names "docs, tickets, and chats". **Chosen:** rules extraction for all prose, plus Gemini extraction for incident, decision and announcement threads and for postmortems and design docs when a key is set.
 
 ---
 
@@ -585,4 +588,4 @@ Verify each artifact against the ground truth.
 - Install Python 3.11+ (falkordb-py 1.7.1 requires ≥ 3.10).
 - Pull `falkordb/falkordb:v4.22.0` alongside latest, for the version decision.
 - Get an LLM API key ready (and an embeddings key, if we use vectors).
-- Decide items 1–8 in §12.
+- Make the decisions in §12.

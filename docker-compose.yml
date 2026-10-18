@@ -1,18 +1,27 @@
 # Full local stack:  docker compose up --build
 # FalkorDB Browser: http://localhost:3000 · Web app: http://localhost:3001 · API: http://localhost:8000/docs · MCP: http://localhost:8765/mcp
+# Host ports can be changed with FALKORDB_PORT, FALKORDB_BROWSER_PORT, MCP_PORT, API_PORT and WEB_PORT (shell or .env).
+# GEMINI_API_KEY is optional (read from the shell or .env); without it the deterministic offline mode runs.
 services:
   falkordb:
+    # Requires FalkorDB 6.0.x (the queries and index DDL are written for it); :latest is now 4.x
     image: falkordb/falkordb:6.0.2
-    ports: ["6379:6379", "3000:3000"]
+    ports: ["${FALKORDB_PORT:-6379}:6379", "${FALKORDB_BROWSER_PORT:-3000}:3000"]
     environment:
-      FALKORDB_ARGS: "TIMEOUT_DEFAULT 10000 TIMEOUT_MAX 15000"
+      # TIMEOUT_MAX must cover the longest per-query timeout the code passes (120000 ms for bulk loads)
+      FALKORDB_ARGS: "TIMEOUT_DEFAULT 10000 TIMEOUT_MAX 120000"
     volumes: ["falkordb-data:/var/lib/falkordb/data"]
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 3s
       retries: 20
 
-  init:   # generate synthetic data -> load -> extract knowledge -> golden snapshots (idempotent, ~5 s)
+  # Bootstrap: loads the committed dataset (datagen/out, baked into the image) -> extracts knowledge from prose
+  # -> golden snapshots. A few seconds without GEMINI_API_KEY. With a key it also runs Gemini extraction and
+  # embeddings, which take about 1-2 min. It runs on every `docker compose up` and rebuilds t_acme/t_globex
+  # from the files (with a key, the Gemini calls are repeated each time).
+  init:
+    image: graphable-backend
     build: .
     command: ["python", "-m", "graphable.bootstrap"]
     environment: { FALKORDB_HOST: falkordb, GEMINI_API_KEY: "${GEMINI_API_KEY:-}", DATA_DIR: /app/datagen/out }
@@ -20,27 +29,39 @@ services:
     depends_on: { falkordb: { condition: service_healthy } }
 
   mcp:
-    build: .
+    image: graphable-backend   # built once by the init service
+    pull_policy: never
     command: ["python", "-m", "graphable.mcpserver.server", "--host", "0.0.0.0", "--port", "8765"]
-    environment: { FALKORDB_HOST: falkordb, TENANT_KEYS: "${TENANT_KEYS:-dev-acme:acme,dev-globex:globex,dev-demo:demo_main}" }
-    ports: ["8765:8765"]
+    environment:
+      FALKORDB_HOST: falkordb
+      TENANT_KEYS: "${TENANT_KEYS:-dev-acme:acme,dev-globex:globex,dev-demo:demo_main}"
+      GEMINI_API_KEY: "${GEMINI_API_KEY:-}"   # knowledge_search embeds the query inside the MCP server
+      MCP_ALLOWED_HOSTS: "localhost:*,127.0.0.1:*,mcp:*"   # "mcp" = this service's hostname, used by the api container
+    ports: ["${MCP_PORT:-8765}:8765"]
+    healthcheck:   # a real MCP initialize handshake, so a rejected Host header also counts as unhealthy
+      test: ["CMD", "python", "-c", "import urllib.request,json;r=urllib.request.Request('http://localhost:8765/mcp',data=json.dumps({'jsonrpc':'2.0','id':0,'method':'initialize','params':{'protocolVersion':'2025-06-18','capabilities':{},'clientInfo':{'name':'hc','version':'1'}}}).encode(),headers={'Content-Type':'application/json','Accept':'application/json, text/event-stream'});urllib.request.urlopen(r,timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
     depends_on: { init: { condition: service_completed_successfully } }
 
   api:
-    build: .
+    image: graphable-backend   # built once by the init service
+    pull_policy: never
     environment:
       FALKORDB_HOST: falkordb
       MCP_URL: http://mcp:8765/mcp
       TENANT_KEYS: "${TENANT_KEYS:-dev-acme:acme,dev-globex:globex,dev-demo:demo_main}"
       GEMINI_API_KEY: "${GEMINI_API_KEY:-}"
       DATA_DIR: /app/datagen/out
-    ports: ["8000:8000"]
+    ports: ["${API_PORT:-8000}:8000"]
     volumes: ["datagen-out:/app/datagen/out"]
-    depends_on: { init: { condition: service_completed_successfully }, mcp: { condition: service_started } }
+    depends_on: { init: { condition: service_completed_successfully }, mcp: { condition: service_healthy } }
 
   web:
-    build: { context: ./apps/web, args: { NEXT_PUBLIC_API_URL: "http://localhost:8000/v1" } }
-    ports: ["3001:3001"]
+    # NEXT_PUBLIC_API_URL is baked in at build time and is called from the browser, so it uses the host port
+    build: { context: ./apps/web, args: { NEXT_PUBLIC_API_URL: "http://localhost:${API_PORT:-8000}/v1" } }
+    ports: ["${WEB_PORT:-3001}:3001"]
     depends_on: [api]
 
 volumes:

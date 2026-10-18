@@ -1,5 +1,7 @@
 # Graphable: Synthetic Data Specification
 
+> Design document. Where it differs from the code, README.md and the code are authoritative.
+
 **Status:** specification. The generator that implements it is in `datagen/`.
 **Rule 6:** 100% synthetic. A fictional company, fictional people (Faker), the fictional domain `acme-fake.dev`. No real datasets, people or brands.
 **Method:** CRMArena-style (R§4.7). Ground truth and hidden variables are generated first by deterministic code, prose is rendered by an LLM *from* that ground truth, and every artifact is verified.
@@ -54,8 +56,8 @@
 - `runtime` (k8s / serverless), `repo`, `slo_availability`, `slo_latency_p99_ms`
 - `entry_point` (bool), `customer_facing` (bool), `regions[]`, `created_at`
 
-### 3.2 Datastores (~14)
-`pg-users`, `pg-catalog`, `pg-inventory`, `pg-orders`, `pg-payments`, `pg-ledger`, `pg-billing`, `redis-cache`, `redis-session`, `redis-ratelimit`, `es-search`, `cassandra-events`, `clickhouse-analytics`, `s3-assets`.
+### 3.2 Datastores (15)
+`pg-users`, `pg-catalog`, `pg-inventory`, `pg-orders`, `pg-payments`, `pg-ledger`, `pg-billing`, `redis-cache`, `redis-session`, `redis-ratelimit`, `es-search`, `cassandra-events`, `clickhouse-analytics`, `s3-assets`, plus `ext-paylynx` (the fictional external payment processor PayLynx, modelled as a datastore so its outages can be root causes).
 Properties: `engine`, `version`, `tier`, `replicas`, `owner team`.
 
 ### 3.3 Topology
@@ -69,7 +71,7 @@ Properties: `engine`, `version`, `tier`, `replicas`, `owner team`.
 - **Endpoints:** 5–12 per service; `method`, `path`, `public` (bool), `p99_ms`.
 - **Flags:** `key`, `service`, `created_at`, `retired_at?`, `default`, `rollout_pct` history.
 
-### 3.5 Org: 10 teams, ~120 people
+### 3.5 Org: 11 teams (Orbit is added mid-year), ~130 people
 
 | Team | Size |
 |---|---|
@@ -171,7 +173,7 @@ The structured fields are loaded directly; the text goes to extraction.
 
 ---
 
-## 6. Prose rendering (Gemini Flash, from fact cards)
+## 6. Prose rendering (Gemini Flash-Lite by default via `GEMINI_MODEL_RENDER`, from fact cards)
 
 - **Fact card:** the JSON of facts an artifact must state. Examples:
   - postmortem: root cause change id, mechanism, detection, mitigation, runbook used, follow-ups
@@ -224,6 +226,7 @@ The structured fields are loaded directly; the text goes to extraction.
   | 4 | look-alike |
 
   Each scenario is an **event stream** (changes, alerts, messages, ticket updates) with `truth` (root(s), kind, correct pagee team, correct expert).
+- **40 train scenarios** (same mix, separate seed, ids `TR-…`): used to tune the root-cause weights and threshold; headline results are reported on the test set.
 - **Learning-curve set:** 8 sequential occurrences of one motif (a `redis-cache` eviction-policy config change). Measures steps, tokens and time to mitigation across occurrences.
 - **Knowledge-update set:** 10 Q&A probes before and after ownership or on-call changes (expect 0 stale answers), plus as-of questions.
 - **Brain Q&A set:** 30 questions with gold answers and gold sources (who-knows, why-decision, as-of, what-breaks-if), for citation precision/recall and answer accuracy.
@@ -231,9 +234,9 @@ The structured fields are loaded directly; the text goes to extraction.
 ---
 
 ## 9. Hero scenarios (scripted for the demo; stored in `scenarios/hero/`)
-1. **H1 "Repeat offender":** a `redis-cache` eviction-policy config change by a junior engineer at 14:02. Checkout, cart and payments alert, and the root is silent. The twin incident INC-0311 (four months ago) was fixed by Priya with runbook RB-redis-07.
+1. **H1 "Repeat offender":** a `redis-cache` eviction-policy config change by a junior engineer at 14:02. Checkout, cart and payments alert, and the root is silent. The twin incident INC-0287 (four months earlier) was fixed by Priya with runbook RB-redis-07.
 2. **H2 "Decoy deploy":** a silent `config-service` change at 09:10; 9 more changes in the window, including a `web-bff` deploy at 09:14, the newest. Alerts on `api-gateway`, `web-bff`, `checkout`, `orders`.
-3. **H3 "The org moved":** a live chat message in the demo, "FYI from today checkout is owned by Orbit, ping @lena for anything urgent", then a rerun of H1-like alerts. As-of question about INC-0311.
+3. **H3 "The org moved":** a live chat message in the demo, "FYI from today checkout is owned by Orbit, ping @lena for anything urgent", then a rerun of H1-like alerts. As-of question about INC-0287.
 4. **H4 "Not a change":** `vault` TLS cert expiry. No suspicious change; the vault expert left on 2026-06-20; the runbook was last verified before their departure, so it's flagged stale. Bus factor = 1, with successor ranking.
 
 ---
@@ -246,8 +249,8 @@ datagen/out/acme/
                 dependencies.jsonl  oncall.jsonl
   events/       changes.jsonl  alerts.jsonl  incidents.jsonl  org_events.jsonl
   artifacts/    threads.jsonl  messages.jsonl  tickets.jsonl  docs.jsonl  runbooks.jsonl  decisions_meta.jsonl
-  truth/        latent.json  incidents_truth.jsonl  extraction_gold.jsonl  expertise_truth.json  staleness_truth.json
-  scenarios/    test/*.json  learning/*.json  probes/*.json  hero/*.json
+  truth/        latent.json  incidents_truth.jsonl  extraction_gold.jsonl  expertise_truth.json  staleness_truth.json  fact_cards.jsonl
+  scenarios/    test/*.json  train/*.json  learning/*.json  probes/*.json  hero/*.json
   manifest.json counts, seed, prompt versions, checksums
 datagen/out/globex/   (same layout, small)
 ```
@@ -272,7 +275,7 @@ JSONL with one record per line; IDs as in ARCHITECTURE §5.1; times in epoch-ms 
 | Relationships | ~150k–200k |
 | Vectors (threads, docs/sections, tickets, incidents, runbooks) | ~5.5k × 768-d ≈ 17 MB raw (+ HNSW overhead) |
 | Text properties | ~10–15 MB |
-| Estimated graph memory | **~80–200 MB**. Measure after load; the 100 MB free Cloud tier may not fit, so plan for the paid tier during the judging window |
+| Estimated graph memory | **~80–200 MB**. Measure after load (this matters for FalkorDB Cloud's 100 MB free tier, if the optional hosted deployment is used) |
 | Generation calls (Flash) | ~2,900 |
 | Extraction calls (Flash) | ~5,500 (one per thread, ticket and doc section) |
 | Embedding calls | ~5,500 inputs (batched) |
@@ -281,7 +284,7 @@ JSONL with one record per line; IDs as in ARCHITECTURE §5.1; times in epoch-ms 
 ## 13. Node count breakdown (acme)
 | Label | Count |
 |---|---|
-| Service / Datastore / Region | 40 / 14 / 3 |
+| Service / Datastore / Region | 40 / 15 / 3 |
 | Endpoint / FeatureFlag | ~300 / ~200 |
 | Team / Person / OnCallShift | 11 / ~120 / ~1,040 |
 | Change | ~10,000 |
@@ -295,17 +298,19 @@ JSONL with one record per line; IDs as in ARCHITECTURE §5.1; times in epoch-ms 
 | Claim, ExtractionRun, Unresolved (from extraction) | ~600 |
 | **Total** | **≈ 40,300** (agent memory nodes grow on top of this during runs) |
 
+Actual counts for the committed dataset are in `datagen/out/acme/manifest.json`.
+
 **Globex:** 15 services (same names as a subset of acme's), 20 people, 2 months of history, ≈ 2,500 nodes.
 
 ---
 
 ## 14. Generator modules
 1. `config`: seed, sizes, dates, distributions.
-2. `world`: services, datastores, topology, endpoints, flags, org and its history.
-3. `latent`: hidden variables and motifs.
+2. `catalog`: the hand-designed services, datastores, teams, topology, failure mechanisms and personas.
+3. `world`: org and its history, bi-temporal ownership, membership and dependencies, on-call, endpoints, flags, and the hidden variables (expertise, fragility).
 4. `timeline`: changes, faults, propagation, alerts, response, artifact fact cards, decisions, help threads, org events.
-5. `render`: Gemini prose from fact cards (cached, verified).
-6. `scenarios`: test, learning, probe and hero sets.
+5. `render`: prose from fact cards: offline templates, or Gemini (cached, with a fact-coverage gate).
+6. `scenarios`: test, train, learning, probe and hero sets.
 7. `validate`: the gates in §11.
 8. `export`: JSONL + manifest.
 

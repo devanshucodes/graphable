@@ -5,6 +5,7 @@ datagen/.cache/
 apps/web/node_modules/
 apps/web/.next/
 .pytest_cache/
+*.tsbuildinfo
 
 # OS / editor / logs
 .DS_Store
