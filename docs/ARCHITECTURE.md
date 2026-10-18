@@ -11,7 +11,7 @@
 
 | # | Principle | What it means in practice |
 |---|---|---|
-| P1 | **The graph is the source of truth** | Topology, knowledge, memory, coordination, evidence and audit all live in FalkorDB. Agent runtime state only holds IDs and cursors. Remove FalkorDB and nothing works (rule 3). |
+| P1 | **The graph is the source of truth** | Topology, knowledge, memory, coordination, evidence and audit all live in FalkorDB. Agent runtime state passes phase results within a run; everything that must survive or be shared is in the graph. Remove FalkorDB and nothing works (rule 3). |
 | P2 | **Deterministic core, probabilistic edge** | Code does traversal, scoring, verification, gating and writes. The LLM selects, interprets, explains and drafts (R§0 decisions 1, 3, 11). |
 | P3 | **Provable by construction** | Every claim carries `evidence_id`s from executed tool calls, and a code verifier rejects anything else (R§2.4). |
 | P4 | **Never delete; invalidate** | Mutable facts are bi-temporal and episodic memory is append-only, so history is always queryable (R§3.4). |
@@ -149,7 +149,7 @@ Full field lists for the generator are in DATA_SPEC.md. This section is the arch
 | Knowledge and provenance | `(Message)-[:IN]->(Thread)`, `(Message)-[:REPLY_TO]->(Message)`, `(Person)-[:SENT]->(Message)`, `(Person)-[:WROTE]->(Doc\|Runbook)`, `(Thread\|Ticket\|Doc)-[:MENTIONS]->(*)`, `(Decision)-[:DOCUMENTED_IN]->(Doc)`, `(Decision)-[:DISCUSSED_IN]->(Thread\|Ticket)`, `(Decision)-[:DECIDED_BY]->(Person)`, `(Decision)-[:AFFECTS]->(Service)`, `(Decision)-[:SUPERSEDES]->(Decision)`, `(Ticket)-[:ASSIGNED_TO]->(Person)`, `(Ticket)-[:RESOLVED_BY]->(Person)`, `(Ticket)-[:FOLLOW_UP_OF]->(Incident)`, `(Claim)-[:SUPPORTED_BY {span}]->(Message\|Doc\|Ticket)`, `(*)-[:ASSERTED_BY]->(ExtractionRun)` (AriGraph/PROV) |
 | Procedural | `(Runbook)-[:HAS_STEP]->(Step)-[:NEXT]->(Step)`, `(Runbook)-[:MITIGATES]->(Service)`, `(Runbook)-[:SUPERSEDES]->(Runbook)`, `(Lesson)-[:DERIVED_FROM]->(Incident)`, `(Lesson)-[:ABOUT]->(Service\|Runbook)` |
 | Agent coordination | `(Task)-[:FOR]->(Incident)`, `(Handoff)-[:FOR]->(Incident)`, `(Handoff)-[:FROM]->(Agent)`, `(Handoff)-[:TO]->(Agent)`, `(Handoff)-[:CARRIES]->(Hypothesis\|Evidence)`, `(AgentRun)-[:OF]->(Agent)`, `(AgentRun)-[:WORKED_ON]->(Incident)`, `(AgentRun)-[:INFORMED_BY]->(AgentRun)` (PROV wasInformedBy), `(AgentStep)-[:IN_RUN]->(AgentRun)`, `(AgentStep)-[:NEXT]->(AgentStep)`, `(AgentStep)-[:PRODUCED]->(Evidence)`, `(Action)-[:FOR]->(Incident)`, `(Action)-[:JUSTIFIED_BY]->(Evidence)`, `(Action)-[:APPROVED_BY]->(Person)` |
-| Q&A memory | `(Person)-[:HAS_SESSION]->(Session)-[:HAS_TURN]->(Turn)-[:NEXT]->(Turn)`, `(Answer)-[:CITES {verdict}]->(*)`, `(Answer)-[:GENERATED_BY]->(AgentRun)` |
+| Q&A memory | `(Session)-[:HAS_TURN]->(Turn {n, question, entity_id})-[:ANSWERED_BY]->(Answer)`, `(Answer)-[:CITES {verdict}]->(Evidence)`, `(Answer)-[:GENERATED_BY]->(AgentRun)` |
 | Derived (computed, never ground truth) | `(Person)-[:KNOWS {score, evidence_count, last_evidence_at, computed_at}]->(Service)` (design only: expertise is computed on demand by `org_experts` and not materialized) |
 
 ### 5.4 Indexes and constraints (created by the migration step)
@@ -274,12 +274,12 @@ stateDiagram-v2
   Close --> [*]: emit closed → Scribe consolidates asynchronously
 ```
 
-**LangGraph state (thin):** `{tenant, incident_id, run_ids, brief_id, phase, budget_left, hypothesis_ids, verified_claim_ids, pending_action_ids}`. Everything substantive is read from and written to FalkorDB (P1).
+**LangGraph state:** the crew's state carries each phase's result (triage, investigation, verification, response) between nodes inside one run. The coordination record is the graph: each phase claims its `Task` with a compare-and-set, the Investigator and Responder read the `Handoff` addressed to them (the Responder takes the root cause from it), hypotheses, evidence, actions and lessons are graph nodes, and a crash leaves a complete audit trail in FalkorDB.
 
 **Checkpointer:** LangGraph's in-memory checkpointer (`InMemorySaver`) is used only to **resume runs and interrupts** inside the API process. Durable memory is our graph.
 
 ### 8.3 Intake: graph-based alert correlation
-Alerts within 5 minutes of each other whose services are connected within 2 `DEPENDS_ON` hops (in either direction) are grouped into one `Incident`. This is a small graph query and avoids opening one incident per alert. The Task claim is a single-statement CAS (R§3.6), so concurrent intakes never double-open an incident.
+Alerts within 5 minutes of each other whose services are connected within 2 `DEPENDS_ON` hops (in either direction) are grouped into one `Incident`. This is a small graph query and avoids opening one incident per alert. Each crew phase then claims its Task with a single-statement compare-and-set (R§3.6), so a second crew on the same incident stops instead of duplicating work. Intake itself reads unassigned alerts and then creates the incident in a separate statement, so two intakes racing on the same alerts could both open an incident; the demo runs one intake at a time.
 
 ### 8.4 Verifier (pure code)
 For each claim:
