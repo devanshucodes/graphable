@@ -1,14 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import { arrow, get } from "@/lib/api";
-import { AGENT, Empty, PageBar, Section, Tag } from "@/components/ui";
+import { clean, get, pretty } from "@/lib/api";
+import { AGENT, Empty, Note, PageBar, Section, Tag } from "@/components/ui";
 import { ArrowRight } from "lucide-react";
-
-const pretty = (s?: string) => arrow((s ?? "").replace(/\b(svc|ds)_([a-z0-9-]+)/g, "$2"));
 
 export default function MemoryPage() {
   const [m, setM] = useState<any>(null);
-  useEffect(() => { get("/memory").then(setM); }, []);
+  const [err, setErr] = useState<string | null>(null);
+  useEffect(() => { get("/memory").then(setM).catch((e) => setErr(e.message)); }, []);
   const c = m?.counts ?? {};
   const kinds = [
     { title: "Episodic", sub: "What happened", items: [["Agent runs", c.AgentRun], ["Tool steps", c.AgentStep], ["Evidence records", c.Evidence], ["Hypotheses", c.Hypothesis]] },
@@ -22,20 +21,21 @@ export default function MemoryPage() {
         <h1 className="text-[22px] font-semibold tracking-[-0.015em]">Agent memory</h1>
         <p className="mt-1 max-w-[680px] text-[13.5px] text-ink-2">Every agent reads and writes the same FalkorDB graph. Facts are closed when they stop being true, never deleted. Lessons are only promoted after a verified fix or a human confirmation.</p>
 
+        {err && <div className="mt-5"><Note tone="red">{err}</Note></div>}
         <div className="box mt-6 grid overflow-hidden md:grid-cols-3">
           {kinds.map(({ title, sub, items }, i) => (
             <div key={title} className={`px-5 py-4 ${i ? "border-t border-line md:border-l md:border-t-0" : ""}`}>
               <div className="text-[13px] font-semibold">{title}</div>
               <div className="text-[12px] text-ink-3">{sub}</div>
               <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2.5">
-                {items.map(([l, v]: any) => <div key={l}><dd className="text-[18px] font-semibold tracking-[-0.01em] num">{m ? v ?? 0 : "—"}</dd><dt className="text-[12px] text-ink-3">{l}</dt></div>)}
+                {items.map(([l, v]: any) => <div key={l} className="flex flex-col-reverse"><dt className="text-[12px] text-ink-3">{l}</dt><dd className="text-[18px] font-semibold tracking-[-0.01em] num">{m ? v ?? 0 : "—"}</dd></div>)}
               </dl>
             </div>
           ))}
         </div>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-2">
-          <Section title="Lessons" count={m?.lessons?.length} right="+1 when a fix is confirmed, −1 when wrong">
+          <Section title="Lessons" className="min-w-0" count={m?.lessons?.length} right="+1 when a fix is confirmed, −1 when wrong">
             {!m ? <div className="skeleton h-40" /> : m.lessons.length === 0 ? <Empty title="No lessons yet" sub="Run an incident and confirm the diagnosis to create one." /> : (
               <div className="box divide-y divide-line">
                 {m.lessons.map((l: any) => (
@@ -63,7 +63,7 @@ export default function MemoryPage() {
             )}
           </Section>
 
-          <Section title="Handoffs" count={m?.handoffs?.length} right="structured notes stored as graph nodes">
+          <Section title="Handoffs" className="min-w-0" count={m?.handoffs?.length} right="structured notes stored as graph nodes">
             {!m ? <div className="skeleton h-40" /> : m.handoffs.length === 0 ? <Empty title="No handoffs yet" sub="Simulate an incident to see agents hand work to each other." /> : (
               <div className="box divide-y divide-line">
                 {m.handoffs.map((h: any, i: number) => (
@@ -74,7 +74,7 @@ export default function MemoryPage() {
                       <span className="font-medium" style={{ color: AGENT[h.to]?.color }}>{AGENT[h.to]?.label ?? h.to}</span>
                       <span className="mono ml-auto text-[11.5px] text-ink-3">{h.incident}</span>
                     </div>
-                    <p className="text-[13px] leading-relaxed text-ink-2">{pretty(h.summary)}</p>
+                    <p className="text-[13px] leading-relaxed text-ink-2">{clean(h.summary)}</p>
                     {h.open_questions?.length > 0 && <div className="mt-1 text-[12px] text-ink-3">Open: {h.open_questions.join(" · ")}</div>}
                   </div>
                 ))}

@@ -1,11 +1,10 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { TYPE_COLOR, ago, arrow, fmtDate, get, sentence } from "@/lib/api";
+import { TYPE_COLOR, ago, arrow, fmtDate, get, pretty, sentence } from "@/lib/api";
 import { Meter, Note, PageBar, Person, Prop, Props, Section, Segmented, Sev, Tag } from "@/components/ui";
 import NetGraph, { dagLayers, type NEdge, type NNode } from "@/components/NetGraph";
+import OwnershipHistory from "@/components/OwnershipHistory";
 import { AlertTriangle, Search } from "lucide-react";
-
-const TEAM_COLORS = ["#5b5bd6", "#8e4ec6", "#30a46c", "#f5a623", "#0090ff", "#d6409f"];
 
 export default function Explorer() {
   const [list, setList] = useState<any[]>([]);
@@ -14,9 +13,18 @@ export default function Explorer() {
   const [topo, setTopo] = useState<any>(null);
   const [view, setView] = useState<"entity" | "topology">("entity");
   const [qf, setQf] = useState("");
+  const [err, setErr] = useState<string | null>(null);
 
-  useEffect(() => { get("/entities").then(setList); get("/graph/topology").then(setTopo); }, []);
-  useEffect(() => { setE(null); get(`/entities/${sel}`).then(setE); }, [sel]);
+  useEffect(() => {
+    get("/entities").then(setList).catch((x) => setErr(x.message));
+    get("/graph/topology").then(setTopo).catch((x) => setErr(x.message));
+  }, []);
+  useEffect(() => {
+    let live = true; // clicking quickly through services must not let an older response overwrite a newer one
+    setE(null);
+    get(`/entities/${sel}`).then((x) => { if (live) setE(x); }).catch((x) => { if (live) setErr(x.message); });
+    return () => { live = false; };
+  }, [sel]);
   const open = useCallback((id: string) => { if (id?.startsWith("svc_") || id?.startsWith("ds_")) { setSel(id); setView("entity"); document.getElementById("panel")?.scrollTo({ top: 0 }); } }, []);
   const groups = useMemo(() => {
     const g: Record<string, any[]> = {};
@@ -32,7 +40,12 @@ export default function Explorer() {
       id: n.id, label: n.label, type: n.type === "datastore" ? "Datastore" : "Service", layer: n.type === "datastore" ? last : L.get(n.id)!,
       color: n.type === "datastore" ? TYPE_COLOR.Datastore : TYPE_COLOR.Service, strong: n.tier === 0, detail: `${n.label} · tier ${n.tier} · owned by ${n.owner || "nobody"}`,
     }));
-    const edges: NEdge[] = topo.edges.map((x: any) => ({ source: x.source, target: x.target, type: x.kind === "sync" ? "CALLS" : x.kind.toUpperCase() }));
+    const seen = new Set<string>(), edges: NEdge[] = []; // the topology lists a few pairs twice; keep one edge per direction
+    for (const x of topo.edges) {
+      const k = `${x.source}>${x.target}`;
+      if (seen.has(k)) continue;
+      seen.add(k); edges.push({ source: x.source, target: x.target, type: x.kind === "sync" ? "CALLS" : x.kind.toUpperCase() });
+    }
     const lanes: Record<number, string> = { 0: "Entry points", [last]: "Datastores" };
     for (let i = 1; i < last; i++) lanes[i] = `Depth ${i}`;
     return { nodes, edges, lanes };
@@ -40,10 +53,12 @@ export default function Explorer() {
   const hood = useMemo(() => {
     if (!map) return null;
     const by = new Map(map.nodes.map((n) => [n.id, n]));
-    const callers = map.edges.filter((x) => x.target === sel).map((x) => x.source), deps = map.edges.filter((x) => x.source === sel).map((x) => x.target);
+    const callers = [...new Set(map.edges.filter((x) => x.target === sel && x.source !== sel).map((x) => x.source))];
+    const allDeps = [...new Set(map.edges.filter((x) => x.source === sel && x.target !== sel).map((x) => x.target))];
+    const deps = allDeps.filter((d) => !callers.includes(d)); // a 2-cycle (orders <-> inventory) is drawn once, in the callers lane
     const pick = (id: string, layer: number): NNode | null => (by.has(id) ? { ...by.get(id)!, layer, strong: id === sel, ring: id === sel ? "#d9d1fb" : undefined } : null);
     const nodes = [pick(sel, 1), ...callers.map((c) => pick(c, 0)), ...deps.map((d) => pick(d, 2))].filter(Boolean) as NNode[];
-    return { nodes, edges: map.edges.filter((x) => x.target === sel || x.source === sel), callers: callers.length, deps: deps.length };
+    return { nodes, edges: map.edges.filter((x) => x.target === sel || x.source === sel), callers: callers.length, deps: deps.length, both: allDeps.length - deps.length };
   }, [map, sel]);
 
   return (
@@ -52,11 +67,11 @@ export default function Explorer() {
         actions={<Segmented value={view} onChange={setView} options={[{ key: "entity", label: "Details" }, { key: "topology", label: "Dependency map" }]} />} />
       <div className="flex min-h-[calc(100%-48px)]">
         <aside className="hidden w-[244px] shrink-0 border-r border-line lg:block">
-          <div className="sticky top-12 flex h-[calc(100vh-66px)] flex-col">
+          <div className="sticky top-12 flex h-[calc(100dvh-66px)] flex-col">
             <div className="border-b border-line p-2">
-              <div className="flex h-8 items-center gap-2 rounded-md bg-hover px-2.5">
+              <div className="flex h-8 items-center gap-2 rounded-md bg-hover px-2.5 focus-within:ring-2 focus-within:ring-[#c4bbf0]">
                 <Search size={13} className="text-ink-3" />
-                <input value={qf} onChange={(x) => setQf(x.target.value)} placeholder="Filter services" className="w-full bg-transparent text-[13px] outline-none placeholder:text-ink-3" />
+                <input value={qf} onChange={(x) => setQf(x.target.value)} placeholder="Filter services" aria-label="Filter services" className="w-full bg-transparent text-[13px] outline-none placeholder:text-ink-3" />
               </div>
             </div>
             <div className="scroll flex-1 overflow-y-auto px-2 pb-4">
@@ -77,6 +92,7 @@ export default function Explorer() {
         </aside>
 
         <div className="min-w-0 flex-1">
+          {err && <div className="px-6 pt-6"><Note tone="red">{err}</Note></div>}
           {view === "topology" ? (
             <div className="px-6 py-6">
               <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
@@ -99,8 +115,8 @@ export default function Explorer() {
               <div className="mt-8 grid gap-10 xl:grid-cols-[minmax(0,1fr)_280px]">
                 <div className="min-w-0 space-y-9">
                   {hood && hood.nodes.length > 1 && (
-                    <Section title="Dependencies" right={`${hood.callers} callers · ${hood.deps} dependencies`}>
-                      <NetGraph nodes={hood.nodes} edges={hood.edges} height={Math.max(200, 70 + 28 * Math.max(hood.callers, hood.deps))} lanes={{ 0: "Called by", 1: "This service", 2: "Depends on" }} onNodeClick={open} />
+                    <Section title="Dependencies" right={`${hood.callers} callers · ${hood.deps} dependencies${hood.both ? ` · ${hood.both} both ways` : ""}`}>
+                      <NetGraph nodes={hood.nodes} edges={hood.edges} height={Math.max(220, 100 + 28 * Math.max(hood.callers, hood.deps))} lanes={{ 0: "Called by", 1: "This service", 2: "Depends on" }} onNodeClick={open} />
                     </Section>
                   )}
 
@@ -114,7 +130,7 @@ export default function Explorer() {
                         </div>
                       ))}
                     </div>
-                    {(e.experts.bus_factor <= 1 || e.experts.departed_experts?.length > 0) && (
+                    {e.experts.bus_factor <= 1 && (
                       <div className="mt-2.5"><Note icon={<AlertTriangle size={13} />}>Bus factor {e.experts.bus_factor}.{e.experts.departed_experts?.[0] ? ` ${e.experts.departed_experts[0].name} was a top expert and left on ${fmtDate(e.experts.departed_experts[0].left_at)}.` : ""}</Note></div>
                     )}
                   </Section>
@@ -141,7 +157,7 @@ export default function Explorer() {
                           <tr key={i.id} className="h-11 border-b border-line first:border-t">
                             <td className="mono w-[112px] text-[12.5px] text-ink-2">{i.key}</td>
                             <td className="w-[78px]"><Sev level={i.sev} /></td>
-                            <td className="pr-4"><div className="line-clamp-1">{sentence(i.title)}</div>{i.cause?.[0] && <div className="line-clamp-1 text-[12px] text-ink-3">Cause: {arrow(i.cause[0])}</div>}</td>
+                            <td className="pr-4"><div className="line-clamp-1">{sentence(i.title)}</div>{i.cause?.[0] && <div className="line-clamp-1 text-[12px] text-ink-3">Cause: {pretty(i.cause[0])}</div>}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -149,7 +165,7 @@ export default function Explorer() {
                   </Section>
                 </div>
 
-                <aside className="space-y-8">
+                <aside className="min-w-0 space-y-8">
                   <Section title="Properties">
                     <Props>
                       <Prop k="Owner">{e.ownership.owner?.team ?? "—"}</Prop>
@@ -161,19 +177,7 @@ export default function Explorer() {
                   </Section>
 
                   <Section title="Ownership history" right="never deleted">
-                    <ol>
-                      {[...(e.ownership.history ?? [])].reverse().map((h: any, i: number, arr: any[]) => {
-                        const teams = [...new Set((e.ownership.history ?? []).map((x: any) => x.team))];
-                        return (
-                          <li key={i} className="relative pb-3 pl-5">
-                            {i < arr.length - 1 && <span className="absolute left-[3.5px] top-3 h-full w-px bg-line-2" />}
-                            <span className="absolute left-0 top-[5px] h-2 w-2 rounded-full" style={{ background: h.valid_to ? "#c9c9c4" : TEAM_COLORS[teams.indexOf(h.team) % TEAM_COLORS.length] }} />
-                            <div className="text-[13px] font-medium">{h.team}{!h.valid_to && <span className="ml-1.5 text-[12px] font-normal text-[#18794e]">current</span>}</div>
-                            <div className="text-[12px] text-ink-3">{fmtDate(h.valid_from)} → {h.valid_to ? fmtDate(h.valid_to) : "now"}{h.source && h.source !== "catalog" && <span className="text-brand"> · from chat</span>}</div>
-                          </li>
-                        );
-                      })}
-                    </ol>
+                    <OwnershipHistory history={e.ownership.history} />
                   </Section>
 
                   {e.knowledge.runbooks?.length > 0 && (
@@ -204,7 +208,7 @@ export default function Explorer() {
 
                   {e.knowledge.lessons?.length > 0 && (
                     <Section title="Lessons">
-                      {e.knowledge.lessons.map((l: any) => <div key={l.id} className="text-[12.5px] text-ink-2"><span className="font-medium text-ink">{l.votes} votes</span> · {l.text}</div>)}
+                      {e.knowledge.lessons.map((l: any) => <div key={l.id} className="text-[12.5px] text-ink-2"><span className="font-medium text-ink">{l.votes} {Math.abs(l.votes) === 1 ? "vote" : "votes"}</span> · {pretty(l.text)}</div>)}
                     </Section>
                   )}
                 </aside>

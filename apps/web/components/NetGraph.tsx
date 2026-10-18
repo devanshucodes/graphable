@@ -44,7 +44,7 @@ function layout(nodes: NNode[], edges: NEdge[], w: number, h: number, dir: Dir, 
   let H = h;
   const place = () => {
     if (dir === "lr") {
-      const top = 46, bottom = 18, left = 28, right = 168, span = w - left - right, inner = H - top - bottom, n = cols.length;
+      const top = 46, bottom = 52, left = 28, right = 168, span = w - left - right, inner = H - top - bottom, n = cols.length;
       const sp = n > 1 ? span / (n - 1) : 0;
       cols.forEach((c, L) => {
         const x = n > 1 ? left + L * sp : w / 2;
@@ -105,6 +105,7 @@ export default function NetGraph({ nodes, edges, height = 520, dir = "lr", lanes
   const [t, setT] = useState({ k: 1, x: 0, y: 0 });
   const [hover, setHover] = useState<string | null>(null);
   const [pin, setPin] = useState<string | null>(null);
+  const [dragging, setDragging] = useState(false);
   const drag = useRef<{ x: number; y: number; tx: number; ty: number; moved: boolean } | null>(null);
 
   useEffect(() => {
@@ -124,7 +125,7 @@ export default function NetGraph({ nodes, edges, height = 520, dir = "lr", lanes
   const lay = useMemo(() => (w ? layout(nodes, edges, w, height, dir, gutter) : null), [nodes, edges, w, height, dir, gutter]);
   const byId = useMemo(() => new Map(nodes.map((n) => [n.id, n])), [nodes]);
   const H = dir === "tb" ? (lay?.H ?? height) : height;
-  const active = hover ?? pin ?? focus ?? null;
+  const active = hover ?? pin ?? null; // `focus` only rings its node; dimming follows hover / pin
   const near = active && lay?.adj.has(active) ? new Set([active, ...lay.adj.get(active)!]) : null;
   const zoom = (f: number) => setT((o) => { const k = Math.min(3, Math.max(0.4, o.k * f)), cx = w / 2, cy = H / 2; return { k, x: cx - ((cx - o.x) * k) / o.k, y: cy - ((cy - o.y) * k) / o.k }; });
 
@@ -137,19 +138,22 @@ export default function NetGraph({ nodes, edges, height = 520, dir = "lr", lanes
     const m = (a.y + b.y) / 2; return `M${a.x},${a.y} C${a.x},${m} ${b.x},${m} ${b.x},${b.y}`;
   };
   const isOn = (e: NEdge) => !!active && (e.source === active || e.target === active);
-  const sorted = lay ? [...lay.es].sort((a, b) => Number(isOn(a)) * 2 + Number(!!a.hot) - (Number(isOn(b)) * 2 + Number(!!b.hot))) : [];
+  const sorted = lay ? lay.es.filter((e) => !e.faint || isOn(e)).sort((a, b) => Number(isOn(a)) * 2 + Number(!!a.hot) - (Number(isOn(b)) * 2 + Number(!!b.hot))) : [];
   const onEdges = sorted.filter(isOn), onTypes = new Set(onEdges.map((e) => e.type));
-  const showLabels = !!active && onEdges.length <= 14 && onTypes.size > 1; // one shared type adds nothing; it is shown in the info bar
-  const an = active ? byId.get(active) : null;
+  const seenLabel = new Set<string>();
+  const labelled = onEdges.filter((e) => { const k = `${e.type}|${byId.get(e.source === active ? e.target : e.source)?.layer}`; return !seenLabel.has(k) && !!seenLabel.add(k); });
+  const showLabels = !!active && labelled.length <= 6 && onTypes.size > 1; // one shared type adds nothing; it is shown in the info bar
+  const an = active ? byId.get(active) : null, nConn = an ? lay?.adj.get(an.id)?.size ?? 0 : 0;
 
   return (
     <div ref={wrap} className="relative w-full select-none overflow-hidden rounded-lg border border-line bg-panel" style={{ height: H }}>
       {lay && (
-        <svg width={w} height={H} className="block"
-          onPointerDown={(e) => { if ((e.target as Element).tagName === "svg" || (e.target as Element).getAttribute("data-bg")) { drag.current = { x: e.clientX, y: e.clientY, tx: t.x, ty: t.y, moved: false }; (e.currentTarget as Element).setPointerCapture(e.pointerId); } }}
+        <svg width={w} height={H} className="block touch-none"
+          onPointerDown={(e) => { if ((e.target as Element).tagName === "svg" || (e.target as Element).getAttribute("data-bg")) { drag.current = { x: e.clientX, y: e.clientY, tx: t.x, ty: t.y, moved: false }; setDragging(true); (e.currentTarget as Element).setPointerCapture(e.pointerId); } }}
           onPointerMove={(e) => { const d = drag.current; if (!d) return; const dx = e.clientX - d.x, dy = e.clientY - d.y; if (Math.abs(dx) + Math.abs(dy) > 3) d.moved = true; setT((o) => ({ ...o, x: d.tx + dx, y: d.ty + dy })); }}
-          onPointerUp={() => { if (drag.current && !drag.current.moved) setPin(null); drag.current = null; }}
-          style={{ cursor: drag.current ? "grabbing" : "grab" }}>
+          onPointerUp={() => { if (drag.current && !drag.current.moved) setPin(null); drag.current = null; setDragging(false); }}
+          onPointerCancel={() => { drag.current = null; setDragging(false); }}
+          style={{ cursor: dragging ? "grabbing" : "grab" }}>
           <defs>
             {[["on", "#6e56cf"], ["hot", "#e5484d"]].map(([id, c]) => (
               <marker key={id} id={`ng-${id}`} viewBox="0 0 10 10" refX={19} refY={5} markerWidth={7} markerHeight={7} markerUnits="userSpaceOnUse" orient="auto">
@@ -160,11 +164,11 @@ export default function NetGraph({ nodes, edges, height = 520, dir = "lr", lanes
           <rect data-bg="1" width={w} height={H} fill="transparent" />
           <g transform={`translate(${t.x},${t.y}) scale(${t.k})`}>
             {laneLabels && lay.lanes.map((l, i) => laneLabels[l.layer] && (dir === "lr" ? (
-              <text key={l.layer} x={l.pos - 7} y={22} fontSize={11.5} fontWeight={500} fill="#5f5f5a">{laneLabels[l.layer]}<tspan fill="#a3a39d"> {l.n}</tspan></text>
+              <text key={l.layer} x={l.pos - 7} y={22} fontSize={11.5} fontWeight={500} fill="#4f4f4b">{laneLabels[l.layer]}<tspan fill="#6f6f69"> {l.n}</tspan></text>
             ) : (
               <g key={l.layer}>
                 {i > 0 && <line x1={0} x2={w} y1={l.pos - 32} y2={l.pos - 32} stroke="#f0f0ee" />}
-                <text x={16} y={l.pos + 4} fontSize={11.5} fontWeight={500} fill="#5f5f5a">{laneLabels[l.layer]}</text>
+                <text x={16} y={l.pos + 4} fontSize={11.5} fontWeight={500} fill="#4f4f4b">{laneLabels[l.layer]}</text>
               </g>
             )))}
             {sorted.map((e, i) => {
@@ -174,26 +178,26 @@ export default function NetGraph({ nodes, edges, height = 520, dir = "lr", lanes
               return <path key={i} d={curve(a, b)} fill="none" stroke={stroke} strokeOpacity={op} strokeWidth={e.hot ? 2.2 : on ? 1.6 : 1}
                 strokeDasharray={e.faint && !on ? "3 3" : undefined} markerEnd={on || (e.hot && !active) ? `url(#ng-${e.hot ? "hot" : "on"})` : undefined} />;
             })}
-            {showLabels && onEdges.map((e, i) => {
+            {showLabels && labelled.map((e, i) => {
               const a = lay.xy.get(e.source)!, b = lay.xy.get(e.target)!;
               return <text key={`l${i}`} x={(a.x + b.x) / 2} y={(a.y + b.y) / 2 - 3} textAnchor="middle" fontSize={9.5} fontWeight={600} fill={e.hot ? "#ce2c31" : "#5746af"}
                 stroke="#fff" strokeWidth={3} paintOrder="stroke" strokeLinejoin="round" letterSpacing=".2">{e.type.replaceAll("_", " ")}</text>;
             })}
             {nodes.map((n) => {
               const p = lay.xy.get(n.id); if (!p) return null;
-              const r = n.strong ? 7.5 : 6, dim = near && !near.has(n.id), isA = n.id === active;
+              const r = n.strong ? 7.5 : 6, dim = near && !near.has(n.id), isA = n.id === active, ring = isA || n.id === focus;
               const lx = dir === "lr" ? p.x + r + 6 : p.x, ly = dir === "lr" ? p.y + 4 : p.y + r + 14;
               return (
                 <g key={n.id} opacity={dim ? 0.2 : 1} style={{ cursor: "pointer" }}
                   onPointerEnter={() => setHover(n.id)} onPointerLeave={() => setHover(null)}
                   onClick={(ev) => { ev.stopPropagation(); setPin((x) => (x === n.id ? null : n.id)); onNodeClick?.(n.id); }}>
                   <circle cx={p.x} cy={p.y} r={r + 7} fill="transparent" />
-                  {(n.ring || isA) && <circle cx={p.x} cy={p.y} r={r + 4} fill="none" stroke={isA ? "#6e56cf" : n.ring} strokeWidth={2} />}
+                  {(n.ring || ring) && <circle cx={p.x} cy={p.y} r={r + 4} fill="none" stroke={ring ? "#6e56cf" : n.ring} strokeWidth={2} />}
                   {n.square
                     ? <rect x={p.x - r} y={p.y - r} width={r * 2} height={r * 2} rx={2.5} fill={n.color} stroke="#fff" strokeWidth={1.5} />
                     : <circle cx={p.x} cy={p.y} r={r} fill={n.color} stroke="#fff" strokeWidth={1.5} />}
                   <text x={lx} y={ly} textAnchor={dir === "lr" ? "start" : "middle"} fontSize={12} fontWeight={n.strong || isA ? 600 : 400}
-                    fill={n.strong || isA ? "#1c1c1a" : "#4b4b47"} stroke="#fff" strokeWidth={3.5} paintOrder="stroke" strokeLinejoin="round">{trunc(n.label, lay.chars.get(n.id))}</text>
+                    fill={n.strong || isA ? "#1c1c1a" : "#4b4b47"} stroke="#fff" strokeWidth={4} paintOrder="stroke" strokeLinejoin="round">{trunc(n.label, n.strong ? 34 : lay.chars.get(n.id))}</text>
                 </g>
               );
             })}
@@ -201,12 +205,12 @@ export default function NetGraph({ nodes, edges, height = 520, dir = "lr", lanes
         </svg>
       )}
       <div className="absolute bottom-2 right-2 flex items-center gap-0.5 rounded-md border border-line bg-panel p-0.5 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
-        <button title="Zoom in" onClick={() => zoom(1.25)} className="rounded p-1.5 text-ink-3 hover:bg-hover hover:text-ink"><Plus size={14} /></button>
-        <button title="Zoom out" onClick={() => zoom(0.8)} className="rounded p-1.5 text-ink-3 hover:bg-hover hover:text-ink"><Minus size={14} /></button>
-        <button title="Reset view" onClick={() => setT({ k: 1, x: 0, y: 0 })} className="rounded p-1.5 text-ink-3 hover:bg-hover hover:text-ink"><Maximize2 size={14} /></button>
+        <button title="Zoom in" aria-label="Zoom in" onClick={() => zoom(1.25)} className="rounded p-1.5 text-ink-3 hover:bg-hover hover:text-ink"><Plus size={14} /></button>
+        <button title="Zoom out" aria-label="Zoom out" onClick={() => zoom(0.8)} className="rounded p-1.5 text-ink-3 hover:bg-hover hover:text-ink"><Minus size={14} /></button>
+        <button title="Reset view" aria-label="Reset view" onClick={() => setT({ k: 1, x: 0, y: 0 })} className="rounded p-1.5 text-ink-3 hover:bg-hover hover:text-ink"><Maximize2 size={14} /></button>
       </div>
       <div className="pointer-events-none absolute bottom-2 left-2 max-w-[calc(100%-120px)] truncate rounded-md border border-line bg-panel/95 px-2.5 py-1 text-[12px] text-ink-2 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
-        {an ? <><i className="mr-1.5 inline-block h-2 w-2 rounded-full align-middle" style={{ background: an.color }} /><b className="font-medium text-ink">{an.type}</b> · {an.detail ?? an.label} · {lay?.adj.get(an.id)?.size ?? 0} connections{onTypes.size === 1 ? ` (${[...onTypes][0].replaceAll("_", " ").toLowerCase()})` : ""}</>
+        {an ? <><i className="mr-1.5 inline-block h-2 w-2 rounded-full align-middle" style={{ background: an.color }} /><b className="font-medium text-ink">{an.type}</b> · {an.detail ?? an.label} · {nConn} {nConn === 1 ? "connection" : "connections"}{onTypes.size === 1 ? ` (${[...onTypes][0].replaceAll("_", " ").toLowerCase()})` : ""}</>
           : "Hover a node to trace its connections · drag to pan · pinch or ⌘-scroll to zoom"}
       </div>
     </div>

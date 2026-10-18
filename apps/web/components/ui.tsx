@@ -53,9 +53,9 @@ export function Button({ variant = "secondary", size = "sm", icon, children, cla
 
 export function Tabs<T extends string>({ value, onChange, tabs }: { value: T; onChange: (t: T) => void; tabs: { key: T; label: string; count?: ReactNode; disabled?: boolean }[] }) {
   return (
-    <div className="flex items-center gap-5 border-b border-line">
+    <div role="tablist" className="flex items-center gap-5 border-b border-line">
       {tabs.map((t) => (
-        <button key={t.key} disabled={t.disabled} onClick={() => onChange(t.key)}
+        <button key={t.key} role="tab" aria-selected={value === t.key} disabled={t.disabled} onClick={() => onChange(t.key)}
           className={`-mb-px flex h-9 items-center gap-1.5 border-b-[1.5px] text-[13px] transition-colors disabled:cursor-not-allowed disabled:text-ink-3 ${value === t.key ? "border-ink font-medium text-ink" : "border-transparent text-ink-2 hover:text-ink"}`}>
           {t.label}{t.count != null && <span className="text-[12px] font-normal text-ink-3 num">{t.count}</span>}
         </button>
@@ -66,9 +66,9 @@ export function Tabs<T extends string>({ value, onChange, tabs }: { value: T; on
 
 export function Segmented<T extends string>({ value, onChange, options }: { value: T; onChange: (t: T) => void; options: { key: T; label: ReactNode }[] }) {
   return (
-    <div className="flex rounded-md bg-hover p-0.5">
+    <div role="group" className="flex rounded-md bg-hover p-0.5">
       {options.map((o) => (
-        <button key={o.key} onClick={() => onChange(o.key)}
+        <button key={o.key} aria-pressed={value === o.key} onClick={() => onChange(o.key)}
           className={`flex h-6 items-center gap-1.5 rounded-[5px] px-2.5 text-[12.5px] ${value === o.key ? "bg-panel font-medium text-ink shadow-[0_0_0_1px_var(--line),0_1px_2px_rgba(0,0,0,0.05)]" : "text-ink-2 hover:text-ink"}`}>{o.label}</button>
       ))}
     </div>
@@ -89,7 +89,7 @@ export function Menu({ trigger, children, width = 320 }: { trigger: (open: boole
     <div ref={ref} className="relative">
       {trigger(open, () => setOpen((o) => !o))}
       {open && (
-        <div className="fade-in absolute right-0 top-full z-30 mt-1.5 rounded-lg border border-line bg-panel p-1 shadow-[0_10px_30px_rgba(0,0,0,0.10),0_2px_6px_rgba(0,0,0,0.04)]" style={{ width }}>
+        <div role="menu" className="fade-in absolute right-0 top-full z-30 mt-1.5 rounded-lg border border-line bg-panel p-1 shadow-[0_10px_30px_rgba(0,0,0,0.10),0_2px_6px_rgba(0,0,0,0.04)]" style={{ width }}>
           {children(() => setOpen(false))}
         </div>
       )}
@@ -120,7 +120,7 @@ export function Sev({ level, compact = false }: { level?: number | null; compact
 }
 
 const STATUS: Record<string, [string, string, boolean?]> = {
-  investigating: ["#f5a623", "Investigating", true], awaiting_approval: ["#6e56cf", "Awaiting approval", true], closed: ["#30a46c", "Mitigated"],
+  investigating: ["#f5a623", "Investigating", true], mitigating: ["#f5a623", "Mitigating", true], awaiting_approval: ["#6e56cf", "Awaiting approval", true], closed: ["#30a46c", "Mitigated"],
   open: ["#f5a623", "Open"], resolved: ["#30a46c", "Resolved"], mitigated: ["#30a46c", "Mitigated"], executed: ["#30a46c", "Done"],
   approved: ["#30a46c", "Approved"], rejected: ["#e5484d", "Rejected"], proposed: ["#b4b4ae", "Proposed"],
 };
@@ -188,9 +188,9 @@ export const AGENT: Record<string, { label: string; color: string }> = {
 
 export const TOOL_LABEL: Record<string, string> = {
   incident_blast_radius: "mapped the blast radius", org_ownership: "looked up owner and on-call", incident_similar: "searched past incidents",
-  memory_note: "wrote a note to the blackboard", memory_handoff: "handed off", incident_rank_root_causes: "ranked root-cause suspects",
+  memory_note: "wrote a note to the blackboard", memory_handoff: "handed off", memory_inbox: "read its handoff from the graph", incident_rank_root_causes: "ranked root-cause suspects",
   knowledge_for_entity: "pulled runbooks and docs", graph_explain_connection: "traced a connection", graph_neighbors: "explored neighbours",
   graph_cypher_readonly: "ran a read-only Cypher query", org_experts: "found who knows it", memory_recall: "recalled lessons",
   action_create_ticket: "filed a ticket", action_page_oncall: "requested a page", action_propose_remediation: "proposed a remediation",
-  graph_resolve: "resolved an entity", knowledge_search: "searched knowledge", decision_trace: "traced a decision", graph_hubs: "ranked hubs",
+  graph_resolve: "resolved an entity", knowledge_search: "searched knowledge", decision_trace: "traced a decision", graph_hubs: "ranked the alerting services with PageRank",
 };

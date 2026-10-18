@@ -8,8 +8,8 @@
   --line: #ebebe8;
   --line-2: #dcdcd8;
   --ink: #1c1c1a;
-  --ink-2: #5f5f5a;
-  --ink-3: #95958f;
+  --ink-2: #4f4f4b;
+  --ink-3: #6f6f69; /* 5.1:1 on white, 4.5:1 on the app background (WCAG AA) */
   --brand: #6e56cf;
   --brand-soft: #f4f1fd;
 

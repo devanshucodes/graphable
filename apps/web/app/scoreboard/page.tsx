@@ -1,19 +1,20 @@
 "use client";
 import { useEffect, useState, type ReactNode } from "react";
 import { get } from "@/lib/api";
-import { PageBar, Section } from "@/components/ui";
+import { Note, PageBar, Section } from "@/components/ui";
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Check, Minus, X } from "lucide-react";
 
 const C = { ours: "#6e56cf", prior: "#c4b8f3", toy: "#5f5f5a", recent: "#b4b4ae", random: "#d4d4cf" };
 const tip = { contentStyle: { background: "#fff", border: "1px solid #ebebe8", borderRadius: 8, fontSize: 12, boxShadow: "0 6px 20px rgba(0,0,0,.08)" }, labelStyle: { color: "#5f5f5a" } };
-const axis = { stroke: "#95958f", fontSize: 11, tickLine: false, axisLine: false };
+const axis = { stroke: "#6f6f69", fontSize: 11, tickLine: false, axisLine: false };
 const grid = "#f0f0ee";
 const pct = (x?: number) => (x == null ? "—" : `${Math.round(x * 100)}%`);
+const dec = (x?: number) => (x == null ? "—" : x.toFixed(1));
 
 function Chart({ title, sub, children }: { title: string; sub: string; children: ReactNode }) {
   return (
-    <Section title={title}>
+    <Section title={title} className="min-w-0">
       <p className="-mt-1.5 mb-3 text-[12.5px] text-ink-3">{sub}</p>
       <div className="box px-3 pb-2 pt-4">{children}</div>
     </Section>
@@ -22,7 +23,8 @@ function Chart({ title, sub, children }: { title: string; sub: string; children:
 
 export default function Scoreboard() {
   const [ev, setEv] = useState<any>(null);
-  useEffect(() => { get("/eval").then(setEv); }, []);
+  const [err, setErr] = useState<string | null>(null);
+  useEffect(() => { get("/eval").then(setEv).catch((e) => setErr(e.message)); }, []);
   const t = ev?.rca_test?.tuned, d = ev?.rca_test?.default, sys = ev?.system_mcp;
   const byK = t ? Object.entries(t.by_distractors).map(([k, v]: any) => ({ k: Number(k), ours: v.ours, toy: v.toy, random: v.random, recent: v.recent })) : [];
   const overall = t ? [
@@ -44,7 +46,7 @@ export default function Scoreboard() {
   const metrics: [string, string, string][] = [
     ["Root cause, top-1", pct(t?.ac1), t ? `top-3 ${pct(t.ac3)} · random ${pct(d.base_random)}` : ""],
     ["Cited paths that exist", sys ? pct(sys.crew.path_validity) : "—", "every edge re-checked by code"],
-    ["Racing pages → actions", sys ? `${sys.concurrency.concurrent_pages} → ${sys.concurrency.page_actions_created}` : "—", sys ? `${sys.concurrency.successful_claims} of 20 racing claims won` : ""],
+    ["Racing pages → actions", sys ? `${sys.concurrency.concurrent_pages} → ${sys.concurrency.page_actions_created}` : "—", sys ? `${sys.concurrency.successful_claims} ${sys.concurrency.concurrent_claims != null ? `of ${sys.concurrency.concurrent_claims} ` : ""}racing claims won` : ""],
     ["Brain answers correct", sys ? `${sys.probes.brain_qa.correct}/${sys.probes.brain_qa.n}` : "—", sys ? `${pct(sys.probes.brain_qa.cited_rate)} cited · ${sys.probes.knowledge_update.stale_answers} stale` : ""],
   ];
 
@@ -65,7 +67,8 @@ export default function Scoreboard() {
           ))}
         </div>
 
-        {!ev ? <div className="skeleton mt-8 h-80" /> : (
+        {err && <div className="mt-6"><Note tone="red">{err}</Note></div>}
+        {!ev ? !err && <div className="skeleton mt-8 h-80" /> : (
           <div className="mt-10 grid gap-x-10 gap-y-10 xl:grid-cols-2">
             <Chart title="Root cause, top-1 vs baselines" sub="Held-out test set, 40 incidents.">
               <ResponsiveContainer width="100%" height={240}>
@@ -86,7 +89,7 @@ export default function Scoreboard() {
               <ResponsiveContainer width="100%" height={240}>
                 <LineChart data={byK} margin={{ left: -14, right: 12, top: 6 }}>
                   <CartesianGrid stroke={grid} vertical={false} />
-                  <XAxis dataKey="k" {...axis} /><YAxis domain={[0, 1]} {...axis} tickFormatter={(v) => `${Math.round(v * 100)}%`} />
+                  <XAxis dataKey="k" type="number" domain={[0, Math.max(15, ...byK.map((r) => r.k))]} ticks={byK.map((r) => r.k)} {...axis} /><YAxis domain={[0, 1]} {...axis} tickFormatter={(v) => `${Math.round(v * 100)}%`} />
                   <Tooltip {...tip} formatter={(v: any) => `${Math.round(v * 100)}%`} /><Legend wrapperStyle={{ fontSize: 12, color: "#5f5f5a" }} iconType="plainline" />
                   <Line name="Graphable" dataKey="ours" stroke={C.ours} strokeWidth={2.5} dot={{ r: 3, fill: C.ours, strokeWidth: 0 }} isAnimationActive={false} />
                   <Line name="Hops, then recency" dataKey="toy" stroke={C.toy} strokeWidth={1.5} dot={false} isAnimationActive={false} />
@@ -106,16 +109,19 @@ export default function Scoreboard() {
                 ))}
               </div>
               <ResponsiveContainer width="100%" height={150}>
-                <LineChart data={lc.map((r: any) => ({ seq: `#${r.seq}`, K: r.K ?? 0, recalled: r.recalled_previous_LC }))} margin={{ left: -18, right: 12 }}>
-                  <CartesianGrid stroke={grid} vertical={false} /><XAxis dataKey="seq" {...axis} /><YAxis {...axis} allowDecimals={false} domain={[0, 3]} ticks={[0, 1, 2, 3]} />
+                {/* two scales: recalled count (0-3, left) and learned risk K (0-1, right); a run with no K stays a gap */}
+                <LineChart data={lc.map((r: any) => ({ seq: `#${r.seq}`, K: r.K ?? null, recalled: r.recalled_previous_LC }))} margin={{ left: -18, right: -6 }}>
+                  <CartesianGrid stroke={grid} vertical={false} /><XAxis dataKey="seq" {...axis} />
+                  <YAxis yAxisId="n" {...axis} allowDecimals={false} domain={[0, 3.5]} ticks={[0, 1, 2, 3]} />
+                  <YAxis yAxisId="k" orientation="right" {...axis} domain={[0, 3.5 / 3]} ticks={[0, 0.5, 1]} tickFormatter={(v) => (v === 0 || v === 1 ? String(v) : v.toFixed(1))} />
                   <Tooltip {...tip} /><Legend wrapperStyle={{ fontSize: 12, color: "#5f5f5a" }} iconType="plainline" />
-                  <Line name="Learned change-type risk" dataKey="K" stroke={C.ours} strokeWidth={2} dot={{ r: 2.5, fill: C.ours, strokeWidth: 0 }} isAnimationActive={false} />
-                  <Line name="Past occurrences recalled" dataKey="recalled" stroke={C.toy} strokeWidth={1.5} dot={{ r: 2.5, fill: C.toy, strokeWidth: 0 }} isAnimationActive={false} />
+                  <Line yAxisId="k" name="Learned change-type risk (right axis, 0–1)" dataKey="K" connectNulls={false} stroke={C.ours} strokeWidth={2} dot={{ r: 2.5, fill: C.ours, strokeWidth: 0 }} isAnimationActive={false} />
+                  <Line yAxisId="n" name="Past occurrences recalled (left axis)" dataKey="recalled" stroke={C.toy} strokeWidth={1.5} dot={{ r: 2.5, fill: C.toy, strokeWidth: 0 }} isAnimationActive={false} />
                 </LineChart>
               </ResponsiveContainer>
             </Chart>
 
-            <Section title="System tests" count={checks.length}>
+            <Section title="System tests" className="min-w-0" count={checks.length}>
               <p className="-mt-1.5 mb-3 text-[12.5px] text-ink-3">Run against the real MCP server over HTTP.</p>
               <div className="box divide-y divide-line">
                 {checks.map(([l, v, ok]) => (
@@ -130,7 +136,7 @@ export default function Scoreboard() {
             </Section>
 
             {Object.keys(ex).length > 0 && (
-              <Section title="Fact extraction from docs, tickets and chats">
+              <Section title="Fact extraction from docs, tickets and chats" className="min-w-0">
                 <p className="-mt-1.5 mb-3 text-[12.5px] text-ink-3">Precision / recall against the facts the prose was generated from.</p>
                 <div className="box overflow-hidden">
                   <table className="w-full text-[13px]">
@@ -139,7 +145,7 @@ export default function Scoreboard() {
                       {["CAUSED_BY", "MITIGATED_WITH", "DECIDED_BY", "SUPERSEDES", "AFFECTS", "OWNS", "micro"].map((rel) => (
                         <tr key={rel} className={`h-9 border-b border-line last:border-0 ${rel === "micro" ? "bg-sunken font-medium" : ""}`}>
                           <td className="mono px-4 text-[12.5px]">{rel === "micro" ? "Overall" : rel}</td>
-                          {Object.values(ex).map((v: any, i) => <td key={i} className="mono px-4 text-right text-[12.5px] num">{v[rel]?.precision ?? "—"} / {v[rel]?.recall ?? "—"}</td>)}
+                          {Object.values(ex).map((v: any, i) => <td key={i} className="mono px-4 text-right text-[12.5px] num">{pct(v[rel]?.precision)} / {pct(v[rel]?.recall)}</td>)}
                         </tr>
                       ))}
                     </tbody>
@@ -149,14 +155,14 @@ export default function Scoreboard() {
             )}
 
             {(ev.crew_gemini_mcp || ev.crew_offline_mcp) && (
-              <Section title="Graph ranker alone vs. with Gemini review">
+              <Section title="Graph ranker alone vs. with Gemini review" className="min-w-0">
                 <p className="-mt-1.5 mb-3 text-[12.5px] text-ink-3">Same 40 incidents, same MCP tools.</p>
                 <div className="box overflow-hidden">
                   <table className="w-full text-[13px]">
                     <thead><tr className="border-b border-line bg-sunken text-left text-[12px] text-ink-3"><th className="h-8 px-4 font-normal">Metric</th><th className="px-4 text-right font-normal">Graph only</th><th className="px-4 text-right font-normal">+ Gemini review</th></tr></thead>
                     <tbody>
                       {([["Root cause correct", "root_correct", pct], ["Claims verified", "claims_verified", pct], ["Contested for human review", "contested", (x: any) => x ?? 0],
-                        ["MCP tool calls per incident", "avg_tool_calls", (x: any) => x ?? "—"], ["Seconds per incident", "avg_seconds", (x: any) => x ?? "—"]] as [string, string, (x: any) => any][]).map(([l, k, f]) => (
+                        ["MCP tool calls per incident", "avg_tool_calls", dec], ["Seconds per incident", "avg_seconds", dec]] as [string, string, (x: any) => any][]).map(([l, k, f]) => (
                         <tr key={k} className="h-9 border-b border-line last:border-0"><td className="px-4">{l}</td><td className="mono px-4 text-right text-[12.5px] num">{f(ev.crew_offline_mcp?.crew?.[k])}</td><td className="mono px-4 text-right text-[12.5px] num">{f(ev.crew_gemini_mcp?.crew?.[k])}</td></tr>
                       ))}
                     </tbody>

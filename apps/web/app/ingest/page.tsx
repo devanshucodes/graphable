@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import { fmtDate, get, post } from "@/lib/api";
-import { Avatar, Button, Empty, PageBar, Person, Prop, Props, Section } from "@/components/ui";
+import { fmtDate, get, post, short } from "@/lib/api";
+import { Avatar, Button, Empty, Note, PageBar, Person, Prop, Props, Section } from "@/components/ui";
+import OwnershipHistory from "@/components/OwnershipHistory";
 import { Hash, Loader2, SendHorizontal } from "lucide-react";
 
 const EXAMPLES = [
@@ -16,15 +17,20 @@ export default function IngestPage() {
   const [text, setText] = useState(EXAMPLES[0]);
   const [out, setOut] = useState<any>(null);
   const [busy, setBusy] = useState(false);
-  useEffect(() => { get("/people").then((p) => { setPeople(p); setAuthor(p.find((x: any) => x.handle === "lena")?.id ?? p[0]?.id); }); }, []);
+  const [err, setErr] = useState<string | null>(null);
+  useEffect(() => {
+    get("/people").then((p) => { setPeople(p); setAuthor(p.find((x: any) => x.handle === "lena")?.id ?? p[0]?.id); }).catch((e) => setErr(e.message));
+  }, []);
   const me = people.find((p) => p.id === author);
-  const send = async () => { setBusy(true); try { setOut(await post("/ingest/message", { author_id: author, text })); } finally { setBusy(false); } };
-  const short = (id: string) => id.replace(/^(svc_|ds_|team_)/, "");
+  const send = async () => {
+    setBusy(true); setErr(null);
+    try { setOut(await post("/ingest/message", { author_id: author, text })); } catch (e: any) { setErr(e.message); } finally { setBusy(false); }
+  };
 
   // build a graph diff: new facts (+) and facts that were closed, not deleted (~)
   const diff: { op: "+" | "~"; text: string; note: string }[] = [];
   if (out) {
-    for (const f of out.facts) {
+    for (const f of out.facts ?? []) {
       const own = out.ownership_now?.[f.dst];
       if (f.rel === "OWNS" && own) {
         own.history.filter((h: any) => h.valid_to && f.valid_from && Math.abs(h.valid_to - f.valid_from) < DAY)
@@ -44,17 +50,17 @@ export default function IngestPage() {
         <p className="mt-1 max-w-[680px] text-[13.5px] text-ink-2">Post a chat message. The Ingestor extracts facts against a fixed schema, resolves names to graph entities and applies them as time-stamped updates.</p>
 
         <div className="mt-6 grid gap-10 lg:grid-cols-2">
-          <Section title="Message">
+          <Section title="Message" className="min-w-0">
             <div className="box overflow-hidden">
               <div className="flex h-10 items-center gap-1.5 border-b border-line px-3 text-[13px]"><Hash size={14} className="text-ink-3" /><span className="font-medium">announcements</span><span className="text-ink-3">· simulated Slack channel</span></div>
               <div className="px-3 pt-3">
                 <div className="flex items-center gap-2">
                   <Avatar name={me?.name} size={24} />
-                  <select value={author} onChange={(e) => setAuthor(e.target.value)} className="min-w-0 flex-1 bg-transparent text-[13px] font-medium outline-none">
+                  <select value={author} onChange={(e) => setAuthor(e.target.value)} aria-label="Message author" className="min-w-0 flex-1 rounded bg-transparent text-[13px] font-medium outline-none focus-visible:ring-2 focus-visible:ring-[#c4bbf0]">
                     {people.map((p) => <option key={p.id} value={p.id}>{p.name} (@{p.handle}) · {p.team}</option>)}
                   </select>
                 </div>
-                <textarea value={text} onChange={(e) => setText(e.target.value)} rows={4} className="mt-2 w-full resize-none bg-transparent pl-8 text-[14px] leading-relaxed outline-none" />
+                <textarea value={text} onChange={(e) => setText(e.target.value)} rows={4} aria-label="Message text" className="mt-2 w-full resize-none rounded-md bg-transparent pl-8 text-[14px] leading-relaxed outline-none focus-visible:ring-2 focus-visible:ring-[#c4bbf0]" />
               </div>
               <div className="flex items-center justify-between gap-3 border-t border-line bg-sunken px-3 py-2">
                 <div className="flex min-w-0 flex-wrap gap-x-3 text-[12px] text-ink-3">
@@ -63,10 +69,12 @@ export default function IngestPage() {
                 <Button variant="primary" disabled={busy || !text.trim()} onClick={send} icon={busy ? <Loader2 size={13} className="animate-spin" /> : <SendHorizontal size={13} />}>Send</Button>
               </div>
             </div>
+            {err && <div className="mt-3"><Note tone="red">{err}</Note></div>}
           </Section>
 
-          <Section title="Graph diff" right={out ? `${diff.length} changes` : undefined}>
-            {!out ? <Empty title="Nothing sent yet" sub="Ownership statements become OWNS relationships with a valid-from date. The previous owner is closed, not deleted." /> : (
+          <Section title="Graph diff" className="min-w-0" right={out ? `${diff.length} ${diff.length === 1 ? "change" : "changes"}` : undefined}>
+            {!out ? <Empty title="Nothing sent yet" sub="Ownership statements become OWNS relationships with a valid-from date. The previous owner is closed, not deleted." />
+              : !out.facts?.length ? <Empty title="No facts found" sub="Nothing in the message matched the schema; the graph was not changed." /> : (
               <div className="fade-in space-y-8">
                 <div className="box mono overflow-hidden text-[12.5px]">
                   {diff.map((d, i) => (
@@ -82,16 +90,7 @@ export default function IngestPage() {
                       <Prop k="Owner now">{o.owner?.team}</Prop>
                       <Prop k="On call"><div className="flex flex-wrap gap-3">{o.oncall?.map((x: any) => <Person key={x.id} name={x.name} />)}</div></Prop>
                     </Props>
-                    <ol className="mt-3">
-                      {[...o.history].reverse().map((h: any, i: number, arr: any[]) => (
-                        <li key={i} className="relative pb-3 pl-5">
-                          {i < arr.length - 1 && <span className="absolute left-[3.5px] top-3 h-full w-px bg-line-2" />}
-                          <span className={`absolute left-0 top-[5px] h-2 w-2 rounded-full ${h.valid_to ? "bg-[#c9c9c4]" : "bg-green"}`} />
-                          <div className="text-[13px] font-medium">{h.team}{!h.valid_to && <span className="ml-1.5 text-[12px] font-normal text-[#18794e]">current</span>}</div>
-                          <div className="text-[12px] text-ink-3">{fmtDate(h.valid_from)} → {h.valid_to ? fmtDate(h.valid_to) : "now"} · <span className="mono">{h.source}</span></div>
-                        </li>
-                      ))}
-                    </ol>
+                    <OwnershipHistory history={o.history} showSource className="mt-3" />
                   </Section>
                 ))}
               </div>
