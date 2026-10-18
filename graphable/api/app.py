@@ -46,6 +46,10 @@ def tenant_dep(x_api_key: str | None = Header(default=None)) -> str:
 
 
 SNAPSHOT = os.getenv("DEMO_SNAPSHOT")  # hosted mode: a DUMP of the demo graph shipped with the backend (no golden copy in the DB)
+SERVE_MCP = os.getenv("SERVE_MCP") == "1"  # hosted mode: this process also serves the MCP endpoint (/mcp), one port for both
+MAX_PLAYED = int(os.getenv("DEMO_MAX_PLAYED", "30"))  # hosted mode: start the demo graph over after this many played scenarios
+if SERVE_MCP:
+    from ..mcpserver import server as mcp_server
 
 
 def restore_demo():
@@ -68,7 +72,11 @@ def ensure_demo():
 @asynccontextmanager
 async def lifespan(app):
     ensure_demo()
-    yield
+    if SERVE_MCP:
+        async with mcp_server.mcp.session_manager.run():
+            yield
+    else:
+        yield
 
 
 app = FastAPI(title="Graphable API", version="0.1.0", lifespan=lifespan)
@@ -178,6 +186,8 @@ async def sim_play(req: PlayReq, tenant: str = Depends(tenant_dep)):
     except FileNotFoundError:
         raise HTTPException(404, f"unknown scenario {req.kind}/{req.sid}")
     tg = TenantGraph(tenant)
+    if SNAPSHOT and tenant == DEMO and _played(tg) >= MAX_PLAYED:
+        await _reset()  # the shared hosted graph grows with every run; the free database tier has 100 MB
     tag = uuid.uuid4().hex[:6]
     n = await asyncio.to_thread(play, tg, sc, None, tag)
     inc_id = f"inc_{req.sid.lower().replace('-', '')}_{tag[:4]}"
@@ -423,13 +433,22 @@ def people(tenant: str = Depends(tenant_dep)):
         RETURN p.id AS id, p.name AS name, p.handle AS handle, p.role AS role, coalesce(t.name, '') AS team ORDER BY p.name""")
 
 
-@app.post("/v1/admin/reset")
-def reset():
+def _played(tg: TenantGraph) -> int:
+    """Scenario incidents created since the last reset (their ids are inc_<scenario>_<tag>; the snapshot's are inc_<n>)."""
+    return tg.read("MATCH (i:Incident) WHERE size(split(i.id, '_')) = 3 RETURN count(i) AS n")[0]["n"]
+
+
+async def _reset():
     for run in RUNS.values():  # stop in-flight crews so their writes don't land in the fresh graph
         if run.task and not run.task.done():
             run.task.cancel()
     RUNS.clear()
-    restore_demo()
+    await asyncio.to_thread(restore_demo)
+
+
+@app.post("/v1/admin/reset")
+async def reset():
+    await _reset()
     return {"reset": DEMO}
 
 
@@ -443,3 +462,7 @@ def eval_results():
             out[name] = json.loads(p.read_text())
     out["extraction"] = {p.stem.replace("extraction_", ""): json.loads(p.read_text()) for p in sorted(d.glob("extraction_*.json"))}
     return out
+
+
+if SERVE_MCP:  # mounted last, so the /v1 routes match first and only /mcp reaches the MCP app
+    app.mount("/", mcp_server.asgi_app())

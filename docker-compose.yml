@@ -4,7 +4,7 @@
 # GEMINI_API_KEY is optional (read from the shell or .env); without it the deterministic offline mode runs.
 services:
   falkordb:
-    # Requires FalkorDB 6.0.x (the queries and index DDL are written for it); :latest is now 4.x
+    # Pinned to 6.0.2 for local runs; the hosted demo uses FalkorDB Cloud (4.22), and the queries run on both
     image: falkordb/falkordb:6.0.2
     ports: ["${FALKORDB_PORT:-6379}:6379", "${FALKORDB_BROWSER_PORT:-3000}:3000"]
     environment:

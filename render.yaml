@@ -1,0 +1,29 @@
+# Render blueprint for the hosted demo backend (free plan): the REST API and the MCP server in one process.
+# The database is FalkorDB Cloud; the web app is deployed separately (Vercel, root apps/web).
+# Values marked `sync: false` are entered in the Render dashboard, never committed.
+services:
+  - type: web
+    name: graphable-api
+    runtime: docker
+    plan: free
+    region: singapore            # closest Render region to the FalkorDB Cloud instance (AWS ap-south-1)
+    dockerfilePath: ./Dockerfile
+    dockerCommand: sh -c 'MCP_URL=http://127.0.0.1:$PORT/mcp exec uvicorn graphable.api.app:app --host 0.0.0.0 --port $PORT'
+    healthCheckPath: /v1/health
+    envVars:
+      - key: SERVE_MCP           # this process also serves /mcp; the crew calls its tools over MCP on the same port
+        value: "1"
+      - key: DEMO_SNAPSHOT       # restore the trimmed demo graph (fits the free 100 MB database)
+        value: deploy/demo_snapshot.dump
+      - key: TENANT_KEYS         # only the demo tenant exists in the hosted database
+        value: dev-demo:demo_main
+      - key: FALKORDB_HOST
+        sync: false
+      - key: FALKORDB_PORT
+        sync: false
+      - key: FALKORDB_USERNAME
+        sync: false
+      - key: FALKORDB_PASSWORD
+        sync: false
+      - key: GEMINI_API_KEY      # optional; without it the crew runs its deterministic offline policy
+        sync: false

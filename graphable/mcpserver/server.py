@@ -229,18 +229,31 @@ async def action_propose_remediation(incident_id: str, kind: str, target_id: str
     return await anyio.to_thread.run_sync(lambda: T.action_propose_remediation(c, incident_id, kind, target_id, rationale, evidence_ids))
 
 
+def _security() -> None:
+    # DNS-rebinding protection stays on, but the allow-list must include the Docker service name ("mcp"),
+    # otherwise requests from the API container are rejected with 421 Invalid Host header.
+    hosts = [h.strip() for h in os.getenv("MCP_ALLOWED_HOSTS", "localhost:*,127.0.0.1:*,[::1]:*,mcp:*").split(",") if h.strip()]
+    if os.getenv("RENDER_EXTERNAL_HOSTNAME"):  # hosted on Render: the public hostname, set by the platform
+        hosts.append(os.environ["RENDER_EXTERNAL_HOSTNAME"])
+    mcp.settings.transport_security = TransportSecuritySettings(
+        enable_dns_rebinding_protection=True, allowed_hosts=hosts,
+        allowed_origins=[f"http://{h}" for h in hosts] + [f"https://{h}" for h in hosts])
+
+
+def asgi_app():
+    """The MCP endpoint (/mcp) as an ASGI app, for mounting inside the API process (hosted mode, SERVE_MCP=1).
+    The caller must run `mcp.session_manager.run()` in its lifespan."""
+    _security()
+    return mcp.streamable_http_app()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8765)
     a = ap.parse_args()
     mcp.settings.host, mcp.settings.port = a.host, a.port
-    # DNS-rebinding protection stays on, but the allow-list must include the Docker service name ("mcp"),
-    # otherwise requests from the API container are rejected with 421 Invalid Host header.
-    hosts = os.getenv("MCP_ALLOWED_HOSTS", "localhost:*,127.0.0.1:*,[::1]:*,mcp:*").split(",")
-    mcp.settings.transport_security = TransportSecuritySettings(
-        enable_dns_rebinding_protection=True, allowed_hosts=[h.strip() for h in hosts if h.strip()],
-        allowed_origins=[f"http://{h.strip()}" for h in hosts if h.strip()])
+    _security()
     mcp.run(transport="streamable-http")
 
 

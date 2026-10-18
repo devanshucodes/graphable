@@ -11,5 +11,7 @@ COPY graphable ./graphable
 # datagen/out (the committed synthetic dataset) is included, so bootstrap loads it instead of regenerating it
 COPY datagen ./datagen
 COPY evals_out ./evals_out
+# hosted mode (DEMO_SNAPSHOT=deploy/demo_snapshot.dump): the trimmed demo graph, restored with RESTORE
+COPY deploy ./deploy
 EXPOSE 8000 8765
 CMD ["uvicorn", "graphable.api.app:app", "--host", "0.0.0.0", "--port", "8000"]

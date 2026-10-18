@@ -421,7 +421,7 @@ flowchart LR
 ```
 - **Supported setup: local Docker Compose** (`docker compose up --build`): FalkorDB (pinned 6.0.2), a one-shot `init` bootstrap, the MCP server, the API and the web app. These are the full local setup instructions rule 10 requires.
 - **One backend image, several entrypoints** (`init`, `mcp`, `api`); the web app has its own image.
-- **Hosted deployment (optional, not set up in this repo):** the same images could run on a container platform (e.g. Cloud Run) with FalkorDB Cloud and the web app on Vercel.
+- **Hosted demo (`render.yaml`):** the backend image as one web service (API with the MCP server mounted at `/mcp`, `SERVE_MCP=1`), FalkorDB Cloud's free tier (v4.22, 100 MB) holding one demo graph restored from `deploy/demo_snapshot.dump`, and the web app on Vercel. The snapshot drops run-time records and the Ticket/Thread embeddings to fit; reset and self-healing use `RESTORE`.
 
 **Configuration (env):** see `.env.example`. Main variables: `GEMINI_API_KEY`, `GEMINI_MODEL_PRO`, `GEMINI_MODEL_FLASH`, `EMBED_MODEL`, `EMBED_DIM=768`, `FALKORDB_HOST`, `FALKORDB_PORT`, `FALKORDB_USERNAME`, `FALKORDB_PASSWORD`, `QUERY_TIMEOUT_MS`, `TENANT_KEYS`, `MCP_URL`, `MCP_ALLOWED_HOSTS`, `DATA_DIR`. On the FalkorDB server (`FALKORDB_ARGS` in docker-compose.yml): `TIMEOUT_DEFAULT 10000 TIMEOUT_MAX 120000`.
 

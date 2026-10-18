@@ -63,7 +63,7 @@ flowchart LR
 - Agents may only cite `evidence_id`s that tools returned. A code verifier re-checks that every cited relationship existed at incident time.
 - Facts are never deleted, only closed (`valid_to`), so history stays queryable.
 - The tenant comes from the auth token, never from the LLM. The MCP server enforces each agent role's tool list; external clients get the read-only tools.
-- A ticket is filed automatically only with a verified path and enough confidence. A page needs human approval, except for SEV1 incidents with a verified path and very high confidence. A rollback is only ever proposed.
+- A ticket is filed automatically only with a verified path and enough confidence. A page needs human approval, except for SEV1 incidents with a verified path and very high confidence (on the shared demo every page waits, so visitors can try the approval step). A rollback is only ever proposed.
 
 **Agents**
 - **Triage:** ranks the alerting services with FalkorDB PageRank and starts from the most central ones: blast radius, severity, likely team, similar incidents → handoff.
@@ -182,7 +182,7 @@ docker compose up --build
 | MCP endpoint | http://localhost:8765/mcp (header `Authorization: Bearer dev-acme`) |
 | FalkorDB Browser | http://localhost:3000 |
 
-If a port is already taken, set `WEB_PORT`, `API_PORT`, `MCP_PORT`, `FALKORDB_PORT` or `FALKORDB_BROWSER_PORT` in `.env`. FalkorDB 6.0.x is required (the image is pinned; `falkordb/falkordb:latest` currently points to 4.x).
+If a port is already taken, set `WEB_PORT`, `API_PORT`, `MCP_PORT`, `FALKORDB_PORT` or `FALKORDB_BROWSER_PORT` in `.env`. The local setup pins FalkorDB 6.0.2; the queries also run on FalkorDB 4.22, the version on FalkorDB Cloud's free tier.
 
 ### Option B: manual (for development and evaluations)
 
