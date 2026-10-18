@@ -1,9 +1,12 @@
 """Brain: company-brain Q&A with citations and graph paths (Track 3).
 
-offline: intent router (who owns / who owned at T / who knows / why decision / what breaks / bus factor /
-         stale runbooks / who fixed similar / free search) -> MCP tools -> templated, cited answer.
-gemini:  ReAct agent over the Brain's role-filtered MCP tools (same citation contract), when a key is set.
-Every answer is stored as (:Answer)-[:CITES]->(sources) and (:Answer)-[:GENERATED_BY]->(:AgentRun).
+Intent router (who owns / who owned at T / who knows / why decision / what breaks / bus factor / stale runbooks /
+who fixed similar / free search) -> MCP tools -> cited answer. For free-form questions, hybrid search (full-text +
+vector, fused by reciprocal rank) retrieves sources and, when a Gemini key is set, Gemini writes a short answer
+from those sources only; sentences without a valid citation are dropped.
+Every answer is stored as (:Answer)-[:CITES]->(Evidence) and (:Answer)-[:GENERATED_BY]->(:AgentRun).
+Conversations are stored as (:Session)-[:HAS_TURN]->(:Turn)-[:ANSWERED_BY]->(:Answer); a follow-up question
+without a named entity ("who knows it best?") resolves to the entity of the previous turn.
 """
 from __future__ import annotations
 
@@ -19,7 +22,12 @@ from .bus import make_bus
 
 def _date(s: str) -> int | None:
     m = re.search(r"(\d{4}-\d{2}-\d{2})", s)
-    return int(datetime.strptime(m.group(1), "%Y-%m-%d").replace(tzinfo=timezone.utc).timestamp() * 1000) if m else None
+    if not m:
+        return None
+    try:
+        return int(datetime.strptime(m.group(1), "%Y-%m-%d").replace(tzinfo=timezone.utc).timestamp() * 1000)
+    except ValueError:  # e.g. 2026-13-45
+        return None
 
 
 STOP = {"who", "what", "which", "why", "how", "is", "are", "was", "were", "the", "a", "an", "of", "for", "on", "in", "to", "and",
@@ -29,7 +37,7 @@ STOP = {"who", "what", "which", "why", "how", "is", "are", "was", "were", "the",
 
 async def _entity(bus, q: str, kinds=("Component",)) -> dict | None:
     """Prefer an exact component name over an alias, then longer spans, then earlier position; skip stopword-only spans."""
-    words = re.findall(r"[A-Za-z][\w-]+", q)
+    words = re.findall(r"[A-Za-z][\w-]+", q)[:30]  # bounded: one resolve call per 1-3 word span
     found = []
     for n in (1, 2, 3):
         for i in range(len(words) - n + 1):
@@ -60,17 +68,17 @@ async def _synthesize(q: str, hits: list[dict]) -> tuple[str, int] | None:  # pr
     src = "\n".join(f"[{h['id']}] ({h['kind']}) {h.get('title') or ''}: {(h.get('snippet') or '')[:500]}" for h in hits)
 
     def call():
-        c = genai.Client(api_key=settings.gemini_api_key)
+        c = genai.Client(api_key=settings.gemini_api_key, http_options=types.HttpOptions(timeout=20_000))
         return c.models.generate_content(model=settings.gemini_model_flash, contents=f"QUESTION: {q}\nSOURCES:\n{src}",
                                          config={"system_instruction": prompt, "temperature": 0,
                                                  "thinking_config": types.ThinkingConfig(thinking_budget=0)}).text
     try:
-        text = await asyncio.to_thread(call)
+        text = await asyncio.wait_for(asyncio.to_thread(call), 25)
     except Exception:
         return None
     kept, dropped = [], 0
     for sent in re.split(r"(?<=[.!?\]])\s+", (text or "").strip()):
-        cited = set(re.findall(r"\[([a-z]+_[\w-]+)\]", sent))
+        cited = {i.strip() for grp in re.findall(r"\[([a-z]+_[\w-]+(?:\s*,\s*[a-z]+_[\w-]+)*)\]", sent) for i in grp.split(",")}
         if cited and cited <= ids:
             kept.append(sent)
         elif sent.strip():
@@ -78,24 +86,43 @@ async def _synthesize(q: str, hits: list[dict]) -> tuple[str, int] | None:  # pr
     return (" ".join(kept) if kept else "The retrieved sources do not answer this.", dropped)
 
 
-async def ask(tenant: str, question: str, now: int | None = None, bus_mode: str = "direct", emit=None) -> dict:
+async def ask(tenant: str, question: str, now: int | None = None, bus_mode: str = "direct", emit=None,
+              session_id: str | None = None) -> dict:
     now = now or int(time.time() * 1000)
     tg = TenantGraph(tenant)
     bus = make_bus(bus_mode, tg, "brain", None, now, emit)
-    q = question.strip()
+    q = re.sub(r"[\x00-\x1f\x7f]", " ", question).strip()
     ql = q.lower()
+    dropped = 0
+    last = None  # conversation memory: the entity the previous turn was about
+    if session_id:
+        r = tg.read("""MATCH (:Session {id:$sid})-[:HAS_TURN]->(t:Turn) WHERE t.entity_id IS NOT NULL
+            RETURN t.entity_id AS id, t.entity_name AS name ORDER BY t.n DESC LIMIT 1""", {"sid": session_id})
+        last = {"id": r[0]["id"], "name": r[0]["name"], "kind": "Component", "score": 1.0, "from_session": True} if r else None
+    used = {}
+
+    async def entity(text: str):
+        e = await _entity(bus, text)
+        if e is None and last is not None:
+            e = last
+        if e:
+            used.update(e)
+        return e
     cites, paths, ans, intent = [], [], None, "search"
     adr = re.search(r"\bADR-\d{3}\b", q, re.I)
     if re.search(r"\b(who|which team)\b.*\bown", ql) or ql.startswith("owner"):
         intent = "ownership"
-        e = await _entity(bus, q)
+        e = await entity(q)
         at = _date(q)
         if e:
             r = await bus.call("org_ownership", entity_id=e["id"], at=at) if at else await bus.call("org_ownership", entity_id=e["id"])
             o = r.get("owner") or {}
             when = f" on {datetime.fromtimestamp(at / 1000, tz=timezone.utc).date()}" if at else " now"
-            ans = (f"{e['name']} was owned by {o.get('team')}{when}" if at else f"{e['name']} is owned by {o.get('team')}") + \
-                  (f" (source: {o.get('source')})." if o.get("source") else ".")
+            if not o.get("team"):
+                ans = f"{e['name']} had no owner{when}." if at else f"{e['name']} has no current owner."
+            else:
+                ans = (f"{e['name']} was owned by {o.get('team')}{when}" if at else f"{e['name']} is owned by {o.get('team')}") + \
+                      (f" (source: {o.get('source')})." if o.get("source") else ".")
             if not at and r.get("oncall"):
                 ans += f" On-call: {', '.join(x['name'] for x in r['oncall'])}."
             if len(r.get("history", [])) > 1:
@@ -106,7 +133,7 @@ async def ask(tenant: str, question: str, now: int | None = None, bus_mode: str 
     elif re.search(r"bus factor|who should we train|knowledge risk", ql) or re.search(r"\bwho (knows|is the expert|should i ask)", ql) \
             or "expert" in ql:
         intent = "experts"
-        e = await _entity(bus, q)
+        e = await entity(q)
         if e:
             r = await bus.call("org_experts", entity_id=e["id"], k=3)
             ex = r.get("experts", [])
@@ -137,7 +164,7 @@ async def ask(tenant: str, question: str, now: int | None = None, bus_mode: str 
             cites += [d.get("evidence_id")]
     elif re.search(r"what (breaks|is impacted|happens)|blast radius|goes down", ql):
         intent = "blast_radius"
-        e = await _entity(bus, q)
+        e = await entity(q)
         if e:
             r = await bus.call("incident_blast_radius", entity_id=e["id"], max_hops=4)
             ans = (f"If {e['name']} fails, {r['n_impacted']} components are impacted, including entry points "
@@ -146,7 +173,7 @@ async def ask(tenant: str, question: str, now: int | None = None, bus_mode: str 
             cites += [r.get("evidence_id")]
     elif re.search(r"stale|outdated|out of date", ql):
         intent = "staleness"
-        e = await _entity(bus, q)
+        e = await entity(q)
         if e:
             kb = await bus.call("knowledge_for_entity", node_id=e["id"], kinds=["Runbook"])
             rbs = [r for r in kb.get("runbooks", []) if r["status"] == "active"]
@@ -175,10 +202,10 @@ async def ask(tenant: str, question: str, now: int | None = None, bus_mode: str 
         if hits and settings.llm_enabled:
             synth = await _synthesize(q, hits)
             if synth:
-                ans, unsupported = synth
-                if unsupported:
-                    ans += f" [{unsupported} sentence(s) without a valid source were dropped]"
+                ans, dropped = synth
     cites = [c for c in cites if c]
+    if used.get("from_session") and ans:
+        ans = f"(About {used['name']}, from earlier in this conversation.) " + ans
     aid = "ans_" + uuid.uuid4().hex[:10]
     tg.write("""MATCH (r:AgentRun {id:$run}) CREATE (a:Answer {id:$id, question:$q, text:$t, intent:$intent, ts:$now, mem:'episodic'})-[:GENERATED_BY]->(r)
         WITH a UNWIND (CASE WHEN size($c) = 0 THEN [null] ELSE $c END) AS eid
@@ -187,5 +214,16 @@ async def ask(tenant: str, question: str, now: int | None = None, bus_mode: str 
     bus.log.end(ans)
     ev = tg.read("MATCH (e:Evidence) WHERE e.id IN $ids RETURN e.id AS id, e.tool AS tool, e.summary AS summary, e.node_ids AS nodes, e.edge_keys AS edges",
                  {"ids": cites}) if cites else []
+    turn = None
+    if session_id:  # persistent conversation history in the graph
+        rows = tg.write("""MERGE (s:Session {id:$sid}) ON CREATE SET s.created_at = $now, s.mem = 'episodic'
+            WITH s OPTIONAL MATCH (s)-[:HAS_TURN]->(p:Turn) WITH s, count(p) AS n
+            MATCH (a:Answer {id:$aid})
+            CREATE (s)-[:HAS_TURN]->(t:Turn {id:$tid, n:n + 1, question:$q, intent:$intent, entity_id:$eid, entity_name:$ename, ts:$now,
+                                             mem:'episodic'})-[:ANSWERED_BY]->(a)
+            RETURN t.n AS n""", {"sid": session_id, "now": now, "aid": aid, "tid": "turn_" + uuid.uuid4().hex[:10], "q": q,
+                                 "intent": intent, "eid": used.get("id"), "ename": used.get("name")})
+        turn = rows[0]["n"] if rows else None
     return {"answer_id": aid, "question": q, "intent": intent, "answer": ans, "citations": ev, "paths": paths,
-            "tool_calls": [c["tool"] for c in bus.calls]}
+            "tool_calls": [c["tool"] for c in bus.calls], "session_id": session_id, "turn": turn, "dropped_sentences": dropped,
+            "entity": {"id": used.get("id"), "name": used.get("name")} if used else None}

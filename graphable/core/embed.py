@@ -19,18 +19,27 @@ BATCH = 64
 
 def _client():
     from google import genai
-    return genai.Client(api_key=settings.gemini_api_key)
+    from google.genai import types as _t
+    return genai.Client(api_key=settings.gemini_api_key, http_options=_t.HttpOptions(timeout=20_000))  # ms; never hang forever
+
+
+from google.genai import types  # noqa: E402
 
 
 def embed_texts(texts: list[str], task: str = "RETRIEVAL_DOCUMENT") -> list[list[float]]:
     c = _client()
     out = []
+    tries = 5 if len(texts) > 1 else 2  # interactive single queries fail fast; bulk embedding retries with backoff
     for i in range(0, len(texts), BATCH):
         chunk = [t[:6000] or " " for t in texts[i:i + BATCH]]
-        for attempt in range(5):
+        for attempt in range(tries):
             try:
-                r = c.models.embed_content(model=settings.embed_model, contents=chunk,
+                # one Content per text: a plain list of strings is folded into a single Content by google-genai
+                # for gemini-embedding-2 and comes back as ONE blended vector for the whole batch
+                r = c.models.embed_content(model=settings.embed_model, contents=[types.Content(parts=[types.Part(text=t)]) for t in chunk],
                                            config={"output_dimensionality": settings.embed_dim, "task_type": task})
+                if len(r.embeddings) != len(chunk):
+                    raise ValueError(f"expected {len(chunk)} embeddings, got {len(r.embeddings)}")
                 out += [e.values for e in r.embeddings]
                 break
             except Exception:

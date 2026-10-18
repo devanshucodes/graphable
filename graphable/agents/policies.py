@@ -8,6 +8,8 @@ Both return the same dicts, so the crew graph, verifier and gate are identical i
 """
 from __future__ import annotations
 
+import asyncio
+
 import json
 import math
 import re
@@ -45,24 +47,31 @@ async def triage_offline(bus, st: dict) -> dict:
             blasts.append(b)
     own = await bus.call("org_ownership", entity_id=alerting[0], incident_id=inc)
     sim = await bus.call("incident_similar", incident_id=inc, phase="triage", k=3)
+    # FalkorDB PageRank over DEPENDS_ON: is a heavily-depended-on hub among the alerting components?
+    hubs = await bus.call("graph_hubs", metric="pagerank", k=5, of=alerting, incident_id=inc)
+    hub_ranked = sorted(hubs.get("ranked") or [], key=lambda r: r["rank"])[:3] if "error" not in hubs else []
     sev = _sev(blasts, len(alerting))
     ev = [b["evidence_id"] for b in blasts if b.get("evidence_id")]
     entry = sorted({e for b in blasts for e in b.get("entry_points_hit", [])})
+    hub_txt = (f"Most central alerting component by PageRank: {hub_ranked[0]['name']} (#{hub_ranked[0]['rank']} of {hubs.get('n_components')})."
+               if hub_ranked else "")
     if ev:
-        await bus.call("memory_note", incident_id=inc, kind="finding", evidence_ids=ev, confidence=0.9,
-                       claim=f"SEV{sev}: {len(alerting)} components alerting; upstream impact reaches entry points {entry or 'none'}")
+        await bus.call("memory_note", incident_id=inc, kind="finding", evidence_ids=ev + ([hubs["evidence_id"]] if hubs.get("evidence_id") else []),
+                       confidence=0.9,
+                       claim=f"SEV{sev}: {len(alerting)} components alerting; upstream impact reaches entry points {entry or 'none'}. {hub_txt}".strip())
     top_sim = (sim.get("similar") or [])[:3]
     summary = (f"SEV{sev}. Alerting: {', '.join(alerting[:6])}. Paged team: {own.get('owner', {}).get('team') if own.get('owner') else '?'}. "
-               + (f"Looks like {top_sim[0]['key']} ({top_sim[0]['similarity']})." if top_sim else "No close past incident."))
+               + (f"Looks like {top_sim[0]['key']} ({top_sim[0]['similarity']}). " if top_sim else "No close past incident. ") + hub_txt).strip()
     await bus.call("memory_handoff", incident_id=inc, to_role="investigator", summary=summary,
                    open_questions=["Which change or component is the root cause?", "Is this a change-induced incident?"],
-                   evidence_ids=ev + [s["evidence_id"] for s in top_sim if s.get("evidence_id")])
+                   evidence_ids=ev + [s["evidence_id"] for s in top_sim if s.get("evidence_id")] + ([hubs["evidence_id"]] if hubs.get("evidence_id") else []))
     return {"severity": sev, "entry_points": entry, "similar": top_sim, "paged_owner": own.get("owner"), "summary": summary,
-            "evidence_ids": ev}
+            "evidence_ids": ev, "hubs": [{"id": r["id"], "name": r["name"], "rank": r["rank"], "score": r["score"]} for r in hub_ranked],
+            "n_components": hubs.get("n_components")}
 
 
-def _fault_type(alert_names: list[str], entity: str) -> str:
-    if "paylynx" in entity:
+def _fault_type(alert_names: list[str], entity: str, engine: str | None = None) -> str:
+    if (engine or "").startswith("external"):  # third-party dependency (e.g. a payment provider), read from the graph
         return "external_outage"
     for k, f in FAULT_BY_ALERT:
         if any(k in a for a in alert_names):
@@ -93,11 +102,14 @@ async def investigate_offline(bus, st: dict) -> dict:
         nc = ncs[0] if ncs else None
         if nc is None:
             return {"claims": [], "confidence": 0.0, "abstain": True, "root": None, "candidates": cands}
-        ftype = _fault_type(rc.get("alert_names", []), nc["entity_id"])
+        ftype = _fault_type(rc.get("alert_names", []), nc["entity_id"], nc.get("engine"))
         root = {"type": "non_change", "entity_id": nc["entity_id"], "entity_name": nc["entity_name"], "fault_type": ftype,
                 "score": nc["score"], "path": nc["path"], "breakdown": nc["breakdown"], "evidence_id": nc["evidence_id"]}
-        claims.append({"role": "root_cause", "text": f"Not change-induced (best change score {cands[0]['score'] if cands else 'n/a'} < "
-                       f"{rc['theta']}). Most likely origin: {nc['entity_name']} ({ftype}); impact path {' -> '.join(nc['path'])}.",
+        why = (f"the best-scoring change scored {cands[0]['score']:.2f}, below the {rc['theta']} threshold" if cands
+               else "no change landed in the window")
+        label = {"cert_expiry": "certificate expiry", "external_outage": "third-party outage"}.get(ftype, ftype.replace("_", " "))
+        claims.append({"role": "root_cause", "text": f"Not change-induced: {why}. Most likely origin: {nc['entity_name']} ({label}); "
+                       f"impact path {' -> '.join(nc['path'])}.",
                        "evidence_ids": [nc["evidence_id"]], "entity_ids": [nc["entity_id"]]})
         sim = await bus.call("incident_similar", incident_id=inc, phase="post", root_entity_id=nc["entity_id"], k=3)
     similar = [s for s in (sim.get("similar") or []) if s["similarity"] >= 0.45][:3]
@@ -145,6 +157,8 @@ async def respond_offline(bus, st: dict) -> dict:
     oncall = (own.get("oncall") or [None])[0]
     experts = ex.get("experts", [])
     ev_root = [c["evidence_ids"][0] for c in inv["claims"] if c["role"] == "root_cause" and c.get("verified", True)]
+    if not ev_root and st.get("inbox"):  # fall back to the evidence the Investigator handed over through the graph
+        ev_root = (st["inbox"].get("evidence_ids") or [])[:2]
     ev_org = [x for x in (own.get("evidence_id"), ex.get("evidence_id")) if x]
     actions = []
     rb = inv.get("runbook")
@@ -229,15 +243,19 @@ async def investigate_gemini(bus, st: dict) -> dict:  # pragma: no cover - needs
         from langchain_google_genai import ChatGoogleGenerativeAI
         from langgraph.prebuilt import create_react_agent
         tools = _wrap_tools(bus, await bus.tools())
-        llm = ChatGoogleGenerativeAI(model=settings.gemini_model_pro, temperature=0, google_api_key=settings.gemini_api_key)
+        llm = ChatGoogleGenerativeAI(model=settings.gemini_model_pro, temperature=0, google_api_key=settings.gemini_api_key,
+                                     timeout=45, max_retries=1)
         agent = create_react_agent(llm, tools, prompt=INVESTIGATOR_PROMPT, response_format=InvestigationOut)
-        brief = {"incident_id": st["incident_id"], "triage": st["triage"]["summary"],
+        hand = st.get("inbox") or {}  # Triage's handoff, read from the graph
+        brief = {"incident_id": st["incident_id"], "triage": hand.get("summary") or st["triage"]["summary"],
+                 "open_questions": hand.get("open_questions", []), "handoff_evidence_ids": hand.get("evidence_ids", []),
                  "change_candidates": base.get("candidates", [])[:5],
                  "non_change_candidates": base.get("non_change_candidates", [])[:3],
                  "deterministic_choice": {k: (base.get("root") or {}).get(k) for k in ("type", "change_id", "entity_id", "score", "evidence_id")},
                  "evidence_by_claim": [{"text": c["text"], "evidence_ids": c["evidence_ids"]} for c in base.get("claims", [])],
                  "similar_past_incidents": [{k: s[k] for k in ("key", "similarity", "root_cause", "fixed_by", "evidence_id")} for s in base.get("similar", [])]}
-        res = await agent.ainvoke({"messages": [("user", json.dumps(brief, default=str))]}, {"recursion_limit": 40})
+        # bounded: if Gemini is slow or down, the graph-based conclusion stands on its own (caught below)
+        res = await asyncio.wait_for(agent.ainvoke({"messages": [("user", json.dumps(brief, default=str))]}, {"recursion_limit": 40}), 100)
         out: InvestigationOut = res["structured_response"]
         root = base.get("root") or {}
         agree = (out.decision == "accept" and (not out.root_change_id or out.root_change_id == root.get("change_id"))) or \

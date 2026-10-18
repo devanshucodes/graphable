@@ -13,8 +13,6 @@ import time
 import uuid
 from collections import defaultdict
 
-import networkx as nx
-
 from .evidence import Ctx, edge_key, path_edges, register
 
 DAY = 86_400_000
@@ -90,6 +88,16 @@ def graph_resolve(ctx: Ctx, text: str, kinds: list[str] | None = None, k: int = 
                                     f"RETURN node.id AS id, '{lbl}' AS kind, node.name AS name, score / 10.0 AS score LIMIT 5", {"q": q})
             except Exception:
                 pass
+    if not hits:  # typo tolerance: RediSearch fuzzy matching (Levenshtein distance 1) on the full-text index
+        words = [w for w in _ft(t).split(" | ") if len(w) > 3]
+        if words:
+            q = " | ".join(f"%{w}%" for w in words)
+            for lbl in ("Component", "Person"):
+                try:
+                    hits += ctx.tg.read(f"CALL db.idx.fulltext.queryNodes('{lbl}', $q) YIELD node, score "
+                                        f"RETURN node.id AS id, '{lbl}' AS kind, node.name AS name, score / 20.0 AS score LIMIT 5", {"q": q})
+                except Exception:
+                    pass
     seen, out = set(), []
     for h in sorted(hits, key=lambda h: -h["score"]):
         if h["id"] not in seen and (not kinds or h["kind"] in kinds):
@@ -302,11 +310,12 @@ def incident_rank_root_causes(ctx: Ctx, incident_id: str, window_min: int = 120,
                     "breakdown": b | {"E": f["E"], "Prec": f["Prec"]}, "path": f["path"]})
     out.sort(key=lambda x: -x["score"])
     nc = []
+    engines = {r["id"]: r["e"] for r in ctx.tg.read("MATCH (c:Component) WHERE c.id IN $ids RETURN c.id AS id, c.engine AS e", {"ids": list(feat)})}
     for c, f in feat.items():
         Hn = min(1.0, past_nc.get(c, 0) / 2)
         b = {"Cov": f["Cov"], "F": f["F"], "S": 1.0 if c in Aset else 0.0, "H": Hn}
         S = sum(W_NC[k] * b[k] for k in W_NC)
-        nc.append({"type": "non_change", "entity_id": c, "entity_name": f["name"], "hops": f["h"], "score": round(S, 4),
+        nc.append({"type": "non_change", "entity_id": c, "entity_name": f["name"], "engine": engines.get(c), "hops": f["h"], "score": round(S, 4),
                    "breakdown": b | {"E": f["E"], "Prec": f["Prec"]}, "path": f["path"]})
     nc.sort(key=lambda x: -x["score"])
     abstain = (not out) or out[0]["score"] < theta
@@ -325,12 +334,20 @@ def incident_rank_root_causes(ctx: Ctx, incident_id: str, window_min: int = 120,
 def graph_explain_connection(ctx: Ctx, from_id: str, to_id: str, max_len: int = 4, k: int = 3,
                              rel_types: list[str] | None = None) -> dict:
     L = _hops(max_len, 1, 5)
-    rels = "|".join(sorted(r for r in (rel_types or REL_ALLOW) if r in REL_ALLOW) or REL_ALLOW)
-    rows = ctx.tg.read(f"""MATCH (a:{label_of(from_id)} {{id:$a}}), (b:{label_of(to_id)} {{id:$b}}) WITH a, b
-        MATCH p=allShortestPaths((a)-[:{rels}*..{L}]-(b))
-        RETURN [n IN nodes(p) | n.id] AS ids, [n IN nodes(p) | coalesce(n.name, n.key, n.title, n.summary, n.id)] AS labels,
-               [r IN relationships(p) | [startNode(r).id, type(r), endNode(r).id]] AS rels LIMIT {max(1, min(int(k), 5))}""",
-                       {"a": from_id, "b": to_id})
+    types = sorted(r for r in (rel_types or REL_ALLOW) if r in REL_ALLOW) or sorted(REL_ALLOW)
+    rels = "|".join(types)
+
+    def run(pattern: str):
+        return ctx.tg.read(f"""MATCH (a:{label_of(from_id)} {{id:$a}}), (b:{label_of(to_id)} {{id:$b}}) WITH a, b
+            MATCH p=allShortestPaths({pattern})
+            RETURN [n IN nodes(p) | n.id] AS ids, [n IN nodes(p) | coalesce(n.name, n.key, n.title, n.summary, n.id)] AS labels,
+                   [r IN relationships(p) | [startNode(r).id, type(r), endNode(r).id]] AS rels LIMIT {max(1, min(int(k), 5))}""",
+                           {"a": from_id, "b": to_id})
+
+    if types == ["DEPENDS_ON"]:  # dependency chains are directional: a calls ... calls b (or the reverse)
+        rows = run(f"(a)-[:DEPENDS_ON*..{L}]->(b)") or run(f"(a)<-[:DEPENDS_ON*..{L}]-(b)")
+    else:
+        rows = run(f"(a)-[:{rels}*..{L}]-(b)")
     paths = []
     for r in rows:
         ev = register(ctx, "graph_explain_connection", {"from": from_id, "to": to_id}, r["ids"], [edge_key(*x) for x in r["rels"]],
@@ -380,6 +397,12 @@ def incident_similar(ctx: Ctx, incident_id: str, phase: str = "triage", k: int =
                 YIELD node, score WHERE node.id <> $id AND node.started_at < $t0 RETURN node.id AS id, 1 - score AS sim""",
                                 {"id": incident_id, "t0": cur["t0"]})
             vec_sim = {v["id"]: max(0.0, v["sim"]) for v in vrows}
+            # exact cosine for structural candidates outside the HNSW top-40
+            rest = [r["id"] for r in rows if r["id"] not in vec_sim]
+            if rest:
+                for v in ctx.tg.read("""MATCH (q:Incident {id:$id}), (i:Incident) WHERE i.id IN $ids AND i.embedding IS NOT NULL
+                        RETURN i.id AS id, 1 - vec.cosineDistance(i.embedding, q.embedding) AS sim""", {"id": incident_id, "ids": rest}):
+                    vec_sim[v["id"]] = max(0.0, v["sim"])
             extra = [v for v in vec_sim if v not in {r["id"] for r in rows}][:15]
             if extra:
                 rows += ctx.tg.read("""MATCH (i:Incident) WHERE i.id IN $ids
@@ -396,7 +419,7 @@ def incident_similar(ctx: Ctx, incident_id: str, phase: str = "triage", k: int =
         roots = [c[2] for c in r["causes"]] + r["nc_roots"]
         kinds = [c[1] for c in r["causes"]]
         js, jb = _jac(cur["alerts"], r["alerts"]), _jac(S, r["affected"])
-        tx = vec_sim.get(r["id"], _jac(ct, _tok(r["title"])) if not vec_sim else 0.0)  # semantic when embedded, else token overlap
+        tx = vec_sim[r["id"]] if r["id"] in vec_sim else _jac(ct, _tok(r["title"]))  # semantic when embedded, else token overlap
         if phase == "post" and root_entity_id:
             s_root = 1.0 if root_entity_id in roots else (0.5 if adj & set(roots) else 0.0)
             s_kind = 1.0 if root_kind and root_kind in kinds else 0.0
@@ -578,9 +601,11 @@ def knowledge_search(ctx: Ctx, query: str, kinds: list[str] | None = None, k: in
             hits += rows
         except Exception:
             continue
-    for h in hits:  # normalise full-text scores to 0..1 per call
-        h["score"] = h["score"] / (max(x["score"] for x in hits) or 1)
+    top_ft = max((x["score"] for x in hits), default=0) or 1  # normalise full-text scores to 0..1 (max computed once)
+    for h in hits:
+        h["score"] = h["score"] / top_ft
         h["via"] = "fulltext"
+    ft_hits, hits = hits, []
     try:
         from ..settings import settings as _s
         if _s.llm_enabled:
@@ -595,14 +620,18 @@ def knowledge_search(ctx: Ctx, query: str, kinds: list[str] | None = None, k: in
                 hits += rows
     except Exception:
         pass
-    best = {}
-    for h in hits:  # reciprocal fusion: keep the best score per id, small bonus when both retrievers agree
-        if h["id"] in best:
-            best[h["id"]]["score"] = max(best[h["id"]]["score"], h["score"]) + 0.1
-            best[h["id"]]["via"] = "hybrid"
-        else:
-            best[h["id"]] = h
-    hits = sorted(best.values(), key=lambda h: -h["score"])[:max(1, min(int(k), 15))]
+    fused: dict = {}  # reciprocal rank fusion (k=60) of the full-text and vector rankings
+    for ranking in (sorted(ft_hits, key=lambda h: -h["score"]), sorted(hits, key=lambda h: -h["score"])):
+        for rank, h in enumerate(ranking):
+            e = fused.setdefault(h["id"], {**h, "rrf": 0.0, "vias": set()})
+            e["rrf"] += 1.0 / (60 + rank)
+            e["vias"].add(h["via"])
+    top = max((e["rrf"] for e in fused.values()), default=1.0)
+    for e in fused.values():
+        e["score"] = round(e["rrf"] / top, 3)
+        e["via"] = "hybrid" if len(e.pop("vias")) > 1 else e["via"]
+        e.pop("rrf")
+    hits = sorted(fused.values(), key=lambda h: -h["score"])[:max(1, min(int(k), 15))]
     ev = register(ctx, "knowledge_search", {"query": query}, [h["id"] for h in hits], [], f"search '{query}': {len(hits)} hits")
     return {"query": query, "hits": hits, "evidence_id": ev}
 
@@ -612,9 +641,18 @@ def decision_trace(ctx: Ctx, decision: str) -> dict:
     did = decision
     if not decision.startswith("dec_"):
         r = ctx.tg.read("MATCH (d:Decision) WHERE toUpper(d.key) = toUpper($q) RETURN d.id AS id", {"q": decision})
+        if not r and re.search(r"\bADR-\d+\b", decision, re.I):
+            return {"decision": None, "note": f"no decision record {decision.upper()}"}  # an explicit key that doesn't exist
         if not r:
-            r = ctx.tg.read("CALL db.idx.fulltext.queryNodes('Doc', $q) YIELD node, score MATCH (d:Decision)-[:DOCUMENTED_IN]->(node) "
-                            "RETURN d.id AS id ORDER BY score DESC LIMIT 1", {"q": _ft(decision)})
+            # free text: broad (OR) full-text retrieval, then accept a decision only if its title shares at least two
+            # content words with the question (otherwise "why did we pick the lunch menu?" would match some ADR)
+            words = [w.lower() for w in _ft(decision).split(" | ") if len(w) > 3]
+            cand = ctx.tg.read("CALL db.idx.fulltext.queryNodes('Doc', $q) YIELD node, score MATCH (d:Decision)-[:DOCUMENTED_IN]->(node) "
+                               "RETURN d.id AS id, toLower(d.title) AS title, max(score) AS score ORDER BY score DESC LIMIT 15",
+                               {"q": " | ".join(words)}) if words else []
+            ws = set(words)
+            scored = sorted(((sum(w in c["title"] for w in ws), i, c) for i, c in enumerate(cand)), key=lambda x: (-x[0], x[1]))
+            r = [c for n, _, c in scored if n >= min(2, len(ws))][:1]  # most title words in common, then full-text rank
         if not r:
             return {"decision": None, "note": "no matching decision"}
         did = r[0]["id"]
@@ -638,16 +676,29 @@ def decision_trace(ctx: Ctx, decision: str) -> dict:
 
 
 # ------------------------------------------------------------------ 13. hubs (importance, NOT cause)
-def graph_hubs(ctx: Ctx, metric: str = "pagerank", k: int = 10) -> dict:
+def graph_hubs(ctx: Ctx, metric: str = "pagerank", k: int = 10, of: list[str] | None = None) -> dict:
+    """FalkorDB built-in algorithms over the dependency graph. PageRank = how much of the system leans on a
+    component; betweenness = how many dependency paths run through it (a chokepoint). With `of`, also returns
+    the rank of those components (Triage uses this to say "catalog is dependency hub #3 of 55").
+    Note: algo.* procedures see every DEPENDS_ON edge, including ones closed via valid_to."""
     k = max(1, min(int(k), 20))
     if metric == "betweenness":
         rows = ctx.tg.read("""CALL algo.betweenness({nodeLabels:['Component'], relationshipTypes:['DEPENDS_ON'], samplingSize:64, samplingSeed:42})
-            YIELD node, score RETURN node.id AS id, node.name AS name, score ORDER BY score DESC LIMIT $k""", {"k": k})
+            YIELD node, score RETURN node.id AS id, node.name AS name, score ORDER BY score DESC, id""")
     else:
         rows = ctx.tg.read("""CALL algo.pageRank('Component', 'DEPENDS_ON') YIELD node, score
-            RETURN node.id AS id, node.name AS name, score ORDER BY score DESC LIMIT $k""", {"k": k})
+            RETURN node.id AS id, node.name AS name, score ORDER BY score DESC, id""")
         metric = "pagerank"
-    return {"metric": metric, "note": "importance / blast-radius weight, not root-cause likelihood", "hubs": rows}
+    for i, r in enumerate(rows):
+        r["rank"], r["score"] = i + 1, round(r["score"], 5)
+    out = {"metric": metric, "n_components": len(rows), "note": "importance / blast-radius weight, not root-cause likelihood", "hubs": rows[:k]}
+    if of:
+        want = set(of)
+        sel = [r for r in rows if r["id"] in want]
+        out["ranked"] = sel
+        out["evidence_id"] = register(ctx, "graph_hubs", {"metric": metric, "of": sorted(want)}, [r["id"] for r in sel], [],
+                                      f"{metric} rank of {len(rows)}: " + ", ".join(f"{r['name']} #{r['rank']}" for r in sel[:6]))
+    return out
 
 
 # ------------------------------------------------------------------ 14. guarded read-only Cypher
@@ -655,15 +706,17 @@ WRITE_RE = re.compile(r"\b(CREATE|MERGE|SET|DELETE|REMOVE|DROP|LOAD|FOREACH)\b",
 
 
 def graph_cypher_readonly(ctx: Ctx, cypher: str, params: dict | None = None, purpose: str = "") -> dict:
+    cypher = re.sub(r"/\*.*?\*/|//[^\n]*", " ", cypher, flags=re.S)  # comments could hide clauses from the checks below
     if WRITE_RE.search(cypher):
         return {"error": "read-only: write clauses are not allowed"}
     if re.search(r"\*\s*\]|\*\s*\d*\s*\.\.\s*\]", cypher):
         return {"error": "unbounded variable-length path: use *1..N with N <= 5"}
-    for m in re.finditer(r"\*\s*\d*\s*\.\.\s*(\d+)", cypher):
+    for m in re.finditer(r"\*\s*(?:\d*\s*\.\.\s*)?(\d+)\s*\]", cypher):
         if int(m.group(1)) > 5:
             return {"error": "variable-length bound must be <= 5"}
-    if "CALL" in cypher.upper() and not re.search(r"CALL\s+(db\.idx\.fulltext|algo\.)", cypher, re.I):
-        return {"error": "only fulltext and algo procedures may be called"}
+    for m in re.finditer(r"\bCALL\s+([\w.]+)", cypher, re.I):  # every procedure, not just the first
+        if not re.match(r"(db\.idx\.fulltext\.queryNodes|db\.idx\.vector\.queryNodes|algo\.)", m.group(1), re.I):
+            return {"error": f"procedure {m.group(1)} is not allowed (only full-text, vector and algo.* procedures)"}
     q = cypher if re.search(r"\bLIMIT\b", cypher, re.I) else cypher.rstrip().rstrip(";") + " LIMIT 50"
     try:
         ctx.tg.g.explain(q, params or {})
@@ -696,15 +749,41 @@ def memory_note(ctx: Ctx, incident_id: str, kind: str, claim: str, evidence_ids:
 
 
 def memory_handoff(ctx: Ctx, incident_id: str, to_role: str, summary: str, open_questions: list[str], evidence_ids: list[str]) -> dict:
+    if to_role not in ("triage", "investigator", "responder", "scribe"):
+        return {"error": "to_role must be triage|investigator|responder|scribe"}
     hid = "hand_" + uuid.uuid4().hex[:10]
-    ctx.tg.write("""MATCH (i:Incident {id:$inc}), (fa:Agent {id:$from}), (ta:Agent {id:$to})
+    rows = ctx.tg.write("""MATCH (i:Incident {id:$inc}) MERGE (fa:Agent {id:$from}) ON CREATE SET fa.name = $fromn
+        MERGE (ta:Agent {id:$to}) ON CREATE SET ta.name = $ton
+        WITH i, fa, ta
         CREATE (h:Handoff {id:$id, from_agent:$fromn, to_agent:$ton, summary:$s, open_questions:$oq, verification_status:'unverified',
                 ts:$ts, mem:'episodic'})
         CREATE (h)-[:FOR]->(i), (h)-[:FROM]->(fa), (h)-[:TO]->(ta)
-        WITH h UNWIND $ev AS eid MATCH (e:Evidence {id:eid}) CREATE (h)-[:CARRIES]->(e)""",
+        WITH h OPTIONAL MATCH (e:Evidence) WHERE e.id IN $ev
+        FOREACH (_ IN CASE WHEN e IS NULL THEN [] ELSE [1] END | CREATE (h)-[:CARRIES]->(e))
+        RETURN DISTINCT h.id AS id""",
                  {"inc": incident_id, "from": f"agent_{ctx.agent}", "to": f"agent_{to_role}", "id": hid, "fromn": ctx.agent,
                   "ton": to_role, "s": summary[:1000], "oq": open_questions[:10], "ts": ctx.now, "ev": evidence_ids})
+    if not rows:
+        return {"error": "unknown incident"}
     return {"handoff_id": hid}
+
+
+def memory_inbox(ctx: Ctx, incident_id: str, role: str | None = None) -> dict:
+    """Read the latest handoff addressed to this agent from the graph (shared state between agents) and mark it accepted.
+    The evidence it carries can be cited directly by the receiving agent."""
+    role = role or ctx.agent
+    rows = ctx.tg.read("""MATCH (h:Handoff {to_agent:$role})-[:FOR]->(:Incident {id:$inc})
+        OPTIONAL MATCH (h)-[:CARRIES]->(e:Evidence)
+        WITH h, collect(e.id) AS ev ORDER BY h.ts DESC, h.id DESC LIMIT 1
+        RETURN h.id AS id, h.from_agent AS from_agent, h.summary AS summary, h.open_questions AS open_questions, ev""",
+                       {"role": role, "inc": incident_id})
+    if not rows:
+        return {"handoff": None}
+    h = rows[0]
+    ctx.tg.write("MATCH (h:Handoff {id:$id}) SET h.verification_status = 'accepted', h.accepted_by = $agent, h.accepted_at = $now",
+                 {"id": h["id"], "agent": ctx.agent, "now": ctx.now})
+    return {"handoff": {"id": h["id"], "from": h["from_agent"], "summary": h["summary"], "open_questions": h["open_questions"] or [],
+                        "evidence_ids": [e for e in h["ev"] if e]}}
 
 
 def memory_recall(ctx: Ctx, entity_id: str | None = None, query: str | None = None, k: int = 5) -> dict:
@@ -761,13 +840,13 @@ def action_propose_remediation(ctx: Ctx, incident_id: str, kind: str, target_id:
 TOOLS = {f.__name__: f for f in [graph_resolve, graph_schema, graph_neighbors, incident_blast_radius, incident_rank_root_causes,
                                   graph_explain_connection, incident_similar, org_ownership, org_experts, knowledge_for_entity,
                                   knowledge_search, decision_trace, graph_hubs, graph_cypher_readonly, memory_note, memory_handoff,
-                                  memory_recall, action_create_ticket, action_page_oncall, action_propose_remediation]}
+                                  memory_inbox, memory_recall, action_create_ticket, action_page_oncall, action_propose_remediation]}
 ROLE_TOOLS = {
     "triage": ["graph_resolve", "incident_blast_radius", "incident_similar", "org_ownership", "graph_hubs", "memory_note", "memory_handoff"],
-    "investigator": ["graph_resolve", "graph_neighbors", "incident_rank_root_causes", "graph_explain_connection", "incident_similar",
-                     "knowledge_for_entity", "graph_cypher_readonly", "memory_note", "memory_handoff"],
-    "responder": ["org_ownership", "org_experts", "knowledge_for_entity", "memory_recall", "memory_note", "action_create_ticket",
-                  "action_page_oncall", "action_propose_remediation"],
+    "investigator": ["memory_inbox", "graph_resolve", "graph_neighbors", "incident_rank_root_causes", "graph_explain_connection",
+                     "incident_similar", "knowledge_for_entity", "graph_cypher_readonly", "memory_note", "memory_handoff"],
+    "responder": ["memory_inbox", "org_ownership", "org_experts", "knowledge_for_entity", "memory_recall", "memory_note",
+                  "action_create_ticket", "action_page_oncall", "action_propose_remediation"],
     "brain": ["graph_resolve", "graph_neighbors", "incident_blast_radius", "org_ownership", "org_experts", "knowledge_for_entity",
               "knowledge_search", "decision_trace", "graph_cypher_readonly"],
 }

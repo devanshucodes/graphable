@@ -12,7 +12,12 @@ from graphable.core.evidence import Ctx
 from graphable.core.verifier import verify
 from graphable.sim.player import claim_task, drop_tenant, fresh_tenant, intake, load_scenario, play
 
-pytestmark = pytest.mark.skipif("golden_acme" not in client().list_graphs(), reason="run python -m graphable.bootstrap first")
+try:
+    _GRAPHS = client().list_graphs()
+except Exception as e:  # FalkorDB unreachable: skip the whole module instead of failing at import
+    pytest.skip(f"FalkorDB is not reachable ({type(e).__name__}: {e}); start it, then run python -m graphable.bootstrap",
+                allow_module_level=True)
+pytestmark = pytest.mark.skipif("golden_acme" not in _GRAPHS, reason="run python -m graphable.bootstrap first")
 NOW = 1790856000000
 
 

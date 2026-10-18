@@ -53,9 +53,21 @@ def _bus(st: CrewState, agent: str, config):
     return tg, make_bus(st.get("bus_mode", "direct"), tg, agent, st["incident_id"], st["now"], emit, st.get("last_run"))
 
 
+def _claim(tg: TenantGraph, st: "CrewState", phase: str, agent: str) -> None:
+    """Compare-and-set task claim in the graph; a second worker on the same task stops here instead of duplicating work."""
+    if not claim_task(tg, f"task_{st['incident_id']}_{phase}", agent, st["now"]):
+        raise RuntimeError(f"task '{phase}' for {st['incident_id']} is already claimed by another worker")
+
+
+async def _inbox(bus, st: "CrewState") -> dict | None:
+    """Receiving agent reads its handoff from the graph (not from in-process state)."""
+    r = await bus.call("memory_inbox", incident_id=st["incident_id"])
+    return r.get("handoff") if isinstance(r, dict) else None
+
+
 async def triage_node(st: CrewState, config=None) -> dict:
     tg, bus = _bus(st, "triage", config)
-    claim_task(tg, f"task_{st['incident_id']}_triage", "triage", st["now"])
+    _claim(tg, st, "triage", "triage")
     _emit_fn(config)({"type": "phase", "phase": "triage", "agent": "triage"})
     out = await POLICIES[st.get("policy", "offline")]["triage"](bus, st)
     tg.write("MATCH (i:Incident {id:$i}) SET i.sev = $s", {"i": st["incident_id"], "s": out["severity"]})
@@ -67,9 +79,12 @@ async def triage_node(st: CrewState, config=None) -> dict:
 
 async def investigate_node(st: CrewState, config=None) -> dict:
     tg, bus = _bus(st, "investigator", config)
-    claim_task(tg, f"task_{st['incident_id']}_investigate", "investigator", st["now"])
+    if not st.get("attempts"):  # first attempt claims the task; a verifier-requested retry is the same worker continuing it
+        _claim(tg, st, "investigate", "investigator")
     _emit_fn(config)({"type": "phase", "phase": "investigate", "agent": "investigator"})
-    out = await POLICIES[st.get("policy", "offline")]["investigator"](bus, st)
+    inbox = await _inbox(bus, st)
+    out = await POLICIES[st.get("policy", "offline")]["investigator"](bus, {**st, "inbox": inbox})
+    out = {**out, "inbox": inbox}
     bus.log.end(out["claims"][0]["text"] if out.get("claims") else "no conclusion")
     return {"investigation": out, "attempts": st.get("attempts", 0) + 1, "last_run": bus.log.run_id,
             "events": [{"phase": "investigate", "calls": len(bus.calls)}]}
@@ -97,9 +112,11 @@ def after_verify(st: CrewState) -> str:
 
 async def respond_node(st: CrewState, config=None) -> dict:
     tg, bus = _bus(st, "responder", config)
-    claim_task(tg, f"task_{st['incident_id']}_respond", "responder", st["now"])
+    _claim(tg, st, "respond", "responder")
     _emit_fn(config)({"type": "phase", "phase": "respond", "agent": "responder"})
-    out = await POLICIES[st.get("policy", "offline")]["responder"](bus, st)
+    inbox = await _inbox(bus, st)
+    out = await POLICIES[st.get("policy", "offline")]["responder"](bus, {**st, "inbox": inbox})
+    out = {**out, "inbox": inbox}
     bus.log.end(out.get("status_update", ""))
     for a in out.get("actions", []):
         _emit_fn(config)({"type": "action", **{k: a.get(k) for k in ("kind", "action_id", "status", "duplicate")}})

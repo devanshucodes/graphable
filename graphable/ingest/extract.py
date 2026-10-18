@@ -225,7 +225,7 @@ class GeminiExtractor(RulesExtractor):  # pragma: no cover - requires API key
         super().__init__(tg, gz)
         from google import genai
         from google.genai import types
-        self.client, self.model, self.types = genai.Client(api_key=api_key), model, types
+        self.client, self.model, self.types = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=30_000)), model, types
 
     def _llm(self, text: str, ctx: dict) -> list[dict] | None:
         for attempt in range(3):

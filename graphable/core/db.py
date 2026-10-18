@@ -16,6 +16,22 @@ def client() -> FalkorDB:
                     username=settings.falkordb_username, password=settings.falkordb_password)
 
 
+@lru_cache(maxsize=1)
+def timeout_max() -> int:
+    """Server-side TIMEOUT_MAX (0 = unlimited). A query asking for more is rejected by FalkorDB, so we cap to it."""
+    try:
+        v = client().connection.execute_command("GRAPH.CONFIG", "GET", "TIMEOUT_MAX")
+        return int(v[1] if isinstance(v, (list, tuple)) else v)
+    except Exception:
+        return 0
+
+
+def _t(timeout: int | None) -> int:
+    t = timeout or settings.query_timeout_ms
+    m = timeout_max()
+    return min(t, m) if m else t
+
+
 def graph_name(tenant: str) -> str:
     if not tenant.replace("_", "").isalnum():
         raise ValueError("invalid tenant")
@@ -33,11 +49,11 @@ class TenantGraph:
         self.g = client().select_graph(self.name)
 
     def read(self, q: str, params: dict | None = None, timeout: int | None = None) -> list[dict]:
-        res = self.g.ro_query(q, params or {}, timeout=timeout or settings.query_timeout_ms)
+        res = self.g.ro_query(q, params or {}, timeout=_t(timeout))
         return _rows(res)
 
     def write(self, q: str, params: dict | None = None, timeout: int | None = None) -> list[dict]:
-        res = self.g.query(q, params or {}, timeout=timeout or settings.query_timeout_ms)
+        res = self.g.query(q, params or {}, timeout=_t(timeout))
         return _rows(res)
 
     def exists(self) -> bool:

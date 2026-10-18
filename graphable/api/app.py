@@ -15,7 +15,9 @@ from contextlib import asynccontextmanager
 import httpx
 from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from typing import Literal
+
+from pydantic import BaseModel, Field
 from sse_starlette.sse import EventSourceResponse
 
 from ..agents.brain import ask
@@ -62,6 +64,7 @@ class Run:
     def __init__(self, tenant, incident_id):
         self.tenant, self.incident_id = tenant, incident_id
         self.events, self.listeners, self.status, self.result = [], [], "running", None
+        self.task: asyncio.Task | None = None  # keep a strong reference to the background crew task
 
     def emit(self, e: dict):
         e = {"seq": len(self.events) + 1, "t": time.time(), **e}
@@ -70,16 +73,18 @@ class Run:
             q.put_nowait(e)
 
 
-RUNS: dict[str, Run] = {}
+RUNS: dict[tuple, Run] = {}  # keyed by (tenant, incident_id)
 
 
 async def _bus_mode() -> str:
     if os.getenv("BUS_MODE") in ("direct", "mcp"):
         return os.environ["BUS_MODE"]
-    try:
-        async with httpx.AsyncClient(timeout=1.0) as c:
-            await c.get(settings.mcp_url.replace("/mcp", "/"))
-        return "mcp"
+    try:  # a real MCP initialize handshake: any 4xx/5xx (e.g. 421 Invalid Host) means the bus is unusable
+        async with httpx.AsyncClient(timeout=2.0) as c:
+            r = await c.post(settings.mcp_url, headers={"Accept": "application/json, text/event-stream", "Content-Type": "application/json"},
+                             json={"jsonrpc": "2.0", "id": 0, "method": "initialize", "params": {
+                                 "protocolVersion": "2025-06-18", "capabilities": {}, "clientInfo": {"name": "graphable-probe", "version": "1"}}})
+        return "mcp" if r.status_code < 400 else "direct"
     except Exception:
         return "direct"
 
@@ -105,7 +110,12 @@ def _summ(out: dict) -> dict:
 # ------------------------------------------------------------------ endpoints
 @app.get("/v1/health")
 def health():
-    return {"ok": True, "falkordb": settings.falkordb_host, "llm": settings.llm_enabled, "demo_tenant": DEMO}
+    try:
+        TenantGraph(DEMO).read("RETURN 1 AS ok")
+        db_ok = True
+    except Exception:
+        db_ok = False
+    return {"ok": db_ok, "falkordb": db_ok, "llm": settings.llm_enabled, "demo_tenant": DEMO}
 
 
 @app.get("/v1/overview")
@@ -140,28 +150,32 @@ def list_scenarios():
 
 
 class PlayReq(BaseModel):
-    kind: str = "hero"
-    sid: str = "H1"
+    kind: Literal["hero", "test", "learning"] = "hero"
+    sid: str = Field(default="H1", pattern=r"^[A-Za-z]{1,3}-?\d{1,3}$")
 
 
 @app.post("/v1/sim/play")
 async def sim_play(req: PlayReq, tenant: str = Depends(tenant_dep)):
-    sc = load_scenario("acme", req.kind, req.sid)
+    try:
+        sc = load_scenario("acme", req.kind, req.sid)
+    except FileNotFoundError:
+        raise HTTPException(404, f"unknown scenario {req.kind}/{req.sid}")
     tg = TenantGraph(tenant)
-    n = play(tg, sc)
-    inc_id = f"inc_{req.sid.lower().replace('-', '')}_{uuid.uuid4().hex[:4]}"
-    inc = intake(tg, sc["t0"], inc_id, f"INC-{req.sid.upper()}-{inc_id[-4:].upper()}")
+    tag = uuid.uuid4().hex[:6]
+    n = await asyncio.to_thread(play, tg, sc, None, tag)
+    inc_id = f"inc_{req.sid.lower().replace('-', '')}_{tag[:4]}"
+    inc = await asyncio.to_thread(intake, tg, sc["t0"], inc_id, f"INC-{req.sid.upper()}-{tag[:4].upper()}")
     if not inc:
-        raise HTTPException(409, "no alerts to correlate (already played?)")
+        raise HTTPException(409, "No alerts to correlate. Click Reset demo and try again.")
     run = Run(tenant, inc_id)
-    RUNS[inc_id] = run
-    asyncio.create_task(_drive(run, inc, inc["detected_at"] + 5 * MIN))
+    RUNS[(tenant, inc_id)] = run
+    run.task = asyncio.create_task(_drive(run, inc, inc["detected_at"] + 5 * MIN))
     return {"incident_id": inc_id, "key": inc["key"], "played": n, "intake": inc, "story": sc.get("story")}
 
 
 @app.get("/v1/incidents/{incident_id}/stream")
-async def stream(incident_id: str):
-    run = RUNS.get(incident_id)
+async def stream(incident_id: str, tenant: str = Depends(tenant_dep)):
+    run = RUNS.get((tenant, incident_id))
     if not run:
         raise HTTPException(404, "no live run for this incident")
     q: asyncio.Queue = asyncio.Queue()
@@ -174,7 +188,7 @@ async def stream(incident_id: str):
             while True:
                 e = await q.get()
                 yield {"event": e["type"], "data": json.dumps(e, default=str)}
-                if e["type"] in ("closed", "error") or (e["type"] == "result" and e["status"] == "closed"):
+                if e["type"] == "error" or (e["type"] == "result" and e["status"] in ("closed", "error")):
                     break
         finally:
             run.listeners.remove(q)
@@ -194,7 +208,7 @@ def incident(incident_id: str, tenant: str = Depends(tenant_dep)):
         [(i)-[s:SIMILAR_TO]->(j) | {id:j.id, key:j.key, score:s.score}] AS similar""", {"id": incident_id})
     if not r:
         raise HTTPException(404)
-    run = RUNS.get(incident_id)
+    run = RUNS.get((tenant, incident_id))
     return {**r[0], "run": {"status": run.status, "result": run.result} if run else None}
 
 
@@ -211,11 +225,19 @@ async def decide(action_id: str, decision: str, tenant: str = Depends(tenant_dep
     if not inc:
         raise HTTPException(404)
     iid = inc[0]["i"]
-    run = RUNS.get(iid)
+    run = RUNS.get((tenant, iid))
+    if run and run.status == "resuming":
+        raise HTTPException(409, "This incident is already being resumed.")
     if run and run.status == "awaiting_approval":
+        run.status = "resuming"  # set before the first await: a double click cannot resume the crew twice
         pending = tg.read("MATCH (a:Action)-[:FOR]->(:Incident {id:$i}) WHERE a.status = 'awaiting_approval' RETURN a.id AS id", {"i": iid})
         decisions = {p["id"]: (decision if p["id"] == action_id else "approve") for p in pending}
-        out = await resume_crew(tenant, iid, decisions, emit=run.emit, thread_id=f"{tenant}:{iid}")
+        try:
+            out = await resume_crew(tenant, iid, decisions, emit=run.emit, thread_id=f"{tenant}:{iid}")
+        except Exception as e:
+            run.status = "error"
+            run.emit({"type": "error", "error": str(e)[:300]})
+            raise HTTPException(500, "resuming the crew failed")
         run.result = _summ(out)
         run.status = "closed"
         run.emit({"type": "result", "status": "closed", "result": run.result})
@@ -232,17 +254,28 @@ class Feedback(BaseModel):
 
 @app.post("/v1/incidents/{incident_id}/feedback")
 def feedback(incident_id: str, fb: Feedback, tenant: str = Depends(tenant_dep)):
-    return confirm(TenantGraph(tenant), incident_id, fb.correct, fb.by, int(time.time() * 1000), fb.actual_cause_id)
+    tg = TenantGraph(tenant)
+    r = tg.read("MATCH (i:Incident {id:$id}) RETURN i.feedback AS fb", {"id": incident_id})
+    if not r:
+        raise HTTPException(404, "unknown incident")
+    if r[0]["fb"] is not None:
+        raise HTTPException(409, f"Feedback was already recorded for this incident ({'correct' if r[0]['fb'] else 'wrong'}).")
+    out = confirm(tg, incident_id, fb.correct, fb.by, int(time.time() * 1000), fb.actual_cause_id)
+    tg.write("MATCH (i:Incident {id:$id}) SET i.feedback = $c", {"id": incident_id, "c": fb.correct})
+    return out
 
 
 class AskReq(BaseModel):
-    question: str
-    at: int | None = None
+    question: str = Field(min_length=2, max_length=500)
+    at: int | None = Field(default=None, ge=0, le=4_102_444_800_000)
+    session_id: str | None = Field(default=None, max_length=64, pattern=r"^[A-Za-z0-9_-]+$")
 
 
 @app.post("/v1/brain/ask")
 async def brain(req: AskReq, tenant: str = Depends(tenant_dep)):
-    return await ask(tenant, req.question, req.at or DEMO_NOW, bus_mode=await _bus_mode())
+    if not req.question.strip():
+        raise HTTPException(422, "Ask a question.")
+    return await ask(tenant, req.question, req.at if req.at is not None else DEMO_NOW, bus_mode=await _bus_mode(), session_id=req.session_id)
 
 
 @app.get("/v1/entities/{entity_id}")
@@ -313,14 +346,18 @@ def _nodes(tg: TenantGraph, ids: list[str]) -> list[dict]:
 
 
 class IngestReq(BaseModel):
-    author_id: str
-    text: str
-    channel: str = "#announcements"
-    ts: int | None = None
+    author_id: str = Field(max_length=64)
+    text: str = Field(max_length=2000)
+    channel: str = Field(default="#announcements", max_length=64)
+    ts: int | None = Field(default=None, ge=0, le=4_102_444_800_000)
 
 
 @app.post("/v1/ingest/message")
 def ingest(req: IngestReq, tenant: str = Depends(tenant_dep)):
+    if not TenantGraph(tenant).read("MATCH (p:Person {id:$a}) RETURN p.id AS id", {"a": req.author_id}):
+        raise HTTPException(422, "Unknown author.")
+    if not req.text.strip():
+        raise HTTPException(422, "Write a message first.")
     msg = {"id": "msg_live_" + uuid.uuid4().hex[:8], "author_id": req.author_id, "ts": req.ts or DEMO_NOW - 3600_000, "text": req.text}
     out = ingest_message(tenant, msg, req.channel)
     ctx = Ctx(TenantGraph(tenant), now=DEMO_NOW, register=False)
@@ -355,6 +392,9 @@ def people(tenant: str = Depends(tenant_dep)):
 
 @app.post("/v1/admin/reset")
 def reset():
+    for run in RUNS.values():  # stop in-flight crews so their writes don't land in the fresh graph
+        if run.task and not run.task.done():
+            run.task.cancel()
     RUNS.clear()
     fresh_tenant("acme", DEMO)
     return {"reset": DEMO}

@@ -36,7 +36,9 @@ def load_scenario(tenant: str, kind: str, sid: str) -> dict:
     return json.loads((settings.data_dir / tenant / "scenarios" / kind / f"{sid}.json").read_text())
 
 
-def play(tg: TenantGraph, scenario: dict, upto: int | None = None) -> dict:
+def play(tg: TenantGraph, scenario: dict, upto: int | None = None, run_tag: str | None = None) -> dict:
+    """run_tag makes alert ids unique per play, so a scenario can be replayed in the same graph (the earlier play's
+    alerts already belong to an incident). Changes and messages keep their ids: they are history, not events."""
     n = {"change": 0, "alert": 0, "message": 0}
     for ev in scenario["events"]:
         if upto is not None and ev["ts"] > upto:
@@ -53,7 +55,8 @@ def play(tg: TenantGraph, scenario: dict, upto: int | None = None) -> dict:
         elif ev["kind"] == "alert":
             tg.write("""MATCH (e:Component {id:$e}) MERGE (a:Alert {id:$id}) ON CREATE SET a.name=$name, a.metric=$metric,
                 a.severity=$sev, a.ts=$ts, a.value=$v, a.threshold=$th, a.mem='episodic' MERGE (a)-[:FIRED_ON]->(e)""",
-                     {"e": d["entity_id"], "id": d["id"], "name": d["name"], "metric": d["metric"], "sev": d["severity"], "ts": d["ts"],
+                     {"e": d["entity_id"], "id": f"{d['id']}_{run_tag}" if run_tag else d["id"], "name": d["name"], "metric": d["metric"],
+                      "sev": d["severity"], "ts": d["ts"],
                       "v": d["value"], "th": d["threshold"]})
         elif ev["kind"] == "message":
             ingest_message(tg.tenant, d, d.get("channel", "#announcements"))
@@ -117,9 +120,9 @@ def intake(tg: TenantGraph, t0: int, incident_id: str, key: str, window_min: int
 
 
 def claim_task(tg: TenantGraph, task_id: str, agent: str, now: int, lease_ms: int = 60_000) -> bool:
-    """Single-statement compare-and-set claim (one writer per graph makes this atomic)."""
+    """Single-statement compare-and-set claim (one writer per graph makes this atomic). Re-entrant for the current holder."""
     rows = tg.write("""MATCH (t:Task {id:$id})
-        WHERE t.status = 'SUBMITTED' OR (t.status = 'WORKING' AND t.lease_until < $now)
+        WHERE t.status = 'SUBMITTED' OR (t.status = 'WORKING' AND (t.lease_until < $now OR t.claimed_by = $agent))
         SET t.status = 'WORKING', t.claimed_by = $agent, t.lease_until = $now + $lease, t.version = t.version + 1
         RETURN t.version AS v""", {"id": task_id, "now": now, "agent": agent, "lease": lease_ms})
     return bool(rows)
