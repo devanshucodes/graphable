@@ -76,3 +76,33 @@ button, select, input, textarea { font: inherit; color: inherit; }
 .pulse { animation: pulse-ring 1.4s ease-out infinite; }
 @keyframes shimmer { 0% { background-position: -400px 0 } 100% { background-position: 400px 0 } }
 .skeleton { background: linear-gradient(90deg, #f3f3f1, #ebebe8, #f3f3f1); background-size: 800px 100%; animation: shimmer 1.4s infinite linear; border-radius: 6px; }
+
+/* ---------------- blog (/blog): long-form reading styles for the generated article HTML ---------------- */
+@layer components {
+  .blog { color: #16171a; font-size: 17px; line-height: 1.75; }
+  .blog h1 { font-size: 34px; line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 14px; }
+  .blog h1 + p { font-size: 18.5px; color: #5a5b62; margin-top: 0; }
+  .blog h2 { font-size: 25px; line-height: 1.3; font-weight: 650; letter-spacing: -0.012em; margin: 52px 0 14px; scroll-margin-top: 60px; }
+  .blog h3 { font-size: 19px; font-weight: 650; margin: 32px 0 10px; }
+  .blog p { margin: 14px 0; }
+  .blog ul { list-style: disc; margin: 14px 0; padding-left: 24px; }
+  .blog ol { list-style: decimal; margin: 14px 0; padding-left: 24px; }
+  .blog li { margin: 7px 0; padding-left: 2px; }
+  .blog li ul { margin: 6px 0; }
+  .blog a { color: #6e56cf; text-decoration: underline; text-decoration-color: #cfc6f7; text-underline-offset: 3px; }
+  .blog a:hover { text-decoration-color: #6e56cf; }
+  .blog strong { font-weight: 650; }
+  .blog em { font-style: italic; }
+  .blog code { font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 0.86em; background: #f0efea; border: 1px solid #e6e4dd; border-radius: 5px; padding: 1px 5px; }
+  .blog pre { background: #16171a; color: #e6e4dd; border-radius: 12px; padding: 18px 20px; overflow-x: auto; font-size: 13.5px; line-height: 1.65; margin: 20px 0; }
+  .blog pre code { background: none; border: 0; padding: 0; color: inherit; font-size: inherit; }
+  .blog figure { margin: 30px 0; }
+  .blog figure img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #e3e1da; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+  .blog figcaption { font-size: 13.5px; color: #8a8981; text-align: center; margin-top: 10px; }
+  .blog hr { border: 0; border-top: 1px solid #e3e1da; margin: 40px 0; }
+  .blog .table { overflow-x: auto; margin: 20px 0; border: 1px solid #e3e1da; border-radius: 10px; }
+  .blog table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.55; }
+  .blog th { text-align: left; font-weight: 600; background: #f7f6f2; border-bottom: 1px solid #e3e1da; padding: 10px 14px; }
+  .blog td { border-bottom: 1px solid #efeee9; padding: 10px 14px; vertical-align: top; }
+  .blog tr:last-child td { border-bottom: 0; }
+}
