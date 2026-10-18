@@ -37,7 +37,7 @@
 
 ## Demo video
 
-[Watch the 3-minute demo](DEMO_VIDEO_LINK)
+[Watch the 3-minute demo](https://youtu.be/uY_gaASXWJs)
 
 ## How each track is covered
 
