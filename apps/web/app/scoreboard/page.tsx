@@ -44,7 +44,7 @@ export default function Scoreboard() {
     ["Auto-filed ticket precision", pct(sys.crew.auto_ticket_precision), false],
   ] : [];
   const metrics: [string, string, string][] = [
-    ["Root cause, top-1", pct(t?.ac1), t ? `top-3 ${pct(t.ac3)} · random ${pct(d.base_random)}` : ""],
+    ["Right cause ranked first", pct(t?.ac1), t ? `${(t.ac1 / d.base_random).toFixed(1)}× a random pick · top-3 ${pct(t.ac3)} · newest deploy ${pct(d.base_recent)}` : ""],
     ["Cited paths that exist", sys ? pct(sys.crew.path_validity) : "—", "every edge re-checked by code"],
     ["Simultaneous pages → pages sent", sys ? `${sys.concurrency.concurrent_pages} → ${sys.concurrency.page_actions_created}` : "—", sys ? `${sys.concurrency.successful_claims}${sys.concurrency.concurrent_claims != null ? ` of ${sys.concurrency.concurrent_claims}` : ""} agents won the same task` : ""],
     ["Brain answers correct", sys ? `${sys.probes.brain_qa.correct}/${sys.probes.brain_qa.n}` : "—", sys ? `${pct(sys.probes.brain_qa.cited_rate)} cited · ${sys.probes.knowledge_update.stale_answers} stale` : ""],
@@ -70,7 +70,7 @@ export default function Scoreboard() {
         {err && <div className="mt-6"><Note tone="red">{err}</Note></div>}
         {!ev ? !err && <div className="skeleton mt-8 h-80" /> : (
           <div className="mt-10 grid gap-x-10 gap-y-10 xl:grid-cols-2">
-            <Chart title="Root cause, top-1 vs baselines" sub="Held-out test set, 40 incidents.">
+            <Chart title="Right cause ranked first: following the graph vs. simpler methods" sub="Held-out test set with planted traps, never seen during tuning.">
               <ResponsiveContainer width="100%" height={240}>
                 <BarChart data={overall} layout="vertical" margin={{ left: 4, right: 44, top: 0, bottom: 0 }}>
                   <CartesianGrid stroke={grid} horizontal={false} />

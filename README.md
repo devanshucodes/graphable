@@ -265,7 +265,7 @@ Synthetic data and small samples: read these as a demonstration, not a benchmark
 
 | Capability | Result | Baseline / note | Source |
 |---|---|---|---|
-| Root cause, change-caused incidents (n=32) | **top-1 75% · top-3 88% · MRR 0.88** | untuned weights 47% · random recent change 18% · fewest hops, then newest 16% · newest change 0%. Includes look-alike traps (n=4): 100% and multi-root (n=4): 50%. Wrongly said "not a change": 16% | `rca_test.json` |
+| Root cause, change-caused incidents (n=32) | **top-1 75%, more than 4× a random recent change (18%) · beats "newest deploy" 24 to 0 · top-3 88% · MRR 0.88** | untuned weights 47% · random recent change 18% · fewest hops, then newest 16% · newest change 0%. Includes look-alike traps (n=4): 100% and multi-root (n=4): 50%. Wrongly said "not a change": 16% | `rca_test.json` |
 | Incidents not caused by a change (n=8) | correctly declined to blame a change 75%, right origin 100% |  | `rca_test.json` |
 | Claims backed by real graph relationships | 100% (graph-only crew) · 96% with Gemini review | the graph-only 100% is expected by construction (its claims come from the tools); the Gemini figure is the real test. Rejected claims are shown as rejected, never acted on | `system_mcp.json`, `crew_gemini_mcp.json` |
 | Cited paths that exist at incident time | 100% |  | `system_mcp.json` |
