@@ -75,10 +75,12 @@ def intake(tg: TenantGraph, t0: int, incident_id: str, key: str, window_min: int
     E = sorted({a["e"] for a in alerts})
     # Correlate through direct dependencies, or 2-hop paths whose middle node is NOT a hub: every service
     # depends on the mesh/config hubs, so hub-mediated paths would glue unrelated alerts together.
+    hubs = [r["h"] for r in tg.read("""MATCH (u:Component)-[:DEPENDS_ON]->(n:Component) WITH n, count(u) AS deg WHERE deg >= 10
+        RETURN n.id AS h""")]  # computed up front: works on FalkorDB 4.x and 6.x alike
     pairs = tg.read("""MATCH p=(a:Component)-[:DEPENDS_ON*1..2]-(b:Component) WHERE a.id IN $E AND b.id IN $E AND a.id < b.id
         AND all(x IN relationships(p) WHERE x.valid_to IS NULL OR x.valid_to > $t)
-        AND all(n IN nodes(p) WHERE n = a OR n = b OR size([(n)<-[:DEPENDS_ON]-(u) | u]) < 10)
-        RETURN DISTINCT a.id AS a, b.id AS b""", {"E": E, "t": t0})
+        AND all(n IN nodes(p) WHERE n = a OR n = b OR NOT n.id IN $hubs)
+        RETURN DISTINCT a.id AS a, b.id AS b""", {"E": E, "t": t0, "hubs": hubs})
     related = {(p["a"], p["b"]) for p in pairs} | {(p["b"], p["a"]) for p in pairs}
     # alert-level union-find: two alerts correlate if same/related component AND within 5 minutes
     parent = {a["id"]: a["id"] for a in alerts}

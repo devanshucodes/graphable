@@ -218,10 +218,10 @@ def incident(incident_id: str, tenant: str = Depends(tenant_dep)):
     r = tg.read("""MATCH (i:Incident {id:$id}) RETURN i AS inc,
         [(i)<-[:PART_OF]-(a:Alert)-[:FIRED_ON]->(c) | {id:a.id, name:a.name, ts:a.ts, component:c.name, component_id:c.id}] AS alerts,
         [(i)-[:HAS_HYPOTHESIS]->(h) | {id:h.id, kind:h.kind, claim:h.claim, status:h.status, confidence:h.confidence, agent:h.agent}] AS hypotheses,
-        [(a:Action)-[:FOR]->(i) | {id:a.id, kind:a.kind, target:a.target, tier:a.tier, status:a.status, payload:a.payload}] AS actions,
-        [(h:Handoff)-[:FOR]->(i) | {id:h.id, from:h.from_agent, to:h.to_agent, summary:h.summary, open_questions:h.open_questions}] AS handoffs,
-        [(i)-[:SUSPECTED_CAUSE]->(x) | {id:x.id, label:coalesce(x.summary, x.name)}] AS suspected,
-        [(i)-[:CAUSED_BY]->(x) | {id:x.id, label:coalesce(x.summary, x.name)}] AS caused_by,
+        [(act:Action)-[:FOR]->(i) | {id:act.id, kind:act.kind, target:act.target, tier:act.tier, status:act.status, payload:act.payload}] AS actions,
+        [(ho:Handoff)-[:FOR]->(i) | {id:ho.id, from:ho.from_agent, to:ho.to_agent, summary:ho.summary, open_questions:ho.open_questions}] AS handoffs,
+        [(i)-[:SUSPECTED_CAUSE]->(sx) | {id:sx.id, label:coalesce(sx.summary, sx.name)}] AS suspected,
+        [(i)-[:CAUSED_BY]->(cx) | {id:cx.id, label:coalesce(cx.summary, cx.name)}] AS caused_by,
         [(i)-[s:SIMILAR_TO]->(j) | {id:j.id, key:j.key, score:s.score}] AS similar""", {"id": incident_id})
     if not r:
         raise HTTPException(404)

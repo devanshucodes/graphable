@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import re
 import time
 import uuid
@@ -391,7 +392,7 @@ def incident_similar(ctx: Ctx, incident_id: str, phase: str = "triage", k: int =
         RETURN i.id AS id, i.key AS key, i.title AS title, i.started_at AS t, i.sev AS sev,
                [(i)-[:AFFECTED]->(x) | x.id] AS affected, [(i)<-[:PART_OF]-(a:Alert) | a.name] AS alerts,
                [(i)-[:CAUSED_BY]->(c:Change)-[:CHANGED]->(r) | [c.id, c.kind, r.id]] AS causes,
-               [(i)-[:CAUSED_BY]->(r:Component) | r.id] AS nc_roots,
+               [(i)-[:CAUSED_BY]->(rc:Component) | rc.id] AS nc_roots,
                [(i)-[:RESOLVED_BY]->(p:Person) | [p.id, p.name, p.handle, p.left_at]] AS resolvers,
                [(i)-[:MITIGATED_WITH]->(rb:Runbook) | [rb.id, rb.key]] AS runbooks""",
                        {"S": S, "id": incident_id, "t0": cur["t0"]})
@@ -420,7 +421,7 @@ def incident_similar(ctx: Ctx, incident_id: str, phase: str = "triage", k: int =
                     RETURN i.id AS id, i.key AS key, i.title AS title, i.started_at AS t, i.sev AS sev,
                            [(i)-[:AFFECTED]->(x) | x.id] AS affected, [(i)<-[:PART_OF]-(a:Alert) | a.name] AS alerts,
                            [(i)-[:CAUSED_BY]->(c:Change)-[:CHANGED]->(r) | [c.id, c.kind, r.id]] AS causes,
-                           [(i)-[:CAUSED_BY]->(r:Component) | r.id] AS nc_roots,
+                           [(i)-[:CAUSED_BY]->(rc:Component) | rc.id] AS nc_roots,
                            [(i)-[:RESOLVED_BY]->(p:Person) | [p.id, p.name, p.handle, p.left_at]] AS resolvers,
                            [(i)-[:MITIGATED_WITH]->(rb:Runbook) | [rb.id, rb.key]] AS runbooks""", {"ids": extra})
         except Exception:
@@ -673,11 +674,12 @@ def decision_trace(ctx: Ctx, decision: str) -> dict:
     row = ctx.tg.read("""MATCH (d:Decision {id:$id})
         RETURN d.id AS id, d.key AS key, d.title AS title, d.status AS status, d.decided_at AS decided_at,
                [(d)-[:DOCUMENTED_IN]->(doc:Doc) | {id: doc.id, title: doc.title, snippet: substring(doc.text, 0, 600)}] AS docs,
-               [(d)-[r:DISCUSSED_IN]->(t:Thread) | {id: t.id, channel: t.channel, source: r.source_id}] AS threads,
                [(d)-[:DECIDED_BY]->(p:Person) | {id: p.id, name: p.name}] AS decided_by,
                [(d)-[:SUPERSEDES]->(o:Decision) | {id: o.id, key: o.key, title: o.title}] AS supersedes,
                [(n:Decision)-[:SUPERSEDES]->(d) | {id: n.id, key: n.key, title: n.title}] AS superseded_by,
-               [(d)-[:AFFECTS]->(c:Component) | {id: c.id, name: c.name}] AS affects""", {"id": did})
+               [(d)-[:AFFECTS]->(c:Component) | {id: c.id, name: c.name}] AS affects,
+               [(d)-[r:DISCUSSED_IN]->(t:Thread) | {id: t.id, channel: t.channel, source: r.source_id}] AS threads""", {"id": did})
+               # threads stays last: on FalkorDB 6.0.2 a comprehension with a named relationship empties the ones after it
     if not row:
         return {"decision": None}
     d = row[0]
@@ -703,6 +705,10 @@ def graph_hubs(ctx: Ctx, metric: str = "pagerank", k: int = 10, of: list[str] | 
         rows = ctx.tg.read("""CALL algo.pageRank('Component', 'DEPENDS_ON') YIELD node, score
             RETURN node.id AS id, node.name AS name, score ORDER BY score DESC, id""")
         metric = "pagerank"
+        # report each component's share of the total: FalkorDB 4.x normalizes over the whole graph, 6.x over the components
+        tot = sum(r["score"] for r in rows) or 1.0
+        for r in rows:
+            r["score"] = r["score"] / tot
     for i, r in enumerate(rows):
         r["rank"], r["score"] = i + 1, round(r["score"], 5)
     out = {"metric": metric, "n_components": len(rows), "note": "importance / blast-radius weight, not root-cause likelihood", "hubs": rows[:k]}
@@ -848,7 +854,12 @@ def action_create_ticket(ctx: Ctx, incident_id: str, team_id: str, title: str, b
 
 def action_page_oncall(ctx: Ctx, incident_id: str, person_id: str, reason: str, evidence_ids: list[str]) -> dict:
     g = _gate(ctx, incident_id)
-    status = "executed" if (g["sev"] == 1 and g["g"] >= 0.8 and g["vp"]) else "awaiting_approval"
+    auto = g["sev"] == 1 and g["g"] >= 0.8 and g["vp"]
+    # the interactive demo tenant always asks a human first (DEMO_AUTO_PAGE=1 restores the SEV1 auto-page there too);
+    # evaluation tenants use the full policy
+    if ctx.tg.tenant == os.getenv("DEMO_TENANT", "demo_main") and os.getenv("DEMO_AUTO_PAGE", "0") != "1":
+        auto = False
+    status = "executed" if auto else "awaiting_approval"
     return _action(ctx, incident_id, "page", person_id, "T2", status, {"reason": reason}, evidence_ids)
 
 
