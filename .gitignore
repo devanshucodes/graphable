@@ -11,3 +11,7 @@ apps/web/.next/
 .DS_Store
 *.log
 apps/web/.env*
+
+# local secrets for deployment (never commit)
+.env.*
+!.env.example

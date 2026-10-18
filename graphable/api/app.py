@@ -10,6 +10,7 @@ import json
 import os
 import time
 import uuid
+from pathlib import Path
 from contextlib import asynccontextmanager
 
 import httpx
@@ -44,9 +45,24 @@ def tenant_dep(x_api_key: str | None = Header(default=None)) -> str:
     return t
 
 
-def ensure_demo():
-    if f"t_{DEMO}" not in client().list_graphs():
+SNAPSHOT = os.getenv("DEMO_SNAPSHOT")  # hosted mode: a DUMP of the demo graph shipped with the backend (no golden copy in the DB)
+
+
+def restore_demo():
+    """Put the demo graph back in its starting state. Locally: GRAPH.COPY of the golden snapshot. Hosted (DEMO_SNAPSHOT set):
+    delete the graph, then RESTORE it from the snapshot file, so the database only ever holds one copy."""
+    if SNAPSHOT:
+        payload = Path(SNAPSHOT).read_bytes()
+        con = client().connection
+        con.delete(f"t_{DEMO}")
+        con.restore(f"t_{DEMO}", 0, payload)
+    else:
         fresh_tenant("acme", DEMO)
+
+
+def ensure_demo():
+    if f"t_{DEMO}" not in client().list_graphs():  # first start, or a database that lost its data (no persistence)
+        restore_demo()
 
 
 @asynccontextmanager
@@ -111,6 +127,7 @@ def _summ(out: dict) -> dict:
 @app.get("/v1/health")
 def health():
     try:
+        ensure_demo()  # also self-heals a hosted database that restarted empty
         TenantGraph(DEMO).read("RETURN 1 AS ok")
         db_ok = True
     except Exception:
@@ -412,7 +429,7 @@ def reset():
         if run.task and not run.task.done():
             run.task.cancel()
     RUNS.clear()
-    fresh_tenant("acme", DEMO)
+    restore_demo()
     return {"reset": DEMO}
 
 

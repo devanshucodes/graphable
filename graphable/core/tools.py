@@ -623,9 +623,12 @@ def knowledge_search(ctx: Ctx, query: str, kinds: list[str] | None = None, k: in
             from .embed import embed_query
             qv = embed_query(query)
             for lbl in [x for x in kinds if x != "Message"] + ["Thread"]:
-                rows = ctx.tg.read(f"""CALL db.idx.vector.queryNodes('{lbl}', 'embedding', 6, vecf32($v)) YIELD node, score
-                    RETURN node.id AS id, '{lbl}' AS kind, coalesce(node.title, node.key, '') AS title,
-                           substring(coalesce(node.text, ''), 0, 300) AS snippet, 1 - score AS score""", {"v": qv})
+                try:  # labels without a vector index (e.g. a trimmed hosted graph) are skipped, not fatal
+                    rows = ctx.tg.read(f"""CALL db.idx.vector.queryNodes('{lbl}', 'embedding', 6, vecf32($v)) YIELD node, score
+                        RETURN node.id AS id, '{lbl}' AS kind, coalesce(node.title, node.key, '') AS title,
+                               substring(coalesce(node.text, ''), 0, 300) AS snippet, 1 - score AS score""", {"v": qv})
+                except Exception:
+                    continue
                 for r_ in rows:
                     r_["via"] = "vector"
                 hits += rows
