@@ -1,0 +1,46 @@
+{
+ "all signals (as shipped)": {
+  "switched_off": [],
+  "top1": 0.844,
+  "top3": 0.875,
+  "mrr": 0.875
+ },
+ "graph signals only (recency off)": {
+  "switched_off": [
+   "R"
+  ],
+  "top1": 0.844,
+  "top3": 0.875,
+  "mrr": 0.875
+ },
+ "without dependency coverage and minimality (Cov, F)": {
+  "switched_off": [
+   "Cov",
+   "F"
+  ],
+  "top1": 0.656,
+  "top3": 0.75,
+  "mrr": 0.742
+ },
+ "without past-incident history (K, H)": {
+  "switched_off": [
+   "H",
+   "K"
+  ],
+  "top1": 0.688,
+  "top3": 0.812,
+  "mrr": 0.774
+ },
+ "recency only (graph signals off)": {
+  "switched_off": [
+   "Cov",
+   "F",
+   "H",
+   "K",
+   "P"
+  ],
+  "top1": 0.062,
+  "top3": 0.531,
+  "mrr": 0.343
+ }
+}

@@ -8,7 +8,7 @@
 
 **Team Graphable:** Devanshu Saxena (lead) · Prins Kumar · Vaibhav Tyagi
 
-- **Finds the cause, not the latest deploy.** The agents walk service dependencies and score each recent change by how much of the alerting it explains. On 32 held-out change-caused incidents with planted traps, following the graph ranks the right change first **more than 4× as often as picking a recent change** (75% vs 18%), beats "blame the newest deploy" **24 to 0**, and has the real cause in its **top 3 for nearly 9 in 10** incidents (88%).
+- **Finds the cause, not the latest deploy.** The agents walk service dependencies and score each recent change by how much of the alerting it explains. On 32 held-out change-caused incidents with planted traps, following the graph ranks the right change first **more than 4× as often as picking a recent change** (75% vs 18%), beats "blame the newest deploy" **24 to 0**, and has the real cause in its **top 3 for nearly 9 in 10** incidents (88%). Switch off the graph signals and the same ranker drops from 84% to 6% ([ablation](#is-it-the-graph-an-ablation)).
 - **Agents remember and coordinate through the graph.** Handoff notes, task claims (compare-and-set), idempotent actions, lessons and conversation history are graph nodes. **20 agents racing for one task produce 1 claim; 20 simultaneous pages produce 1 page.**
 - **A company brain that cites its sources.** Ownership, expertise and decisions are extracted from docs, tickets and chats with provenance and kept bi-temporal, so "who owned it in June?" has a correct answer. **29/30** Brain questions correct, **100%** cited, **0** stale answers after a reorg.
 
@@ -279,9 +279,23 @@ Synthetic data and small samples: read these as a demonstration, not a benchmark
 | Gemini review of the ranking | 4 incidents marked contested for a human (1 of them actually wrong) · 0 overrides | review unavailable on 8 of 40 (API timeout): the graph's answer stands | `crew_gemini_mcp.json` |
 | Per incident | 21 MCP calls, 2.5 s (graph only) · 24 calls, 126 s average with Gemini review | review time depends on Gemini API latency; the UI shows the graph's answer within a second and marks it provisional | `system_mcp.json`, `crew_gemini_mcp.json` |
 
+### Is it the graph? An ablation
+
+The same 32 test incidents, re-scored with groups of signals switched off (`evals_out/ablation_test.json`). Ranking only: the ranker must name a cause, so the "not confident" threshold is off. With it, the shipped system scores the 75% above, because it declines to blame a change on 5 of the 32.
+
+| Signals the ranking may use | Right cause first | In the top 3 |
+|---|---|---|
+| All signals (as shipped) | **84%** | 88% |
+| Graph signals only (recency switched off) | **84%** | 88% |
+| Without dependency coverage and minimality (`DEPENDS_ON` paths) | 66% | 75% |
+| Without past-incident history (`CAUSED_BY` edges) | 69% | 81% |
+| Recency only (graph signals switched off) | **6%** | 53% |
+
+All of the accuracy comes from graph relationships: which alerting services sit upstream of each changed component, whether a deeper component explains as much, and which kinds of change caused past incidents. Time alone picks the decoy.
+
 **What the LLM adds, measured:** Gemini disagreed with the graph on 4 test incidents. Letting it override would have fixed 1 (TS-27) and broken 3 correct answers (a non-change, a multi-root and a look-alike incident). So a disagreement now marks the incident *contested* for a human, and the graph's answer stands.
 
-Reproduce: `uv run python -m graphable.evals.rca --set test --tuned` · `uv run python -m graphable.evals.system --bus mcp` (MCP server started with `GRAPHABLE_ALLOW_EVAL_TOKENS=1`) · `uv run pytest -q`.
+Reproduce: `uv run python -m graphable.evals.rca --set test --tuned` · `uv run python -m graphable.evals.ablation` · `uv run python -m graphable.evals.system --bus mcp` (MCP server started with `GRAPHABLE_ALLOW_EVAL_TOKENS=1`) · `uv run pytest -q`.
 
 ## Limitations
 
