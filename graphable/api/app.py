@@ -48,6 +48,7 @@ def tenant_dep(x_api_key: str | None = Header(default=None)) -> str:
 SNAPSHOT = os.getenv("DEMO_SNAPSHOT")  # hosted mode: a DUMP of the demo graph shipped with the backend (no golden copy in the DB)
 SERVE_MCP = os.getenv("SERVE_MCP") == "1"  # hosted mode: this process also serves the MCP endpoint (/mcp), one port for both
 MAX_PLAYED = int(os.getenv("DEMO_MAX_PLAYED", "30"))  # hosted mode: start the demo graph over after this many played scenarios
+MAX_LIVE_RUNS = int(os.getenv("MAX_LIVE_RUNS", "3"))  # hosted mode: crew runs at once (small server; a Gemini review takes 1-2 min)
 if SERVE_MCP:
     from ..mcpserver import server as mcp_server
 
@@ -195,6 +196,8 @@ async def sim_play(req: PlayReq, tenant: str = Depends(tenant_dep)):
         sc = load_scenario("acme", req.kind, req.sid)
     except FileNotFoundError:
         raise HTTPException(404, f"unknown scenario {req.kind}/{req.sid}")
+    if SNAPSHOT and sum(r.status in ("running", "resuming") for r in RUNS.values()) >= MAX_LIVE_RUNS:
+        raise HTTPException(429, "The demo is busy with other visitors' runs. Try again in a minute.")
     tg = TenantGraph(tenant)
     if SNAPSHOT and tenant == DEMO and _played(tg) >= MAX_PLAYED:
         await _reset()  # the shared hosted graph grows with every run; the free database tier has 100 MB

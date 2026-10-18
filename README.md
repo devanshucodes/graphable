@@ -31,8 +31,8 @@
 5. **Ask the Brain** *(track 3)*: "Who owned checkout during INC-0287?" and "Why did we decide ADR-001?". Each answer cites its source.
 6. **Evaluation**: measured results against baselines on 40 held-out incidents.
 
-- Free-plan timing: after a quiet spell the backend needs about a minute to wake up, and a crew run takes about 20–30 s (about 2 s locally).
-- The live demo runs in graph-only mode, without Gemini. [Run it locally](#quickstart) with a Gemini key to see the review step and the written Brain answers.
+- Free-plan timing: after a quiet spell the backend needs about a minute to wake up. The graph's answer appears in about 20–30 s (about 2 s locally). At most 3 runs go at once.
+- Gemini is on: after the graph's answer appears (marked provisional), Gemini reviews it with the same tools, which takes 1–2 minutes. Free-form Brain questions are answered by Gemini choosing the graph tools itself.
 - MCP: `https://graphable-api.onrender.com/mcp` with the header `Authorization: Bearer dev-demo` (outside clients get the read-only tools). API docs: https://graphable-api.onrender.com/docs
 
 ## Demo video
