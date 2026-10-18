@@ -8,18 +8,18 @@ import { AlertTriangle, BellRing, Check, ChevronDown, Clock, Copy, Loader2, Play
 
 type Ev = { seq: number; t: number; type: string; [k: string]: any };
 const HERO: Record<string, { title: string; tests: string; tracks: string[] }> = {
-  H1: { title: "Repeat offender", tests: "Silent root cause. Memory recalls the past fix and who did it.", tracks: ["Connected data", "Memory"] },
-  H2: { title: "Decoy deploy", tests: "Root is a config change on a hub; the newest deploy is innocent.", tracks: ["Connected data"] },
-  H3: { title: "The org moved", tests: "A chat message moves ownership. Paging follows; history stays correct.", tracks: ["Company brain", "Memory"] },
-  H4: { title: "Not a change", tests: "Certificate expiry. No deploy to blame, and the expert has left.", tracks: ["Connected data", "Company brain"] },
+  H1: { title: "Repeat offender", tests: "Many services fail; the cause is hidden. Graphable finds it and remembers who fixed it last time.", tracks: ["Connected data", "Memory"] },
+  H2: { title: "Decoy deploy", tests: "The newest deploy looks guilty but is innocent. Graphable finds the real cause.", tracks: ["Connected data"] },
+  H3: { title: "The org moved", tests: "A team change is announced in chat. Alerts go to the new team, and history is kept.", tracks: ["Company brain", "Memory"] },
+  H4: { title: "Not a change", tests: "An expired certificate, not a deploy. Graphable blames no one and warns that the expert has left.", tracks: ["Connected data", "Company brain"] },
 };
 const TERMS: Record<string, [string, string]> = {
   Cov: ["Explains the alerts", "Share of alerting services that depend on it, discounted for hubs"],
-  F: ["Minimal explanation", "No deeper component explains as much"],
-  K: ["Change-type risk (learned)", "How often this kind of change was rolled back or confirmed as a cause"],
-  R: ["Recency", "How shortly before detection it landed"],
-  H: ["History", "Same kind of change caused incidents here before"],
-  P: ["Proximity", "Dependency hops from the symptoms"],
+  F: ["Most specific cause", "No deeper component explains as much"],
+  K: ["Risky kind of change (learned)", "How often this kind of change was rolled back or confirmed as a cause"],
+  R: ["How recent", "How shortly before detection it landed"],
+  H: ["Caused trouble here before", "Same kind of change caused incidents here before"],
+  P: ["Close to the failures", "Dependency hops from the symptoms"],
   S: ["Alerting itself", "The component raised its own alert"],
 };
 const STEPS: [string, string?][] = [["Triage"], ["Investigate"], ["Review", "Gemini + verifier"], ["Respond"], ["Approve"], ["Learn"]];
@@ -501,6 +501,7 @@ export default function Incidents() {
           <div className="pt-6">
             {tab === "overview" && (!root ? <div className="space-y-3"><div className="skeleton h-28" /><div className="skeleton h-64" /></div> : (
               <div className="fade-in space-y-9">
+                <PlainWords inc={inc} inv={inv} root={root} resp={resp} tri={tri} nw={nw} actions={detail?.actions} />
                 <RootCause inv={inv} root={root} ver={ver} nw={nw} prov={isProv} live={busy} />
                 {chain && (
                   <Section title="How it connects" right={<span className="flex items-center gap-3"><span className="flex items-center gap-1.5"><i className="h-0.5 w-3.5 bg-red" />ranked path</span><span className="flex items-center gap-1.5"><i className="h-0 w-3.5 border-t border-dashed border-[#8f7fe0]" />memory / expertise</span></span>}>
@@ -625,6 +626,32 @@ export default function Incidents() {
 }
 
 const Pending = () => <span className="skeleton inline-block h-3.5 w-24 align-middle" />;
+
+/** The incident in one plain paragraph, built only from what the crew found (nothing here is generated text). */
+function PlainWords({ inc, inv, root, resp, tri, nw, actions }: any) {
+  const n = inc?.intake?.alerting?.length;
+  const decoy = nw && !nw.is_root ? nw : null;
+  const s0 = inv.similar?.[0], fixer = s0?.fixed_by?.[0];
+  const page = actions?.find((a: any) => a.kind === "page"), ticket = actions?.find((a: any) => a.kind === "ticket");
+  const what = arrow(cfg(root.summary));
+  const c0 = inv.candidates?.find((c: any) => c.change_id && c.change_id === root.change_id), m = c0?.minutes_before_detection;
+  const items: any[] = [
+    <>{n ? `${n} services started failing at once` : "Several services started failing"}{tri?.severity ? ` (severity SEV${tri.severity})` : ""}.</>,
+    root.type === "change"
+      ? <><b className="font-medium">Cause:</b> someone changed <b className="font-medium">{root.entity_name}</b>{m != null ? ` ${Math.round(m)} minutes before the alerts` : ""}{what ? ` (${what})` : ""}.</>
+      : <><b className="font-medium">Cause:</b> not a recent change. Most likely origin: <b className="font-medium">{root.entity_name}</b>{root.fault_type && root.fault_type !== "unknown" ? ` (${fault(root.fault_type)})` : ""}.</>,
+  ];
+  if (decoy) items.push(<>It is <b className="font-medium">not the newest change</b> ({arrow(cfg(decoy.summary))} on {decoy.entity_name}); that one does not explain the failures.</>);
+  if (s0) items.push(<>This happened before: <b className="font-medium">{s0.key}</b>{fixer ? <>, fixed by <b className="font-medium">{fixer.name}</b>{fixer.active === false ? " (who has since left)" : ""}</> : null}{s0.runbooks?.[0] ? <> using runbook {s0.runbooks[0].key}</> : null}.</>);
+  if (resp?.owner?.team) items.push(<><b className="font-medium">{resp.owner.team}</b> owns {root.entity_name}{resp.oncall?.name ? <>, and <b className="font-medium">{resp.oncall.name}</b> is on call</> : null}.</>);
+  if (ticket || page) items.push(<>{ticket ? (ticket.status === "executed" ? "A ticket was filed automatically. " : "A ticket was drafted. ") : ""}{page ? (page.status === "awaiting_approval" ? "Paging the on-call person waits for your approval." : page.status === "approved" ? "You approved paging the on-call person." : page.status === "rejected" ? "You rejected the page." : "The on-call person was paged.") : ""}</>);
+  return (
+    <div className="rounded-lg border border-line bg-sunken px-5 py-4">
+      <div className="mb-1.5 text-[12px] font-medium text-ink-3">In plain words</div>
+      <ul className="list-disc space-y-1 pl-5 text-[13.5px] leading-6 text-ink">{items.map((x, i) => <li key={i}>{x}</li>)}</ul>
+    </div>
+  );
+}
 
 function RootCause({ inv, root, ver, nw, prov, live }: any) {
   const change = root.type === "change";
