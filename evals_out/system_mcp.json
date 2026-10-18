@@ -22,8 +22,8 @@
    "awaiting_approval": 39,
    "executed": 1
   },
-  "avg_tool_calls": 18.175,
-  "avg_seconds": 1.656,
+  "avg_tool_calls": 21.175,
+  "avg_seconds": 2.302,
   "rows": [
    {
     "id": "TS-01",
@@ -40,8 +40,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 2.03
+    "tool_calls": 21,
+    "seconds": 2.36
    },
    {
     "id": "TS-02",
@@ -58,8 +58,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 1.81
+    "tool_calls": 22,
+    "seconds": 1.38
    },
    {
     "id": "TS-03",
@@ -76,8 +76,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 2.22
+    "tool_calls": 22,
+    "seconds": 3.81
    },
    {
     "id": "TS-04",
@@ -94,8 +94,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 2.37
+    "tool_calls": 22,
+    "seconds": 2.99
    },
    {
     "id": "TS-05",
@@ -112,8 +112,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.85
+    "tool_calls": 21,
+    "seconds": 1.32
    },
    {
     "id": "TS-06",
@@ -130,8 +130,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 2.27
+    "tool_calls": 22,
+    "seconds": 2.95
    },
    {
     "id": "TS-07",
@@ -148,8 +148,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 2.08
+    "tool_calls": 22,
+    "seconds": 2.92
    },
    {
     "id": "TS-08",
@@ -166,8 +166,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.65
+    "tool_calls": 21,
+    "seconds": 1.29
    },
    {
     "id": "TS-09",
@@ -184,8 +184,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 1.39
+    "tool_calls": 22,
+    "seconds": 1.65
    },
    {
     "id": "TS-10",
@@ -202,8 +202,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 16,
-    "seconds": 1.49
+    "tool_calls": 19,
+    "seconds": 0.65
    },
    {
     "id": "TS-11",
@@ -220,8 +220,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 16,
-    "seconds": 1.61
+    "tool_calls": 19,
+    "seconds": 1.75
    },
    {
     "id": "TS-12",
@@ -238,8 +238,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 1.81
+    "tool_calls": 22,
+    "seconds": 3.56
    },
    {
     "id": "TS-13",
@@ -256,8 +256,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 16,
-    "seconds": 0.85
+    "tool_calls": 19,
+    "seconds": 1.74
    },
    {
     "id": "TS-14",
@@ -274,8 +274,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.33
+    "tool_calls": 21,
+    "seconds": 3.28
    },
    {
     "id": "TS-15",
@@ -292,8 +292,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.69
+    "tool_calls": 21,
+    "seconds": 2.33
    },
    {
     "id": "TS-16",
@@ -310,8 +310,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 1.92
+    "tool_calls": 22,
+    "seconds": 3.59
    },
    {
     "id": "TS-17",
@@ -328,8 +328,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.55
+    "tool_calls": 21,
+    "seconds": 1.92
    },
    {
     "id": "TS-18",
@@ -346,8 +346,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.71
+    "tool_calls": 21,
+    "seconds": 1.88
    },
    {
     "id": "TS-19",
@@ -364,8 +364,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 1.77
+    "tool_calls": 22,
+    "seconds": 3.38
    },
    {
     "id": "TS-20",
@@ -382,8 +382,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.63
+    "tool_calls": 21,
+    "seconds": 1.76
    },
    {
     "id": "TS-21",
@@ -400,8 +400,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.58
+    "tool_calls": 21,
+    "seconds": 2.58
    },
    {
     "id": "TS-22",
@@ -418,8 +418,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 17,
-    "seconds": 1.44
+    "tool_calls": 20,
+    "seconds": 1.75
    },
    {
     "id": "TS-23",
@@ -436,8 +436,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 16,
-    "seconds": 1.4
+    "tool_calls": 19,
+    "seconds": 2.35
    },
    {
     "id": "TS-24",
@@ -454,8 +454,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 1.62
+    "tool_calls": 22,
+    "seconds": 2.6
    },
    {
     "id": "TS-25",
@@ -472,8 +472,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.67
+    "tool_calls": 21,
+    "seconds": 1.94
    },
    {
     "id": "TS-26",
@@ -490,8 +490,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.74
+    "tool_calls": 21,
+    "seconds": 1.94
    },
    {
     "id": "TS-27",
@@ -508,8 +508,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 1.92
+    "tool_calls": 22,
+    "seconds": 3.38
    },
    {
     "id": "TS-28",
@@ -526,8 +526,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 1.73
+    "tool_calls": 22,
+    "seconds": 2.61
    },
    {
     "id": "TS-29",
@@ -544,8 +544,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 16,
-    "seconds": 1.37
+    "tool_calls": 19,
+    "seconds": 1.6
    },
    {
     "id": "TS-30",
@@ -562,8 +562,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.75
+    "tool_calls": 21,
+    "seconds": 2.65
    },
    {
     "id": "TS-31",
@@ -580,8 +580,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.79
+    "tool_calls": 21,
+    "seconds": 2.65
    },
    {
     "id": "TS-32",
@@ -598,8 +598,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 2.01
+    "tool_calls": 21,
+    "seconds": 2.64
    },
    {
     "id": "TS-33",
@@ -616,8 +616,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 2.02
+    "tool_calls": 21,
+    "seconds": 2.68
    },
    {
     "id": "TS-34",
@@ -634,8 +634,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 1.68
+    "tool_calls": 22,
+    "seconds": 2.71
    },
    {
     "id": "TS-35",
@@ -652,8 +652,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 1.51
+    "tool_calls": 22,
+    "seconds": 2.69
    },
    {
     "id": "TS-36",
@@ -670,8 +670,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 18,
-    "seconds": 1.75
+    "tool_calls": 21,
+    "seconds": 2.63
    },
    {
     "id": "TS-37",
@@ -688,8 +688,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 1.75
+    "tool_calls": 22,
+    "seconds": 2.71
    },
    {
     "id": "TS-38",
@@ -706,8 +706,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 1.23
+    "tool_calls": 22,
+    "seconds": 1.82
    },
    {
     "id": "TS-39",
@@ -724,8 +724,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 0.62
+    "tool_calls": 22,
+    "seconds": 0.96
    },
    {
     "id": "TS-40",
@@ -742,8 +742,8 @@
     "llm_applied": null,
     "llm_error": null,
     "contested": false,
-    "tool_calls": 19,
-    "seconds": 0.64
+    "tool_calls": 22,
+    "seconds": 0.69
    }
   ]
  },
@@ -811,11 +811,11 @@
   },
   "brain_qa": {
    "n": 30,
-   "correct": 28,
+   "correct": 29,
    "cited_rate": 1.0,
    "by_type": {
     "who_knows": "6/6",
-    "why_decision": "4/6",
+    "why_decision": "5/6",
     "what_breaks": "6/6",
     "who_fixed_similar": "6/6",
     "as_of_owner": "4/4",
@@ -827,56 +827,56 @@
      "type": "who_knows",
      "q": "Who knows partner-api best?",
      "ok": true,
-     "answer": "For partner-api: Colette Wilson (score 77.68; ticket, runbook, ticket), Hans-Ulrich Leduc (score 59.89; design, design, design), Brandon Medina (score 57.26; change, change, change). Bus factor 2. For",
+     "answer": "For partner-api: Colette Wilson (ticket, runbook), Hans-Ulrich Leduc (design), Brandon Medina (change). Bus factor 2. Former expert Tomas Brandt has left; the knowledge now rests mostly with Colette W",
      "cited": true
     },
     {
      "type": "who_knows",
      "q": "Who knows inventory best?",
      "ok": true,
-     "answer": "For inventory: Ale Morcillo (score 120.82; fixer, fixer, postmortem), Bryan L\u00f6f (score 85.3; ticket, ticket, change), Balendra Wable (score 70.92; ticket, design, ticket). Bus factor 1. Former expert ",
+     "answer": "For inventory: Ale Morcillo (fixer, postmortem), Bryan L\u00f6f (ticket, change), Balendra Wable (ticket, design). Bus factor 1. Former expert Tomas Brandt has left; the knowledge now rests mostly with Ale",
      "cited": true
     },
     {
      "type": "who_knows",
      "q": "Who knows returns best?",
      "ok": true,
-     "answer": "For returns: S\u00e9bastien Ferrer (score 153.14; fixer, fixer, fixer), Steven Koster (score 127.76; fixer, fixer, fixer), Michelle Samuelsson (score 108.93; fixer, fixer, fixer). Bus factor 2. Former expe",
+     "answer": "For returns: S\u00e9bastien Ferrer (fixer), Steven Koster (fixer), Michelle Samuelsson (fixer). Bus factor 2. Former expert Tomas Brandt has left; the knowledge now rests mostly with S\u00e9bastien Ferrer.",
      "cited": true
     },
     {
      "type": "who_knows",
      "q": "Who knows mobile-bff best?",
      "ok": true,
-     "answer": "For mobile-bff: Colette Wilson (score 85.44; ticket, runbook, ticket), Anita Kramer (score 77.82; fixer, fixer, fixer), Flavio Brewer (score 55.17; ticket, ticket, change). Bus factor 2. Former expert",
+     "answer": "For mobile-bff: Colette Wilson (ticket, runbook), Anita Kramer (fixer), Flavio Brewer (ticket, change). Bus factor 2. Former expert Tomas Brandt has left; the knowledge now rests mostly with Colette W",
      "cited": true
     },
     {
      "type": "who_knows",
      "q": "Who knows address-validation best?",
      "ok": true,
-     "answer": "For address-validation: Hans-Martin Martel (score 72.12; runbook, ticket, postmortem), Aashi Baker (score 57.59; ticket, ticket, change), Sam Okafor (score 52.0; ticket, change, change). Bus factor 2.",
+     "answer": "For address-validation: Hans-Martin Martel (runbook, ticket, postmortem), Aashi Baker (ticket, change), Sam Okafor (ticket, change). Bus factor 2. Former expert Tomas Brandt has left; the knowledge no",
      "cited": true
     },
     {
      "type": "who_knows",
      "q": "Who knows billing best?",
      "ok": true,
-     "answer": "For billing: Luke Bridges (score 83.65; fixer, fixer, postmortem), Brittany R\u00e4del (score 80.11; runbook, runbook, fixer), Nathalie Walton (score 77.78; fixer, ticket, design). Bus factor 3. Former exp",
+     "answer": "For billing: Luke Bridges (fixer, postmortem), Brittany R\u00e4del (runbook, fixer), Nathalie Walton (fixer, ticket, design). Bus factor 3. Former expert Tomas Brandt has left; the knowledge now rests most",
      "cited": true
     },
     {
      "type": "why_decision",
      "q": "Why did we decide: Standardize retry and backoff for scheduler?",
-     "ok": false,
-     "answer": "ADR-079 \"Standardize retry and backoff for scheduler\" (accepted). Context: The scheduler service needs a change to standardize retry and backoff for scheduler.. Discussed in #team-platform.",
+     "ok": true,
+     "answer": "ADR-037 \"Standardize retry and backoff for scheduler\" (superseded). Context: The scheduler requires a change to standardize its retry and backoff mechanism.. Discussed in #team-platform. Superseded by",
      "cited": true
     },
     {
      "type": "why_decision",
      "q": "Why did we decide: Require two reviewers for search config?",
-     "ok": false,
-     "answer": "ADR-045 \"Require two reviewers for inventory config\" (accepted). Context: Inventory needs a change: require two reviewers for inventory config.. Discussed in #team-pricing_inventory.",
+     "ok": true,
+     "answer": "ADR-088 \"Require two reviewers for search config\" (accepted). Context: ADR-088: Require two reviewers for search config. Discussed in #team-discovery.",
      "cited": true
     },
     {
@@ -896,8 +896,8 @@
     {
      "type": "why_decision",
      "q": "Why did we decide: Standardize retry and backoff for scheduler?",
-     "ok": true,
-     "answer": "ADR-079 \"Standardize retry and backoff for scheduler\" (accepted). Context: The scheduler service needs a change to standardize retry and backoff for scheduler.. Discussed in #team-platform.",
+     "ok": false,
+     "answer": "ADR-037 \"Standardize retry and backoff for scheduler\" (superseded). Context: The scheduler requires a change to standardize its retry and backoff mechanism.. Discussed in #team-platform. Superseded by",
      "cited": true
     },
     {
@@ -1023,7 +1023,7 @@
      "type": "bus_factor",
      "q": "What is the bus factor of vault and who should we train?",
      "ok": true,
-     "answer": "For vault: Ana Ferreira (score 53.34; change, change, change), Eva Mattsson (score 36.04; ticket, change, change), Priya Raman (score 33.41; postmortem, change, review). Bus factor 1. Former expert To",
+     "answer": "For vault: Ana Ferreira (change), Eva Mattsson (ticket, change), Priya Raman (postmortem, change, review). Bus factor 1. Former expert Tomas Brandt has left; the knowledge now rests mostly with Ana Fe",
      "cited": true
     },
     {
@@ -1083,7 +1083,7 @@
     "K": 1.0,
     "gate_score": 0.7979,
     "ticket": "executed",
-    "recalled_previous_LC": 3,
+    "recalled_previous_LC": 2,
     "lesson_votes": 1
    },
    {
@@ -1136,5 +1136,5 @@
    }
   ]
  },
- "seconds": 42.9
+ "seconds": 58.6
 }

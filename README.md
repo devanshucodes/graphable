@@ -6,7 +6,7 @@
 
 **Tracks entered:** (1) Agents That Act on Connected Data · (2) Agent Memory & Coordination · (3) Company Brain
 
-- **Finds the cause, not the latest deploy.** The agents walk service dependencies and score each recent change by how much of the alerting it explains. On 40 held-out incidents with planted traps they get **75% top-1** (picking a random recent change: 18%; blaming the newest change: 0%).
+- **Finds the cause, not the latest deploy.** The agents walk service dependencies and score each recent change by how much of the alerting it explains. On 32 held-out change-caused incidents with planted traps, the right change is ranked first **75% of the time** (picking a random recent change: 18%; blaming the newest change: 0%).
 - **Agents remember and coordinate through the graph.** Handoff notes, task claims (compare-and-set), idempotent actions, lessons and conversation history are graph nodes. **20 agents racing for one task produce 1 claim; 20 simultaneous pages produce 1 page.**
 - **A company brain that cites its sources.** Ownership, expertise and decisions are extracted from docs, tickets and chats with provenance and kept bi-temporal, so "who owned it in June?" has a correct answer. **29/30** Brain questions correct, **100%** cited, **0** stale answers after a reorg.
 
@@ -62,14 +62,14 @@ flowchart LR
 - Code does traversal, scoring, verification and gating. The LLM reviews, explains and drafts.
 - Agents may only cite `evidence_id`s that tools returned. A code verifier re-checks that every cited relationship existed at incident time.
 - Facts are never deleted, only closed (`valid_to`), so history stays queryable.
-- The tenant comes from the auth token, never from the LLM.
+- The tenant comes from the auth token, never from the LLM. The MCP server enforces each agent role's tool list; external clients get the read-only tools.
 - A ticket is filed automatically only with a verified path and enough confidence. A page needs human approval, except for SEV1 incidents with a verified path and very high confidence. A rollback is only ever proposed.
 
 **Agents**
-- **Triage:** blast radius, severity, PageRank rank of the alerting services, similar incidents → handoff.
+- **Triage:** ranks the alerting services with FalkorDB PageRank and starts from the most central ones: blast radius, severity, likely team, similar incidents → handoff.
 - **Investigator:** reads the handoff, ranks root causes, recalls similar incidents and runbooks → hypothesis and handoff. With a Gemini key, Gemini reviews the ranking with the same tools; if it disagrees, the incident is marked *contested* for a human instead of overriding the graph.
 - **Responder:** reads the handoff, finds owner, on-call and real experts, takes gated actions, drafts the status update.
-- **Brain:** company Q&A with citations and conversation memory.
+- **Brain:** company Q&A with citations and conversation memory. Common questions (ownership as of a date, experts, blast radius, decisions, staleness, past fixes) go to the matching graph tools; for other questions, with a Gemini key, Gemini chooses the graph tools itself over MCP and every sentence must cite an `evidence_id` those tools returned.
 - **Scribe:** consolidates memory, turns feedback into lessons and reflections.
 - **Ingestor:** docs, tickets and chats → facts with provenance.
 
@@ -140,7 +140,7 @@ erDiagram
 | Evidence · Hypothesis · Handoff · Task · Action · AgentRun · AgentStep · Answer · Session · Turn | `tool, node_ids, edge_keys` · `claim, status, confidence` · `summary, open_questions, verification_status` · `status, version, lease_until` · `idem_key, tier, status` | episodic (created at run time) |
 | Lesson · Reflection | `text, votes, status` | procedural |
 
-**Indexes and constraints** (`graphable/core/schema.py`): range indexes on `id` for every label and on the time and key properties the queries filter on, including relationship-property indexes on `DEPENDS_ON.valid_to` and `OWNS.valid_to`; full-text indexes on components (name and aliases), people, incidents, runbooks, docs, tickets and messages; unique `id` constraints; 768-dimension cosine vector indexes on Incident, Thread, Doc, Ticket and Runbook when embeddings are enabled.
+**Indexes and constraints** (`graphable/core/schema.py`): range indexes on `id` for every label and on the time and key properties the queries filter on (relationship-property indexes on `DEPENDS_ON.valid_to` and `OWNS.valid_to` exist, but in the current plans the time filter is applied after the bounded traversal); full-text indexes on components (name and aliases), people, incidents, runbooks, docs, tickets and messages; unique `id` constraints; 768-dimension cosine vector indexes on Incident, Thread, Doc, Ticket and Runbook when embeddings are enabled.
 
 **Tenancy:** one graph per tenant (`t_acme`, `t_globex`, `t_demo_main`). `golden_*` snapshots are cloned with `GRAPH.COPY` for each demo reset and each evaluation scenario.
 
@@ -223,9 +223,9 @@ Synthetic data and small samples: read these as a demonstration, not a benchmark
 
 | Capability | Result | Baseline / note | Source |
 |---|---|---|---|
-| Root cause, top-1 / top-3 / MRR | **75% / 88% / 0.88** | untuned weights 47% · random recent change 18% · fewest hops, then newest 16% · newest change 0% | `rca_test.json` |
-| Look-alike traps · non-change incidents | 100% · correctly declined to blame a change 75%, right origin 100% | multi-root incidents: 50% | `rca_test.json` |
-| Claims backed by real graph relationships | 100% (graph-only crew) · 93% with Gemini review | rejected claims are shown as rejected, never acted on | `system_mcp.json`, `crew_gemini_mcp.json` |
+| Root cause, change-caused incidents (n=32) | **top-1 75% · top-3 88% · MRR 0.88** | untuned weights 47% · random recent change 18% · fewest hops, then newest 16% · newest change 0%. Wrongly said "not a change": 16% | `rca_test.json` |
+| Incidents not caused by a change (n=8) | correctly declined to blame a change 75%, right origin 100% | look-alike traps (n=4): 100% · multi-root (n=4): 50% | `rca_test.json` |
+| Claims backed by real graph relationships | 100% (graph-only crew) · 96% with Gemini review | rejected claims are shown as rejected, never acted on | `system_mcp.json`, `crew_gemini_mcp.json` |
 | Cited paths that exist at incident time | 100% |  | `system_mcp.json` |
 | Paged the correct team | 82% |  | `system_mcp.json` |
 | Concurrency | 20 racing claims → 1 · 20 simultaneous pages → 1 action |  | `system_mcp.json` |
@@ -234,7 +234,8 @@ Synthetic data and small samples: read these as a demonstration, not a benchmark
 | Answers after a reorg | 6/6 correct, 0 stale |  | `system_mcp.json` |
 | Learning a new failure pattern | wrong 3×, then 5/5 | after on-call corrections are written to the graph | `system_mcp.json` |
 | Fact extraction from docs, tickets, chats | Gemini precision 0.86 / recall 0.90 | rules 0.86 / 0.86 | `extraction_*.json` |
-| Per incident | 21 MCP calls, 2.6 s (graph only) · 23 calls, 35 s (with Gemini) |  | `system_mcp.json`, `crew_gemini_mcp.json` |
+| Gemini review of the ranking | 4 incidents marked contested for a human (1 of them actually wrong) · 0 overrides | review unavailable on 8 of 40 (API timeout): the graph's answer stands | `crew_gemini_mcp.json` |
+| Per incident | 21 MCP calls, 2.3 s (graph only) · 24 calls, 126 s average with Gemini review | review time depends on Gemini API latency; the UI shows the graph's answer within a second and marks it provisional | `system_mcp.json`, `crew_gemini_mcp.json` |
 
 **What the LLM adds, measured:** letting Gemini override the graph's ranking fixed 1 incident and broke 3 look-alike traps. So a disagreement now marks the incident *contested* for a human, and the graph's answer stands.
 
@@ -247,6 +248,8 @@ Reproduce: `uv run python -m graphable.evals.rca --set test --tuned` · `uv run 
 - **20% of test incidents (8 of 40) got an automatically filed ticket that pointed at the wrong root cause** (ticket precision 77%). Pages and rollbacks therefore stay human-gated.
 - Multi-root incidents are weaker (0.50 top-1), and extraction of `AFFECTS` relationships is the weakest relation (precision 0.60).
 - Graph algorithms (`algo.*`) see every `DEPENDS_ON` edge, including closed ones; the bi-temporal filters apply to the Cypher traversals.
+- Any chat author can move ownership with a message; there is no authority check yet (the change is recorded with its source, so it is auditable and reversible).
+- Two intakes racing on the same alerts could both open an incident; the demo runs one intake at a time.
 - Pages, tickets and rollbacks are simulated and recorded in the graph; there are no real integrations.
 
 ## Data (100% synthetic)

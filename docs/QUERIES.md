@@ -184,7 +184,7 @@ RETURN DISTINCT a.id AS a, b.id AS b
 ```
 
 ## 9. Coordination: atomic compare-and-set task claim (one writer per graph)
-The triage, investigate and respond phases each claim their `Task` before they start. If the claim returns no row, another worker holds the task and the phase stops. The claim is re-entrant for the current holder (`t.claimed_by = $agent`) while the task is `WORKING`.
+The triage, investigate and respond phases each claim their `Task` before they start. If the claim returns no row, another worker holds the task and the phase stops. The worker id is the agent role plus the crew run (`investigator:3f9a…`), so a second crew on the same incident loses the claim even with the same role; the claim is re-entrant for its current holder while the task is `WORKING`.
 ```cypher
 MATCH (t:Task {id:$id})
 WHERE t.status = 'SUBMITTED' OR (t.status = 'WORKING' AND (t.lease_until < $now OR t.claimed_by = $agent))
@@ -199,18 +199,19 @@ MATCH (i:Incident {id:$inc}) MERGE (fa:Agent {id:$from}) ON CREATE SET fa.name =
 MERGE (ta:Agent {id:$to}) ON CREATE SET ta.name = $ton
 WITH i, fa, ta
 CREATE (h:Handoff {id:$id, from_agent:$fromn, to_agent:$ton, summary:$s, open_questions:$oq, verification_status:'unverified',
-        ts:$ts, mem:'episodic'})
+        ts:$ts, recorded_at:timestamp(), root_type:$rt, root_entity_id:$re, root_change_id:$rc, confidence:$cf, mem:'episodic'})
 CREATE (h)-[:FOR]->(i), (h)-[:FROM]->(fa), (h)-[:TO]->(ta)
 WITH h OPTIONAL MATCH (e:Evidence) WHERE e.id IN $ev
 FOREACH (_ IN CASE WHEN e IS NULL THEN [] ELSE [1] END | CREATE (h)-[:CARRIES]->(e))
 RETURN DISTINCT h.id AS id
 ```
-The receiving agent reads its latest handoff from the graph (`memory_inbox`), then marks it accepted:
+The Investigator's handoff carries its conclusion as properties (`root_type`, `root_entity_id`, `root_change_id`, `confidence`); the Responder takes the root cause from it. The receiving agent reads its latest handoff from the graph (`memory_inbox`), anchored on the incident, then marks it accepted:
 ```cypher
-MATCH (h:Handoff {to_agent:$role})-[:FOR]->(:Incident {id:$inc})
+MATCH (:Incident {id:$inc})<-[:FOR]-(h:Handoff) WHERE h.to_agent = $role
 OPTIONAL MATCH (h)-[:CARRIES]->(e:Evidence)
-WITH h, collect(e.id) AS ev ORDER BY h.ts DESC, h.id DESC LIMIT 1
-RETURN h.id AS id, h.from_agent AS from_agent, h.summary AS summary, h.open_questions AS open_questions, ev
+WITH h, collect(e.id) AS ev ORDER BY coalesce(h.recorded_at, 0) DESC, h.ts DESC LIMIT 1
+RETURN h.id AS id, h.from_agent AS from_agent, h.summary AS summary, h.open_questions AS open_questions, ev,
+       h.root_type AS root_type, h.root_entity_id AS root_entity_id, h.root_change_id AS root_change_id, h.confidence AS confidence
 ```
 ```cypher
 MATCH (h:Handoff {id:$id}) SET h.verification_status = 'accepted', h.accepted_by = $agent, h.accepted_at = $now
