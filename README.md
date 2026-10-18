@@ -2,7 +2,7 @@
 
 **When production breaks, Graphable's agents walk a FalkorDB graph of the company (services, changes, people, docs, chats and past incidents) to find the root cause, the owner, the person who actually knows the system, and how it was fixed last time. Every claim cites a graph path that code re-checks, and a human approves anything risky.**
 
-[Demo video](#demo-video) · [Run it locally](#quickstart) · [Graph data model](#graph-data-model) · [Cypher queries](docs/QUERIES.md) · [Results](#results)
+**[Live demo](https://graphable.onrender.com)** · [Demo video](#demo-video) · [Run it locally](#quickstart) · [Graph data model](#graph-data-model) · [Cypher queries](docs/QUERIES.md) · [Results](#results)
 
 **Tracks entered:** (1) Agents That Act on Connected Data · (2) Agent Memory & Coordination · (3) Company Brain
 
@@ -15,6 +15,15 @@
 > All data is synthetic: a fictional company ("Acme Commerce") with generated names on `*-fake.dev` domains. Built with an AI coding assistant; see the [disclosure](#ai-assistance-disclosure).
 
 ---
+
+## Live demo
+
+**https://graphable.onrender.com**: the whole product on free hosting. The demo graph is in FalkorDB Cloud, the API and the MCP server run as one service on Render, and the web app is a static site.
+
+- On the Incidents page, pick a scenario and click **Run**. If someone ran it before you, click **Reset demo** first.
+- Free-plan timing: after a quiet spell the backend needs about a minute to wake up, and a crew run takes about 20–30 s (about 2 s locally).
+- The live demo runs in graph-only mode, without Gemini. [Run it locally](#quickstart) with a Gemini key to see the review step and the written Brain answers.
+- MCP: `https://graphable-api.onrender.com/mcp` with the header `Authorization: Bearer dev-demo` (outside clients get the read-only tools). API docs: https://graphable-api.onrender.com/docs
 
 ## Demo video
 
@@ -182,7 +191,7 @@ Every query and algorithm the product depends on is in **[docs/QUERIES.md](docs/
 
 **Prerequisites:** Docker with Compose v2. For the manual path: Python 3.12 with [uv](https://docs.astral.sh/uv/), and Node.js 20.9 or newer. A Gemini API key is optional.
 
-There is no hosted deployment; the full stack runs locally with one command.
+The hosted demo is at https://graphable.onrender.com (see [Live demo](#live-demo)). The full stack also runs locally with one command.
 
 ### Option A: Docker (one command)
 
@@ -229,6 +238,12 @@ claude mcp add --transport http graphable http://localhost:8765/mcp --header "Au
 ```
 
 Any MCP client that supports streamable HTTP can connect the same way: URL `http://localhost:8765/mcp`, header `Authorization: Bearer dev-acme`. The token selects the tenant.
+
+To try the hosted demo instead (read-only tools):
+
+```bash
+claude mcp add --transport http graphable-live https://graphable-api.onrender.com/mcp --header "Authorization: Bearer dev-demo"
+```
 
 ### Optional: Gemini
 
