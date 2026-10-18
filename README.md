@@ -6,6 +6,8 @@
 
 **Tracks entered:** (1) Agents That Act on Connected Data · (2) Agent Memory & Coordination · (3) Company Brain
 
+**Team Graphable:** Devanshu Saxena (lead) · Prins Kumar · Vaibhav Tyagi
+
 - **Finds the cause, not the latest deploy.** The agents walk service dependencies and score each recent change by how much of the alerting it explains. On 32 held-out change-caused incidents with planted traps, the right change is ranked first **75% of the time** (picking a random recent change: 18%; blaming the newest change: 0%).
 - **Agents remember and coordinate through the graph.** Handoff notes, task claims (compare-and-set), idempotent actions, lessons and conversation history are graph nodes. **20 agents racing for one task produce 1 claim; 20 simultaneous pages produce 1 page.**
 - **A company brain that cites its sources.** Ownership, expertise and decisions are extracted from docs, tickets and chats with provenance and kept bi-temporal, so "who owned it in June?" has a correct answer. **29/30** Brain questions correct, **100%** cited, **0** stale answers after a reorg.
@@ -321,6 +323,6 @@ tests/               integration tests
 
 ## AI assistance disclosure
 
-Graphable was built by Devanshu Saxena (team "Graphable") with **Claude (Anthropic), used as an AI coding assistant through Claude Code**. Claude did the literature review, proposed designs, and wrote most of the code, tests and documentation. Devanshu chose the problem and the tracks; made the stack and architecture decisions (FalkorDB as the system of record, Gemini as the LLM, LangGraph for the crew, a real MCP server rather than direct calls, a custom web UI, a 30–50k-node dataset with full docs/tickets/chats extraction); directed the product and UI, including rejecting two UI designs; and asked for independent multi-agent reviews of the finished project, whose findings were then fixed. Gemini (Google) is an optional runtime dependency, not a coding assistant.
+Graphable was built by team Graphable (Devanshu Saxena, lead; Prins Kumar; Vaibhav Tyagi) with **Claude (Anthropic), used as an AI coding assistant through Claude Code**. Claude did the literature review, proposed designs, and wrote most of the code, tests and documentation. The team, led by Devanshu, chose the problem and the tracks; made the stack and architecture decisions (FalkorDB as the system of record, Gemini as the LLM, LangGraph for the crew, a real MCP server rather than direct calls, a custom web UI, a 30–50k-node dataset with full docs/tickets/chats extraction); directed the product and UI, including rejecting two UI designs; and asked for independent multi-agent reviews of the finished project, whose findings were then fixed. Gemini (Google) is an optional runtime dependency, not a coding assistant.
 
 Problems the evaluations caught and how they were fixed: hub services gluing unrelated alerts into one incident (no correlation through hubs) · changes after detection being rewarded (causes must come before symptoms) · a bias toward silent roots (coverage-based scoring) · an over-confident prior for unseen change types (empirical-Bayes smoothing) · FalkorDB's 10k result limit truncating reads (paging) · a prompt-only tool budget that let some runs loop (budget enforced in code) · an LLM override policy that hurt accuracy (contested instead of override).
