@@ -41,6 +41,23 @@ Remove FalkorDB and nothing works: there are no root-cause candidates, no "who o
 | Who actually knows vault? | Expertise computed from fixes, postmortems, runbooks, tickets, changes and help answers, with time decay, bus factor and departed experts |
 | Why did we decide ADR-007? | `(Decision)-[:DOCUMENTED_IN]->(Doc)`, `-[:DISCUSSED_IN]->(Thread)`, `-[:DECIDED_BY]->(Person)`, `-[:SUPERSEDES]->(Decision)` |
 
+### Every agent decision, and the graph query behind it
+
+The agents don't guess: each decision below is computed from what a FalkorDB query returns, and the UI shows the query shape next to each tool call.
+
+| Decision | Who decides | What the graph provides |
+|---|---|---|
+| Which alerts form one incident | Intake | alerting components within 2 `DEPENDS_ON` hops of each other (hubs excluded), within the time window |
+| Where to look first | Triage | `algo.pageRank` over `DEPENDS_ON`: the most depended-on alerting services |
+| Severity (SEV1–5) | Triage | blast radius, walking *against* `DEPENDS_ON` (valid at incident time) to customer-facing entry points |
+| The root cause, or "not a change" | Investigator | every component downstream of the alerts (`DEPENDS_ON*0..5`), the changes on them in the window, how many alerts each explains, and change-type risk learned from past `CAUSED_BY` edges |
+| "This happened before; X fixed it with runbook Y" | Investigator | shared `AFFECTED` components plus vector similarity, then `RESOLVED_BY` and `MITIGATED_WITH` |
+| Which team owns it, and who to page | Responder | `OWNS` valid at incident time, and the `OnCallShift` that `COVERS` that team at that time |
+| Who actually knows the system | Responder | fixes, postmortems, runbooks, tickets and changes per person, with time decay, bus factor and people who have left |
+| Whether a claim is kept | Verifier (code) | every relationship the claim cites must exist in the graph and be valid at incident time |
+| File the ticket now or wait for a human | Gate (code) | confidence × verified path, stored on the incident |
+| What the crew learns from feedback | Scribe | a confirmed fix writes `CAUSED_BY` and votes a `Lesson`; the next ranking reads that history |
+
 ## Architecture
 
 ```mermaid
@@ -54,7 +71,7 @@ flowchart LR
   MCP --> CORE["Graph core<br/>bounded Cypher · scoring · evidence registry · verifier"]
   BRAIN --> CORE
   ING --> CORE
-  CORE --> FDB[("FalkorDB 6.0<br/>one graph per tenant<br/>golden snapshots via GRAPH.COPY")]
+  CORE --> FDB[("FalkorDB<br/>6.0.2 local · Cloud 4.22 hosted<br/>one graph per tenant")]
   CREW -. optional .-> GEM["Gemini: review · extraction · embeddings"]
 ```
 
