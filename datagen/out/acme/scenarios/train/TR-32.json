@@ -1,0 +1,247 @@
+{
+ "id": "TR-32",
+ "type": "non_change",
+ "t0": 1790888523639,
+ "t0_iso": "2026-10-01T21:02:03Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1790884131963,
+   "ts_iso": "2026-10-01T19:48:51Z",
+   "data": {
+    "id": "chg_tr32_1587",
+    "kind": "flag",
+    "entity_id": "svc_cart",
+    "ts": 1790884131963,
+    "ts_iso": "2026-10-01T19:48:51Z",
+    "author_id": "per_0045",
+    "reviewer_ids": [
+     "per_0044",
+     "per_0049"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag cart.async-receipts-13 rollout 5% -> 50%",
+    "flag_key": "cart.async-receipts-13",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790885864685,
+   "ts_iso": "2026-10-01T20:17:44Z",
+   "data": {
+    "id": "chg_tr32_1586",
+    "kind": "code",
+    "entity_id": "svc_api-gateway",
+    "ts": 1790885864685,
+    "ts_iso": "2026-10-01T20:17:44Z",
+    "author_id": "per_0009",
+    "reviewer_ids": [
+     "per_0008"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "api-gateway hotfix v5.5.14: new tax rounding",
+    "flag_key": null,
+    "pr_number": 5135,
+    "version_to": "4.38.11",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790886333181,
+   "ts_iso": "2026-10-01T20:25:33Z",
+   "data": {
+    "id": "chg_tr32_1588",
+    "kind": "config",
+    "entity_id": "svc_api-gateway",
+    "ts": 1790886333181,
+    "ts_iso": "2026-10-01T20:25:33Z",
+    "author_id": "per_0008",
+    "reviewer_ids": [
+     "per_0003"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "api-gateway: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790887443639,
+   "ts_iso": "2026-10-01T20:44:03Z",
+   "data": {
+    "id": "alt_tr32_1582",
+    "name": "PodRestarts",
+    "entity_id": "svc_warehouse",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790887443639,
+    "ts_iso": "2026-10-01T20:44:03Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790887489289,
+   "ts_iso": "2026-10-01T20:44:49Z",
+   "data": {
+    "id": "chg_tr32_1585",
+    "kind": "code",
+    "entity_id": "svc_ledger",
+    "ts": 1790887489289,
+    "ts_iso": "2026-10-01T20:44:49Z",
+    "author_id": "per_0057",
+    "reviewer_ids": [
+     "per_0067"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "ledger hotfix v5.11.11: image CDN switch",
+    "flag_key": null,
+    "pr_number": 4620,
+    "version_to": "8.13.12",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790888343639,
+   "ts_iso": "2026-10-01T20:59:03Z",
+   "data": {
+    "id": "alt_tr32_1584",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_api-gateway",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790888343639,
+    "ts_iso": "2026-10-01T20:59:03Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790888560639,
+   "ts_iso": "2026-10-01T21:02:40Z",
+   "data": {
+    "id": "alt_tr32_1578",
+    "name": "CertExpired",
+    "entity_id": "ds_redis-ratelimit",
+    "metric": "certexpired",
+    "severity": "critical",
+    "ts": 1790888560639,
+    "ts_iso": "2026-10-01T21:02:40Z",
+    "resolved_ts": null,
+    "value": 3.2,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790888596639,
+   "ts_iso": "2026-10-01T21:03:16Z",
+   "data": {
+    "id": "alt_tr32_1579",
+    "name": "TLSHandshakeErrors",
+    "entity_id": "ds_redis-ratelimit",
+    "metric": "tlshandshakeerrors",
+    "severity": "critical",
+    "ts": 1790888596639,
+    "ts_iso": "2026-10-01T21:03:16Z",
+    "resolved_ts": null,
+    "value": 5.87,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790888619639,
+   "ts_iso": "2026-10-01T21:03:39Z",
+   "data": {
+    "id": "alt_tr32_1581",
+    "name": "HighErrorRate",
+    "entity_id": "svc_api-gateway",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1790888619639,
+    "ts_iso": "2026-10-01T21:03:39Z",
+    "resolved_ts": null,
+    "value": 1.64,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790888643639,
+   "ts_iso": "2026-10-01T21:04:03Z",
+   "data": {
+    "id": "alt_tr32_1583",
+    "name": "ProbeFlapping",
+    "entity_id": "svc_shipping",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790888643639,
+    "ts_iso": "2026-10-01T21:04:03Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790888829639,
+   "ts_iso": "2026-10-01T21:07:09Z",
+   "data": {
+    "id": "alt_tr32_1580",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_api-gateway",
+    "metric": "upstreamerrors",
+    "severity": "critical",
+    "ts": 1790888829639,
+    "ts_iso": "2026-10-01T21:07:09Z",
+    "resolved_ts": null,
+    "value": 4.2,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_redis-ratelimit"
+  ],
+  "cause_type": "cert_expiry",
+  "root_change_ids": [],
+  "mechanism": [
+   "TLS certificate expired"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "ds_redis-ratelimit",
+   "svc_api-gateway"
+  ],
+  "correct_team_id": "team_edge",
+  "correct_oncall_id": "per_0008",
+  "expected_experts": [
+   "per_0010",
+   "per_0007",
+   "per_0008"
+  ]
+ },
+ "distractors": 4
+}

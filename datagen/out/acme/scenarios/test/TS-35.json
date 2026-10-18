@@ -1,0 +1,402 @@
+{
+ "id": "TS-35",
+ "type": "multi_root",
+ "t0": 1791553089584,
+ "t0_iso": "2026-10-09T13:38:09Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791546084710,
+   "ts_iso": "2026-10-09T11:41:24Z",
+   "data": {
+    "id": "chg_ts35_0689",
+    "kind": "code",
+    "entity_id": "svc_returns",
+    "ts": 1791546084710,
+    "ts_iso": "2026-10-09T11:41:24Z",
+    "author_id": "per_0081",
+    "reviewer_ids": [
+     "per_0131"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "returns deploy v7.1.1 (retry jitter)",
+    "flag_key": null,
+    "pr_number": 7439,
+    "version_to": "3.37.13",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791548185298,
+   "ts_iso": "2026-10-09T12:16:25Z",
+   "data": {
+    "id": "chg_ts35_0687",
+    "kind": "config",
+    "entity_id": "svc_orders",
+    "ts": 1791548185298,
+    "ts_iso": "2026-10-09T12:16:25Z",
+    "author_id": "per_0081",
+    "reviewer_ids": [
+     "per_0131"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "orders: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791549352898,
+   "ts_iso": "2026-10-09T12:35:52Z",
+   "data": {
+    "id": "chg_ts35_0690",
+    "kind": "code",
+    "entity_id": "svc_search",
+    "ts": 1791549352898,
+    "ts_iso": "2026-10-09T12:35:52Z",
+    "author_id": "per_0022",
+    "reviewer_ids": [
+     "per_0021"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "search release v9.4.10: retry jitter",
+    "flag_key": null,
+    "pr_number": 8862,
+    "version_to": "8.39.4",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791551589584,
+   "ts_iso": "2026-10-09T13:13:09Z",
+   "data": {
+    "id": "chg_ts35_0673",
+    "kind": "flag",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1791551589584,
+    "ts_iso": "2026-10-09T13:13:09Z",
+    "author_id": "per_0008",
+    "reviewer_ids": [
+     "per_0010",
+     "per_0001"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag mobile-bff.retry-jitter-59 rollout 0% -> 25%",
+    "flag_key": "mobile-bff.retry-jitter-59",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791551769584,
+   "ts_iso": "2026-10-09T13:16:09Z",
+   "data": {
+    "id": "alt_ts35_0684",
+    "name": "5xxSpike",
+    "entity_id": "svc_cart",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791551769584,
+    "ts_iso": "2026-10-09T13:16:09Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791552189584,
+   "ts_iso": "2026-10-09T13:23:09Z",
+   "data": {
+    "id": "chg_ts35_0674",
+    "kind": "config",
+    "entity_id": "svc_ledger",
+    "ts": 1791552189584,
+    "ts_iso": "2026-10-09T13:23:09Z",
+    "author_id": "per_0065",
+    "reviewer_ids": [
+     "per_0055",
+     "per_0130"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "ledger: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791552391348,
+   "ts_iso": "2026-10-09T13:26:31Z",
+   "data": {
+    "id": "chg_ts35_0685",
+    "kind": "code",
+    "entity_id": "svc_billing",
+    "ts": 1791552391348,
+    "ts_iso": "2026-10-09T13:26:31Z",
+    "author_id": "per_0060",
+    "reviewer_ids": [
+     "per_0065"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "billing release v3.10.3: split shipments",
+    "flag_key": null,
+    "pr_number": 8468,
+    "version_to": "8.17.11",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791552401086,
+   "ts_iso": "2026-10-09T13:26:41Z",
+   "data": {
+    "id": "chg_ts35_0686",
+    "kind": "config",
+    "entity_id": "ds_s3-assets",
+    "ts": 1791552401086,
+    "ts_iso": "2026-10-09T13:26:41Z",
+    "author_id": "per_0100",
+    "reviewer_ids": [
+     "per_0109",
+     "per_0113"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "s3-assets: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791552446900,
+   "ts_iso": "2026-10-09T13:27:26Z",
+   "data": {
+    "id": "chg_ts35_0688",
+    "kind": "code",
+    "entity_id": "svc_fraud-detection",
+    "ts": 1791552446900,
+    "ts_iso": "2026-10-09T13:27:26Z",
+    "author_id": "per_0059",
+    "reviewer_ids": [],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "fraud-detection release v3.26.6: async receipts",
+    "flag_key": null,
+    "pr_number": 1326,
+    "version_to": "1.1.13",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791553131584,
+   "ts_iso": "2026-10-09T13:38:51Z",
+   "data": {
+    "id": "alt_ts35_0677",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_ledger",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791553131584,
+    "ts_iso": "2026-10-09T13:38:51Z",
+    "resolved_ts": null,
+    "value": 5.74,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791553146584,
+   "ts_iso": "2026-10-09T13:39:06Z",
+   "data": {
+    "id": "alt_ts35_0675",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_mobile-bff",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791553146584,
+    "ts_iso": "2026-10-09T13:39:06Z",
+    "resolved_ts": null,
+    "value": 3.27,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791553156584,
+   "ts_iso": "2026-10-09T13:39:16Z",
+   "data": {
+    "id": "alt_ts35_0676",
+    "name": "SaturationCPU",
+    "entity_id": "svc_mobile-bff",
+    "metric": "saturationcpu",
+    "severity": "critical",
+    "ts": 1791553156584,
+    "ts_iso": "2026-10-09T13:39:16Z",
+    "resolved_ts": null,
+    "value": 5.71,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791553211584,
+   "ts_iso": "2026-10-09T13:40:11Z",
+   "data": {
+    "id": "alt_ts35_0678",
+    "name": "SaturationCPU",
+    "entity_id": "svc_api-gateway",
+    "metric": "saturationcpu",
+    "severity": "critical",
+    "ts": 1791553211584,
+    "ts_iso": "2026-10-09T13:40:11Z",
+    "resolved_ts": null,
+    "value": 3.26,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791553222584,
+   "ts_iso": "2026-10-09T13:40:22Z",
+   "data": {
+    "id": "alt_ts35_0679",
+    "name": "QueueLag",
+    "entity_id": "svc_refunds",
+    "metric": "queuelag",
+    "severity": "critical",
+    "ts": 1791553222584,
+    "ts_iso": "2026-10-09T13:40:22Z",
+    "resolved_ts": null,
+    "value": 1.35,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791553365584,
+   "ts_iso": "2026-10-09T13:42:45Z",
+   "data": {
+    "id": "alt_ts35_0680",
+    "name": "QueueLag",
+    "entity_id": "svc_returns",
+    "metric": "queuelag",
+    "severity": "warning",
+    "ts": 1791553365584,
+    "ts_iso": "2026-10-09T13:42:45Z",
+    "resolved_ts": null,
+    "value": 1.27,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791553538584,
+   "ts_iso": "2026-10-09T13:45:38Z",
+   "data": {
+    "id": "alt_ts35_0681",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_returns",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1791553538584,
+    "ts_iso": "2026-10-09T13:45:38Z",
+    "resolved_ts": null,
+    "value": 4.25,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791554409584,
+   "ts_iso": "2026-10-09T14:00:09Z",
+   "data": {
+    "id": "alt_ts35_0683",
+    "name": "DiskUsageHigh",
+    "entity_id": "svc_permissions",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791554409584,
+    "ts_iso": "2026-10-09T14:00:09Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791554709584,
+   "ts_iso": "2026-10-09T14:05:09Z",
+   "data": {
+    "id": "alt_ts35_0682",
+    "name": "ProbeFlapping",
+    "entity_id": "svc_tax",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791554709584,
+    "ts_iso": "2026-10-09T14:05:09Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_mobile-bff",
+   "svc_ledger"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_ts35_0673",
+   "chg_ts35_0674"
+  ],
+  "mechanism": [
+   "flag rollout jumped to 100%",
+   "flag rollout jumped to 100%"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_ledger",
+   "svc_mobile-bff",
+   "svc_refunds",
+   "svc_returns"
+  ],
+  "correct_team_id": "team_edge",
+  "correct_oncall_id": "per_0009",
+  "expected_experts": [
+   "per_0010",
+   "per_0009",
+   "per_0007"
+  ]
+ },
+ "distractors": 6
+}

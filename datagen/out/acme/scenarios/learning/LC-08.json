@@ -1,0 +1,256 @@
+{
+ "id": "LC-08",
+ "type": "learning",
+ "t0": 1791471600000,
+ "t0_iso": "2026-10-08T15:00:00Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791465794492,
+   "ts_iso": "2026-10-08T13:23:14Z",
+   "data": {
+    "id": "chg_lc08_0848",
+    "kind": "code",
+    "entity_id": "svc_config-service",
+    "ts": 1791465794492,
+    "ts_iso": "2026-10-08T13:23:14Z",
+    "author_id": "per_0122",
+    "reviewer_ids": [
+     "per_0100",
+     "per_0099"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "config-service hotfix v6.5.4: image CDN switch",
+    "flag_key": null,
+    "pr_number": 6706,
+    "version_to": "5.5.17",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791467769702,
+   "ts_iso": "2026-10-08T13:56:09Z",
+   "data": {
+    "id": "chg_lc08_0847",
+    "kind": "code",
+    "entity_id": "svc_billing",
+    "ts": 1791467769702,
+    "ts_iso": "2026-10-08T13:56:09Z",
+    "author_id": "per_0066",
+    "reviewer_ids": [
+     "per_0055"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "billing hotfix v4.26.2: new tax rounding",
+    "flag_key": null,
+    "pr_number": 2482,
+    "version_to": "8.33.14",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791469800000,
+   "ts_iso": "2026-10-08T14:30:00Z",
+   "data": {
+    "id": "chg_lc08_0839",
+    "kind": "config",
+    "entity_id": "ds_pg-billing",
+    "ts": 1791469800000,
+    "ts_iso": "2026-10-08T14:30:00Z",
+    "author_id": "per_0130",
+    "reviewer_ids": [
+     "per_0124"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-billing: db.idle_timeout_s 300 -> 5",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791469923833,
+   "ts_iso": "2026-10-08T14:32:03Z",
+   "data": {
+    "id": "chg_lc08_0849",
+    "kind": "config",
+    "entity_id": "ds_redis-ratelimit",
+    "ts": 1791469923833,
+    "ts_iso": "2026-10-08T14:32:03Z",
+    "author_id": "per_0007",
+    "reviewer_ids": [
+     "per_0123"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-ratelimit: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791470460000,
+   "ts_iso": "2026-10-08T14:41:00Z",
+   "data": {
+    "id": "alt_lc08_0845",
+    "name": "QueueLag",
+    "entity_id": "svc_inventory",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791470460000,
+    "ts_iso": "2026-10-08T14:41:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791470845853,
+   "ts_iso": "2026-10-08T14:47:25Z",
+   "data": {
+    "id": "chg_lc08_0846",
+    "kind": "code",
+    "entity_id": "svc_search",
+    "ts": 1791470845853,
+    "ts_iso": "2026-10-08T14:47:25Z",
+    "author_id": "per_0032",
+    "reviewer_ids": [
+     "per_0022"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "search hotfix v6.13.2: search synonyms",
+    "flag_key": null,
+    "pr_number": 3363,
+    "version_to": "9.2.9",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791471660000,
+   "ts_iso": "2026-10-08T15:01:00Z",
+   "data": {
+    "id": "alt_lc08_0844",
+    "name": "PodRestarts",
+    "entity_id": "ds_pg-payments",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791471660000,
+    "ts_iso": "2026-10-08T15:01:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791471761000,
+   "ts_iso": "2026-10-08T15:02:41Z",
+   "data": {
+    "id": "alt_lc08_0841",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_billing",
+    "metric": "upstreamerrors",
+    "severity": "critical",
+    "ts": 1791471761000,
+    "ts_iso": "2026-10-08T15:02:41Z",
+    "resolved_ts": null,
+    "value": 2.04,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791471780000,
+   "ts_iso": "2026-10-08T15:03:00Z",
+   "data": {
+    "id": "alt_lc08_0843",
+    "name": "PodRestarts",
+    "entity_id": "ds_redis-cache",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791471780000,
+    "ts_iso": "2026-10-08T15:03:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791471805000,
+   "ts_iso": "2026-10-08T15:03:25Z",
+   "data": {
+    "id": "alt_lc08_0840",
+    "name": "5xxSpike",
+    "entity_id": "svc_billing",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791471805000,
+    "ts_iso": "2026-10-08T15:03:25Z",
+    "resolved_ts": null,
+    "value": 1.46,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791472560000,
+   "ts_iso": "2026-10-08T15:16:00Z",
+   "data": {
+    "id": "alt_lc08_0842",
+    "name": "SaturationCPU",
+    "entity_id": "svc_pricing",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791472560000,
+    "ts_iso": "2026-10-08T15:16:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_pg-billing"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_lc08_0839"
+  ],
+  "mechanism": [
+   "idle connection timeout lowered"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_billing"
+  ],
+  "correct_team_id": "team_payments",
+  "correct_oncall_id": "per_0062",
+  "expected_experts": [
+   "per_0066",
+   "per_0072",
+   "per_0070"
+  ]
+ },
+ "sequence": 8,
+ "motif_id": "motif_pg_billing_idle_timeout"
+}

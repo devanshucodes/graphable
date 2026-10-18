@@ -1,0 +1,10 @@
+{"id": "ds_pg-users", "name": "pg-users", "engine": "postgres", "tier": 0, "aliases": ["pg users", "users"], "version": "16.4", "replicas": 1}
+{"id": "ds_pg-catalog", "name": "pg-catalog", "engine": "postgres", "tier": 1, "aliases": ["pg catalog", "catalog"], "version": "16.4", "replicas": 2}
+{"id": "ds_pg-orders", "name": "pg-orders", "engine": "postgres", "tier": 0, "aliases": ["pg orders", "orders"], "version": "16.4", "replicas": 2}
+{"id": "ds_pg-payments", "name": "pg-payments", "engine": "postgres", "tier": 0, "aliases": ["pg payments", "payments"], "version": "16.4", "replicas": 1}
+{"id": "ds_redis-cache", "name": "redis-cache", "engine": "redis", "tier": 0, "aliases": ["redis cache", "cache"], "version": "7.4", "replicas": 3}
+{"id": "ds_redis-session", "name": "redis-session", "engine": "redis", "tier": 0, "aliases": ["redis session", "session"], "version": "7.4", "replicas": 3}
+{"id": "ds_redis-ratelimit", "name": "redis-ratelimit", "engine": "redis", "tier": 1, "aliases": ["redis ratelimit", "ratelimit"], "version": "7.4", "replicas": 3}
+{"id": "ds_es-search", "name": "es-search", "engine": "elasticsearch", "tier": 1, "aliases": ["es search", "search"], "version": "8.15", "replicas": 1}
+{"id": "ds_s3-assets", "name": "s3-assets", "engine": "object-store", "tier": 2, "aliases": ["s3 assets", "assets"], "version": "n/a", "replicas": 1}
+{"id": "ds_ext-paylynx", "name": "ext-paylynx", "engine": "external-psp", "tier": 0, "aliases": ["ext paylynx", "paylynx"], "version": "v3 API", "replicas": 0}

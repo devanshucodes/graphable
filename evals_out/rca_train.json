@@ -1,0 +1,143 @@
+{
+ "set": "train",
+ "n": 40,
+ "seconds": 50.2,
+ "default": {
+  "weights": {
+   "R": 0.3,
+   "Cov": 0.3,
+   "F": 0.15,
+   "K": 0.1,
+   "H": 0.1,
+   "P": 0.05
+  },
+  "theta": 0.45,
+  "ac1": 0.562,
+  "ac3": 0.844,
+  "mrr": 0.772,
+  "false_abstain": 0.156,
+  "base_random": 0.176,
+  "base_recent": 0.0,
+  "base_toy": 0.281,
+  "ac1_change_induced": 0.625,
+  "abstain_correct": 0.625,
+  "nc_entity_ac1": 0.75,
+  "base_recent_wrongly_blames": 1.0,
+  "ac1_multi_root": 0.5,
+  "ac1_look_alike": 0.25,
+  "n": 40,
+  "by_distractors": {
+   "1": {
+    "ours": 0.75,
+    "recent": 0.0,
+    "toy": 1.0,
+    "random": 0.5
+   },
+   "3": {
+    "ours": 0.5,
+    "recent": 0.0,
+    "toy": 0.0,
+    "random": 0.271
+   },
+   "6": {
+    "ours": 0.625,
+    "recent": 0.0,
+    "toy": 0.25,
+    "random": 0.134
+   },
+   "7": {
+    "ours": 0.25,
+    "recent": 0.0,
+    "toy": 0.0,
+    "random": 0.125
+   },
+   "9": {
+    "ours": 0.25,
+    "recent": 0.0,
+    "toy": 0.0,
+    "random": 0.1
+   },
+   "12": {
+    "ours": 0.75,
+    "recent": 0.0,
+    "toy": 0.5,
+    "random": 0.077
+   },
+   "15": {
+    "ours": 0.75,
+    "recent": 0.0,
+    "toy": 0.25,
+    "random": 0.064
+   }
+  }
+ },
+ "tuned": {
+  "weights": {
+   "R": 0.046,
+   "Cov": 0.541,
+   "F": 0.145,
+   "K": 0.209,
+   "H": 0.003,
+   "P": 0.055
+  },
+  "theta": 0.55,
+  "ac1": 0.844,
+  "ac3": 0.938,
+  "mrr": 0.917,
+  "false_abstain": 0.125,
+  "base_random": 0.176,
+  "base_recent": 0.0,
+  "base_toy": 0.281,
+  "ac1_change_induced": 0.833,
+  "abstain_correct": 1.0,
+  "nc_entity_ac1": 0.75,
+  "base_recent_wrongly_blames": 1.0,
+  "ac1_multi_root": 0.75,
+  "ac1_look_alike": 1.0,
+  "n": 40,
+  "by_distractors": {
+   "1": {
+    "ours": 0.75,
+    "recent": 0.0,
+    "toy": 1.0,
+    "random": 0.5
+   },
+   "3": {
+    "ours": 0.75,
+    "recent": 0.0,
+    "toy": 0.0,
+    "random": 0.271
+   },
+   "6": {
+    "ours": 0.875,
+    "recent": 0.0,
+    "toy": 0.25,
+    "random": 0.134
+   },
+   "7": {
+    "ours": 1.0,
+    "recent": 0.0,
+    "toy": 0.0,
+    "random": 0.125
+   },
+   "9": {
+    "ours": 0.75,
+    "recent": 0.0,
+    "toy": 0.0,
+    "random": 0.1
+   },
+   "12": {
+    "ours": 1.0,
+    "recent": 0.0,
+    "toy": 0.5,
+    "random": 0.077
+   },
+   "15": {
+    "ours": 0.75,
+    "recent": 0.0,
+    "toy": 0.25,
+    "random": 0.064
+   }
+  }
+ }
+}

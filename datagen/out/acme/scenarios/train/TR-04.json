@@ -1,0 +1,166 @@
+{
+ "id": "TR-04",
+ "type": "change_induced",
+ "t0": 1790894645339,
+ "t0_iso": "2026-10-01T22:44:05Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1790892305339,
+   "ts_iso": "2026-10-01T22:05:05Z",
+   "data": {
+    "id": "chg_tr04_1036",
+    "kind": "config",
+    "entity_id": "svc_scheduler",
+    "ts": 1790892305339,
+    "ts_iso": "2026-10-01T22:05:05Z",
+    "author_id": "per_0111",
+    "reviewer_ids": [
+     "per_0110"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "scheduler: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790893919024,
+   "ts_iso": "2026-10-01T22:31:59Z",
+   "data": {
+    "id": "chg_tr04_1042",
+    "kind": "config",
+    "entity_id": "svc_permissions",
+    "ts": 1790893919024,
+    "ts_iso": "2026-10-01T22:31:59Z",
+    "author_id": "per_0016",
+    "reviewer_ids": [
+     "per_0012",
+     "per_0120"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "permissions: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790894647339,
+   "ts_iso": "2026-10-01T22:44:07Z",
+   "data": {
+    "id": "alt_tr04_1037",
+    "name": "HighErrorRate",
+    "entity_id": "svc_scheduler",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1790894647339,
+    "ts_iso": "2026-10-01T22:44:07Z",
+    "resolved_ts": null,
+    "value": 1.78,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790894679339,
+   "ts_iso": "2026-10-01T22:44:39Z",
+   "data": {
+    "id": "alt_tr04_1038",
+    "name": "5xxSpike",
+    "entity_id": "svc_scheduler",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1790894679339,
+    "ts_iso": "2026-10-01T22:44:39Z",
+    "resolved_ts": null,
+    "value": 4.77,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790895185339,
+   "ts_iso": "2026-10-01T22:53:05Z",
+   "data": {
+    "id": "alt_tr04_1040",
+    "name": "QueueLag",
+    "entity_id": "svc_orders",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790895185339,
+    "ts_iso": "2026-10-01T22:53:05Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790895905339,
+   "ts_iso": "2026-10-01T23:05:05Z",
+   "data": {
+    "id": "alt_tr04_1041",
+    "name": "CertExpirySoon",
+    "entity_id": "svc_checkout",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790895905339,
+    "ts_iso": "2026-10-01T23:05:05Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790896025339,
+   "ts_iso": "2026-10-01T23:07:05Z",
+   "data": {
+    "id": "alt_tr04_1039",
+    "name": "5xxSpike",
+    "entity_id": "svc_scheduler",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790896025339,
+    "ts_iso": "2026-10-01T23:07:05Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_scheduler"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_tr04_1036"
+  ],
+  "mechanism": [
+   "flag enabled untested code path"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "svc_scheduler"
+  ],
+  "correct_team_id": "team_platform",
+  "correct_oncall_id": "per_0107",
+  "expected_experts": [
+   "per_0111",
+   "per_0108",
+   "per_0099"
+  ]
+ },
+ "distractors": 1
+}

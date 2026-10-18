@@ -1,0 +1,115 @@
+{
+ "id": "TR-03",
+ "type": "change_induced",
+ "t0": 1791329483095,
+ "t0_iso": "2026-10-06T23:31:23Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791325823095,
+   "ts_iso": "2026-10-06T22:30:23Z",
+   "data": {
+    "id": "chg_tr03_1032",
+    "kind": "flag",
+    "entity_id": "svc_web-bff",
+    "ts": 1791325823095,
+    "ts_iso": "2026-10-06T22:30:23Z",
+    "author_id": "per_0006",
+    "reviewer_ids": [
+     "per_0002"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag web-bff.guest-checkout-v2-12 rollout 10% -> 25%",
+    "flag_key": "web-bff.guest-checkout-v2-12",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791326003146,
+   "ts_iso": "2026-10-06T22:33:23Z",
+   "data": {
+    "id": "chg_tr03_1035",
+    "kind": "config",
+    "entity_id": "svc_promotions",
+    "ts": 1791326003146,
+    "ts_iso": "2026-10-06T22:33:23Z",
+    "author_id": "per_0119",
+    "reviewer_ids": [
+     "per_0046",
+     "per_0117"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "promotions: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791329747095,
+   "ts_iso": "2026-10-06T23:35:47Z",
+   "data": {
+    "id": "alt_tr03_1033",
+    "name": "HighErrorRate",
+    "entity_id": "svc_api-gateway",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791329747095,
+    "ts_iso": "2026-10-06T23:35:47Z",
+    "resolved_ts": null,
+    "value": 2.91,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791331163095,
+   "ts_iso": "2026-10-06T23:59:23Z",
+   "data": {
+    "id": "alt_tr03_1034",
+    "name": "PodRestarts",
+    "entity_id": "ds_pg-inventory",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791331163095,
+    "ts_iso": "2026-10-06T23:59:23Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_web-bff"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_tr03_1032"
+  ],
+  "mechanism": [
+   "flag enabled untested code path"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_api-gateway"
+  ],
+  "correct_team_id": "team_edge",
+  "correct_oncall_id": "per_0009",
+  "expected_experts": [
+   "per_0010",
+   "per_0006",
+   "per_0007"
+  ]
+ },
+ "distractors": 1
+}

@@ -1,0 +1,330 @@
+[
+ {
+  "type": "who_knows",
+  "q": "Who knows partner-api best?",
+  "answer_ids": [
+   "per_0010",
+   "per_0008",
+   "per_0007"
+  ],
+  "entity_id": "svc_partner-api"
+ },
+ {
+  "type": "who_knows",
+  "q": "Who knows inventory best?",
+  "answer_ids": [
+   "per_0038",
+   "per_0042",
+   "per_0039"
+  ],
+  "entity_id": "svc_inventory"
+ },
+ {
+  "type": "who_knows",
+  "q": "Who knows returns best?",
+  "answer_ids": [
+   "per_0076",
+   "per_0081",
+   "per_0082"
+  ],
+  "entity_id": "svc_returns"
+ },
+ {
+  "type": "who_knows",
+  "q": "Who knows mobile-bff best?",
+  "answer_ids": [
+   "per_0010",
+   "per_0009",
+   "per_0007"
+  ],
+  "entity_id": "svc_mobile-bff"
+ },
+ {
+  "type": "who_knows",
+  "q": "Who knows address-validation best?",
+  "answer_ids": [
+   "per_0050",
+   "per_0049",
+   "per_0052"
+  ],
+  "entity_id": "svc_address-validation"
+ },
+ {
+  "type": "who_knows",
+  "q": "Who knows billing best?",
+  "answer_ids": [
+   "per_0072",
+   "per_0062",
+   "per_0066"
+  ],
+  "entity_id": "svc_billing"
+ },
+ {
+  "type": "why_decision",
+  "q": "Why did we decide: Standardize retry and backoff for scheduler?",
+  "answer": "scheduler needs a change: standardize retry and backoff for scheduler",
+  "gold_sources": [
+   "thr_00236",
+   "doc_0173"
+  ],
+  "decision_id": "dec_037"
+ },
+ {
+  "type": "why_decision",
+  "q": "Why did we decide: Require two reviewers for search config?",
+  "answer": "search needs a change: require two reviewers for search config",
+  "gold_sources": [
+   "thr_00287",
+   "doc_0214"
+  ],
+  "decision_id": "dec_088"
+ },
+ {
+  "type": "why_decision",
+  "q": "Why did we decide: Use idempotency keys in payouts writes?",
+  "answer": "payouts needs a change: use idempotency keys in payouts writes",
+  "gold_sources": [
+   "thr_00240",
+   "doc_0177"
+  ],
+  "decision_id": "dec_041"
+ },
+ {
+  "type": "why_decision",
+  "q": "Why did we decide: Run config-service in three regions?",
+  "answer": "config-service needs a change: run config-service in three regions",
+  "gold_sources": [
+   "thr_00231",
+   "doc_0168"
+  ],
+  "decision_id": "dec_032"
+ },
+ {
+  "type": "why_decision",
+  "q": "Why did we decide: Standardize retry and backoff for scheduler?",
+  "answer": "scheduler needs a change: standardize retry and backoff for scheduler",
+  "gold_sources": [
+   "thr_00278",
+   "doc_0206"
+  ],
+  "decision_id": "dec_079"
+ },
+ {
+  "type": "why_decision",
+  "q": "Why did we decide: Cap search client timeouts at 2x dependency p99?",
+  "answer": "search needs a change: cap search client timeouts at 2x dependency p99",
+  "gold_sources": [
+   "thr_00243",
+   "doc_0178"
+  ],
+  "decision_id": "dec_044"
+ },
+ {
+  "type": "what_breaks",
+  "q": "What breaks if pg-users goes down?",
+  "answer_ids": [
+   "svc_api-gateway",
+   "svc_auth",
+   "svc_billing",
+   "svc_cart",
+   "svc_checkout",
+   "svc_inventory",
+   "svc_mobile-bff",
+   "svc_notifications",
+   "svc_orders",
+   "svc_partner-api",
+   "svc_permissions",
+   "svc_refunds",
+   "svc_returns",
+   "svc_session",
+   "svc_shipping",
+   "svc_user-profile",
+   "svc_warehouse",
+   "svc_web-bff"
+  ],
+  "entity_id": "ds_pg-users"
+ },
+ {
+  "type": "what_breaks",
+  "q": "What breaks if search goes down?",
+  "answer_ids": [
+   "svc_api-gateway",
+   "svc_mobile-bff",
+   "svc_web-bff"
+  ],
+  "entity_id": "svc_search"
+ },
+ {
+  "type": "what_breaks",
+  "q": "What breaks if config-service goes down?",
+  "answer_ids": [
+   "svc_address-validation",
+   "svc_analytics",
+   "svc_api-gateway",
+   "svc_auth",
+   "svc_billing",
+   "svc_cart",
+   "svc_catalog",
+   "svc_checkout",
+   "svc_event-ingest",
+   "svc_feature-flags",
+   "svc_feature-store",
+   "svc_fraud-detection",
+   "svc_inventory",
+   "svc_ledger",
+   "svc_ml-scoring",
+   "svc_mobile-bff",
+   "svc_notifications",
+   "svc_orders",
+   "svc_partner-api",
+   "svc_payments",
+   "svc_payouts",
+   "svc_permissions",
+   "svc_pricing",
+   "svc_promotions",
+   "svc_recommendations",
+   "svc_refunds",
+   "svc_returns",
+   "svc_reviews",
+   "svc_search",
+   "svc_session",
+   "svc_shipping",
+   "svc_tax",
+   "svc_user-profile",
+   "svc_warehouse",
+   "svc_web-bff"
+  ],
+  "entity_id": "svc_config-service"
+ },
+ {
+  "type": "what_breaks",
+  "q": "What breaks if notifications goes down?",
+  "answer_ids": [
+   "svc_api-gateway",
+   "svc_billing",
+   "svc_cart",
+   "svc_checkout",
+   "svc_inventory",
+   "svc_mobile-bff",
+   "svc_orders",
+   "svc_partner-api",
+   "svc_refunds",
+   "svc_returns",
+   "svc_shipping",
+   "svc_warehouse",
+   "svc_web-bff"
+  ],
+  "entity_id": "svc_notifications"
+ },
+ {
+  "type": "what_breaks",
+  "q": "What breaks if promotions goes down?",
+  "answer_ids": [
+   "svc_api-gateway",
+   "svc_cart",
+   "svc_checkout",
+   "svc_mobile-bff",
+   "svc_web-bff"
+  ],
+  "entity_id": "svc_promotions"
+ },
+ {
+  "type": "what_breaks",
+  "q": "What breaks if event-ingest goes down?",
+  "answer_ids": [
+   "svc_analytics"
+  ],
+  "entity_id": "svc_event-ingest"
+ },
+ {
+  "type": "who_fixed_similar",
+  "q": "Who has fixed incidents like INC-0147 before?",
+  "answer_ids": [
+   "per_0093",
+   "per_0095",
+   "per_0115"
+  ],
+  "incident_id": "inc_0147"
+ },
+ {
+  "type": "who_fixed_similar",
+  "q": "Who has fixed incidents like INC-0057 before?",
+  "answer_ids": [
+   "per_0089",
+   "per_0094"
+  ],
+  "incident_id": "inc_0057"
+ },
+ {
+  "type": "who_fixed_similar",
+  "q": "Who has fixed incidents like INC-0273 before?",
+  "answer_ids": [
+   "per_0013",
+   "per_0019"
+  ],
+  "incident_id": "inc_0273"
+ },
+ {
+  "type": "who_fixed_similar",
+  "q": "Who has fixed incidents like INC-0130 before?",
+  "answer_ids": [
+   "per_0093",
+   "per_0095"
+  ],
+  "incident_id": "inc_0130"
+ },
+ {
+  "type": "who_fixed_similar",
+  "q": "Who has fixed incidents like INC-0126 before?",
+  "answer_ids": [
+   "per_0082"
+  ],
+  "incident_id": "inc_0126"
+ },
+ {
+  "type": "who_fixed_similar",
+  "q": "Who has fixed incidents like INC-0157 before?",
+  "answer_ids": [
+   "per_0028"
+  ],
+  "incident_id": "inc_0157"
+ },
+ {
+  "type": "as_of_owner",
+  "q": "Who owned promotions on 2026-06-01?",
+  "answer": "Checkout"
+ },
+ {
+  "type": "as_of_owner",
+  "q": "Who owned promotions on 2026-08-01?",
+  "answer": "Orbit"
+ },
+ {
+  "type": "as_of_owner",
+  "q": "Who owned billing on 2026-02-01?",
+  "answer": "Money"
+ },
+ {
+  "type": "as_of_owner",
+  "q": "Who owned billing on 2026-05-01?",
+  "answer": "Payments"
+ },
+ {
+  "type": "bus_factor",
+  "q": "What is the bus factor of vault and who should we train?",
+  "answer": 1,
+  "answer_ids": [
+   "per_0113"
+  ]
+ },
+ {
+  "type": "staleness",
+  "q": "Which vault runbooks are stale and why?",
+  "answer_ids": [
+   "rb_112",
+   "rb_113",
+   "rb_114"
+  ],
+  "answer": "author left on 2026-06-20 and not verified since"
+ }
+]

@@ -1,0 +1,25 @@
+{"id": "org_merge_money", "type": "reorg", "t": 1776243600000, "t_iso": "2026-04-15T09:00:00Z", "summary": "Money team merges into Payments; ledger, payouts, billing move to Payments"}
+{"id": "org_orbit", "type": "team_created", "t": 1782896400000, "t_iso": "2026-07-01T09:00:00Z", "summary": "New team Orbit (growth) created, owns promotions; Lena Vogel is EM"}
+{"id": "org_join_per_0118", "type": "joiner", "t": 1786438800000, "t_iso": "2026-08-11T09:00:00Z", "person_id": "per_0118", "team_id": "team_orbit", "summary": "Virginie Cardenas joins Orbit"}
+{"id": "org_join_per_0119", "type": "joiner", "t": 1784192400000, "t_iso": "2026-07-16T09:00:00Z", "person_id": "per_0119", "team_id": "team_orbit", "summary": "Martín Wilson joins Orbit"}
+{"id": "org_join_per_0120", "type": "joiner", "t": 1779743903086, "t_iso": "2026-05-25T21:18:23Z", "person_id": "per_0120", "team_id": "team_identity", "summary": "Marcio van Bunschoten joins Identity"}
+{"id": "org_join_per_0121", "type": "joiner", "t": 1768614938514, "t_iso": "2026-01-17T01:55:38Z", "person_id": "per_0121", "team_id": "team_payments", "summary": "Lipika Mukhopadhyay joins Payments"}
+{"id": "org_join_per_0122", "type": "joiner", "t": 1767568381488, "t_iso": "2026-01-04T23:13:01Z", "person_id": "per_0122", "team_id": "team_platform", "summary": "Glenn Wiklund joins Platform/SRE"}
+{"id": "org_join_per_0123", "type": "joiner", "t": 1780241643528, "t_iso": "2026-05-31T15:34:03Z", "person_id": "per_0123", "team_id": "team_edge", "summary": "Mirko Richard joins Edge"}
+{"id": "org_join_per_0124", "type": "joiner", "t": 1787238439361, "t_iso": "2026-08-20T15:07:19Z", "person_id": "per_0124", "team_id": "team_payments", "summary": "Sharon Murray joins Payments"}
+{"id": "org_join_per_0125", "type": "joiner", "t": 1776743048615, "t_iso": "2026-04-21T03:44:08Z", "person_id": "per_0125", "team_id": "team_payments", "summary": "Dean Devaux joins Payments"}
+{"id": "org_join_per_0126", "type": "joiner", "t": 1761540178547, "t_iso": "2025-10-27T04:42:58Z", "person_id": "per_0126", "team_id": "team_pricing_inventory", "summary": "Fabian Bachmann joins Pricing & Inventory"}
+{"id": "org_join_per_0127", "type": "joiner", "t": 1763063528061, "t_iso": "2025-11-13T19:52:08Z", "person_id": "per_0127", "team_id": "team_edge", "summary": "Triya Süßebier joins Edge"}
+{"id": "org_join_per_0128", "type": "joiner", "t": 1761261380827, "t_iso": "2025-10-23T23:16:20Z", "person_id": "per_0128", "team_id": "team_checkout", "summary": "Corinne Mattsson joins Checkout"}
+{"id": "org_join_per_0129", "type": "joiner", "t": 1769519827839, "t_iso": "2026-01-27T13:17:07Z", "person_id": "per_0129", "team_id": "team_fulfillment", "summary": "Isabela Brahmbhatt joins Fulfillment"}
+{"id": "org_join_per_0130", "type": "joiner", "t": 1771429467358, "t_iso": "2026-02-18T15:44:27Z", "person_id": "per_0130", "team_id": "team_payments", "summary": "Marcus Blot joins Payments"}
+{"id": "org_join_per_0131", "type": "joiner", "t": 1777414895724, "t_iso": "2026-04-28T22:21:35Z", "person_id": "per_0131", "team_id": "team_fulfillment", "summary": "Antoine Killer joins Fulfillment"}
+{"id": "org_leave_per_0112", "type": "departure", "t": 1781974800000, "t_iso": "2026-06-20T17:00:00Z", "person_id": "per_0112", "summary": "Tomas Brandt leaves the company"}
+{"id": "org_leave_per_0030", "type": "departure", "t": 1775034511032, "t_iso": "2026-04-01T09:08:31Z", "person_id": "per_0030", "summary": "Benoît Schulz leaves the company"}
+{"id": "org_leave_per_0005", "type": "departure", "t": 1781968887246, "t_iso": "2026-06-20T15:21:27Z", "person_id": "per_0005", "summary": "Marianne Zhang leaves the company"}
+{"id": "org_leave_per_0033", "type": "departure", "t": 1782661014527, "t_iso": "2026-06-28T15:36:54Z", "person_id": "per_0033", "summary": "Ladli Jackson leaves the company"}
+{"id": "org_leave_per_0103", "type": "departure", "t": 1769850096356, "t_iso": "2026-01-31T09:01:36Z", "person_id": "per_0103", "summary": "Marine van der Linden leaves the company"}
+{"id": "org_leave_per_0077", "type": "departure", "t": 1783377221418, "t_iso": "2026-07-06T22:33:41Z", "person_id": "per_0077", "summary": "Klaus van Buuren leaves the company"}
+{"id": "org_leave_per_0080", "type": "departure", "t": 1778786927717, "t_iso": "2026-05-14T19:28:47Z", "person_id": "per_0080", "summary": "Esther Sanmartín leaves the company"}
+{"id": "org_leave_per_0004", "type": "departure", "t": 1787301687379, "t_iso": "2026-08-21T08:41:27Z", "person_id": "per_0004", "summary": "Paulina Zobel leaves the company"}
+{"id": "org_promotions_to_orbit", "type": "ownership_change", "t": 1782896400000, "t_iso": "2026-07-01T09:00:00Z", "announced_at": 1782723600000, "announced_at_iso": "2026-06-29T09:00:00Z", "entity_id": "svc_promotions", "from_team": "team_checkout", "to_team": "team_orbit", "summary": "promotions ownership moves from Checkout to Orbit"}

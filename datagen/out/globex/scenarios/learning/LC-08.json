@@ -1,0 +1,329 @@
+{
+ "id": "LC-08",
+ "type": "learning",
+ "t0": 1791471600000,
+ "t0_iso": "2026-10-08T15:00:00Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791467249265,
+   "ts_iso": "2026-10-08T13:47:29Z",
+   "data": {
+    "id": "chg_lc08_0128",
+    "kind": "config",
+    "entity_id": "ds_pg-orders",
+    "ts": 1791467249265,
+    "ts_iso": "2026-10-08T13:47:29Z",
+    "author_id": "per_0017",
+    "reviewer_ids": [
+     "per_0018",
+     "per_0016"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-orders: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791467965360,
+   "ts_iso": "2026-10-08T13:59:25Z",
+   "data": {
+    "id": "chg_lc08_0127",
+    "kind": "code",
+    "entity_id": "ds_redis-session",
+    "ts": 1791467965360,
+    "ts_iso": "2026-10-08T13:59:25Z",
+    "author_id": "per_0004",
+    "reviewer_ids": [
+     "per_0005"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-session deploy v2.12.17 (bulk price import)",
+    "flag_key": null,
+    "pr_number": 1201,
+    "version_to": "2.9.15",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791470520000,
+   "ts_iso": "2026-10-08T14:42:00Z",
+   "data": {
+    "id": "chg_lc08_0115",
+    "kind": "config",
+    "entity_id": "ds_redis-cache",
+    "ts": 1791470520000,
+    "ts_iso": "2026-10-08T14:42:00Z",
+    "author_id": "per_0020",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-cache: maxmemory-policy allkeys-lru -> volatile-lru",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791470940948,
+   "ts_iso": "2026-10-08T14:49:00Z",
+   "data": {
+    "id": "chg_lc08_0129",
+    "kind": "code",
+    "entity_id": "svc_vault",
+    "ts": 1791470940948,
+    "ts_iso": "2026-10-08T14:49:00Z",
+    "author_id": "per_0021",
+    "reviewer_ids": [
+     "per_0019",
+     "per_0020"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "vault release v5.12.5: promo stacking",
+    "flag_key": null,
+    "pr_number": 8750,
+    "version_to": "1.5.7",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791471427260,
+   "ts_iso": "2026-10-08T14:57:07Z",
+   "data": {
+    "id": "chg_lc08_0126",
+    "kind": "config",
+    "entity_id": "svc_session",
+    "ts": 1791471427260,
+    "ts_iso": "2026-10-08T14:57:07Z",
+    "author_id": "per_0006",
+    "reviewer_ids": [
+     "per_0004",
+     "per_0005"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "session: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791471480000,
+   "ts_iso": "2026-10-08T14:58:00Z",
+   "data": {
+    "id": "alt_lc08_0124",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_search",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791471480000,
+    "ts_iso": "2026-10-08T14:58:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791471540000,
+   "ts_iso": "2026-10-08T14:59:00Z",
+   "data": {
+    "id": "alt_lc08_0125",
+    "name": "GCPauseLong",
+    "entity_id": "ds_redis-ratelimit",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791471540000,
+    "ts_iso": "2026-10-08T14:59:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791471728000,
+   "ts_iso": "2026-10-08T15:02:08Z",
+   "data": {
+    "id": "alt_lc08_0117",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_cart",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791471728000,
+    "ts_iso": "2026-10-08T15:02:08Z",
+    "resolved_ts": null,
+    "value": 5.19,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791471798000,
+   "ts_iso": "2026-10-08T15:03:18Z",
+   "data": {
+    "id": "alt_lc08_0118",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_payments",
+    "metric": "upstreamtimeouts",
+    "severity": "critical",
+    "ts": 1791471798000,
+    "ts_iso": "2026-10-08T15:03:18Z",
+    "resolved_ts": null,
+    "value": 4.77,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791471799000,
+   "ts_iso": "2026-10-08T15:03:19Z",
+   "data": {
+    "id": "alt_lc08_0119",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_checkout",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791471799000,
+    "ts_iso": "2026-10-08T15:03:19Z",
+    "resolved_ts": null,
+    "value": 3.3,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791471841000,
+   "ts_iso": "2026-10-08T15:04:01Z",
+   "data": {
+    "id": "alt_lc08_0116",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_search",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791471841000,
+    "ts_iso": "2026-10-08T15:04:01Z",
+    "resolved_ts": null,
+    "value": 4.36,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791471904000,
+   "ts_iso": "2026-10-08T15:05:04Z",
+   "data": {
+    "id": "alt_lc08_0122",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_orders",
+    "metric": "upstreamtimeouts",
+    "severity": "warning",
+    "ts": 1791471904000,
+    "ts_iso": "2026-10-08T15:05:04Z",
+    "resolved_ts": null,
+    "value": 2.53,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791471982000,
+   "ts_iso": "2026-10-08T15:06:22Z",
+   "data": {
+    "id": "alt_lc08_0120",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_web-bff",
+    "metric": "upstreamtimeouts",
+    "severity": "warning",
+    "ts": 1791471982000,
+    "ts_iso": "2026-10-08T15:06:22Z",
+    "resolved_ts": null,
+    "value": 5.64,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791472088000,
+   "ts_iso": "2026-10-08T15:08:08Z",
+   "data": {
+    "id": "alt_lc08_0121",
+    "name": "SlowResponses",
+    "entity_id": "svc_web-bff",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1791472088000,
+    "ts_iso": "2026-10-08T15:08:08Z",
+    "resolved_ts": null,
+    "value": 2.19,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791472127000,
+   "ts_iso": "2026-10-08T15:08:47Z",
+   "data": {
+    "id": "alt_lc08_0123",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_orders",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1791472127000,
+    "ts_iso": "2026-10-08T15:08:47Z",
+    "resolved_ts": null,
+    "value": 4.05,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_redis-cache"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_lc08_0115"
+  ],
+  "mechanism": [
+   "cache eviction policy changed"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_cart",
+   "svc_checkout",
+   "svc_orders",
+   "svc_payments",
+   "svc_search",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_platform",
+  "correct_oncall_id": "per_0020",
+  "expected_experts": [
+   "per_0020",
+   "per_0021",
+   "per_0014"
+  ]
+ },
+ "sequence": 8,
+ "motif_id": "motif_redis_evict"
+}

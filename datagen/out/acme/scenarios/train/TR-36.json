@@ -1,0 +1,384 @@
+{
+ "id": "TR-36",
+ "type": "multi_root",
+ "t0": 1791421981425,
+ "t0_iso": "2026-10-08T01:13:01Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791415730669,
+   "ts_iso": "2026-10-07T23:28:50Z",
+   "data": {
+    "id": "chg_tr36_1658",
+    "kind": "config",
+    "entity_id": "svc_payouts",
+    "ts": 1791415730669,
+    "ts_iso": "2026-10-07T23:28:50Z",
+    "author_id": "per_0057",
+    "reviewer_ids": [
+     "per_0073"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "payouts: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791417319893,
+   "ts_iso": "2026-10-07T23:55:19Z",
+   "data": {
+    "id": "chg_tr36_1657",
+    "kind": "code",
+    "entity_id": "svc_web-bff",
+    "ts": 1791417319893,
+    "ts_iso": "2026-10-07T23:55:19Z",
+    "author_id": "per_0002",
+    "reviewer_ids": [
+     "per_0123",
+     "per_0008"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "web-bff release v1.35.3: pagination cleanup",
+    "flag_key": null,
+    "pr_number": 6101,
+    "version_to": "8.0.19",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791418193556,
+   "ts_iso": "2026-10-08T00:09:53Z",
+   "data": {
+    "id": "chg_tr36_1655",
+    "kind": "config",
+    "entity_id": "svc_event-ingest",
+    "ts": 1791418193556,
+    "ts_iso": "2026-10-08T00:09:53Z",
+    "author_id": "per_0115",
+    "reviewer_ids": [
+     "per_0088"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "event-ingest: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791418722855,
+   "ts_iso": "2026-10-08T00:18:42Z",
+   "data": {
+    "id": "chg_tr36_1654",
+    "kind": "code",
+    "entity_id": "svc_vault",
+    "ts": 1791418722855,
+    "ts_iso": "2026-10-08T00:18:42Z",
+    "author_id": "per_0111",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "vault hotfix v7.11.20: currency rounding fix",
+    "flag_key": null,
+    "pr_number": 9988,
+    "version_to": "4.15.15",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791419401425,
+   "ts_iso": "2026-10-08T00:30:01Z",
+   "data": {
+    "id": "chg_tr36_1643",
+    "kind": "config",
+    "entity_id": "svc_refunds",
+    "ts": 1791419401425,
+    "ts_iso": "2026-10-08T00:30:01Z",
+    "author_id": "per_0069",
+    "reviewer_ids": [
+     "per_0054",
+     "per_0062"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "refunds: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791420181425,
+   "ts_iso": "2026-10-08T00:43:01Z",
+   "data": {
+    "id": "chg_tr36_1642",
+    "kind": "dependency_bump",
+    "entity_id": "svc_session",
+    "ts": 1791420181425,
+    "ts_iso": "2026-10-08T00:43:01Z",
+    "author_id": "per_0013",
+    "reviewer_ids": [
+     "per_0120"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "session: bump okhttp 2.8 -> 4.8",
+    "flag_key": null,
+    "pr_number": 6715,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791420729358,
+   "ts_iso": "2026-10-08T00:52:09Z",
+   "data": {
+    "id": "chg_tr36_1656",
+    "kind": "code",
+    "entity_id": "svc_reviews",
+    "ts": 1791420729358,
+    "ts_iso": "2026-10-08T00:52:09Z",
+    "author_id": "per_0028",
+    "reviewer_ids": [
+     "per_0026"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "reviews release v1.10.3: promo stacking",
+    "flag_key": null,
+    "pr_number": 5416,
+    "version_to": "2.28.19",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791421141425,
+   "ts_iso": "2026-10-08T00:59:01Z",
+   "data": {
+    "id": "alt_tr36_1650",
+    "name": "QueueLag",
+    "entity_id": "svc_notifications",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791421141425,
+    "ts_iso": "2026-10-08T00:59:01Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791421193203,
+   "ts_iso": "2026-10-08T00:59:53Z",
+   "data": {
+    "id": "chg_tr36_1653",
+    "kind": "flag",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1791421193203,
+    "ts_iso": "2026-10-08T00:59:53Z",
+    "author_id": "per_0009",
+    "reviewer_ids": [
+     "per_0003"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag mobile-bff.session-refresh-29 rollout 10% -> 100%",
+    "flag_key": "mobile-bff.session-refresh-29",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791421381425,
+   "ts_iso": "2026-10-08T01:03:01Z",
+   "data": {
+    "id": "alt_tr36_1652",
+    "name": "QueueLag",
+    "entity_id": "svc_feature-store",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791421381425,
+    "ts_iso": "2026-10-08T01:03:01Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791422141425,
+   "ts_iso": "2026-10-08T01:15:41Z",
+   "data": {
+    "id": "alt_tr36_1646",
+    "name": "SaturationCPU",
+    "entity_id": "svc_cart",
+    "metric": "saturationcpu",
+    "severity": "critical",
+    "ts": 1791422141425,
+    "ts_iso": "2026-10-08T01:15:41Z",
+    "resolved_ts": null,
+    "value": 1.63,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791422178425,
+   "ts_iso": "2026-10-08T01:16:18Z",
+   "data": {
+    "id": "alt_tr36_1645",
+    "name": "QueueLag",
+    "entity_id": "svc_cart",
+    "metric": "queuelag",
+    "severity": "critical",
+    "ts": 1791422178425,
+    "ts_iso": "2026-10-08T01:16:18Z",
+    "resolved_ts": null,
+    "value": 5.09,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791422263425,
+   "ts_iso": "2026-10-08T01:17:43Z",
+   "data": {
+    "id": "alt_tr36_1648",
+    "name": "QueueLag",
+    "entity_id": "svc_checkout",
+    "metric": "queuelag",
+    "severity": "warning",
+    "ts": 1791422263425,
+    "ts_iso": "2026-10-08T01:17:43Z",
+    "resolved_ts": null,
+    "value": 4.22,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791422281425,
+   "ts_iso": "2026-10-08T01:18:01Z",
+   "data": {
+    "id": "alt_tr36_1651",
+    "name": "SaturationCPU",
+    "entity_id": "svc_notifications",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791422281425,
+    "ts_iso": "2026-10-08T01:18:01Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791422296425,
+   "ts_iso": "2026-10-08T01:18:16Z",
+   "data": {
+    "id": "alt_tr36_1644",
+    "name": "SaturationCPU",
+    "entity_id": "svc_mobile-bff",
+    "metric": "saturationcpu",
+    "severity": "critical",
+    "ts": 1791422296425,
+    "ts_iso": "2026-10-08T01:18:16Z",
+    "resolved_ts": null,
+    "value": 2.72,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791422393425,
+   "ts_iso": "2026-10-08T01:19:53Z",
+   "data": {
+    "id": "alt_tr36_1647",
+    "name": "QueueLag",
+    "entity_id": "svc_web-bff",
+    "metric": "queuelag",
+    "severity": "warning",
+    "ts": 1791422393425,
+    "ts_iso": "2026-10-08T01:19:53Z",
+    "resolved_ts": null,
+    "value": 5.96,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791422740425,
+   "ts_iso": "2026-10-08T01:25:40Z",
+   "data": {
+    "id": "alt_tr36_1649",
+    "name": "SaturationCPU",
+    "entity_id": "svc_api-gateway",
+    "metric": "saturationcpu",
+    "severity": "warning",
+    "ts": 1791422740425,
+    "ts_iso": "2026-10-08T01:25:40Z",
+    "resolved_ts": null,
+    "value": 2.25,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_session",
+   "svc_refunds"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_tr36_1642",
+   "chg_tr36_1643"
+  ],
+  "mechanism": [
+   "driver bump broke connection reuse",
+   "flag rollout jumped to 100%"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_cart",
+   "svc_checkout",
+   "svc_mobile-bff",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_identity",
+  "correct_oncall_id": "per_0120",
+  "expected_experts": [
+   "per_0019",
+   "per_0013",
+   "per_0120"
+  ]
+ },
+ "distractors": 6
+}

@@ -1,0 +1,274 @@
+{
+ "id": "LC-02",
+ "type": "learning",
+ "t0": 1790953200000,
+ "t0_iso": "2026-10-02T15:00:00Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1790946469405,
+   "ts_iso": "2026-10-02T13:07:49Z",
+   "data": {
+    "id": "chg_lc02_0025",
+    "kind": "code",
+    "entity_id": "svc_orders",
+    "ts": 1790946469405,
+    "ts_iso": "2026-10-02T13:07:49Z",
+    "author_id": "per_0017",
+    "reviewer_ids": [
+     "per_0018"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "orders deploy v4.31.1 (saved cards)",
+    "flag_key": null,
+    "pr_number": 6327,
+    "version_to": "9.8.18",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790950196261,
+   "ts_iso": "2026-10-02T14:09:56Z",
+   "data": {
+    "id": "chg_lc02_0024",
+    "kind": "code",
+    "entity_id": "svc_cart",
+    "ts": 1790950196261,
+    "ts_iso": "2026-10-02T14:09:56Z",
+    "author_id": "per_0011",
+    "reviewer_ids": [
+     "per_0010"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "cart hotfix v2.29.2: faster cart merge",
+    "flag_key": null,
+    "pr_number": 5864,
+    "version_to": "3.8.10",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790952240000,
+   "ts_iso": "2026-10-02T14:44:00Z",
+   "data": {
+    "id": "chg_lc02_0015",
+    "kind": "config",
+    "entity_id": "ds_redis-cache",
+    "ts": 1790952240000,
+    "ts_iso": "2026-10-02T14:44:00Z",
+    "author_id": "per_0020",
+    "reviewer_ids": [
+     "per_0021"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-cache: maxmemory-policy allkeys-lru -> volatile-lru",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790952407312,
+   "ts_iso": "2026-10-02T14:46:47Z",
+   "data": {
+    "id": "chg_lc02_0023",
+    "kind": "code",
+    "entity_id": "svc_cart",
+    "ts": 1790952407312,
+    "ts_iso": "2026-10-02T14:46:47Z",
+    "author_id": "per_0012",
+    "reviewer_ids": [],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "cart release v9.29.9: address autocomplete",
+    "flag_key": null,
+    "pr_number": 8354,
+    "version_to": "4.7.2",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790952840000,
+   "ts_iso": "2026-10-02T14:54:00Z",
+   "data": {
+    "id": "alt_lc02_0022",
+    "name": "QueueLag",
+    "entity_id": "ds_ext-paylynx",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790952840000,
+    "ts_iso": "2026-10-02T14:54:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790952855575,
+   "ts_iso": "2026-10-02T14:54:15Z",
+   "data": {
+    "id": "chg_lc02_0026",
+    "kind": "config",
+    "entity_id": "svc_kafka",
+    "ts": 1790952855575,
+    "ts_iso": "2026-10-02T14:54:15Z",
+    "author_id": "per_0019",
+    "reviewer_ids": [
+     "per_0021"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "kafka: feature.banner off -> on",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790953284000,
+   "ts_iso": "2026-10-02T15:01:24Z",
+   "data": {
+    "id": "alt_lc02_0016",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_catalog",
+    "metric": "upstreamtimeouts",
+    "severity": "critical",
+    "ts": 1790953284000,
+    "ts_iso": "2026-10-02T15:01:24Z",
+    "resolved_ts": null,
+    "value": 4.01,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790953383000,
+   "ts_iso": "2026-10-02T15:03:03Z",
+   "data": {
+    "id": "alt_lc02_0019",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_cart",
+    "metric": "upstreamtimeouts",
+    "severity": "critical",
+    "ts": 1790953383000,
+    "ts_iso": "2026-10-02T15:03:03Z",
+    "resolved_ts": null,
+    "value": 5.31,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790953414000,
+   "ts_iso": "2026-10-02T15:03:34Z",
+   "data": {
+    "id": "alt_lc02_0018",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_payments",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1790953414000,
+    "ts_iso": "2026-10-02T15:03:34Z",
+    "resolved_ts": null,
+    "value": 2.01,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790953431000,
+   "ts_iso": "2026-10-02T15:03:51Z",
+   "data": {
+    "id": "alt_lc02_0017",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_payments",
+    "metric": "upstreamtimeouts",
+    "severity": "critical",
+    "ts": 1790953431000,
+    "ts_iso": "2026-10-02T15:03:51Z",
+    "resolved_ts": null,
+    "value": 3.7,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790953498000,
+   "ts_iso": "2026-10-02T15:04:58Z",
+   "data": {
+    "id": "alt_lc02_0020",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_orders",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1790953498000,
+    "ts_iso": "2026-10-02T15:04:58Z",
+    "resolved_ts": null,
+    "value": 1.85,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790953751000,
+   "ts_iso": "2026-10-02T15:09:11Z",
+   "data": {
+    "id": "alt_lc02_0021",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_checkout",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1790953751000,
+    "ts_iso": "2026-10-02T15:09:11Z",
+    "resolved_ts": null,
+    "value": 2.78,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_redis-cache"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_lc02_0015"
+  ],
+  "mechanism": [
+   "cache eviction policy changed"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_cart",
+   "svc_catalog",
+   "svc_checkout",
+   "svc_orders",
+   "svc_payments"
+  ],
+  "correct_team_id": "team_platform",
+  "correct_oncall_id": "per_0021",
+  "expected_experts": [
+   "per_0020",
+   "per_0021",
+   "per_0014"
+  ]
+ },
+ "sequence": 2,
+ "motif_id": "motif_redis_evict"
+}

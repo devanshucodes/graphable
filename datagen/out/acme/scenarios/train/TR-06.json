@@ -1,0 +1,265 @@
+{
+ "id": "TR-06",
+ "type": "change_induced",
+ "t0": 1791372333483,
+ "t0_iso": "2026-10-07T11:25:33Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791369691833,
+   "ts_iso": "2026-10-07T10:41:31Z",
+   "data": {
+    "id": "chg_tr06_1079",
+    "kind": "flag",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1791369691833,
+    "ts_iso": "2026-10-07T10:41:31Z",
+    "author_id": "per_0007",
+    "reviewer_ids": [
+     "per_0002"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag mobile-bff.bulk-price-import-71 rollout 10% -> 50%",
+    "flag_key": "mobile-bff.bulk-price-import-71",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791370233483,
+   "ts_iso": "2026-10-07T10:50:33Z",
+   "data": {
+    "id": "chg_tr06_1069",
+    "kind": "dependency_bump",
+    "entity_id": "svc_scheduler",
+    "ts": 1791370233483,
+    "ts_iso": "2026-10-07T10:50:33Z",
+    "author_id": "per_0110",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "scheduler: bump lettuce 2.7 -> 5.1",
+    "flag_key": null,
+    "pr_number": 6937,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791371402815,
+   "ts_iso": "2026-10-07T11:10:02Z",
+   "data": {
+    "id": "chg_tr06_1078",
+    "kind": "code",
+    "entity_id": "ds_s3-assets",
+    "ts": 1791371402815,
+    "ts_iso": "2026-10-07T11:10:02Z",
+    "author_id": "per_0107",
+    "reviewer_ids": [
+     "per_0098"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "s3-assets hotfix v2.14.5: pagination cleanup",
+    "flag_key": null,
+    "pr_number": 5667,
+    "version_to": "1.36.7",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791371913483,
+   "ts_iso": "2026-10-07T11:18:33Z",
+   "data": {
+    "id": "alt_tr06_1076",
+    "name": "QueueLag",
+    "entity_id": "svc_billing",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791371913483,
+    "ts_iso": "2026-10-07T11:18:33Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791372012622,
+   "ts_iso": "2026-10-07T11:20:12Z",
+   "data": {
+    "id": "chg_tr06_1080",
+    "kind": "code",
+    "entity_id": "svc_billing",
+    "ts": 1791372012622,
+    "ts_iso": "2026-10-07T11:20:12Z",
+    "author_id": "per_0062",
+    "reviewer_ids": [
+     "per_0073",
+     "per_0064"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "billing hotfix v6.23.16: refund webhooks",
+    "flag_key": null,
+    "pr_number": 4370,
+    "version_to": "1.2.2",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791372347483,
+   "ts_iso": "2026-10-07T11:25:47Z",
+   "data": {
+    "id": "alt_tr06_1070",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_scheduler",
+    "metric": "upstreamtimeouts",
+    "severity": "critical",
+    "ts": 1791372347483,
+    "ts_iso": "2026-10-07T11:25:47Z",
+    "resolved_ts": null,
+    "value": 5.33,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791372429483,
+   "ts_iso": "2026-10-07T11:27:09Z",
+   "data": {
+    "id": "alt_tr06_1073",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_billing",
+    "metric": "upstreamerrors",
+    "severity": "critical",
+    "ts": 1791372429483,
+    "ts_iso": "2026-10-07T11:27:09Z",
+    "resolved_ts": null,
+    "value": 3.53,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791372478483,
+   "ts_iso": "2026-10-07T11:27:58Z",
+   "data": {
+    "id": "alt_tr06_1071",
+    "name": "5xxSpike",
+    "entity_id": "svc_payouts",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791372478483,
+    "ts_iso": "2026-10-07T11:27:58Z",
+    "resolved_ts": null,
+    "value": 2.38,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791372519483,
+   "ts_iso": "2026-10-07T11:28:39Z",
+   "data": {
+    "id": "alt_tr06_1072",
+    "name": "HighErrorRate",
+    "entity_id": "svc_billing",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791372519483,
+    "ts_iso": "2026-10-07T11:28:39Z",
+    "resolved_ts": null,
+    "value": 1.31,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791373113483,
+   "ts_iso": "2026-10-07T11:38:33Z",
+   "data": {
+    "id": "alt_tr06_1077",
+    "name": "CertExpirySoon",
+    "entity_id": "ds_s3-assets",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791373113483,
+    "ts_iso": "2026-10-07T11:38:33Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791373413483,
+   "ts_iso": "2026-10-07T11:43:33Z",
+   "data": {
+    "id": "alt_tr06_1074",
+    "name": "SaturationCPU",
+    "entity_id": "svc_partner-api",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791373413483,
+    "ts_iso": "2026-10-07T11:43:33Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791374073483,
+   "ts_iso": "2026-10-07T11:54:33Z",
+   "data": {
+    "id": "alt_tr06_1075",
+    "name": "CertExpirySoon",
+    "entity_id": "ds_cassandra-events",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791374073483,
+    "ts_iso": "2026-10-07T11:54:33Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_scheduler"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_tr06_1069"
+  ],
+  "mechanism": [
+   "client library bump changed default timeout"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "svc_billing",
+   "svc_payouts",
+   "svc_scheduler"
+  ],
+  "correct_team_id": "team_platform",
+  "correct_oncall_id": "per_0108",
+  "expected_experts": [
+   "per_0111",
+   "per_0108",
+   "per_0099"
+  ]
+ },
+ "distractors": 3
+}

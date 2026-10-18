@@ -1,0 +1,1263 @@
+{"source_id": "thr_00001", "triples": [["inc_0001", "CAUSED_BY", "chg_000012"], ["inc_0001", "RESOLVED_BY", "per_0099"], ["inc_0001", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00002", "triples": [["inc_0002", "CAUSED_BY", "svc_user-profile"], ["inc_0002", "RESOLVED_BY", "per_0012"], ["inc_0002", "MITIGATED_WITH", "rb_019"]]}
+{"source_id": "thr_00003", "triples": [["inc_0004", "CAUSED_BY", "svc_catalog"], ["inc_0004", "RESOLVED_BY", "per_0032"], ["inc_0004", "MITIGATED_WITH", "rb_027"]]}
+{"source_id": "doc_0001", "triples": [["inc_0004", "CAUSED_BY", "svc_catalog"], ["inc_0004", "RESOLVED_BY", "per_0032"], ["inc_0004", "MITIGATED_WITH", "rb_027"]]}
+{"source_id": "thr_00004", "triples": [["inc_0007", "CAUSED_BY", "chg_000154"], ["inc_0007", "RESOLVED_BY", "per_0081"], ["inc_0007", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "doc_0002", "triples": [["inc_0007", "CAUSED_BY", "chg_000154"], ["inc_0007", "RESOLVED_BY", "per_0081"], ["inc_0007", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00005", "triples": [["inc_0008", "CAUSED_BY", "chg_000172"], ["inc_0008", "RESOLVED_BY", "per_0112"], ["inc_0008", "MITIGATED_WITH", "rb_112"]]}
+{"source_id": "doc_0003", "triples": [["inc_0008", "CAUSED_BY", "chg_000172"], ["inc_0008", "RESOLVED_BY", "per_0112"], ["inc_0008", "MITIGATED_WITH", "rb_112"]]}
+{"source_id": "thr_00006", "triples": [["inc_0011", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0011", "RESOLVED_BY", "per_0062"], ["inc_0011", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "doc_0004", "triples": [["inc_0011", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0011", "RESOLVED_BY", "per_0062"], ["inc_0011", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00007", "triples": [["inc_0012", "CAUSED_BY", "ds_redis-session"], ["inc_0012", "RESOLVED_BY", "per_0019"], ["inc_0012", "MITIGATED_WITH", "rb_137"]]}
+{"source_id": "doc_0005", "triples": [["inc_0012", "CAUSED_BY", "ds_redis-session"], ["inc_0012", "RESOLVED_BY", "per_0019"], ["inc_0012", "MITIGATED_WITH", "rb_137"]]}
+{"source_id": "thr_00008", "triples": [["inc_0016", "CAUSED_BY", "svc_session"], ["inc_0016", "RESOLVED_BY", "per_0019"], ["inc_0016", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "thr_00009", "triples": [["inc_0017", "CAUSED_BY", "chg_000519"], ["inc_0017", "RESOLVED_BY", "per_0112"], ["inc_0017", "MITIGATED_WITH", "rb_104"]]}
+{"source_id": "doc_0006", "triples": [["inc_0017", "CAUSED_BY", "chg_000519"], ["inc_0017", "RESOLVED_BY", "per_0112"], ["inc_0017", "MITIGATED_WITH", "rb_104"]]}
+{"source_id": "thr_00010", "triples": [["inc_0021", "CAUSED_BY", "chg_000620"], ["inc_0021", "RESOLVED_BY", "per_0070"], ["inc_0021", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "doc_0007", "triples": [["inc_0021", "CAUSED_BY", "chg_000620"], ["inc_0021", "RESOLVED_BY", "per_0070"], ["inc_0021", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "thr_00011", "triples": [["inc_0023", "CAUSED_BY", "chg_000684"], ["inc_0023", "RESOLVED_BY", "per_0019"], ["inc_0023", "MITIGATED_WITH", "rb_019"]]}
+{"source_id": "doc_0008", "triples": [["inc_0023", "CAUSED_BY", "chg_000684"], ["inc_0023", "RESOLVED_BY", "per_0019"], ["inc_0023", "MITIGATED_WITH", "rb_019"]]}
+{"source_id": "thr_00012", "triples": [["inc_0024", "CAUSED_BY", "svc_payments"], ["inc_0024", "RESOLVED_BY", "per_0059"], ["inc_0024", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "doc_0009", "triples": [["inc_0024", "CAUSED_BY", "svc_payments"], ["inc_0024", "RESOLVED_BY", "per_0059"], ["inc_0024", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "thr_00013", "triples": [["inc_0025", "CAUSED_BY", "svc_fraud-detection"], ["inc_0025", "RESOLVED_BY", "per_0062"], ["inc_0025", "MITIGATED_WITH", "rb_061"]]}
+{"source_id": "thr_00014", "triples": [["inc_0027", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0027", "RESOLVED_BY", "per_0059"], ["inc_0027", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "doc_0010", "triples": [["inc_0027", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0027", "RESOLVED_BY", "per_0059"], ["inc_0027", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00015", "triples": [["inc_0032", "CAUSED_BY", "chg_000934"], ["inc_0032", "RESOLVED_BY", "per_0013"], ["inc_0032", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "doc_0011", "triples": [["inc_0032", "CAUSED_BY", "chg_000934"], ["inc_0032", "RESOLVED_BY", "per_0013"], ["inc_0032", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "thr_00016", "triples": [["inc_0033", "CAUSED_BY", "chg_000945"], ["inc_0033", "RESOLVED_BY", "per_0080"], ["inc_0033", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "doc_0012", "triples": [["inc_0033", "CAUSED_BY", "chg_000945"], ["inc_0033", "RESOLVED_BY", "per_0080"], ["inc_0033", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00017", "triples": [["inc_0034", "CAUSED_BY", "chg_000969"], ["inc_0034", "RESOLVED_BY", "per_0052"], ["inc_0034", "MITIGATED_WITH", "rb_051"]]}
+{"source_id": "doc_0013", "triples": [["inc_0034", "CAUSED_BY", "chg_000969"], ["inc_0034", "RESOLVED_BY", "per_0052"], ["inc_0034", "MITIGATED_WITH", "rb_051"]]}
+{"source_id": "thr_00018", "triples": [["inc_0035", "CAUSED_BY", "chg_001005"], ["inc_0035", "RESOLVED_BY", "per_0108"], ["inc_0035", "MITIGATED_WITH", "rb_100"]]}
+{"source_id": "doc_0014", "triples": [["inc_0035", "CAUSED_BY", "chg_001005"], ["inc_0035", "RESOLVED_BY", "per_0108"], ["inc_0035", "MITIGATED_WITH", "rb_100"]]}
+{"source_id": "thr_00019", "triples": [["inc_0038", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0038", "RESOLVED_BY", "per_0059"], ["inc_0038", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00020", "triples": [["inc_0041", "CAUSED_BY", "svc_cart"], ["inc_0041", "RESOLVED_BY", "per_0043"], ["inc_0041", "MITIGATED_WITH", "rb_044"]]}
+{"source_id": "doc_0015", "triples": [["inc_0041", "CAUSED_BY", "svc_cart"], ["inc_0041", "RESOLVED_BY", "per_0043"], ["inc_0041", "MITIGATED_WITH", "rb_044"]]}
+{"source_id": "thr_00021", "triples": [["inc_0042", "CAUSED_BY", "svc_feature-store"], ["inc_0042", "RESOLVED_BY", "per_0089"], ["inc_0042", "MITIGATED_WITH", "rb_094"]]}
+{"source_id": "thr_00022", "triples": [["inc_0044", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0044", "RESOLVED_BY", "per_0059"], ["inc_0044", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "doc_0016", "triples": [["inc_0044", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0044", "RESOLVED_BY", "per_0059"], ["inc_0044", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00023", "triples": [["inc_0049", "CAUSED_BY", "chg_001279"], ["inc_0049", "RESOLVED_BY", "per_0032"], ["inc_0049", "MITIGATED_WITH", "rb_119"]]}
+{"source_id": "doc_0017", "triples": [["inc_0049", "CAUSED_BY", "chg_001279"], ["inc_0049", "RESOLVED_BY", "per_0032"], ["inc_0049", "MITIGATED_WITH", "rb_119"]]}
+{"source_id": "thr_00024", "triples": [["inc_0050", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0050", "RESOLVED_BY", "per_0062"], ["inc_0050", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "doc_0018", "triples": [["inc_0050", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0050", "RESOLVED_BY", "per_0062"], ["inc_0050", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00025", "triples": [["inc_0051", "CAUSED_BY", "svc_orders"], ["inc_0051", "RESOLVED_BY", "per_0081"], ["inc_0051", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "doc_0019", "triples": [["inc_0051", "CAUSED_BY", "svc_orders"], ["inc_0051", "RESOLVED_BY", "per_0081"], ["inc_0051", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00026", "triples": [["inc_0053", "CAUSED_BY", "svc_cart"], ["inc_0053", "RESOLVED_BY", "per_0049"], ["inc_0053", "MITIGATED_WITH", "rb_044"]]}
+{"source_id": "thr_00027", "triples": [["inc_0055", "CAUSED_BY", "chg_001410"], ["inc_0055", "RESOLVED_BY", "per_0081"], ["inc_0055", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "doc_0020", "triples": [["inc_0055", "CAUSED_BY", "chg_001410"], ["inc_0055", "RESOLVED_BY", "per_0081"], ["inc_0055", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00028", "triples": [["inc_0056", "CAUSED_BY", "chg_001445"], ["inc_0056", "RESOLVED_BY", "per_0112"], ["inc_0056", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0021", "triples": [["inc_0056", "CAUSED_BY", "chg_001445"], ["inc_0056", "RESOLVED_BY", "per_0112"], ["inc_0056", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00029", "triples": [["inc_0059", "CAUSED_BY", "chg_001502"], ["inc_0059", "RESOLVED_BY", "per_0081"], ["inc_0059", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "doc_0022", "triples": [["inc_0059", "CAUSED_BY", "chg_001502"], ["inc_0059", "RESOLVED_BY", "per_0081"], ["inc_0059", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00030", "triples": [["inc_0060", "CAUSED_BY", "svc_vault"], ["inc_0060", "RESOLVED_BY", "per_0107"], ["inc_0060", "MITIGATED_WITH", "rb_113"]]}
+{"source_id": "doc_0023", "triples": [["inc_0060", "CAUSED_BY", "svc_vault"], ["inc_0060", "RESOLVED_BY", "per_0107"], ["inc_0060", "MITIGATED_WITH", "rb_113"]]}
+{"source_id": "thr_00031", "triples": [["inc_0061", "CAUSED_BY", "ds_pg-inventory"], ["inc_0061", "RESOLVED_BY", "per_0038"], ["inc_0061", "MITIGATED_WITH", "rb_122"]]}
+{"source_id": "doc_0024", "triples": [["inc_0061", "CAUSED_BY", "ds_pg-inventory"], ["inc_0061", "RESOLVED_BY", "per_0038"], ["inc_0061", "MITIGATED_WITH", "rb_122"]]}
+{"source_id": "thr_00032", "triples": [["inc_0062", "CAUSED_BY", "chg_001578"], ["inc_0062", "RESOLVED_BY", "per_0108"], ["inc_0062", "MITIGATED_WITH", "rb_100"]]}
+{"source_id": "doc_0025", "triples": [["inc_0062", "CAUSED_BY", "chg_001578"], ["inc_0062", "RESOLVED_BY", "per_0108"], ["inc_0062", "MITIGATED_WITH", "rb_100"]]}
+{"source_id": "thr_00033", "triples": [["inc_0065", "CAUSED_BY", "svc_payments"], ["inc_0065", "RESOLVED_BY", "per_0062"], ["inc_0065", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "doc_0026", "triples": [["inc_0065", "CAUSED_BY", "svc_payments"], ["inc_0065", "RESOLVED_BY", "per_0062"], ["inc_0065", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "thr_00034", "triples": [["inc_0070", "CAUSED_BY", "chg_001669"], ["inc_0070", "RESOLVED_BY", "per_0012"], ["inc_0070", "MITIGATED_WITH", "rb_019"]]}
+{"source_id": "doc_0027", "triples": [["inc_0070", "CAUSED_BY", "chg_001669"], ["inc_0070", "RESOLVED_BY", "per_0012"], ["inc_0070", "MITIGATED_WITH", "rb_019"]]}
+{"source_id": "thr_00035", "triples": [["inc_0074", "CAUSED_BY", "svc_catalog"], ["inc_0074", "RESOLVED_BY", "per_0031"], ["inc_0074", "MITIGATED_WITH", "rb_027"]]}
+{"source_id": "doc_0028", "triples": [["inc_0074", "CAUSED_BY", "svc_catalog"], ["inc_0074", "RESOLVED_BY", "per_0031"], ["inc_0074", "MITIGATED_WITH", "rb_027"]]}
+{"source_id": "thr_00036", "triples": [["inc_0075", "CAUSED_BY", "svc_search"], ["inc_0075", "RESOLVED_BY", "per_0025"], ["inc_0075", "MITIGATED_WITH", "rb_030"]]}
+{"source_id": "doc_0029", "triples": [["inc_0075", "CAUSED_BY", "svc_search"], ["inc_0075", "RESOLVED_BY", "per_0025"], ["inc_0075", "MITIGATED_WITH", "rb_030"]]}
+{"source_id": "thr_00037", "triples": [["inc_0077", "CAUSED_BY", "svc_promotions"], ["inc_0077", "RESOLVED_BY", "per_0050"], ["inc_0077", "MITIGATED_WITH", "rb_051"]]}
+{"source_id": "thr_00038", "triples": [["inc_0081", "CAUSED_BY", "svc_auth"], ["inc_0081", "RESOLVED_BY", "per_0012"], ["inc_0081", "MITIGATED_WITH", "rb_016"]]}
+{"source_id": "thr_00039", "triples": [["inc_0082", "CAUSED_BY", "svc_user-profile"], ["inc_0082", "RESOLVED_BY", "per_0012"], ["inc_0082", "MITIGATED_WITH", "rb_019"]]}
+{"source_id": "doc_0030", "triples": [["inc_0082", "CAUSED_BY", "svc_user-profile"], ["inc_0082", "RESOLVED_BY", "per_0012"], ["inc_0082", "MITIGATED_WITH", "rb_019"]]}
+{"source_id": "thr_00040", "triples": [["inc_0085", "CAUSED_BY", "svc_pricing"], ["inc_0085", "RESOLVED_BY", "per_0038"], ["inc_0085", "MITIGATED_WITH", "rb_035"]]}
+{"source_id": "doc_0031", "triples": [["inc_0085", "CAUSED_BY", "svc_pricing"], ["inc_0085", "RESOLVED_BY", "per_0038"], ["inc_0085", "MITIGATED_WITH", "rb_035"]]}
+{"source_id": "thr_00041", "triples": [["inc_0087", "CAUSED_BY", "svc_auth"], ["inc_0087", "RESOLVED_BY", "per_0013"], ["inc_0087", "MITIGATED_WITH", "rb_016"]]}
+{"source_id": "doc_0032", "triples": [["inc_0087", "CAUSED_BY", "svc_auth"], ["inc_0087", "RESOLVED_BY", "per_0013"], ["inc_0087", "MITIGATED_WITH", "rb_016"]]}
+{"source_id": "thr_00042", "triples": [["inc_0089", "CAUSED_BY", "svc_session"], ["inc_0089", "RESOLVED_BY", "per_0019"], ["inc_0089", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "doc_0033", "triples": [["inc_0089", "CAUSED_BY", "svc_session"], ["inc_0089", "RESOLVED_BY", "per_0019"], ["inc_0089", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "thr_00043", "triples": [["inc_0090", "CAUSED_BY", "svc_payments"], ["inc_0090", "RESOLVED_BY", "per_0061"], ["inc_0090", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "doc_0034", "triples": [["inc_0090", "CAUSED_BY", "svc_payments"], ["inc_0090", "RESOLVED_BY", "per_0061"], ["inc_0090", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "thr_00044", "triples": [["inc_0092", "CAUSED_BY", "svc_cart"], ["inc_0092", "RESOLVED_BY", "per_0049"], ["inc_0092", "MITIGATED_WITH", "rb_044"]]}
+{"source_id": "doc_0035", "triples": [["inc_0092", "CAUSED_BY", "svc_cart"], ["inc_0092", "RESOLVED_BY", "per_0049"], ["inc_0092", "MITIGATED_WITH", "rb_044"]]}
+{"source_id": "thr_00045", "triples": [["inc_0093", "CAUSED_BY", "chg_001744"], ["inc_0093", "RESOLVED_BY", "per_0112"], ["inc_0093", "MITIGATED_WITH", "rb_112"]]}
+{"source_id": "doc_0036", "triples": [["inc_0093", "CAUSED_BY", "chg_001744"], ["inc_0093", "RESOLVED_BY", "per_0112"], ["inc_0093", "MITIGATED_WITH", "rb_112"]]}
+{"source_id": "thr_00046", "triples": [["inc_0097", "CAUSED_BY", "svc_payments"], ["inc_0097", "RESOLVED_BY", "per_0059"], ["inc_0097", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "thr_00047", "triples": [["inc_0098", "CAUSED_BY", "chg_001922"], ["inc_0098", "RESOLVED_BY", "per_0112"], ["inc_0098", "MITIGATED_WITH", "rb_134"]]}
+{"source_id": "doc_0037", "triples": [["inc_0098", "CAUSED_BY", "chg_001922"], ["inc_0098", "RESOLVED_BY", "per_0112"], ["inc_0098", "MITIGATED_WITH", "rb_134"]]}
+{"source_id": "thr_00048", "triples": [["inc_0099", "CAUSED_BY", "chg_001982"], ["inc_0099", "RESOLVED_BY", "per_0103"], ["inc_0099", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "doc_0038", "triples": [["inc_0099", "CAUSED_BY", "chg_001982"], ["inc_0099", "RESOLVED_BY", "per_0103"], ["inc_0099", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "thr_00049", "triples": [["inc_0105", "CAUSED_BY", "ds_pg-catalog"], ["inc_0105", "RESOLVED_BY", "per_0032"], ["inc_0105", "MITIGATED_WITH", "rb_119"]]}
+{"source_id": "doc_0039", "triples": [["inc_0105", "CAUSED_BY", "ds_pg-catalog"], ["inc_0105", "RESOLVED_BY", "per_0032"], ["inc_0105", "MITIGATED_WITH", "rb_119"]]}
+{"source_id": "thr_00050", "triples": [["inc_0106", "CAUSED_BY", "chg_002256"], ["inc_0106", "RESOLVED_BY", "per_0013"], ["inc_0106", "MITIGATED_WITH", "rb_117"]]}
+{"source_id": "doc_0040", "triples": [["inc_0106", "CAUSED_BY", "chg_002256"], ["inc_0106", "RESOLVED_BY", "per_0013"], ["inc_0106", "MITIGATED_WITH", "rb_117"]]}
+{"source_id": "thr_00051", "triples": [["inc_0109", "CAUSED_BY", "chg_002346"], ["inc_0109", "RESOLVED_BY", "per_0103"], ["inc_0109", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "doc_0041", "triples": [["inc_0109", "CAUSED_BY", "chg_002346"], ["inc_0109", "RESOLVED_BY", "per_0103"], ["inc_0109", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "thr_00052", "triples": [["inc_0112", "CAUSED_BY", "ds_redis-session"], ["inc_0112", "RESOLVED_BY", "per_0019"], ["inc_0112", "MITIGATED_WITH", "rb_137"]]}
+{"source_id": "doc_0042", "triples": [["inc_0112", "CAUSED_BY", "ds_redis-session"], ["inc_0112", "RESOLVED_BY", "per_0019"], ["inc_0112", "MITIGATED_WITH", "rb_137"]]}
+{"source_id": "thr_00053", "triples": [["inc_0114", "CAUSED_BY", "chg_002488"], ["inc_0114", "RESOLVED_BY", "per_0112"], ["inc_0114", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "doc_0043", "triples": [["inc_0114", "CAUSED_BY", "chg_002488"], ["inc_0114", "RESOLVED_BY", "per_0112"], ["inc_0114", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "thr_00054", "triples": [["inc_0115", "CAUSED_BY", "chg_002510"], ["inc_0115", "RESOLVED_BY", "per_0076"], ["inc_0115", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "doc_0044", "triples": [["inc_0115", "CAUSED_BY", "chg_002510"], ["inc_0115", "RESOLVED_BY", "per_0076"], ["inc_0115", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00055", "triples": [["inc_0120", "CAUSED_BY", "chg_002592"], ["inc_0120", "RESOLVED_BY", "per_0019"], ["inc_0120", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "doc_0045", "triples": [["inc_0120", "CAUSED_BY", "chg_002592"], ["inc_0120", "RESOLVED_BY", "per_0019"], ["inc_0120", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "thr_00056", "triples": [["inc_0124", "CAUSED_BY", "chg_002661"], ["inc_0124", "RESOLVED_BY", "per_0108"], ["inc_0124", "MITIGATED_WITH", "rb_104"]]}
+{"source_id": "doc_0046", "triples": [["inc_0124", "CAUSED_BY", "chg_002661"], ["inc_0124", "RESOLVED_BY", "per_0108"], ["inc_0124", "MITIGATED_WITH", "rb_104"]]}
+{"source_id": "thr_00057", "triples": [["inc_0125", "CAUSED_BY", "chg_002696"], ["inc_0125", "RESOLVED_BY", "per_0108"], ["inc_0125", "MITIGATED_WITH", "rb_105"]]}
+{"source_id": "doc_0047", "triples": [["inc_0125", "CAUSED_BY", "chg_002696"], ["inc_0125", "RESOLVED_BY", "per_0108"], ["inc_0125", "MITIGATED_WITH", "rb_105"]]}
+{"source_id": "thr_00058", "triples": [["inc_0129", "CAUSED_BY", "chg_002774"], ["inc_0129", "RESOLVED_BY", "per_0103"], ["inc_0129", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "doc_0048", "triples": [["inc_0129", "CAUSED_BY", "chg_002774"], ["inc_0129", "RESOLVED_BY", "per_0103"], ["inc_0129", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "thr_00059", "triples": [["inc_0130", "CAUSED_BY", "chg_002791"], ["inc_0130", "RESOLVED_BY", "per_0095"], ["inc_0130", "MITIGATED_WITH", "rb_098"]]}
+{"source_id": "doc_0049", "triples": [["inc_0130", "CAUSED_BY", "chg_002791"], ["inc_0130", "RESOLVED_BY", "per_0095"], ["inc_0130", "MITIGATED_WITH", "rb_098"]]}
+{"source_id": "thr_00060", "triples": [["inc_0131", "CAUSED_BY", "chg_002849"], ["inc_0131", "RESOLVED_BY", "per_0103"], ["inc_0131", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0050", "triples": [["inc_0131", "CAUSED_BY", "chg_002849"], ["inc_0131", "RESOLVED_BY", "per_0103"], ["inc_0131", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00061", "triples": [["inc_0132", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0132", "RESOLVED_BY", "per_0059"], ["inc_0132", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "doc_0051", "triples": [["inc_0132", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0132", "RESOLVED_BY", "per_0059"], ["inc_0132", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00062", "triples": [["inc_0133", "CAUSED_BY", "chg_002871"], ["inc_0133", "RESOLVED_BY", "per_0081"], ["inc_0133", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00063", "triples": [["inc_0135", "CAUSED_BY", "svc_payments"], ["inc_0135", "RESOLVED_BY", "per_0062"], ["inc_0135", "MITIGATED_WITH", "rb_059"]]}
+{"source_id": "thr_00064", "triples": [["inc_0136", "CAUSED_BY", "svc_config-service"], ["inc_0136", "RESOLVED_BY", "per_0112"], ["inc_0136", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "doc_0052", "triples": [["inc_0136", "CAUSED_BY", "svc_config-service"], ["inc_0136", "RESOLVED_BY", "per_0112"], ["inc_0136", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "thr_00065", "triples": [["inc_0137", "CAUSED_BY", "chg_003030"], ["inc_0137", "RESOLVED_BY", "per_0042"], ["inc_0137", "MITIGATED_WITH", "rb_038"]]}
+{"source_id": "thr_00066", "triples": [["inc_0138", "CAUSED_BY", "chg_003038"], ["inc_0138", "RESOLVED_BY", "per_0100"], ["inc_0138", "MITIGATED_WITH", "rb_112"]]}
+{"source_id": "doc_0053", "triples": [["inc_0138", "CAUSED_BY", "chg_003038"], ["inc_0138", "RESOLVED_BY", "per_0100"], ["inc_0138", "MITIGATED_WITH", "rb_112"]]}
+{"source_id": "thr_00067", "triples": [["inc_0139", "CAUSED_BY", "chg_003049"], ["inc_0139", "RESOLVED_BY", "per_0099"], ["inc_0139", "MITIGATED_WITH", "rb_105"]]}
+{"source_id": "doc_0054", "triples": [["inc_0139", "CAUSED_BY", "chg_003049"], ["inc_0139", "RESOLVED_BY", "per_0099"], ["inc_0139", "MITIGATED_WITH", "rb_105"]]}
+{"source_id": "thr_00068", "triples": [["inc_0141", "CAUSED_BY", "chg_003093"], ["inc_0141", "RESOLVED_BY", "per_0112"], ["inc_0141", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0055", "triples": [["inc_0141", "CAUSED_BY", "chg_003093"], ["inc_0141", "RESOLVED_BY", "per_0112"], ["inc_0141", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00069", "triples": [["inc_0142", "CAUSED_BY", "chg_003101"], ["inc_0142", "RESOLVED_BY", "per_0049"], ["inc_0142", "MITIGATED_WITH", "rb_051"]]}
+{"source_id": "doc_0056", "triples": [["inc_0142", "CAUSED_BY", "chg_003101"], ["inc_0142", "RESOLVED_BY", "per_0049"], ["inc_0142", "MITIGATED_WITH", "rb_051"]]}
+{"source_id": "thr_00070", "triples": [["inc_0144", "CAUSED_BY", "svc_payments"], ["inc_0144", "RESOLVED_BY", "per_0061"], ["inc_0144", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "doc_0057", "triples": [["inc_0144", "CAUSED_BY", "svc_payments"], ["inc_0144", "RESOLVED_BY", "per_0061"], ["inc_0144", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "thr_00071", "triples": [["inc_0146", "CAUSED_BY", "chg_003123"], ["inc_0146", "RESOLVED_BY", "per_0028"], ["inc_0146", "MITIGATED_WITH", "rb_030"]]}
+{"source_id": "doc_0058", "triples": [["inc_0146", "CAUSED_BY", "chg_003123"], ["inc_0146", "RESOLVED_BY", "per_0028"], ["inc_0146", "MITIGATED_WITH", "rb_030"]]}
+{"source_id": "thr_00072", "triples": [["inc_0147", "CAUSED_BY", "chg_003142"], ["inc_0147", "RESOLVED_BY", "per_0093"], ["inc_0147", "MITIGATED_WITH", "rb_098"]]}
+{"source_id": "doc_0059", "triples": [["inc_0147", "CAUSED_BY", "chg_003142"], ["inc_0147", "RESOLVED_BY", "per_0093"], ["inc_0147", "MITIGATED_WITH", "rb_098"]]}
+{"source_id": "thr_00073", "triples": [["inc_0150", "CAUSED_BY", "svc_session"], ["inc_0150", "RESOLVED_BY", "per_0019"], ["inc_0150", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "thr_00074", "triples": [["inc_0151", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0151", "RESOLVED_BY", "per_0060"], ["inc_0151", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00075", "triples": [["inc_0153", "CAUSED_BY", "chg_003302"], ["inc_0153", "RESOLVED_BY", "per_0042"], ["inc_0153", "MITIGATED_WITH", "rb_035"]]}
+{"source_id": "thr_00076", "triples": [["inc_0155", "CAUSED_BY", "chg_003342"], ["inc_0155", "RESOLVED_BY", "per_0019"], ["inc_0155", "MITIGATED_WITH", "rb_016"]]}
+{"source_id": "thr_00077", "triples": [["inc_0157", "CAUSED_BY", "chg_003375"], ["inc_0157", "RESOLVED_BY", "per_0028"], ["inc_0157", "MITIGATED_WITH", "rb_030"]]}
+{"source_id": "thr_00078", "triples": [["inc_0159", "CAUSED_BY", "chg_003394"], ["inc_0159", "RESOLVED_BY", "per_0066"], ["inc_0159", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "doc_0060", "triples": [["inc_0159", "CAUSED_BY", "chg_003394"], ["inc_0159", "RESOLVED_BY", "per_0066"], ["inc_0159", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "thr_00079", "triples": [["inc_0160", "CAUSED_BY", "chg_003514"], ["inc_0160", "RESOLVED_BY", "per_0013"], ["inc_0160", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "thr_00080", "triples": [["inc_0162", "CAUSED_BY", "chg_003537"], ["inc_0162", "RESOLVED_BY", "per_0112"], ["inc_0162", "MITIGATED_WITH", "rb_105"]]}
+{"source_id": "doc_0061", "triples": [["inc_0162", "CAUSED_BY", "chg_003537"], ["inc_0162", "RESOLVED_BY", "per_0112"], ["inc_0162", "MITIGATED_WITH", "rb_105"]]}
+{"source_id": "thr_00081", "triples": [["inc_0163", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0163", "RESOLVED_BY", "per_0059"], ["inc_0163", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "doc_0062", "triples": [["inc_0163", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0163", "RESOLVED_BY", "per_0059"], ["inc_0163", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00082", "triples": [["inc_0164", "CAUSED_BY", "chg_003584"], ["inc_0164", "RESOLVED_BY", "per_0061"], ["inc_0164", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "doc_0063", "triples": [["inc_0164", "CAUSED_BY", "chg_003584"], ["inc_0164", "RESOLVED_BY", "per_0061"], ["inc_0164", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "thr_00083", "triples": [["inc_0165", "CAUSED_BY", "chg_003587"], ["inc_0165", "RESOLVED_BY", "per_0112"], ["inc_0165", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0064", "triples": [["inc_0165", "CAUSED_BY", "chg_003587"], ["inc_0165", "RESOLVED_BY", "per_0112"], ["inc_0165", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00084", "triples": [["inc_0168", "CAUSED_BY", "svc_promotions"], ["inc_0168", "RESOLVED_BY", "per_0049"], ["inc_0168", "MITIGATED_WITH", "rb_051"]]}
+{"source_id": "doc_0065", "triples": [["inc_0168", "CAUSED_BY", "svc_promotions"], ["inc_0168", "RESOLVED_BY", "per_0049"], ["inc_0168", "MITIGATED_WITH", "rb_051"]]}
+{"source_id": "thr_00085", "triples": [["inc_0172", "CAUSED_BY", "svc_search"], ["inc_0172", "RESOLVED_BY", "per_0028"], ["inc_0172", "MITIGATED_WITH", "rb_030"]]}
+{"source_id": "thr_00086", "triples": [["inc_0177", "CAUSED_BY", "chg_003943"], ["inc_0177", "RESOLVED_BY", "per_0093"], ["inc_0177", "MITIGATED_WITH", "rb_098"]]}
+{"source_id": "doc_0066", "triples": [["inc_0177", "CAUSED_BY", "chg_003943"], ["inc_0177", "RESOLVED_BY", "per_0093"], ["inc_0177", "MITIGATED_WITH", "rb_098"]]}
+{"source_id": "thr_00087", "triples": [["inc_0179", "CAUSED_BY", "svc_checkout"], ["inc_0179", "RESOLVED_BY", "per_0052"], ["inc_0179", "MITIGATED_WITH", "rb_048"]]}
+{"source_id": "thr_00088", "triples": [["inc_0180", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0180", "RESOLVED_BY", "per_0060"], ["inc_0180", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "doc_0067", "triples": [["inc_0180", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0180", "RESOLVED_BY", "per_0060"], ["inc_0180", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00089", "triples": [["inc_0182", "CAUSED_BY", "chg_004015"], ["inc_0182", "RESOLVED_BY", "per_0049"], ["inc_0182", "MITIGATED_WITH", "rb_051"]]}
+{"source_id": "thr_00090", "triples": [["inc_0186", "CAUSED_BY", "svc_catalog"], ["inc_0186", "RESOLVED_BY", "per_0025"], ["inc_0186", "MITIGATED_WITH", "rb_027"]]}
+{"source_id": "thr_00091", "triples": [["inc_0187", "CAUSED_BY", "chg_004092"], ["inc_0187", "RESOLVED_BY", "per_0081"], ["inc_0187", "MITIGATED_WITH", "rb_090"]]}
+{"source_id": "thr_00092", "triples": [["inc_0189", "CAUSED_BY", "chg_004106"], ["inc_0189", "RESOLVED_BY", "per_0019"], ["inc_0189", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "doc_0068", "triples": [["inc_0189", "CAUSED_BY", "chg_004106"], ["inc_0189", "RESOLVED_BY", "per_0019"], ["inc_0189", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "thr_00093", "triples": [["inc_0190", "CAUSED_BY", "chg_004132"], ["inc_0190", "RESOLVED_BY", "per_0108"], ["inc_0190", "MITIGATED_WITH", "rb_103"]]}
+{"source_id": "doc_0069", "triples": [["inc_0190", "CAUSED_BY", "chg_004132"], ["inc_0190", "RESOLVED_BY", "per_0108"], ["inc_0190", "MITIGATED_WITH", "rb_103"]]}
+{"source_id": "thr_00094", "triples": [["inc_0191", "CAUSED_BY", "chg_004144"], ["inc_0191", "RESOLVED_BY", "per_0069"], ["inc_0191", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "doc_0070", "triples": [["inc_0191", "CAUSED_BY", "chg_004144"], ["inc_0191", "RESOLVED_BY", "per_0069"], ["inc_0191", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "thr_00095", "triples": [["inc_0196", "CAUSED_BY", "chg_004241"], ["inc_0196", "RESOLVED_BY", "per_0042"], ["inc_0196", "MITIGATED_WITH", "rb_035"]]}
+{"source_id": "doc_0071", "triples": [["inc_0196", "CAUSED_BY", "chg_004241"], ["inc_0196", "RESOLVED_BY", "per_0042"], ["inc_0196", "MITIGATED_WITH", "rb_035"]]}
+{"source_id": "thr_00096", "triples": [["inc_0197", "CAUSED_BY", "chg_004245"], ["inc_0197", "RESOLVED_BY", "per_0099"], ["inc_0197", "MITIGATED_WITH", "rb_134"]]}
+{"source_id": "doc_0072", "triples": [["inc_0197", "CAUSED_BY", "chg_004245"], ["inc_0197", "RESOLVED_BY", "per_0099"], ["inc_0197", "MITIGATED_WITH", "rb_134"]]}
+{"source_id": "thr_00097", "triples": [["inc_0198", "CAUSED_BY", "chg_004286"], ["inc_0198", "RESOLVED_BY", "per_0082"], ["inc_0198", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "doc_0073", "triples": [["inc_0198", "CAUSED_BY", "chg_004286"], ["inc_0198", "RESOLVED_BY", "per_0082"], ["inc_0198", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00098", "triples": [["inc_0199", "CAUSED_BY", "ds_cassandra-events"], ["inc_0199", "RESOLVED_BY", "per_0089"], ["inc_0199", "MITIGATED_WITH", "rb_147"]]}
+{"source_id": "doc_0074", "triples": [["inc_0199", "CAUSED_BY", "ds_cassandra-events"], ["inc_0199", "RESOLVED_BY", "per_0089"], ["inc_0199", "MITIGATED_WITH", "rb_147"]]}
+{"source_id": "thr_00099", "triples": [["inc_0200", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0200", "RESOLVED_BY", "per_0060"], ["inc_0200", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "doc_0075", "triples": [["inc_0200", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0200", "RESOLVED_BY", "per_0060"], ["inc_0200", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00100", "triples": [["inc_0201", "CAUSED_BY", "chg_004315"], ["inc_0201", "RESOLVED_BY", "per_0081"], ["inc_0201", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "doc_0076", "triples": [["inc_0201", "CAUSED_BY", "chg_004315"], ["inc_0201", "RESOLVED_BY", "per_0081"], ["inc_0201", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00101", "triples": [["inc_0205", "CAUSED_BY", "chg_004458"], ["inc_0205", "RESOLVED_BY", "per_0080"], ["inc_0205", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00102", "triples": [["inc_0206", "CAUSED_BY", "chg_004466"], ["inc_0206", "RESOLVED_BY", "per_0017"], ["inc_0206", "MITIGATED_WITH", "rb_020"]]}
+{"source_id": "doc_0077", "triples": [["inc_0206", "CAUSED_BY", "chg_004466"], ["inc_0206", "RESOLVED_BY", "per_0017"], ["inc_0206", "MITIGATED_WITH", "rb_020"]]}
+{"source_id": "thr_00103", "triples": [["inc_0207", "CAUSED_BY", "chg_004486"], ["inc_0207", "RESOLVED_BY", "per_0099"], ["inc_0207", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0078", "triples": [["inc_0207", "CAUSED_BY", "chg_004486"], ["inc_0207", "RESOLVED_BY", "per_0099"], ["inc_0207", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00104", "triples": [["inc_0208", "CAUSED_BY", "chg_004502"], ["inc_0208", "RESOLVED_BY", "per_0095"], ["inc_0208", "MITIGATED_WITH", "rb_147"]]}
+{"source_id": "thr_00105", "triples": [["inc_0209", "CAUSED_BY", "chg_004537"], ["inc_0209", "RESOLVED_BY", "per_0070"], ["inc_0209", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "thr_00106", "triples": [["inc_0213", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0213", "RESOLVED_BY", "per_0060"], ["inc_0213", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "doc_0079", "triples": [["inc_0213", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0213", "RESOLVED_BY", "per_0060"], ["inc_0213", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00107", "triples": [["inc_0214", "CAUSED_BY", "ds_pg-catalog"], ["inc_0214", "RESOLVED_BY", "per_0031"], ["inc_0214", "MITIGATED_WITH", "rb_119"]]}
+{"source_id": "doc_0080", "triples": [["inc_0214", "CAUSED_BY", "ds_pg-catalog"], ["inc_0214", "RESOLVED_BY", "per_0031"], ["inc_0214", "MITIGATED_WITH", "rb_119"]]}
+{"source_id": "thr_00108", "triples": [["inc_0216", "CAUSED_BY", "chg_004629"], ["inc_0216", "RESOLVED_BY", "per_0091"], ["inc_0216", "MITIGATED_WITH", "rb_103"]]}
+{"source_id": "doc_0081", "triples": [["inc_0216", "CAUSED_BY", "chg_004629"], ["inc_0216", "RESOLVED_BY", "per_0091"], ["inc_0216", "MITIGATED_WITH", "rb_103"]]}
+{"source_id": "thr_00109", "triples": [["inc_0218", "CAUSED_BY", "chg_004711"], ["inc_0218", "RESOLVED_BY", "per_0028"], ["inc_0218", "MITIGATED_WITH", "rb_032"]]}
+{"source_id": "thr_00110", "triples": [["inc_0220", "CAUSED_BY", "svc_vault"], ["inc_0220", "RESOLVED_BY", "per_0112"], ["inc_0220", "MITIGATED_WITH", "rb_112"]]}
+{"source_id": "doc_0082", "triples": [["inc_0220", "CAUSED_BY", "svc_vault"], ["inc_0220", "RESOLVED_BY", "per_0112"], ["inc_0220", "MITIGATED_WITH", "rb_112"]]}
+{"source_id": "thr_00111", "triples": [["inc_0221", "CAUSED_BY", "ds_pg-users"], ["inc_0221", "RESOLVED_BY", "per_0013"], ["inc_0221", "MITIGATED_WITH", "rb_117"]]}
+{"source_id": "doc_0083", "triples": [["inc_0221", "CAUSED_BY", "ds_pg-users"], ["inc_0221", "RESOLVED_BY", "per_0013"], ["inc_0221", "MITIGATED_WITH", "rb_117"]]}
+{"source_id": "thr_00112", "triples": [["inc_0222", "CAUSED_BY", "chg_004799"], ["inc_0222", "RESOLVED_BY", "per_0112"], ["inc_0222", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "doc_0084", "triples": [["inc_0222", "CAUSED_BY", "chg_004799"], ["inc_0222", "RESOLVED_BY", "per_0112"], ["inc_0222", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "thr_00113", "triples": [["inc_0223", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0223", "RESOLVED_BY", "per_0062"], ["inc_0223", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "doc_0085", "triples": [["inc_0223", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0223", "RESOLVED_BY", "per_0062"], ["inc_0223", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00114", "triples": [["inc_0224", "CAUSED_BY", "chg_004853"], ["inc_0224", "RESOLVED_BY", "per_0112"], ["inc_0224", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0086", "triples": [["inc_0224", "CAUSED_BY", "chg_004853"], ["inc_0224", "RESOLVED_BY", "per_0112"], ["inc_0224", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00115", "triples": [["inc_0226", "CAUSED_BY", "chg_004887"], ["inc_0226", "RESOLVED_BY", "per_0066"], ["inc_0226", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "doc_0087", "triples": [["inc_0226", "CAUSED_BY", "chg_004887"], ["inc_0226", "RESOLVED_BY", "per_0066"], ["inc_0226", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "thr_00116", "triples": [["inc_0227", "CAUSED_BY", "chg_004891"], ["inc_0227", "RESOLVED_BY", "per_0112"], ["inc_0227", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "doc_0088", "triples": [["inc_0227", "CAUSED_BY", "chg_004891"], ["inc_0227", "RESOLVED_BY", "per_0112"], ["inc_0227", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "thr_00117", "triples": [["inc_0228", "CAUSED_BY", "chg_004937"], ["inc_0228", "RESOLVED_BY", "per_0019"], ["inc_0228", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "doc_0089", "triples": [["inc_0228", "CAUSED_BY", "chg_004937"], ["inc_0228", "RESOLVED_BY", "per_0019"], ["inc_0228", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "thr_00118", "triples": [["inc_0230", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0230", "RESOLVED_BY", "per_0062"], ["inc_0230", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00119", "triples": [["inc_0231", "CAUSED_BY", "chg_005046"], ["inc_0231", "RESOLVED_BY", "per_0112"], ["inc_0231", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0090", "triples": [["inc_0231", "CAUSED_BY", "chg_005046"], ["inc_0231", "RESOLVED_BY", "per_0112"], ["inc_0231", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00120", "triples": [["inc_0233", "CAUSED_BY", "chg_005139"], ["inc_0233", "RESOLVED_BY", "per_0048"], ["inc_0233", "MITIGATED_WITH", "rb_054"]]}
+{"source_id": "thr_00121", "triples": [["inc_0239", "CAUSED_BY", "chg_005335"], ["inc_0239", "RESOLVED_BY", "per_0112"], ["inc_0239", "MITIGATED_WITH", "rb_102"]]}
+{"source_id": "doc_0091", "triples": [["inc_0239", "CAUSED_BY", "chg_005335"], ["inc_0239", "RESOLVED_BY", "per_0112"], ["inc_0239", "MITIGATED_WITH", "rb_102"]]}
+{"source_id": "thr_00122", "triples": [["inc_0241", "CAUSED_BY", "chg_005366"], ["inc_0241", "RESOLVED_BY", "per_0082"], ["inc_0241", "MITIGATED_WITH", "rb_079"]]}
+{"source_id": "doc_0092", "triples": [["inc_0241", "CAUSED_BY", "chg_005366"], ["inc_0241", "RESOLVED_BY", "per_0082"], ["inc_0241", "MITIGATED_WITH", "rb_079"]]}
+{"source_id": "thr_00123", "triples": [["inc_0243", "CAUSED_BY", "svc_permissions"], ["inc_0243", "RESOLVED_BY", "per_0019"], ["inc_0243", "MITIGATED_WITH", "rb_023"]]}
+{"source_id": "doc_0093", "triples": [["inc_0243", "CAUSED_BY", "svc_permissions"], ["inc_0243", "RESOLVED_BY", "per_0019"], ["inc_0243", "MITIGATED_WITH", "rb_023"]]}
+{"source_id": "thr_00124", "triples": [["inc_0244", "CAUSED_BY", "chg_005440"], ["inc_0244", "RESOLVED_BY", "per_0013"], ["inc_0244", "MITIGATED_WITH", "rb_019"]]}
+{"source_id": "thr_00125", "triples": [["inc_0245", "CAUSED_BY", "chg_005456"], ["inc_0245", "RESOLVED_BY", "per_0059"], ["inc_0245", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "thr_00126", "triples": [["inc_0249", "CAUSED_BY", "chg_005570"], ["inc_0249", "RESOLVED_BY", "per_0112"], ["inc_0249", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "doc_0094", "triples": [["inc_0249", "CAUSED_BY", "chg_005570"], ["inc_0249", "RESOLVED_BY", "per_0112"], ["inc_0249", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "thr_00127", "triples": [["inc_0250", "CAUSED_BY", "ds_pg-inventory"], ["inc_0250", "RESOLVED_BY", "per_0038"], ["inc_0250", "MITIGATED_WITH", "rb_122"]]}
+{"source_id": "doc_0095", "triples": [["inc_0250", "CAUSED_BY", "ds_pg-inventory"], ["inc_0250", "RESOLVED_BY", "per_0038"], ["inc_0250", "MITIGATED_WITH", "rb_122"]]}
+{"source_id": "thr_00128", "triples": [["inc_0252", "CAUSED_BY", "chg_005614"], ["inc_0252", "RESOLVED_BY", "per_0112"], ["inc_0252", "MITIGATED_WITH", "rb_112"]]}
+{"source_id": "doc_0096", "triples": [["inc_0252", "CAUSED_BY", "chg_005614"], ["inc_0252", "RESOLVED_BY", "per_0112"], ["inc_0252", "MITIGATED_WITH", "rb_112"]]}
+{"source_id": "thr_00129", "triples": [["inc_0253", "CAUSED_BY", "chg_005634"], ["inc_0253", "RESOLVED_BY", "per_0050"], ["inc_0253", "MITIGATED_WITH", "rb_056"]]}
+{"source_id": "doc_0097", "triples": [["inc_0253", "CAUSED_BY", "chg_005634"], ["inc_0253", "RESOLVED_BY", "per_0050"], ["inc_0253", "MITIGATED_WITH", "rb_056"]]}
+{"source_id": "thr_00130", "triples": [["inc_0254", "CAUSED_BY", "chg_005653"], ["inc_0254", "RESOLVED_BY", "per_0028"], ["inc_0254", "MITIGATED_WITH", "rb_032"]]}
+{"source_id": "thr_00131", "triples": [["inc_0255", "CAUSED_BY", "chg_005666"], ["inc_0255", "RESOLVED_BY", "per_0095"], ["inc_0255", "MITIGATED_WITH", "rb_098"]]}
+{"source_id": "doc_0098", "triples": [["inc_0255", "CAUSED_BY", "chg_005666"], ["inc_0255", "RESOLVED_BY", "per_0095"], ["inc_0255", "MITIGATED_WITH", "rb_098"]]}
+{"source_id": "thr_00132", "triples": [["inc_0261", "CAUSED_BY", "chg_005806"], ["inc_0261", "RESOLVED_BY", "per_0066"], ["inc_0261", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "doc_0099", "triples": [["inc_0261", "CAUSED_BY", "chg_005806"], ["inc_0261", "RESOLVED_BY", "per_0066"], ["inc_0261", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "thr_00133", "triples": [["inc_0264", "CAUSED_BY", "svc_checkout"], ["inc_0264", "RESOLVED_BY", "per_0052"], ["inc_0264", "MITIGATED_WITH", "rb_048"]]}
+{"source_id": "thr_00134", "triples": [["inc_0265", "CAUSED_BY", "ds_redis-session"], ["inc_0265", "RESOLVED_BY", "per_0012"], ["inc_0265", "MITIGATED_WITH", "rb_137"]]}
+{"source_id": "thr_00135", "triples": [["inc_0266", "CAUSED_BY", "chg_006070"], ["inc_0266", "RESOLVED_BY", "per_0095"], ["inc_0266", "MITIGATED_WITH", "rb_098"]]}
+{"source_id": "doc_0100", "triples": [["inc_0266", "CAUSED_BY", "chg_006070"], ["inc_0266", "RESOLVED_BY", "per_0095"], ["inc_0266", "MITIGATED_WITH", "rb_098"]]}
+{"source_id": "thr_00136", "triples": [["inc_0268", "CAUSED_BY", "ds_redis-session"], ["inc_0268", "RESOLVED_BY", "per_0019"], ["inc_0268", "MITIGATED_WITH", "rb_137"]]}
+{"source_id": "doc_0101", "triples": [["inc_0268", "CAUSED_BY", "ds_redis-session"], ["inc_0268", "RESOLVED_BY", "per_0019"], ["inc_0268", "MITIGATED_WITH", "rb_137"]]}
+{"source_id": "thr_00137", "triples": [["inc_0273", "CAUSED_BY", "chg_006276"], ["inc_0273", "RESOLVED_BY", "per_0019"], ["inc_0273", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "thr_00138", "triples": [["inc_0275", "CAUSED_BY", "chg_006333"], ["inc_0275", "RESOLVED_BY", "per_0025"], ["inc_0275", "MITIGATED_WITH", "rb_027"]]}
+{"source_id": "thr_00139", "triples": [["inc_0276", "CAUSED_BY", "chg_006337"], ["inc_0276", "RESOLVED_BY", "per_0050"], ["inc_0276", "MITIGATED_WITH", "rb_044"]]}
+{"source_id": "thr_00140", "triples": [["inc_0277", "CAUSED_BY", "ds_pg-catalog"], ["inc_0277", "RESOLVED_BY", "per_0023"], ["inc_0277", "MITIGATED_WITH", "rb_119"]]}
+{"source_id": "doc_0102", "triples": [["inc_0277", "CAUSED_BY", "ds_pg-catalog"], ["inc_0277", "RESOLVED_BY", "per_0023"], ["inc_0277", "MITIGATED_WITH", "rb_119"]]}
+{"source_id": "thr_00141", "triples": [["inc_0278", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0278", "RESOLVED_BY", "per_0059"], ["inc_0278", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00142", "triples": [["inc_0279", "CAUSED_BY", "chg_006376"], ["inc_0279", "RESOLVED_BY", "per_0081"], ["inc_0279", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "doc_0103", "triples": [["inc_0279", "CAUSED_BY", "chg_006376"], ["inc_0279", "RESOLVED_BY", "per_0081"], ["inc_0279", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00143", "triples": [["inc_0280", "CAUSED_BY", "chg_006482"], ["inc_0280", "RESOLVED_BY", "per_0108"], ["inc_0280", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0104", "triples": [["inc_0280", "CAUSED_BY", "chg_006482"], ["inc_0280", "RESOLVED_BY", "per_0108"], ["inc_0280", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00144", "triples": [["inc_0284", "CAUSED_BY", "chg_006538"], ["inc_0284", "RESOLVED_BY", "per_0066"], ["inc_0284", "MITIGATED_WITH", "rb_058"]]}
+{"source_id": "thr_00145", "triples": [["inc_0285", "CAUSED_BY", "chg_006576"], ["inc_0285", "RESOLVED_BY", "per_0115"], ["inc_0285", "MITIGATED_WITH", "rb_098"]]}
+{"source_id": "doc_0105", "triples": [["inc_0285", "CAUSED_BY", "chg_006576"], ["inc_0285", "RESOLVED_BY", "per_0115"], ["inc_0285", "MITIGATED_WITH", "rb_098"]]}
+{"source_id": "thr_00146", "triples": [["inc_0287", "CAUSED_BY", "chg_006633"], ["inc_0287", "RESOLVED_BY", "per_0111"], ["inc_0287", "MITIGATED_WITH", "rb_134"]]}
+{"source_id": "thr_00147", "triples": [["inc_0289", "CAUSED_BY", "chg_006667"], ["inc_0289", "RESOLVED_BY", "per_0099"], ["inc_0289", "MITIGATED_WITH", "rb_104"]]}
+{"source_id": "doc_0106", "triples": [["inc_0289", "CAUSED_BY", "chg_006667"], ["inc_0289", "RESOLVED_BY", "per_0099"], ["inc_0289", "MITIGATED_WITH", "rb_104"]]}
+{"source_id": "thr_00148", "triples": [["inc_0290", "CAUSED_BY", "chg_006741"], ["inc_0290", "RESOLVED_BY", "per_0081"], ["inc_0290", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "doc_0107", "triples": [["inc_0290", "CAUSED_BY", "chg_006741"], ["inc_0290", "RESOLVED_BY", "per_0081"], ["inc_0290", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00149", "triples": [["inc_0294", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0294", "RESOLVED_BY", "per_0062"], ["inc_0294", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00150", "triples": [["inc_0296", "CAUSED_BY", "chg_006891"], ["inc_0296", "RESOLVED_BY", "per_0066"], ["inc_0296", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "doc_0108", "triples": [["inc_0296", "CAUSED_BY", "chg_006891"], ["inc_0296", "RESOLVED_BY", "per_0066"], ["inc_0296", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "thr_00151", "triples": [["inc_0298", "CAUSED_BY", "chg_006902"], ["inc_0298", "RESOLVED_BY", "per_0089"], ["inc_0298", "MITIGATED_WITH", "rb_094"]]}
+{"source_id": "thr_00152", "triples": [["inc_0304", "CAUSED_BY", "chg_006979"], ["inc_0304", "RESOLVED_BY", "per_0110"], ["inc_0304", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0109", "triples": [["inc_0304", "CAUSED_BY", "chg_006979"], ["inc_0304", "RESOLVED_BY", "per_0110"], ["inc_0304", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00153", "triples": [["inc_0306", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0306", "RESOLVED_BY", "per_0070"], ["inc_0306", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "doc_0110", "triples": [["inc_0306", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0306", "RESOLVED_BY", "per_0070"], ["inc_0306", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00154", "triples": [["inc_0310", "CAUSED_BY", "chg_007170"], ["inc_0310", "RESOLVED_BY", "per_0111"], ["inc_0310", "MITIGATED_WITH", "rb_103"]]}
+{"source_id": "thr_00155", "triples": [["inc_0311", "CAUSED_BY", "chg_007192"], ["inc_0311", "RESOLVED_BY", "per_0099"], ["inc_0311", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "doc_0111", "triples": [["inc_0311", "CAUSED_BY", "chg_007192"], ["inc_0311", "RESOLVED_BY", "per_0099"], ["inc_0311", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "thr_00156", "triples": [["inc_0313", "CAUSED_BY", "chg_007266"], ["inc_0313", "RESOLVED_BY", "per_0099"], ["inc_0313", "MITIGATED_WITH", "rb_104"]]}
+{"source_id": "doc_0112", "triples": [["inc_0313", "CAUSED_BY", "chg_007266"], ["inc_0313", "RESOLVED_BY", "per_0099"], ["inc_0313", "MITIGATED_WITH", "rb_104"]]}
+{"source_id": "thr_00157", "triples": [["inc_0314", "CAUSED_BY", "svc_inventory"], ["inc_0314", "RESOLVED_BY", "per_0038"], ["inc_0314", "MITIGATED_WITH", "rb_038"]]}
+{"source_id": "doc_0113", "triples": [["inc_0314", "CAUSED_BY", "svc_inventory"], ["inc_0314", "RESOLVED_BY", "per_0038"], ["inc_0314", "MITIGATED_WITH", "rb_038"]]}
+{"source_id": "thr_00158", "triples": [["inc_0315", "CAUSED_BY", "chg_007273"], ["inc_0315", "RESOLVED_BY", "per_0095"], ["inc_0315", "MITIGATED_WITH", "rb_147"]]}
+{"source_id": "doc_0114", "triples": [["inc_0315", "CAUSED_BY", "chg_007273"], ["inc_0315", "RESOLVED_BY", "per_0095"], ["inc_0315", "MITIGATED_WITH", "rb_147"]]}
+{"source_id": "thr_00159", "triples": [["inc_0316", "CAUSED_BY", "chg_007305"], ["inc_0316", "RESOLVED_BY", "per_0095"], ["inc_0316", "MITIGATED_WITH", "rb_094"]]}
+{"source_id": "doc_0115", "triples": [["inc_0316", "CAUSED_BY", "chg_007305"], ["inc_0316", "RESOLVED_BY", "per_0095"], ["inc_0316", "MITIGATED_WITH", "rb_094"]]}
+{"source_id": "thr_00160", "triples": [["inc_0317", "CAUSED_BY", "chg_007332"], ["inc_0317", "RESOLVED_BY", "per_0013"], ["inc_0317", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "doc_0116", "triples": [["inc_0317", "CAUSED_BY", "chg_007332"], ["inc_0317", "RESOLVED_BY", "per_0013"], ["inc_0317", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "thr_00161", "triples": [["inc_0318", "CAUSED_BY", "chg_007378"], ["inc_0318", "RESOLVED_BY", "per_0013"], ["inc_0318", "MITIGATED_WITH", "rb_019"]]}
+{"source_id": "thr_00162", "triples": [["inc_0319", "CAUSED_BY", "chg_007417"], ["inc_0319", "RESOLVED_BY", "per_0013"], ["inc_0319", "MITIGATED_WITH", "rb_026"]]}
+{"source_id": "doc_0117", "triples": [["inc_0319", "CAUSED_BY", "chg_007417"], ["inc_0319", "RESOLVED_BY", "per_0013"], ["inc_0319", "MITIGATED_WITH", "rb_026"]]}
+{"source_id": "thr_00163", "triples": [["inc_0323", "CAUSED_BY", "chg_007485"], ["inc_0323", "RESOLVED_BY", "per_0013"], ["inc_0323", "MITIGATED_WITH", "rb_021"]]}
+{"source_id": "thr_00164", "triples": [["inc_0326", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0326", "RESOLVED_BY", "per_0062"], ["inc_0326", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "doc_0118", "triples": [["inc_0326", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0326", "RESOLVED_BY", "per_0062"], ["inc_0326", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00165", "triples": [["inc_0327", "CAUSED_BY", "chg_007552"], ["inc_0327", "RESOLVED_BY", "per_0110"], ["inc_0327", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0119", "triples": [["inc_0327", "CAUSED_BY", "chg_007552"], ["inc_0327", "RESOLVED_BY", "per_0110"], ["inc_0327", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00166", "triples": [["inc_0328", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0328", "RESOLVED_BY", "per_0059"], ["inc_0328", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00167", "triples": [["inc_0333", "CAUSED_BY", "chg_007912"], ["inc_0333", "RESOLVED_BY", "per_0050"], ["inc_0333", "MITIGATED_WITH", "rb_044"]]}
+{"source_id": "doc_0120", "triples": [["inc_0333", "CAUSED_BY", "chg_007912"], ["inc_0333", "RESOLVED_BY", "per_0050"], ["inc_0333", "MITIGATED_WITH", "rb_044"]]}
+{"source_id": "thr_00168", "triples": [["inc_0334", "CAUSED_BY", "ds_s3-assets"], ["inc_0334", "RESOLVED_BY", "per_0108"], ["inc_0334", "MITIGATED_WITH", "rb_155"]]}
+{"source_id": "thr_00169", "triples": [["inc_0339", "CAUSED_BY", "chg_008118"], ["inc_0339", "RESOLVED_BY", "per_0094"], ["inc_0339", "MITIGATED_WITH", "rb_094"]]}
+{"source_id": "thr_00170", "triples": [["inc_0341", "CAUSED_BY", "chg_008251"], ["inc_0341", "RESOLVED_BY", "per_0025"], ["inc_0341", "MITIGATED_WITH", "rb_030"]]}
+{"source_id": "thr_00171", "triples": [["inc_0343", "CAUSED_BY", "chg_008362"], ["inc_0343", "RESOLVED_BY", "per_0013"], ["inc_0343", "MITIGATED_WITH", "rb_026"]]}
+{"source_id": "doc_0121", "triples": [["inc_0343", "CAUSED_BY", "chg_008362"], ["inc_0343", "RESOLVED_BY", "per_0013"], ["inc_0343", "MITIGATED_WITH", "rb_026"]]}
+{"source_id": "thr_00172", "triples": [["inc_0345", "CAUSED_BY", "chg_008470"], ["inc_0345", "RESOLVED_BY", "per_0050"], ["inc_0345", "MITIGATED_WITH", "rb_044"]]}
+{"source_id": "doc_0122", "triples": [["inc_0345", "CAUSED_BY", "chg_008470"], ["inc_0345", "RESOLVED_BY", "per_0050"], ["inc_0345", "MITIGATED_WITH", "rb_044"]]}
+{"source_id": "thr_00173", "triples": [["inc_0346", "CAUSED_BY", "chg_008507"], ["inc_0346", "RESOLVED_BY", "per_0111"], ["inc_0346", "MITIGATED_WITH", "rb_100"]]}
+{"source_id": "doc_0123", "triples": [["inc_0346", "CAUSED_BY", "chg_008507"], ["inc_0346", "RESOLVED_BY", "per_0111"], ["inc_0346", "MITIGATED_WITH", "rb_100"]]}
+{"source_id": "thr_00174", "triples": [["inc_0347", "CAUSED_BY", "chg_008565"], ["inc_0347", "RESOLVED_BY", "per_0057"], ["inc_0347", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "doc_0124", "triples": [["inc_0347", "CAUSED_BY", "chg_008565"], ["inc_0347", "RESOLVED_BY", "per_0057"], ["inc_0347", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "thr_00175", "triples": [["inc_0348", "CAUSED_BY", "chg_008569"], ["inc_0348", "RESOLVED_BY", "per_0039"], ["inc_0348", "MITIGATED_WITH", "rb_035"]]}
+{"source_id": "doc_0125", "triples": [["inc_0348", "CAUSED_BY", "chg_008569"], ["inc_0348", "RESOLVED_BY", "per_0039"], ["inc_0348", "MITIGATED_WITH", "rb_035"]]}
+{"source_id": "thr_00176", "triples": [["inc_0349", "CAUSED_BY", "chg_008581"], ["inc_0349", "RESOLVED_BY", "per_0070"], ["inc_0349", "MITIGATED_WITH", "rb_066"]]}
+{"source_id": "doc_0126", "triples": [["inc_0349", "CAUSED_BY", "chg_008581"], ["inc_0349", "RESOLVED_BY", "per_0070"], ["inc_0349", "MITIGATED_WITH", "rb_066"]]}
+{"source_id": "thr_00177", "triples": [["inc_0350", "CAUSED_BY", "svc_feature-flags"], ["inc_0350", "RESOLVED_BY", "per_0111"], ["inc_0350", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0127", "triples": [["inc_0350", "CAUSED_BY", "svc_feature-flags"], ["inc_0350", "RESOLVED_BY", "per_0111"], ["inc_0350", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00178", "triples": [["inc_0353", "CAUSED_BY", "svc_fraud-detection"], ["inc_0353", "RESOLVED_BY", "per_0072"], ["inc_0353", "MITIGATED_WITH", "rb_061"]]}
+{"source_id": "thr_00179", "triples": [["inc_0355", "CAUSED_BY", "chg_008722"], ["inc_0355", "RESOLVED_BY", "per_0113"], ["inc_0355", "MITIGATED_WITH", "rb_112"]]}
+{"source_id": "doc_0128", "triples": [["inc_0355", "CAUSED_BY", "chg_008722"], ["inc_0355", "RESOLVED_BY", "per_0113"], ["inc_0355", "MITIGATED_WITH", "rb_112"]]}
+{"source_id": "thr_00180", "triples": [["inc_0358", "CAUSED_BY", "chg_008797"], ["inc_0358", "RESOLVED_BY", "per_0111"], ["inc_0358", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0129", "triples": [["inc_0358", "CAUSED_BY", "chg_008797"], ["inc_0358", "RESOLVED_BY", "per_0111"], ["inc_0358", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00181", "triples": [["inc_0359", "CAUSED_BY", "chg_008812"], ["inc_0359", "RESOLVED_BY", "per_0017"], ["inc_0359", "MITIGATED_WITH", "rb_023"]]}
+{"source_id": "doc_0130", "triples": [["inc_0359", "CAUSED_BY", "chg_008812"], ["inc_0359", "RESOLVED_BY", "per_0017"], ["inc_0359", "MITIGATED_WITH", "rb_023"]]}
+{"source_id": "thr_00182", "triples": [["inc_0362", "CAUSED_BY", "ds_pg-ledger"], ["inc_0362", "RESOLVED_BY", "per_0070"], ["inc_0362", "MITIGATED_WITH", "rb_129"]]}
+{"source_id": "doc_0131", "triples": [["inc_0362", "CAUSED_BY", "ds_pg-ledger"], ["inc_0362", "RESOLVED_BY", "per_0070"], ["inc_0362", "MITIGATED_WITH", "rb_129"]]}
+{"source_id": "thr_00183", "triples": [["inc_0363", "CAUSED_BY", "chg_008891"], ["inc_0363", "RESOLVED_BY", "per_0091"], ["inc_0363", "MITIGATED_WITH", "rb_094"]]}
+{"source_id": "doc_0132", "triples": [["inc_0363", "CAUSED_BY", "chg_008891"], ["inc_0363", "RESOLVED_BY", "per_0091"], ["inc_0363", "MITIGATED_WITH", "rb_094"]]}
+{"source_id": "thr_00184", "triples": [["inc_0368", "CAUSED_BY", "chg_008965"], ["inc_0368", "RESOLVED_BY", "per_0101"], ["inc_0368", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00185", "triples": [["inc_0370", "CAUSED_BY", "ds_s3-assets"], ["inc_0370", "RESOLVED_BY", "per_0108"], ["inc_0370", "MITIGATED_WITH", "rb_155"]]}
+{"source_id": "doc_0133", "triples": [["inc_0370", "CAUSED_BY", "ds_s3-assets"], ["inc_0370", "RESOLVED_BY", "per_0108"], ["inc_0370", "MITIGATED_WITH", "rb_155"]]}
+{"source_id": "thr_00186", "triples": [["inc_0371", "CAUSED_BY", "svc_permissions"], ["inc_0371", "RESOLVED_BY", "per_0013"], ["inc_0371", "MITIGATED_WITH", "rb_023"]]}
+{"source_id": "doc_0134", "triples": [["inc_0371", "CAUSED_BY", "svc_permissions"], ["inc_0371", "RESOLVED_BY", "per_0013"], ["inc_0371", "MITIGATED_WITH", "rb_023"]]}
+{"source_id": "thr_00187", "triples": [["inc_0372", "CAUSED_BY", "chg_009039"], ["inc_0372", "RESOLVED_BY", "per_0070"], ["inc_0372", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "doc_0135", "triples": [["inc_0372", "CAUSED_BY", "chg_009039"], ["inc_0372", "RESOLVED_BY", "per_0070"], ["inc_0372", "MITIGATED_WITH", "rb_064"]]}
+{"source_id": "thr_00188", "triples": [["inc_0373", "CAUSED_BY", "chg_009057"], ["inc_0373", "RESOLVED_BY", "per_0104"], ["inc_0373", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0136", "triples": [["inc_0373", "CAUSED_BY", "chg_009057"], ["inc_0373", "RESOLVED_BY", "per_0104"], ["inc_0373", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00189", "triples": [["inc_0374", "CAUSED_BY", "chg_009066"], ["inc_0374", "RESOLVED_BY", "per_0076"], ["inc_0374", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "doc_0137", "triples": [["inc_0374", "CAUSED_BY", "chg_009066"], ["inc_0374", "RESOLVED_BY", "per_0076"], ["inc_0374", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00190", "triples": [["inc_0375", "CAUSED_BY", "svc_config-service"], ["inc_0375", "RESOLVED_BY", "per_0099"], ["inc_0375", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "doc_0138", "triples": [["inc_0375", "CAUSED_BY", "svc_config-service"], ["inc_0375", "RESOLVED_BY", "per_0099"], ["inc_0375", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "thr_00191", "triples": [["inc_0376", "CAUSED_BY", "chg_009098"], ["inc_0376", "RESOLVED_BY", "per_0108"], ["inc_0376", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "doc_0139", "triples": [["inc_0376", "CAUSED_BY", "chg_009098"], ["inc_0376", "RESOLVED_BY", "per_0108"], ["inc_0376", "MITIGATED_WITH", "rb_107"]]}
+{"source_id": "thr_00192", "triples": [["inc_0377", "CAUSED_BY", "chg_009122"], ["inc_0377", "RESOLVED_BY", "per_0099"], ["inc_0377", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "doc_0140", "triples": [["inc_0377", "CAUSED_BY", "chg_009122"], ["inc_0377", "RESOLVED_BY", "per_0099"], ["inc_0377", "MITIGATED_WITH", "rb_110"]]}
+{"source_id": "thr_00193", "triples": [["inc_0381", "CAUSED_BY", "svc_feature-store"], ["inc_0381", "RESOLVED_BY", "per_0094"], ["inc_0381", "MITIGATED_WITH", "rb_094"]]}
+{"source_id": "doc_0141", "triples": [["inc_0381", "CAUSED_BY", "svc_feature-store"], ["inc_0381", "RESOLVED_BY", "per_0094"], ["inc_0381", "MITIGATED_WITH", "rb_094"]]}
+{"source_id": "thr_00194", "triples": [["inc_0382", "CAUSED_BY", "svc_catalog"], ["inc_0382", "RESOLVED_BY", "per_0032"], ["inc_0382", "MITIGATED_WITH", "rb_027"]]}
+{"source_id": "doc_0142", "triples": [["inc_0382", "CAUSED_BY", "svc_catalog"], ["inc_0382", "RESOLVED_BY", "per_0032"], ["inc_0382", "MITIGATED_WITH", "rb_027"]]}
+{"source_id": "thr_00195", "triples": [["inc_0383", "CAUSED_BY", "chg_009352"], ["inc_0383", "RESOLVED_BY", "per_0076"], ["inc_0383", "MITIGATED_WITH", "rb_079"]]}
+{"source_id": "thr_00196", "triples": [["inc_0386", "CAUSED_BY", "chg_009437"], ["inc_0386", "RESOLVED_BY", "per_0013"], ["inc_0386", "MITIGATED_WITH", "rb_018"]]}
+{"source_id": "thr_00197", "triples": [["inc_0387", "CAUSED_BY", "ds_pg-catalog"], ["inc_0387", "RESOLVED_BY", "per_0028"], ["inc_0387", "MITIGATED_WITH", "rb_119"]]}
+{"source_id": "thr_00198", "triples": [["inc_0393", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0393", "RESOLVED_BY", "per_0059"], ["inc_0393", "MITIGATED_WITH", "rb_157"]]}
+{"source_id": "thr_00199", "triples": [["inc_0394", "CAUSED_BY", "svc_orders"], ["inc_0394", "RESOLVED_BY", "per_0076"], ["inc_0394", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "doc_0143", "triples": [["inc_0394", "CAUSED_BY", "svc_orders"], ["inc_0394", "RESOLVED_BY", "per_0076"], ["inc_0394", "MITIGATED_WITH", "rb_077"]]}
+{"source_id": "thr_00200", "triples": [["dec_001", "DECIDED_BY", "per_0066"], ["dec_001", "AFFECTS", "svc_ledger"]]}
+{"source_id": "thr_00201", "triples": [["dec_002", "DECIDED_BY", "per_0074"], ["dec_002", "AFFECTS", "svc_shipping"]]}
+{"source_id": "thr_00202", "triples": [["dec_003", "DECIDED_BY", "per_0097"], ["dec_003", "AFFECTS", "svc_vault"]]}
+{"source_id": "thr_00203", "triples": [["dec_004", "DECIDED_BY", "per_0097"], ["dec_004", "AFFECTS", "svc_kafka"], ["dec_004", "SUPERSEDES", "dec_003"]]}
+{"source_id": "thr_00204", "triples": [["dec_005", "DECIDED_BY", "per_0020"], ["dec_005", "AFFECTS", "svc_recommendations"]]}
+{"source_id": "thr_00205", "triples": [["dec_006", "DECIDED_BY", "per_0074"], ["dec_006", "AFFECTS", "svc_orders"], ["dec_006", "AFFECTS", "svc_fraud-detection"]]}
+{"source_id": "thr_00206", "triples": [["dec_007", "DECIDED_BY", "per_0097"], ["dec_007", "AFFECTS", "svc_vault"], ["dec_007", "SUPERSEDES", "dec_003"]]}
+{"source_id": "thr_00207", "triples": [["dec_008", "DECIDED_BY", "per_0011"], ["dec_008", "AFFECTS", "svc_auth"]]}
+{"source_id": "thr_00208", "triples": [["dec_009", "DECIDED_BY", "per_0011"], ["dec_009", "AFFECTS", "svc_permissions"], ["dec_009", "SUPERSEDES", "dec_008"]]}
+{"source_id": "thr_00209", "triples": [["dec_010", "DECIDED_BY", "per_0097"], ["dec_010", "AFFECTS", "svc_kafka"]]}
+{"source_id": "thr_00210", "triples": [["dec_011", "DECIDED_BY", "per_0086"], ["dec_011", "AFFECTS", "svc_event-ingest"]]}
+{"source_id": "thr_00211", "triples": [["dec_012", "DECIDED_BY", "per_0097"], ["dec_012", "AFFECTS", "svc_scheduler"]]}
+{"source_id": "thr_00212", "triples": [["dec_013", "DECIDED_BY", "per_0011"], ["dec_013", "AFFECTS", "svc_auth"], ["dec_013", "SUPERSEDES", "dec_008"]]}
+{"source_id": "thr_00213", "triples": [["dec_014", "DECIDED_BY", "per_0086"], ["dec_014", "AFFECTS", "svc_event-ingest"]]}
+{"source_id": "thr_00214", "triples": [["dec_015", "DECIDED_BY", "per_0001"], ["dec_015", "AFFECTS", "svc_web-bff"]]}
+{"source_id": "thr_00215", "triples": [["dec_016", "DECIDED_BY", "per_0097"], ["dec_016", "AFFECTS", "svc_feature-flags"]]}
+{"source_id": "thr_00216", "triples": [["dec_017", "DECIDED_BY", "per_0086"], ["dec_017", "AFFECTS", "svc_ml-scoring"]]}
+{"source_id": "thr_00217", "triples": [["dec_018", "DECIDED_BY", "per_0043"], ["dec_018", "AFFECTS", "svc_tax"]]}
+{"source_id": "thr_00218", "triples": [["dec_019", "DECIDED_BY", "per_0011"], ["dec_019", "AFFECTS", "svc_user-profile"]]}
+{"source_id": "thr_00219", "triples": [["dec_020", "DECIDED_BY", "per_0043"], ["dec_020", "AFFECTS", "svc_address-validation"]]}
+{"source_id": "thr_00220", "triples": [["dec_021", "DECIDED_BY", "per_0086"], ["dec_021", "AFFECTS", "svc_ml-scoring"]]}
+{"source_id": "thr_00221", "triples": [["dec_022", "DECIDED_BY", "per_0066"], ["dec_022", "AFFECTS", "svc_billing"], ["dec_022", "SUPERSEDES", "dec_001"]]}
+{"source_id": "thr_00222", "triples": [["dec_023", "DECIDED_BY", "per_0011"], ["dec_023", "AFFECTS", "svc_session"]]}
+{"source_id": "thr_00223", "triples": [["dec_024", "DECIDED_BY", "per_0074"], ["dec_024", "AFFECTS", "svc_warehouse"]]}
+{"source_id": "thr_00224", "triples": [["dec_025", "DECIDED_BY", "per_0020"], ["dec_025", "AFFECTS", "svc_catalog"]]}
+{"source_id": "thr_00225", "triples": [["dec_026", "DECIDED_BY", "per_0066"], ["dec_026", "AFFECTS", "svc_ledger"], ["dec_026", "SUPERSEDES", "dec_022"]]}
+{"source_id": "thr_00226", "triples": [["dec_027", "DECIDED_BY", "per_0020"], ["dec_027", "AFFECTS", "svc_recommendations"], ["dec_027", "AFFECTS", "svc_kafka"]]}
+{"source_id": "thr_00227", "triples": [["dec_028", "DECIDED_BY", "per_0074"], ["dec_028", "AFFECTS", "svc_warehouse"], ["dec_028", "SUPERSEDES", "dec_002"]]}
+{"source_id": "thr_00228", "triples": [["dec_029", "DECIDED_BY", "per_0001"], ["dec_029", "AFFECTS", "svc_mobile-bff"], ["dec_029", "SUPERSEDES", "dec_015"]]}
+{"source_id": "thr_00229", "triples": [["dec_030", "DECIDED_BY", "per_0054"], ["dec_030", "AFFECTS", "svc_payments"]]}
+{"source_id": "thr_00230", "triples": [["dec_031", "DECIDED_BY", "per_0066"], ["dec_031", "AFFECTS", "svc_billing"]]}
+{"source_id": "thr_00231", "triples": [["dec_032", "DECIDED_BY", "per_0097"], ["dec_032", "AFFECTS", "svc_config-service"]]}
+{"source_id": "thr_00232", "triples": [["dec_033", "DECIDED_BY", "per_0054"], ["dec_033", "AFFECTS", "svc_fraud-detection"]]}
+{"source_id": "thr_00233", "triples": [["dec_034", "DECIDED_BY", "per_0074"], ["dec_034", "AFFECTS", "svc_warehouse"]]}
+{"source_id": "thr_00234", "triples": [["dec_035", "DECIDED_BY", "per_0066"], ["dec_035", "AFFECTS", "svc_payouts"]]}
+{"source_id": "thr_00235", "triples": [["dec_036", "DECIDED_BY", "per_0097"], ["dec_036", "AFFECTS", "svc_config-service"]]}
+{"source_id": "thr_00236", "triples": [["dec_037", "DECIDED_BY", "per_0097"], ["dec_037", "AFFECTS", "svc_scheduler"]]}
+{"source_id": "thr_00237", "triples": [["dec_038", "DECIDED_BY", "per_0020"], ["dec_038", "AFFECTS", "svc_search"], ["dec_038", "AFFECTS", "ds_pg-catalog"], ["dec_038", "SUPERSEDES", "dec_005"]]}
+{"source_id": "thr_00238", "triples": [["dec_039", "DECIDED_BY", "per_0043"], ["dec_039", "AFFECTS", "svc_cart"]]}
+{"source_id": "thr_00239", "triples": [["dec_040", "DECIDED_BY", "per_0011"], ["dec_040", "AFFECTS", "svc_session"], ["dec_040", "SUPERSEDES", "dec_019"]]}
+{"source_id": "thr_00240", "triples": [["dec_041", "DECIDED_BY", "per_0066"], ["dec_041", "AFFECTS", "svc_payouts"]]}
+{"source_id": "thr_00241", "triples": [["dec_042", "DECIDED_BY", "per_0097"], ["dec_042", "AFFECTS", "svc_service-mesh"]]}
+{"source_id": "thr_00242", "triples": [["dec_043", "DECIDED_BY", "per_0097"], ["dec_043", "AFFECTS", "svc_feature-flags"], ["dec_043", "SUPERSEDES", "dec_037"]]}
+{"source_id": "thr_00243", "triples": [["dec_044", "DECIDED_BY", "per_0020"], ["dec_044", "AFFECTS", "svc_search"]]}
+{"source_id": "thr_00244", "triples": [["dec_045", "DECIDED_BY", "per_0034"], ["dec_045", "AFFECTS", "svc_inventory"]]}
+{"source_id": "thr_00245", "triples": [["dec_046", "DECIDED_BY", "per_0043"], ["dec_046", "AFFECTS", "svc_checkout"], ["dec_046", "AFFECTS", "svc_fraud-detection"]]}
+{"source_id": "thr_00246", "triples": [["dec_047", "DECIDED_BY", "per_0054"], ["dec_047", "AFFECTS", "svc_payments"]]}
+{"source_id": "thr_00247", "triples": [["dec_048", "DECIDED_BY", "per_0020"], ["dec_048", "AFFECTS", "svc_recommendations"]]}
+{"source_id": "thr_00248", "triples": [["dec_049", "DECIDED_BY", "per_0020"], ["dec_049", "AFFECTS", "svc_catalog"], ["dec_049", "SUPERSEDES", "dec_025"]]}
+{"source_id": "thr_00249", "triples": [["dec_050", "DECIDED_BY", "per_0074"], ["dec_050", "AFFECTS", "svc_orders"]]}
+{"source_id": "thr_00250", "triples": [["dec_051", "DECIDED_BY", "per_0086"], ["dec_051", "AFFECTS", "svc_feature-store"]]}
+{"source_id": "thr_00251", "triples": [["dec_052", "DECIDED_BY", "per_0086"], ["dec_052", "AFFECTS", "svc_analytics"]]}
+{"source_id": "thr_00252", "triples": [["dec_053", "DECIDED_BY", "per_0086"], ["dec_053", "AFFECTS", "svc_feature-store"]]}
+{"source_id": "thr_00253", "triples": [["dec_054", "DECIDED_BY", "per_0097"], ["dec_054", "AFFECTS", "svc_kafka"]]}
+{"source_id": "thr_00254", "triples": [["dec_055", "DECIDED_BY", "per_0074"], ["dec_055", "AFFECTS", "svc_returns"]]}
+{"source_id": "thr_00255", "triples": [["dec_056", "DECIDED_BY", "per_0020"], ["dec_056", "AFFECTS", "svc_search"]]}
+{"source_id": "thr_00256", "triples": [["dec_057", "DECIDED_BY", "per_0066"], ["dec_057", "AFFECTS", "svc_ledger"]]}
+{"source_id": "thr_00257", "triples": [["dec_058", "DECIDED_BY", "per_0043"], ["dec_058", "AFFECTS", "svc_checkout"], ["dec_058", "SUPERSEDES", "dec_039"]]}
+{"source_id": "thr_00258", "triples": [["dec_059", "DECIDED_BY", "per_0020"], ["dec_059", "AFFECTS", "svc_search"], ["dec_059", "SUPERSEDES", "dec_005"]]}
+{"source_id": "thr_00259", "triples": [["dec_060", "DECIDED_BY", "per_0054"], ["dec_060", "AFFECTS", "svc_payments"]]}
+{"source_id": "thr_00260", "triples": [["dec_061", "DECIDED_BY", "per_0054"], ["dec_061", "AFFECTS", "svc_fraud-detection"]]}
+{"source_id": "thr_00261", "triples": [["dec_062", "DECIDED_BY", "per_0011"], ["dec_062", "AFFECTS", "svc_user-profile"]]}
+{"source_id": "thr_00262", "triples": [["dec_063", "DECIDED_BY", "per_0097"], ["dec_063", "AFFECTS", "svc_kafka"]]}
+{"source_id": "thr_00263", "triples": [["dec_064", "DECIDED_BY", "per_0086"], ["dec_064", "AFFECTS", "svc_analytics"]]}
+{"source_id": "thr_00264", "triples": [["dec_065", "DECIDED_BY", "per_0020"], ["dec_065", "AFFECTS", "svc_recommendations"]]}
+{"source_id": "thr_00265", "triples": [["dec_066", "DECIDED_BY", "per_0054"], ["dec_066", "AFFECTS", "svc_payments"]]}
+{"source_id": "thr_00266", "triples": [["dec_067", "DECIDED_BY", "per_0097"], ["dec_067", "AFFECTS", "svc_feature-flags"]]}
+{"source_id": "thr_00267", "triples": [["dec_068", "DECIDED_BY", "per_0020"], ["dec_068", "AFFECTS", "svc_catalog"]]}
+{"source_id": "thr_00268", "triples": [["dec_069", "DECIDED_BY", "per_0074"], ["dec_069", "AFFECTS", "svc_returns"]]}
+{"source_id": "thr_00269", "triples": [["dec_070", "DECIDED_BY", "per_0001"], ["dec_070", "AFFECTS", "svc_partner-api"]]}
+{"source_id": "thr_00270", "triples": [["dec_071", "DECIDED_BY", "per_0074"], ["dec_071", "AFFECTS", "svc_returns"]]}
+{"source_id": "thr_00271", "triples": [["dec_072", "DECIDED_BY", "per_0074"], ["dec_072", "AFFECTS", "svc_orders"]]}
+{"source_id": "thr_00272", "triples": [["dec_073", "DECIDED_BY", "per_0020"], ["dec_073", "AFFECTS", "svc_reviews"], ["dec_073", "AFFECTS", "svc_user-profile"]]}
+{"source_id": "thr_00273", "triples": [["dec_074", "DECIDED_BY", "per_0001"], ["dec_074", "AFFECTS", "svc_api-gateway"]]}
+{"source_id": "thr_00274", "triples": [["dec_075", "DECIDED_BY", "per_0011"], ["dec_075", "AFFECTS", "svc_auth"]]}
+{"source_id": "thr_00275", "triples": [["dec_076", "DECIDED_BY", "per_0086"], ["dec_076", "AFFECTS", "svc_analytics"], ["dec_076", "SUPERSEDES", "dec_021"]]}
+{"source_id": "thr_00276", "triples": [["dec_077", "DECIDED_BY", "per_0011"], ["dec_077", "AFFECTS", "svc_permissions"]]}
+{"source_id": "thr_00277", "triples": [["dec_078", "DECIDED_BY", "per_0074"], ["dec_078", "AFFECTS", "svc_returns"]]}
+{"source_id": "thr_00278", "triples": [["dec_079", "DECIDED_BY", "per_0097"], ["dec_079", "AFFECTS", "svc_scheduler"]]}
+{"source_id": "thr_00279", "triples": [["dec_080", "DECIDED_BY", "per_0074"], ["dec_080", "AFFECTS", "svc_shipping"]]}
+{"source_id": "thr_00280", "triples": [["dec_081", "DECIDED_BY", "per_0020"], ["dec_081", "AFFECTS", "svc_search"]]}
+{"source_id": "thr_00281", "triples": [["dec_082", "DECIDED_BY", "per_0086"], ["dec_082", "AFFECTS", "svc_feature-store"]]}
+{"source_id": "thr_00282", "triples": [["dec_083", "DECIDED_BY", "per_0011"], ["dec_083", "AFFECTS", "svc_permissions"], ["dec_083", "SUPERSEDES", "dec_009"]]}
+{"source_id": "thr_00283", "triples": [["dec_084", "DECIDED_BY", "per_0074"], ["dec_084", "AFFECTS", "svc_notifications"], ["dec_084", "AFFECTS", "svc_feature-flags"]]}
+{"source_id": "thr_00284", "triples": [["dec_085", "DECIDED_BY", "per_0086"], ["dec_085", "AFFECTS", "svc_feature-store"], ["dec_085", "SUPERSEDES", "dec_053"]]}
+{"source_id": "thr_00285", "triples": [["dec_086", "DECIDED_BY", "per_0097"], ["dec_086", "AFFECTS", "svc_kafka"], ["dec_086", "SUPERSEDES", "dec_032"]]}
+{"source_id": "thr_00286", "triples": [["dec_087", "DECIDED_BY", "per_0020"], ["dec_087", "AFFECTS", "svc_reviews"], ["dec_087", "SUPERSEDES", "dec_068"]]}
+{"source_id": "thr_00287", "triples": [["dec_088", "DECIDED_BY", "per_0020"], ["dec_088", "AFFECTS", "svc_search"]]}
+{"source_id": "thr_00288", "triples": [["dec_089", "DECIDED_BY", "per_0011"], ["dec_089", "AFFECTS", "svc_auth"]]}
+{"source_id": "thr_00289", "triples": [["dec_090", "DECIDED_BY", "per_0020"], ["dec_090", "AFFECTS", "svc_search"]]}
+{"source_id": "thr_00290", "triples": [["dec_091", "DECIDED_BY", "per_0054"], ["dec_091", "AFFECTS", "svc_fraud-detection"]]}
+{"source_id": "thr_00291", "triples": [["dec_092", "DECIDED_BY", "per_0086"], ["dec_092", "AFFECTS", "svc_analytics"]]}
+{"source_id": "thr_00292", "triples": [["dec_093", "DECIDED_BY", "per_0054"], ["dec_093", "AFFECTS", "svc_payouts"], ["dec_093", "SUPERSEDES", "dec_047"]]}
+{"source_id": "thr_00293", "triples": [["dec_094", "DECIDED_BY", "per_0074"], ["dec_094", "AFFECTS", "svc_orders"]]}
+{"source_id": "thr_00294", "triples": [["dec_095", "DECIDED_BY", "per_0001"], ["dec_095", "AFFECTS", "svc_mobile-bff"]]}
+{"source_id": "thr_00295", "triples": [["dec_096", "DECIDED_BY", "per_0074"], ["dec_096", "AFFECTS", "svc_orders"], ["dec_096", "SUPERSEDES", "dec_002"]]}
+{"source_id": "thr_00296", "triples": [["dec_097", "DECIDED_BY", "per_0001"], ["dec_097", "AFFECTS", "svc_api-gateway"], ["dec_097", "SUPERSEDES", "dec_074"]]}
+{"source_id": "thr_00297", "triples": [["dec_098", "DECIDED_BY", "per_0074"], ["dec_098", "AFFECTS", "svc_shipping"], ["dec_098", "AFFECTS", "ds_redis-cache"]]}
+{"source_id": "thr_00298", "triples": [["dec_099", "DECIDED_BY", "per_0001"], ["dec_099", "AFFECTS", "svc_partner-api"]]}
+{"source_id": "thr_00299", "triples": [["dec_100", "DECIDED_BY", "per_0034"], ["dec_100", "AFFECTS", "svc_pricing"]]}
+{"source_id": "thr_00300", "triples": [["dec_101", "DECIDED_BY", "per_0043"], ["dec_101", "AFFECTS", "svc_tax"]]}
+{"source_id": "thr_00301", "triples": [["dec_102", "DECIDED_BY", "per_0001"], ["dec_102", "AFFECTS", "svc_web-bff"]]}
+{"source_id": "thr_00302", "triples": [["dec_103", "DECIDED_BY", "per_0020"], ["dec_103", "AFFECTS", "svc_reviews"]]}
+{"source_id": "thr_00303", "triples": [["dec_104", "DECIDED_BY", "per_0043"], ["dec_104", "AFFECTS", "svc_cart"]]}
+{"source_id": "thr_00304", "triples": [["dec_105", "DECIDED_BY", "per_0034"], ["dec_105", "AFFECTS", "svc_pricing"], ["dec_105", "AFFECTS", "svc_promotions"]]}
+{"source_id": "thr_00305", "triples": [["dec_106", "DECIDED_BY", "per_0034"], ["dec_106", "AFFECTS", "svc_pricing"]]}
+{"source_id": "thr_00306", "triples": [["dec_107", "DECIDED_BY", "per_0043"], ["dec_107", "AFFECTS", "svc_tax"]]}
+{"source_id": "thr_00307", "triples": [["dec_108", "DECIDED_BY", "per_0086"], ["dec_108", "AFFECTS", "svc_ml-scoring"]]}
+{"source_id": "thr_00308", "triples": [["dec_109", "DECIDED_BY", "per_0054"], ["dec_109", "AFFECTS", "svc_payouts"], ["dec_109", "AFFECTS", "svc_kafka"]]}
+{"source_id": "thr_00309", "triples": [["dec_110", "DECIDED_BY", "per_0054"], ["dec_110", "AFFECTS", "svc_fraud-detection"], ["dec_110", "SUPERSEDES", "dec_093"]]}
+{"source_id": "thr_00310", "triples": [["dec_111", "DECIDED_BY", "per_0086"], ["dec_111", "AFFECTS", "svc_analytics"]]}
+{"source_id": "thr_00311", "triples": [["dec_112", "DECIDED_BY", "per_0001"], ["dec_112", "AFFECTS", "svc_partner-api"]]}
+{"source_id": "thr_00312", "triples": [["dec_113", "DECIDED_BY", "per_0020"], ["dec_113", "AFFECTS", "svc_catalog"]]}
+{"source_id": "thr_00313", "triples": [["dec_114", "DECIDED_BY", "per_0054"], ["dec_114", "AFFECTS", "svc_fraud-detection"], ["dec_114", "SUPERSEDES", "dec_110"]]}
+{"source_id": "thr_00314", "triples": [["dec_115", "DECIDED_BY", "per_0001"], ["dec_115", "AFFECTS", "svc_partner-api"]]}
+{"source_id": "thr_00315", "triples": [["dec_116", "DECIDED_BY", "per_0054"], ["dec_116", "AFFECTS", "svc_refunds"], ["dec_116", "SUPERSEDES", "dec_066"]]}
+{"source_id": "thr_00316", "triples": [["dec_117", "DECIDED_BY", "per_0097"], ["dec_117", "AFFECTS", "svc_service-mesh"], ["dec_117", "SUPERSEDES", "dec_032"]]}
+{"source_id": "thr_00317", "triples": [["dec_118", "DECIDED_BY", "per_0097"], ["dec_118", "AFFECTS", "svc_kafka"]]}
+{"source_id": "thr_00318", "triples": [["dec_119", "DECIDED_BY", "per_0001"], ["dec_119", "AFFECTS", "svc_partner-api"]]}
+{"source_id": "thr_00319", "triples": [["dec_120", "DECIDED_BY", "per_0001"], ["dec_120", "AFFECTS", "svc_web-bff"]]}
+{"source_id": "thr_00320", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_search"], ["per_0025", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_00321", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0017", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00322", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_inventory"], ["per_0042", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_00323", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_ledger"], ["per_0070", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00324", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0006", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00325", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_orders"], ["per_0076", "ANSWERED_ABOUT", "svc_orders"]]}
+{"source_id": "thr_00326", "triples": [["per_0089", "ANSWERED_ABOUT", "svc_feature-store"], ["per_0095", "ANSWERED_ABOUT", "svc_feature-store"]]}
+{"source_id": "thr_00327", "triples": [["per_0069", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00328", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_permissions"], ["per_0019", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_00329", "triples": [["per_0089", "ANSWERED_ABOUT", "svc_feature-store"], ["per_0095", "ANSWERED_ABOUT", "svc_feature-store"]]}
+{"source_id": "thr_00330", "triples": [["per_0059", "ANSWERED_ABOUT", "svc_payments"], ["per_0061", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00331", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_payouts"], ["per_0059", "ANSWERED_ABOUT", "svc_payouts"]]}
+{"source_id": "thr_00332", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0081", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_00333", "triples": [["per_0093", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00334", "triples": [["per_0082", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0076", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00335", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00336", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0060", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00337", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0013", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00338", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_auth"], ["per_0013", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00339", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0042", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_00340", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00341", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0019", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00342", "triples": [["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0032", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00343", "triples": [["per_0025", "ANSWERED_ABOUT", "svc_catalog"], ["per_0032", "ANSWERED_ABOUT", "svc_catalog"]]}
+{"source_id": "thr_00344", "triples": [["per_0042", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00345", "triples": [["per_0005", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00346", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0019", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00347", "triples": [["per_0094", "ANSWERED_ABOUT", "svc_analytics"], ["per_0091", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_00348", "triples": [["per_0060", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00349", "triples": [["per_0060", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0055", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00350", "triples": [["per_0065", "ANSWERED_ABOUT", "svc_refunds"], ["per_0061", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00351", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_ledger"], ["per_0069", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00352", "triples": [["per_0032", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_00353", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_checkout"], ["per_0048", "ANSWERED_ABOUT", "svc_checkout"]]}
+{"source_id": "thr_00354", "triples": [["per_0005", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0010", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00355", "triples": [["per_0111", "ANSWERED_ABOUT", "ds_redis-cache"]]}
+{"source_id": "thr_00356", "triples": [["per_0099", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00357", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_inventory"], ["per_0042", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_00358", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"], ["per_0108", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00359", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00360", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00361", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_service-mesh"], ["per_0108", "ANSWERED_ABOUT", "svc_service-mesh"]]}
+{"source_id": "thr_00362", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_scheduler"], ["per_0108", "ANSWERED_ABOUT", "svc_scheduler"]]}
+{"source_id": "thr_00363", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_00364", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0081", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00365", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_00366", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_00367", "triples": [["per_0103", "ANSWERED_ABOUT", "svc_config-service"], ["per_0108", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_00368", "triples": [["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00369", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0060", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00370", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0081", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_00371", "triples": [["per_0065", "ANSWERED_ABOUT", "svc_refunds"], ["per_0067", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00372", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_recommendations"], ["per_0032", "ANSWERED_ABOUT", "svc_recommendations"]]}
+{"source_id": "thr_00373", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0005", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00374", "triples": [["per_0089", "ANSWERED_ABOUT", "svc_feature-store"], ["per_0095", "ANSWERED_ABOUT", "svc_feature-store"]]}
+{"source_id": "thr_00375", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_vault"], ["per_0113", "ANSWERED_ABOUT", "svc_vault"]]}
+{"source_id": "thr_00376", "triples": [["per_0091", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_00377", "triples": [["per_0065", "ANSWERED_ABOUT", "svc_refunds"], ["per_0060", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00378", "triples": [["per_0038", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0036", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00379", "triples": [["per_0108", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0112", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_00380", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0013", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00381", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_00382", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_tax"], ["per_0052", "ANSWERED_ABOUT", "svc_tax"]]}
+{"source_id": "thr_00383", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00384", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_recommendations"], ["per_0032", "ANSWERED_ABOUT", "svc_recommendations"]]}
+{"source_id": "thr_00385", "triples": [["per_0089", "ANSWERED_ABOUT", "ds_clickhouse-analytics"], ["per_0091", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_00386", "triples": [["per_0005", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0010", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00387", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_orders"], ["per_0076", "ANSWERED_ABOUT", "svc_orders"]]}
+{"source_id": "thr_00388", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00389", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00390", "triples": [["per_0111", "ANSWERED_ABOUT", "ds_redis-cache"], ["per_0108", "ANSWERED_ABOUT", "ds_redis-cache"]]}
+{"source_id": "thr_00391", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_config-service"], ["per_0103", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_00392", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0013", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00393", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_analytics"], ["per_0094", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_00394", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_auth"], ["per_0013", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00395", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00396", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"], ["per_0108", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00397", "triples": [["per_0082", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0076", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00398", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_notifications"], ["per_0081", "ANSWERED_ABOUT", "svc_notifications"]]}
+{"source_id": "thr_00399", "triples": [["per_0065", "ANSWERED_ABOUT", "svc_refunds"], ["per_0067", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00400", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0081", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00401", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00402", "triples": [["per_0089", "ANSWERED_ABOUT", "svc_feature-store"], ["per_0095", "ANSWERED_ABOUT", "svc_feature-store"]]}
+{"source_id": "thr_00403", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"], ["per_0115", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00404", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_search"], ["per_0025", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_00405", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00406", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0017", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00407", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0060", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00408", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0072", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00409", "triples": [["per_0082", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0076", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00410", "triples": [["per_0111", "ANSWERED_ABOUT", "ds_redis-cache"], ["per_0108", "ANSWERED_ABOUT", "ds_redis-cache"]]}
+{"source_id": "thr_00411", "triples": [["per_0052", "ANSWERED_ABOUT", "svc_checkout"], ["per_0128", "ANSWERED_ABOUT", "svc_checkout"]]}
+{"source_id": "thr_00412", "triples": [["per_0091", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00413", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_promotions"], ["per_0052", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_00414", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0008", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00415", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0005", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00416", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00417", "triples": [["per_0091", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00418", "triples": [["per_0066", "ANSWERED_ABOUT", "ds_pg-billing"], ["per_0072", "ANSWERED_ABOUT", "ds_pg-billing"]]}
+{"source_id": "thr_00419", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0017", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00420", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0060", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00421", "triples": [["per_0005", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00422", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_00423", "triples": [["per_0093", "ANSWERED_ABOUT", "svc_ml-scoring"], ["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00424", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0017", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00425", "triples": [["per_0108", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0112", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_00426", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00427", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"], ["per_0089", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00428", "triples": [["per_0025", "ANSWERED_ABOUT", "svc_catalog"], ["per_0032", "ANSWERED_ABOUT", "svc_catalog"]]}
+{"source_id": "thr_00429", "triples": [["per_0108", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0112", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_00430", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00431", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00432", "triples": [["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0062", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00433", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00434", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0017", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00435", "triples": [["per_0066", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00436", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_inventory"], ["per_0042", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_00437", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_scheduler"], ["per_0112", "ANSWERED_ABOUT", "svc_scheduler"]]}
+{"source_id": "thr_00438", "triples": [["per_0008", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0004", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00439", "triples": [["per_0089", "ANSWERED_ABOUT", "ds_clickhouse-analytics"], ["per_0093", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_00440", "triples": [["per_0113", "ANSWERED_ABOUT", "svc_vault"], ["per_0111", "ANSWERED_ABOUT", "svc_vault"]]}
+{"source_id": "thr_00441", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"], ["per_0089", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00442", "triples": [["per_0089", "ANSWERED_ABOUT", "ds_clickhouse-analytics"], ["per_0093", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_00443", "triples": [["per_0025", "ANSWERED_ABOUT", "svc_catalog"], ["per_0032", "ANSWERED_ABOUT", "svc_catalog"]]}
+{"source_id": "thr_00444", "triples": [["per_0008", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0004", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00445", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00446", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0017", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00447", "triples": [["per_0005", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0009", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00448", "triples": [["per_0065", "ANSWERED_ABOUT", "svc_refunds"], ["per_0067", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00449", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_inventory"], ["per_0042", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_00450", "triples": [["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0062", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00451", "triples": [["per_0111", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0098", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_00452", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0017", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00453", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_session"], ["per_0013", "ANSWERED_ABOUT", "svc_session"]]}
+{"source_id": "thr_00454", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_analytics"], ["per_0094", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_00455", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0019", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00456", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_payouts"], ["per_0069", "ANSWERED_ABOUT", "svc_payouts"]]}
+{"source_id": "thr_00457", "triples": [["per_0060", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00458", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_scheduler"], ["per_0108", "ANSWERED_ABOUT", "svc_scheduler"]]}
+{"source_id": "thr_00459", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0008", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00460", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00461", "triples": [["per_0082", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0076", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00462", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0008", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00463", "triples": [["per_0072", "ANSWERED_ABOUT", "svc_billing"], ["per_0062", "ANSWERED_ABOUT", "svc_billing"]]}
+{"source_id": "thr_00464", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"], ["per_0115", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00465", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_es-search"], ["per_0024", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_00466", "triples": [["per_0049", "ANSWERED_ABOUT", "svc_cart"], ["per_0114", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_00467", "triples": [["per_0008", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0007", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00468", "triples": [["per_0091", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00469", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_pg-users"], ["per_0019", "ANSWERED_ABOUT", "ds_pg-users"]]}
+{"source_id": "thr_00470", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0005", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00471", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_service-mesh"], ["per_0103", "ANSWERED_ABOUT", "svc_service-mesh"]]}
+{"source_id": "thr_00472", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_scheduler"], ["per_0099", "ANSWERED_ABOUT", "svc_scheduler"]]}
+{"source_id": "thr_00473", "triples": [["per_0027", "ANSWERED_ABOUT", "svc_promotions"], ["per_0118", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_00474", "triples": [["per_0082", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0081", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00475", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0019", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00476", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00477", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_cart"], ["per_0043", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_00478", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_permissions"], ["per_0019", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_00479", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_pg-users"], ["per_0017", "ANSWERED_ABOUT", "ds_pg-users"]]}
+{"source_id": "thr_00480", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_recommendations"], ["per_0031", "ANSWERED_ABOUT", "svc_recommendations"]]}
+{"source_id": "thr_00481", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00482", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00483", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_auth"], ["per_0013", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00484", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00485", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00486", "triples": [["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0032", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00487", "triples": [["per_0069", "ANSWERED_ABOUT", "svc_payouts"]]}
+{"source_id": "thr_00488", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00489", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0082", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00490", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00491", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_auth"], ["per_0013", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00492", "triples": [["per_0070", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00493", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_auth"], ["per_0013", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00494", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_00495", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0005", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00496", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_tax"], ["per_0048", "ANSWERED_ABOUT", "svc_tax"]]}
+{"source_id": "thr_00497", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0081", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_00498", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_notifications"], ["per_0082", "ANSWERED_ABOUT", "svc_notifications"]]}
+{"source_id": "thr_00499", "triples": [["per_0025", "ANSWERED_ABOUT", "svc_catalog"], ["per_0032", "ANSWERED_ABOUT", "svc_catalog"]]}
+{"source_id": "thr_00500", "triples": [["per_0082", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00501", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0005", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00502", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_service-mesh"], ["per_0103", "ANSWERED_ABOUT", "svc_service-mesh"]]}
+{"source_id": "thr_00503", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_auth"], ["per_0017", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00504", "triples": [["per_0065", "ANSWERED_ABOUT", "svc_refunds"], ["per_0067", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00505", "triples": [["per_0009", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00506", "triples": [["per_0111", "ANSWERED_ABOUT", "ds_redis-cache"], ["per_0112", "ANSWERED_ABOUT", "ds_redis-cache"]]}
+{"source_id": "thr_00507", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_session"], ["per_0012", "ANSWERED_ABOUT", "svc_session"]]}
+{"source_id": "thr_00508", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_recommendations"], ["per_0031", "ANSWERED_ABOUT", "svc_recommendations"]]}
+{"source_id": "thr_00509", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0013", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00510", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00511", "triples": [["per_0005", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0006", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00512", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_es-search"], ["per_0032", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_00513", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_checkout"], ["per_0052", "ANSWERED_ABOUT", "svc_checkout"]]}
+{"source_id": "thr_00514", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00515", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"], ["per_0111", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00516", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_scheduler"], ["per_0108", "ANSWERED_ABOUT", "svc_scheduler"]]}
+{"source_id": "thr_00517", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0082", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00518", "triples": [["per_0005", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00519", "triples": [["per_0066", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0060", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00520", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00521", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_feature-flags"], ["per_0099", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00522", "triples": [["per_0108", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0111", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_00523", "triples": [["per_0112", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0111", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_00524", "triples": [["per_0066", "ANSWERED_ABOUT", "ds_pg-billing"]]}
+{"source_id": "thr_00525", "triples": [["per_0031", "ANSWERED_ABOUT", "svc_recommendations"], ["per_0025", "ANSWERED_ABOUT", "svc_recommendations"]]}
+{"source_id": "thr_00526", "triples": [["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0062", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00527", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0005", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00528", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00529", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0092", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00530", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0004", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00531", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0081", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_00532", "triples": [["per_0059", "ANSWERED_ABOUT", "svc_payments"], ["per_0061", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00533", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00534", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0092", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00535", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_permissions"], ["per_0019", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_00536", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_notifications"], ["per_0082", "ANSWERED_ABOUT", "svc_notifications"]]}
+{"source_id": "thr_00537", "triples": [["per_0032", "ANSWERED_ABOUT", "svc_reviews"], ["per_0024", "ANSWERED_ABOUT", "svc_reviews"]]}
+{"source_id": "thr_00538", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"], ["per_0089", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00539", "triples": [["per_0025", "ANSWERED_ABOUT", "svc_catalog"], ["per_0032", "ANSWERED_ABOUT", "svc_catalog"]]}
+{"source_id": "thr_00540", "triples": [["per_0070", "ANSWERED_ABOUT", "svc_payments"], ["per_0066", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00541", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00542", "triples": [["per_0066", "ANSWERED_ABOUT", "ds_pg-billing"], ["per_0072", "ANSWERED_ABOUT", "ds_pg-billing"]]}
+{"source_id": "thr_00543", "triples": [["per_0070", "ANSWERED_ABOUT", "svc_ledger"], ["per_0125", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00544", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_notifications"], ["per_0082", "ANSWERED_ABOUT", "svc_notifications"]]}
+{"source_id": "thr_00545", "triples": [["per_0109", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00546", "triples": [["per_0008", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0004", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00547", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00548", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_vault"], ["per_0113", "ANSWERED_ABOUT", "svc_vault"]]}
+{"source_id": "thr_00549", "triples": [["per_0091", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0095", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00550", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0017", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00551", "triples": [["per_0091", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0095", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00552", "triples": [["per_0099", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00553", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00554", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_feature-flags"], ["per_0108", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00555", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00556", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_session"], ["per_0013", "ANSWERED_ABOUT", "svc_session"]]}
+{"source_id": "thr_00557", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_notifications"], ["per_0082", "ANSWERED_ABOUT", "svc_notifications"]]}
+{"source_id": "thr_00558", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00559", "triples": [["per_0093", "ANSWERED_ABOUT", "svc_ml-scoring"], ["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00560", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"], ["per_0089", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00561", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00562", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_recommendations"], ["per_0032", "ANSWERED_ABOUT", "svc_recommendations"]]}
+{"source_id": "thr_00563", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_tax"], ["per_0048", "ANSWERED_ABOUT", "svc_tax"]]}
+{"source_id": "thr_00564", "triples": [["per_0066", "ANSWERED_ABOUT", "ds_pg-billing"], ["per_0072", "ANSWERED_ABOUT", "ds_pg-billing"]]}
+{"source_id": "thr_00565", "triples": [["per_0099", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00566", "triples": [["per_0093", "ANSWERED_ABOUT", "svc_ml-scoring"], ["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00567", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_permissions"], ["per_0017", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_00568", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00569", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0008", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00570", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0081", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_00571", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00572", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0006", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00573", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00574", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"], ["per_0089", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00575", "triples": [["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0004", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00576", "triples": [["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_00577", "triples": [["per_0025", "ANSWERED_ABOUT", "svc_catalog"]]}
+{"source_id": "thr_00578", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_es-search"], ["per_0032", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_00579", "triples": [["per_0017", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00580", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_notifications"], ["per_0082", "ANSWERED_ABOUT", "svc_notifications"]]}
+{"source_id": "thr_00581", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_returns"], ["per_0082", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00582", "triples": [["per_0072", "ANSWERED_ABOUT", "svc_billing"], ["per_0062", "ANSWERED_ABOUT", "svc_billing"]]}
+{"source_id": "thr_00583", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00584", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0039", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_00585", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_analytics"], ["per_0094", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_00586", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_returns"], ["per_0082", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00587", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_payouts"], ["per_0059", "ANSWERED_ABOUT", "svc_payouts"]]}
+{"source_id": "thr_00588", "triples": [["per_0091", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0092", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00589", "triples": [["per_0065", "ANSWERED_ABOUT", "svc_refunds"], ["per_0067", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00590", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00591", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_feature-flags"], ["per_0110", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00592", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_config-service"], ["per_0103", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_00593", "triples": [["per_0072", "ANSWERED_ABOUT", "ds_pg-billing"], ["per_0070", "ANSWERED_ABOUT", "ds_pg-billing"]]}
+{"source_id": "thr_00594", "triples": [["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0060", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00595", "triples": [["per_0093", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00596", "triples": [["per_0066", "ANSWERED_ABOUT", "ds_pg-billing"], ["per_0072", "ANSWERED_ABOUT", "ds_pg-billing"]]}
+{"source_id": "thr_00597", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_es-search"], ["per_0032", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_00598", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_orders"], ["per_0082", "ANSWERED_ABOUT", "svc_orders"]]}
+{"source_id": "thr_00599", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0005", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00600", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0039", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_00601", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_vault"], ["per_0113", "ANSWERED_ABOUT", "svc_vault"]]}
+{"source_id": "thr_00602", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_cart"], ["per_0049", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_00603", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00604", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_vault"], ["per_0113", "ANSWERED_ABOUT", "svc_vault"]]}
+{"source_id": "thr_00605", "triples": [["per_0091", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0095", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00606", "triples": [["per_0082", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0076", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00607", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_notifications"], ["per_0081", "ANSWERED_ABOUT", "svc_notifications"]]}
+{"source_id": "thr_00608", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00609", "triples": [["per_0082", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0076", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00610", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0082", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00611", "triples": [["per_0070", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00612", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0060", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00613", "triples": [["per_0093", "ANSWERED_ABOUT", "svc_ml-scoring"], ["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00614", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_inventory"], ["per_0042", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_00615", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_shipping"], ["per_0080", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_00616", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_feature-flags"], ["per_0108", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00617", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00618", "triples": [["per_0111", "ANSWERED_ABOUT", "ds_redis-cache"], ["per_0112", "ANSWERED_ABOUT", "ds_redis-cache"]]}
+{"source_id": "thr_00619", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00620", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0005", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00621", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"], ["per_0108", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00622", "triples": [["per_0061", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00623", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0017", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00624", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_feature-flags"], ["per_0103", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00625", "triples": [["per_0072", "ANSWERED_ABOUT", "ds_pg-billing"]]}
+{"source_id": "thr_00626", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_kafka"], ["per_0111", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00627", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_search"], ["per_0025", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_00628", "triples": [["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0062", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00629", "triples": [["per_0067", "ANSWERED_ABOUT", "svc_payouts"], ["per_0069", "ANSWERED_ABOUT", "svc_payouts"]]}
+{"source_id": "thr_00630", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0039", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_00631", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_00632", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"], ["per_0108", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00633", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_orders"]]}
+{"source_id": "thr_00634", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00635", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"], ["per_0108", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00636", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_scheduler"]]}
+{"source_id": "thr_00637", "triples": [["per_0059", "ANSWERED_ABOUT", "svc_payments"], ["per_0130", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00638", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0092", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00639", "triples": [["per_0070", "ANSWERED_ABOUT", "svc_ledger"], ["per_0069", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00640", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_cart"], ["per_0049", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_00641", "triples": [["per_0070", "ANSWERED_ABOUT", "svc_payments"], ["per_0066", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00642", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00643", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_es-search"], ["per_0032", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_00644", "triples": [["per_0060", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00645", "triples": [["per_0094", "ANSWERED_ABOUT", "svc_analytics"], ["per_0091", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_00646", "triples": [["per_0032", "ANSWERED_ABOUT", "svc_reviews"], ["per_0028", "ANSWERED_ABOUT", "svc_reviews"]]}
+{"source_id": "thr_00647", "triples": [["per_0066", "ANSWERED_ABOUT", "ds_pg-billing"], ["per_0072", "ANSWERED_ABOUT", "ds_pg-billing"]]}
+{"source_id": "thr_00648", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0039", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_00649", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_payouts"], ["per_0059", "ANSWERED_ABOUT", "svc_payouts"]]}
+{"source_id": "thr_00650", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0083", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00651", "triples": [["per_0025", "ANSWERED_ABOUT", "svc_catalog"], ["per_0032", "ANSWERED_ABOUT", "svc_catalog"]]}
+{"source_id": "thr_00652", "triples": [["per_0091", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0092", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00653", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_analytics"], ["per_0094", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_00654", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_kafka"], ["per_0111", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00655", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_tax"], ["per_0048", "ANSWERED_ABOUT", "svc_tax"]]}
+{"source_id": "thr_00656", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0081", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_00657", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00658", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_shipping"], ["per_0131", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_00659", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0013", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00660", "triples": [["per_0093", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00661", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_ledger"], ["per_0070", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00662", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_00663", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0092", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00664", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"], ["per_0089", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00665", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_analytics"], ["per_0094", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_00666", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_notifications"], ["per_0081", "ANSWERED_ABOUT", "svc_notifications"]]}
+{"source_id": "thr_00667", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_session"], ["per_0013", "ANSWERED_ABOUT", "svc_session"]]}
+{"source_id": "thr_00668", "triples": [["per_0032", "ANSWERED_ABOUT", "svc_reviews"], ["per_0024", "ANSWERED_ABOUT", "svc_reviews"]]}
+{"source_id": "thr_00669", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00670", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00671", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_permissions"], ["per_0019", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_00672", "triples": [["per_0089", "ANSWERED_ABOUT", "ds_clickhouse-analytics"], ["per_0093", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_00673", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00674", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0052", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_00675", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_00676", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_inventory"], ["per_0042", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_00677", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_payouts"], ["per_0069", "ANSWERED_ABOUT", "svc_payouts"]]}
+{"source_id": "thr_00678", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00679", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_orders"], ["per_0076", "ANSWERED_ABOUT", "svc_orders"]]}
+{"source_id": "thr_00680", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0019", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00681", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_vault"], ["per_0111", "ANSWERED_ABOUT", "svc_vault"]]}
+{"source_id": "thr_00682", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_vault"]]}
+{"source_id": "thr_00683", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_scheduler"], ["per_0108", "ANSWERED_ABOUT", "svc_scheduler"]]}
+{"source_id": "thr_00684", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0005", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00685", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00686", "triples": [["per_0060", "ANSWERED_ABOUT", "svc_refunds"], ["per_0061", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00687", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_pg-users"], ["per_0017", "ANSWERED_ABOUT", "ds_pg-users"]]}
+{"source_id": "thr_00688", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_recommendations"], ["per_0032", "ANSWERED_ABOUT", "svc_recommendations"]]}
+{"source_id": "thr_00689", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_recommendations"], ["per_0032", "ANSWERED_ABOUT", "svc_recommendations"]]}
+{"source_id": "thr_00690", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"], ["per_0108", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00691", "triples": [["per_0038", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0042", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00692", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00693", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00694", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0082", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00695", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_session"], ["per_0120", "ANSWERED_ABOUT", "svc_session"]]}
+{"source_id": "thr_00696", "triples": [["per_0093", "ANSWERED_ABOUT", "svc_ml-scoring"], ["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00697", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0082", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00698", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0040", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_00699", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0017", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00700", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_feature-flags"], ["per_0108", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00701", "triples": [["per_0032", "ANSWERED_ABOUT", "svc_reviews"], ["per_0024", "ANSWERED_ABOUT", "svc_reviews"]]}
+{"source_id": "thr_00702", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00703", "triples": [["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0072", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00704", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0083", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00705", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_kafka"], ["per_0109", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00706", "triples": [["per_0103", "ANSWERED_ABOUT", "svc_config-service"], ["per_0108", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_00707", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_00708", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0019", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00709", "triples": [["per_0059", "ANSWERED_ABOUT", "svc_payments"], ["per_0061", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00710", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0039", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_00711", "triples": [["per_0089", "ANSWERED_ABOUT", "ds_clickhouse-analytics"], ["per_0093", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_00712", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_config-service"], ["per_0099", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_00713", "triples": [["per_0070", "ANSWERED_ABOUT", "svc_payments"], ["per_0066", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00714", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0052", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_00715", "triples": [["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00716", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00717", "triples": [["per_0055", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00718", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_00719", "triples": [["per_0108", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0112", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_00720", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0072", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00721", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0017", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00722", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_session"]]}
+{"source_id": "thr_00723", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_cart"], ["per_0049", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_00724", "triples": [["per_0005", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0006", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00725", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"], ["per_0115", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00726", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_checkout"], ["per_0052", "ANSWERED_ABOUT", "svc_checkout"]]}
+{"source_id": "thr_00727", "triples": [["per_0048", "ANSWERED_ABOUT", "svc_tax"]]}
+{"source_id": "thr_00728", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00729", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_ledger"], ["per_0070", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00730", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"], ["per_0089", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00731", "triples": [["per_0072", "ANSWERED_ABOUT", "ds_pg-billing"], ["per_0070", "ANSWERED_ABOUT", "ds_pg-billing"]]}
+{"source_id": "thr_00732", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0039", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_00733", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_orders"], ["per_0082", "ANSWERED_ABOUT", "svc_orders"]]}
+{"source_id": "thr_00734", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_payouts"], ["per_0067", "ANSWERED_ABOUT", "svc_payouts"]]}
+{"source_id": "thr_00735", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00736", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_ledger"], ["per_0070", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00737", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_pg-users"], ["per_0019", "ANSWERED_ABOUT", "ds_pg-users"]]}
+{"source_id": "thr_00738", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_kafka"], ["per_0111", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00739", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0005", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00740", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00741", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00742", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0008", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00743", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0009", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00744", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_feature-flags"], ["per_0103", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00745", "triples": [["per_0038", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0042", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00746", "triples": [["per_0093", "ANSWERED_ABOUT", "ds_clickhouse-analytics"], ["per_0091", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_00747", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_auth"], ["per_0017", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00748", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0081", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00749", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_service-mesh"], ["per_0103", "ANSWERED_ABOUT", "svc_service-mesh"]]}
+{"source_id": "thr_00750", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_00751", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_payouts"], ["per_0067", "ANSWERED_ABOUT", "svc_payouts"]]}
+{"source_id": "thr_00752", "triples": [["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0062", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00753", "triples": [["per_0072", "ANSWERED_ABOUT", "svc_billing"], ["per_0062", "ANSWERED_ABOUT", "svc_billing"]]}
+{"source_id": "thr_00754", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"], ["per_0089", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00755", "triples": [["per_0049", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_00756", "triples": [["per_0017", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00757", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0055", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00758", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0005", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00759", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_config-service"], ["per_0108", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_00760", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0081", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00761", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0006", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00762", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00763", "triples": [["per_0114", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_00764", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0082", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00765", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_service-mesh"], ["per_0108", "ANSWERED_ABOUT", "svc_service-mesh"]]}
+{"source_id": "thr_00766", "triples": [["per_0060", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00767", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0004", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00768", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0005", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00769", "triples": [["per_0089", "ANSWERED_ABOUT", "ds_clickhouse-analytics"], ["per_0093", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_00770", "triples": [["per_0108", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_00771", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00772", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_notifications"], ["per_0082", "ANSWERED_ABOUT", "svc_notifications"]]}
+{"source_id": "thr_00773", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00774", "triples": [["per_0082", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0076", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00775", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0005", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00776", "triples": [["per_0005", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0010", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00777", "triples": [["per_0067", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00778", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00779", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0005", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00780", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00781", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_recommendations"], ["per_0032", "ANSWERED_ABOUT", "svc_recommendations"]]}
+{"source_id": "thr_00782", "triples": [["per_0082", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00783", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0013", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00784", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0005", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00785", "triples": [["per_0065", "ANSWERED_ABOUT", "svc_refunds"], ["per_0067", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00786", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0009", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00787", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_service-mesh"]]}
+{"source_id": "thr_00788", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0008", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00789", "triples": [["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0062", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00790", "triples": [["per_0108", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0111", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_00791", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_auth"], ["per_0017", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00792", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0017", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00793", "triples": [["per_0098", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_00794", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_search"], ["per_0025", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_00795", "triples": [["per_0032", "ANSWERED_ABOUT", "svc_catalog"]]}
+{"source_id": "thr_00796", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_billing"], ["per_0066", "ANSWERED_ABOUT", "svc_billing"]]}
+{"source_id": "thr_00797", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_cart"], ["per_0049", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_00798", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_notifications"], ["per_0082", "ANSWERED_ABOUT", "svc_notifications"]]}
+{"source_id": "thr_00799", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_es-search"], ["per_0024", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_00800", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0032", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00801", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0081", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00802", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_session"], ["per_0013", "ANSWERED_ABOUT", "svc_session"]]}
+{"source_id": "thr_00803", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00804", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_00805", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0042", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_00806", "triples": [["per_0093", "ANSWERED_ABOUT", "ds_clickhouse-analytics"], ["per_0091", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_00807", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_feature-store"], ["per_0094", "ANSWERED_ABOUT", "svc_feature-store"]]}
+{"source_id": "thr_00808", "triples": [["per_0060", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00809", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_checkout"], ["per_0052", "ANSWERED_ABOUT", "svc_checkout"]]}
+{"source_id": "thr_00810", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0017", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00811", "triples": [["per_0032", "ANSWERED_ABOUT", "ds_es-search"], ["per_0024", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_00812", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0017", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00813", "triples": [["per_0038", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0042", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00814", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0008", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00815", "triples": [["per_0038", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0036", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00816", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0005", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00817", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"], ["per_0089", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00818", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_config-service"], ["per_0099", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_00819", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_auth"], ["per_0013", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00820", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_scheduler"], ["per_0108", "ANSWERED_ABOUT", "svc_scheduler"]]}
+{"source_id": "thr_00821", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_service-mesh"], ["per_0103", "ANSWERED_ABOUT", "svc_service-mesh"]]}
+{"source_id": "thr_00822", "triples": [["per_0042", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0036", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00823", "triples": [["per_0025", "ANSWERED_ABOUT", "svc_catalog"], ["per_0032", "ANSWERED_ABOUT", "svc_catalog"]]}
+{"source_id": "thr_00824", "triples": [["per_0076", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0081", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00825", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0006", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00826", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00827", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_cart"], ["per_0049", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_00828", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00829", "triples": [["per_0042", "ANSWERED_ABOUT", "svc_inventory"], ["per_0039", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_00830", "triples": [["per_0108", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0112", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_00831", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_inventory"], ["per_0042", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_00832", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0060", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_00833", "triples": [["per_0005", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0010", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00834", "triples": [["per_0089", "ANSWERED_ABOUT", "svc_feature-store"], ["per_0095", "ANSWERED_ABOUT", "svc_feature-store"]]}
+{"source_id": "thr_00835", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_ledger"], ["per_0067", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00836", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00837", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0009", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00838", "triples": [["per_0025", "ANSWERED_ABOUT", "svc_catalog"], ["per_0032", "ANSWERED_ABOUT", "svc_catalog"]]}
+{"source_id": "thr_00839", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_permissions"], ["per_0019", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_00840", "triples": [["per_0091", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0095", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00841", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"], ["per_0115", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00842", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0081", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00843", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0081", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00844", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_inventory"], ["per_0039", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_00845", "triples": [["per_0089", "ANSWERED_ABOUT", "ds_clickhouse-analytics"], ["per_0093", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_00846", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_orders"], ["per_0076", "ANSWERED_ABOUT", "svc_orders"]]}
+{"source_id": "thr_00847", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_permissions"], ["per_0017", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_00848", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_scheduler"], ["per_0112", "ANSWERED_ABOUT", "svc_scheduler"]]}
+{"source_id": "thr_00849", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_feature-store"]]}
+{"source_id": "thr_00850", "triples": [["per_0032", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_00851", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0017", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00852", "triples": [["per_0006", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0007", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00853", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00854", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_00855", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_ledger"], ["per_0070", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00856", "triples": [["per_0070", "ANSWERED_ABOUT", "svc_ledger"], ["per_0125", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00857", "triples": [["per_0049", "ANSWERED_ABOUT", "svc_cart"], ["per_0114", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_00858", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_feature-flags"], ["per_0099", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00859", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0081", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_00860", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0055", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00861", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00862", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_config-service"], ["per_0099", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_00863", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_notifications"]]}
+{"source_id": "thr_00864", "triples": [["per_0089", "ANSWERED_ABOUT", "svc_feature-store"], ["per_0095", "ANSWERED_ABOUT", "svc_feature-store"]]}
+{"source_id": "thr_00865", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_kafka"], ["per_0111", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00866", "triples": [["per_0111", "ANSWERED_ABOUT", "ds_redis-cache"], ["per_0112", "ANSWERED_ABOUT", "ds_redis-cache"]]}
+{"source_id": "thr_00867", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0082", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00868", "triples": [["per_0065", "ANSWERED_ABOUT", "svc_refunds"], ["per_0060", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00869", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00870", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_permissions"], ["per_0017", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_00871", "triples": [["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0072", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00872", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_tax"], ["per_0048", "ANSWERED_ABOUT", "svc_tax"]]}
+{"source_id": "thr_00873", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0009", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00874", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_kafka"], ["per_0103", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00875", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_checkout"], ["per_0052", "ANSWERED_ABOUT", "svc_checkout"]]}
+{"source_id": "thr_00876", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_payouts"]]}
+{"source_id": "thr_00877", "triples": [["per_0049", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0052", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_00878", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0081", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00879", "triples": [["per_0114", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_00880", "triples": [["per_0017", "ANSWERED_ABOUT", "ds_pg-users"]]}
+{"source_id": "thr_00881", "triples": [["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0062", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00882", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0082", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00883", "triples": [["per_0049", "ANSWERED_ABOUT", "svc_promotions"], ["per_0052", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_00884", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"], ["per_0108", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00885", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_00886", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_search"], ["per_0032", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_00887", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_config-service"], ["per_0103", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_00888", "triples": [["per_0038", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0042", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00889", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0042", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_00890", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0005", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00891", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_auth"], ["per_0013", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00892", "triples": [["per_0091", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0095", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00893", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0009", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00894", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_00895", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0083", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00896", "triples": [["per_0065", "ANSWERED_ABOUT", "svc_refunds"], ["per_0060", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00897", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_tax"], ["per_0052", "ANSWERED_ABOUT", "svc_tax"]]}
+{"source_id": "thr_00898", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0013", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00899", "triples": [["per_0099", "ANSWERED_ABOUT", "svc_feature-flags"], ["per_0108", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00900", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0082", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00901", "triples": [["per_0093", "ANSWERED_ABOUT", "svc_ml-scoring"], ["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00902", "triples": [["per_0082", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0076", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00903", "triples": [["per_0032", "ANSWERED_ABOUT", "ds_es-search"], ["per_0027", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_00904", "triples": [["per_0038", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0108", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00905", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0005", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00906", "triples": [["per_0066", "ANSWERED_ABOUT", "ds_pg-billing"], ["per_0072", "ANSWERED_ABOUT", "ds_pg-billing"]]}
+{"source_id": "thr_00907", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0081", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00908", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00909", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0072", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00910", "triples": [["per_0089", "ANSWERED_ABOUT", "svc_feature-store"], ["per_0095", "ANSWERED_ABOUT", "svc_feature-store"]]}
+{"source_id": "thr_00911", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_billing"]]}
+{"source_id": "thr_00912", "triples": [["per_0099", "ANSWERED_ABOUT", "svc_feature-flags"], ["per_0108", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00913", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_session"], ["per_0013", "ANSWERED_ABOUT", "svc_session"]]}
+{"source_id": "thr_00914", "triples": [["per_0038", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0036", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00915", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00916", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0052", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_00917", "triples": [["per_0027", "ANSWERED_ABOUT", "svc_promotions"], ["per_0050", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_00918", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0081", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_00919", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0005", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00920", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_service-mesh"], ["per_0099", "ANSWERED_ABOUT", "svc_service-mesh"]]}
+{"source_id": "thr_00921", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_auth"], ["per_0017", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00922", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_tax"], ["per_0052", "ANSWERED_ABOUT", "svc_tax"]]}
+{"source_id": "thr_00923", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00924", "triples": [["per_0009", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0007", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00925", "triples": [["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0072", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00926", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_auth"], ["per_0013", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00927", "triples": [["per_0067", "ANSWERED_ABOUT", "svc_refunds"], ["per_0060", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_00928", "triples": [["per_0005", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0006", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00929", "triples": [["per_0009", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00930", "triples": [["per_0038", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0042", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00931", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_analytics"], ["per_0094", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_00932", "triples": [["per_0089", "ANSWERED_ABOUT", "ds_cassandra-events"], ["per_0093", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00933", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_service-mesh"], ["per_0103", "ANSWERED_ABOUT", "svc_service-mesh"]]}
+{"source_id": "thr_00934", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_config-service"], ["per_0108", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_00935", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0007", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00936", "triples": [["per_0042", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0036", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00937", "triples": [["per_0093", "ANSWERED_ABOUT", "svc_ml-scoring"], ["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00938", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0092", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_00939", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_promotions"], ["per_0052", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_00940", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00941", "triples": [["per_0032", "ANSWERED_ABOUT", "svc_reviews"], ["per_0024", "ANSWERED_ABOUT", "svc_reviews"]]}
+{"source_id": "thr_00942", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_pg-users"], ["per_0019", "ANSWERED_ABOUT", "ds_pg-users"]]}
+{"source_id": "thr_00943", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0013", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00944", "triples": [["per_0070", "ANSWERED_ABOUT", "svc_billing"]]}
+{"source_id": "thr_00945", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_00946", "triples": [["per_0099", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_00947", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_search"], ["per_0032", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_00948", "triples": [["per_0113", "ANSWERED_ABOUT", "svc_vault"], ["per_0111", "ANSWERED_ABOUT", "svc_vault"]]}
+{"source_id": "thr_00949", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_00950", "triples": [["per_0059", "ANSWERED_ABOUT", "svc_payments"], ["per_0061", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00951", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_feature-store"], ["per_0094", "ANSWERED_ABOUT", "svc_feature-store"]]}
+{"source_id": "thr_00952", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0082", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00953", "triples": [["per_0059", "ANSWERED_ABOUT", "svc_payments"], ["per_0061", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00954", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_00955", "triples": [["per_0099", "ANSWERED_ABOUT", "svc_scheduler"]]}
+{"source_id": "thr_00956", "triples": [["per_0005", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0010", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00957", "triples": [["per_0042", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0036", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_00958", "triples": [["per_0070", "ANSWERED_ABOUT", "svc_payments"], ["per_0066", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_00959", "triples": [["per_0042", "ANSWERED_ABOUT", "svc_inventory"], ["per_0039", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_00960", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0005", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00961", "triples": [["per_0082", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0076", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00962", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_checkout"], ["per_0052", "ANSWERED_ABOUT", "svc_checkout"]]}
+{"source_id": "thr_00963", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00964", "triples": [["per_0072", "ANSWERED_ABOUT", "svc_billing"], ["per_0066", "ANSWERED_ABOUT", "svc_billing"]]}
+{"source_id": "thr_00965", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0009", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00966", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00967", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_search"], ["per_0025", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_00968", "triples": [["per_0108", "ANSWERED_ABOUT", "svc_kafka"], ["per_0103", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00969", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_shipping"], ["per_0080", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_00970", "triples": [["per_0052", "ANSWERED_ABOUT", "svc_tax"], ["per_0048", "ANSWERED_ABOUT", "svc_tax"]]}
+{"source_id": "thr_00971", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0009", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_00972", "triples": [["per_0032", "ANSWERED_ABOUT", "svc_recommendations"], ["per_0031", "ANSWERED_ABOUT", "svc_recommendations"]]}
+{"source_id": "thr_00973", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"], ["per_0108", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_00974", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0008", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_00975", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00976", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_reviews"]]}
+{"source_id": "thr_00977", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00978", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_00979", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0019", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00980", "triples": [["per_0108", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0111", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_00981", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0017", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00982", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0083", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_00983", "triples": [["per_0049", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0052", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_00984", "triples": [["per_0032", "ANSWERED_ABOUT", "svc_reviews"], ["per_0024", "ANSWERED_ABOUT", "svc_reviews"]]}
+{"source_id": "thr_00985", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0004", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00986", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_analytics"], ["per_0094", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_00987", "triples": [["per_0093", "ANSWERED_ABOUT", "svc_ml-scoring"], ["per_0095", "ANSWERED_ABOUT", "svc_ml-scoring"]]}
+{"source_id": "thr_00988", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_orders"], ["per_0082", "ANSWERED_ABOUT", "svc_orders"]]}
+{"source_id": "thr_00989", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_service-mesh"], ["per_0103", "ANSWERED_ABOUT", "svc_service-mesh"]]}
+{"source_id": "thr_00990", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_auth"], ["per_0017", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00991", "triples": [["per_0089", "ANSWERED_ABOUT", "svc_feature-store"], ["per_0095", "ANSWERED_ABOUT", "svc_feature-store"]]}
+{"source_id": "thr_00992", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_00993", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_00994", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00995", "triples": [["per_0027", "ANSWERED_ABOUT", "svc_promotions"], ["per_0050", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_00996", "triples": [["per_0017", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00997", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0019", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_00998", "triples": [["per_0024", "ANSWERED_ABOUT", "svc_reviews"], ["per_0028", "ANSWERED_ABOUT", "svc_reviews"]]}
+{"source_id": "thr_00999", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_inventory"], ["per_0042", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_01000", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0039", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_01001", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_01002", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_promotions"], ["per_0049", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_01003", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_ledger"], ["per_0070", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_01004", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0039", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_01005", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_01006", "triples": [["per_0070", "ANSWERED_ABOUT", "svc_payments"], ["per_0066", "ANSWERED_ABOUT", "svc_payments"]]}
+{"source_id": "thr_01007", "triples": [["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0062", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_01008", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_orders"], ["per_0076", "ANSWERED_ABOUT", "svc_orders"]]}
+{"source_id": "thr_01009", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_service-mesh"], ["per_0108", "ANSWERED_ABOUT", "svc_service-mesh"]]}
+{"source_id": "thr_01010", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_01011", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_01012", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_01013", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0060", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_01014", "triples": [["per_0025", "ANSWERED_ABOUT", "svc_catalog"], ["per_0032", "ANSWERED_ABOUT", "svc_catalog"]]}
+{"source_id": "thr_01015", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_01016", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_01017", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0081", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_01018", "triples": [["per_0089", "ANSWERED_ABOUT", "svc_feature-store"], ["per_0095", "ANSWERED_ABOUT", "svc_feature-store"]]}
+{"source_id": "thr_01019", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_session"], ["per_0012", "ANSWERED_ABOUT", "svc_session"]]}
+{"source_id": "thr_01020", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0083", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_01021", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_scheduler"]]}
+{"source_id": "thr_01022", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_01023", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0080", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_01024", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_inventory"], ["per_0042", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_01025", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_permissions"], ["per_0017", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_01026", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_inventory"], ["per_0042", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_01027", "triples": [["per_0108", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0098", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_01028", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0013", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_01029", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0005", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_01030", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_01031", "triples": [["per_0081", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0080", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_01032", "triples": [["per_0098", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_01033", "triples": [["per_0108", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0111", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_01034", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0082", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_01035", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_01036", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_search"], ["per_0025", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_01037", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_01038", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_promotions"], ["per_0049", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_01039", "triples": [["per_0072", "ANSWERED_ABOUT", "svc_billing"], ["per_0066", "ANSWERED_ABOUT", "svc_billing"]]}
+{"source_id": "thr_01040", "triples": [["per_0095", "ANSWERED_ABOUT", "ds_cassandra-events"], ["per_0089", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_01041", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0081", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_01042", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0017", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_01043", "triples": [["per_0017", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_01044", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_orders"]]}
+{"source_id": "thr_01045", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0007", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_01046", "triples": [["per_0111", "ANSWERED_ABOUT", "svc_scheduler"], ["per_0112", "ANSWERED_ABOUT", "svc_scheduler"]]}
+{"source_id": "thr_01047", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_tax"], ["per_0049", "ANSWERED_ABOUT", "svc_tax"]]}
+{"source_id": "thr_01048", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_01049", "triples": [["per_0065", "ANSWERED_ABOUT", "svc_refunds"], ["per_0060", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_01050", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_ledger"], ["per_0070", "ANSWERED_ABOUT", "svc_ledger"]]}
+{"source_id": "thr_01051", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_01052", "triples": [["per_0111", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_01053", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_analytics"], ["per_0091", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_01054", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_pricing"], ["per_0042", "ANSWERED_ABOUT", "svc_pricing"]]}
+{"source_id": "thr_01055", "triples": [["per_0038", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0036", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_01056", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_config-service"], ["per_0103", "ANSWERED_ABOUT", "svc_config-service"]]}
+{"source_id": "thr_01057", "triples": [["per_0025", "ANSWERED_ABOUT", "svc_catalog"], ["per_0032", "ANSWERED_ABOUT", "svc_catalog"]]}
+{"source_id": "thr_01058", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_analytics"], ["per_0094", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_01059", "triples": [["per_0066", "ANSWERED_ABOUT", "ds_pg-billing"], ["per_0072", "ANSWERED_ABOUT", "ds_pg-billing"]]}
+{"source_id": "thr_01060", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_mobile-bff"], ["per_0005", "ANSWERED_ABOUT", "svc_mobile-bff"]]}
+{"source_id": "thr_01061", "triples": [["per_0072", "ANSWERED_ABOUT", "svc_billing"], ["per_0066", "ANSWERED_ABOUT", "svc_billing"]]}
+{"source_id": "thr_01062", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_promotions"], ["per_0049", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_01063", "triples": [["per_0065", "ANSWERED_ABOUT", "svc_refunds"], ["per_0060", "ANSWERED_ABOUT", "svc_refunds"]]}
+{"source_id": "thr_01064", "triples": [["per_0060", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_01065", "triples": [["per_0013", "ANSWERED_ABOUT", "ds_pg-users"], ["per_0019", "ANSWERED_ABOUT", "ds_pg-users"]]}
+{"source_id": "thr_01066", "triples": [["per_0089", "ANSWERED_ABOUT", "ds_clickhouse-analytics"], ["per_0093", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_01067", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_01068", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0031", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_01069", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_feature-flags"]]}
+{"source_id": "thr_01070", "triples": [["per_0019", "ANSWERED_ABOUT", "ds_pg-users"], ["per_0017", "ANSWERED_ABOUT", "ds_pg-users"]]}
+{"source_id": "thr_01071", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0080", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_01072", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_permissions"], ["per_0019", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_01073", "triples": [["per_0089", "ANSWERED_ABOUT", "ds_clickhouse-analytics"], ["per_0093", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_01074", "triples": [["per_0028", "ANSWERED_ABOUT", "ds_es-search"], ["per_0032", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_01075", "triples": [["per_0091", "ANSWERED_ABOUT", "svc_event-ingest"], ["per_0095", "ANSWERED_ABOUT", "svc_event-ingest"]]}
+{"source_id": "thr_01076", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_search"], ["per_0025", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_01077", "triples": [["per_0066", "ANSWERED_ABOUT", "ds_pg-billing"], ["per_0072", "ANSWERED_ABOUT", "ds_pg-billing"]]}
+{"source_id": "thr_01078", "triples": [["per_0010", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_01079", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_promotions"], ["per_0049", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_01080", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"], ["per_0108", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_01081", "triples": [["per_0038", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0042", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_01082", "triples": [["per_0005", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0010", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_01083", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0081", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_01084", "triples": [["per_0042", "ANSWERED_ABOUT", "ds_pg-inventory"], ["per_0108", "ANSWERED_ABOUT", "ds_pg-inventory"]]}
+{"source_id": "thr_01085", "triples": [["per_0006", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_01086", "triples": [["per_0038", "ANSWERED_ABOUT", "svc_inventory"], ["per_0042", "ANSWERED_ABOUT", "svc_inventory"]]}
+{"source_id": "thr_01087", "triples": [["per_0049", "ANSWERED_ABOUT", "svc_cart"], ["per_0114", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_01088", "triples": [["per_0089", "ANSWERED_ABOUT", "ds_clickhouse-analytics"], ["per_0093", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_01089", "triples": [["per_0025", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_01090", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0080", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_01091", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0081", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_01092", "triples": [["per_0049", "ANSWERED_ABOUT", "svc_cart"], ["per_0114", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_01093", "triples": [["per_0081", "ANSWERED_ABOUT", "svc_orders"], ["per_0076", "ANSWERED_ABOUT", "svc_orders"]]}
+{"source_id": "thr_01094", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_recommendations"], ["per_0032", "ANSWERED_ABOUT", "svc_recommendations"]]}
+{"source_id": "thr_01095", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_permissions"], ["per_0017", "ANSWERED_ABOUT", "svc_permissions"]]}
+{"source_id": "thr_01096", "triples": [["per_0089", "ANSWERED_ABOUT", "ds_cassandra-events"], ["per_0093", "ANSWERED_ABOUT", "ds_cassandra-events"]]}
+{"source_id": "thr_01097", "triples": [["per_0062", "ANSWERED_ABOUT", "ds_pg-payments"]]}
+{"source_id": "thr_01098", "triples": [["per_0010", "ANSWERED_ABOUT", "svc_partner-api"], ["per_0008", "ANSWERED_ABOUT", "svc_partner-api"]]}
+{"source_id": "thr_01099", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_vault"], ["per_0113", "ANSWERED_ABOUT", "svc_vault"]]}
+{"source_id": "thr_01100", "triples": [["per_0019", "ANSWERED_ABOUT", "svc_session"], ["per_0012", "ANSWERED_ABOUT", "svc_session"]]}
+{"source_id": "thr_01101", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_checkout"], ["per_0052", "ANSWERED_ABOUT", "svc_checkout"]]}
+{"source_id": "thr_01102", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_shipping"], ["per_0081", "ANSWERED_ABOUT", "svc_shipping"]]}
+{"source_id": "thr_01103", "triples": [["per_0062", "ANSWERED_ABOUT", "svc_fraud-detection"], ["per_0060", "ANSWERED_ABOUT", "svc_fraud-detection"]]}
+{"source_id": "thr_01104", "triples": [["per_0091", "ANSWERED_ABOUT", "ds_clickhouse-analytics"]]}
+{"source_id": "thr_01105", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_checkout"], ["per_0048", "ANSWERED_ABOUT", "svc_checkout"]]}
+{"source_id": "thr_01106", "triples": [["per_0095", "ANSWERED_ABOUT", "svc_analytics"]]}
+{"source_id": "thr_01107", "triples": [["per_0028", "ANSWERED_ABOUT", "svc_recommendations"]]}
+{"source_id": "thr_01108", "triples": [["per_0112", "ANSWERED_ABOUT", "svc_kafka"], ["per_0108", "ANSWERED_ABOUT", "svc_kafka"]]}
+{"source_id": "thr_01109", "triples": [["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0062", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_01110", "triples": [["per_0082", "ANSWERED_ABOUT", "svc_warehouse"], ["per_0083", "ANSWERED_ABOUT", "svc_warehouse"]]}
+{"source_id": "thr_01111", "triples": [["per_0070", "ANSWERED_ABOUT", "ds_pg-ledger"], ["per_0066", "ANSWERED_ABOUT", "ds_pg-ledger"]]}
+{"source_id": "thr_01112", "triples": [["per_0059", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_01113", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_01114", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_promotions"], ["per_0049", "ANSWERED_ABOUT", "svc_promotions"]]}
+{"source_id": "thr_01115", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_checkout"], ["per_0052", "ANSWERED_ABOUT", "svc_checkout"]]}
+{"source_id": "thr_01116", "triples": [["per_0066", "ANSWERED_ABOUT", "svc_payouts"], ["per_0067", "ANSWERED_ABOUT", "svc_payouts"]]}
+{"source_id": "thr_01117", "triples": [["per_0050", "ANSWERED_ABOUT", "svc_address-validation"], ["per_0049", "ANSWERED_ABOUT", "svc_address-validation"]]}
+{"source_id": "thr_01118", "triples": [["per_0013", "ANSWERED_ABOUT", "svc_user-profile"], ["per_0019", "ANSWERED_ABOUT", "svc_user-profile"]]}
+{"source_id": "thr_01119", "triples": [["per_0076", "ANSWERED_ABOUT", "svc_returns"], ["per_0082", "ANSWERED_ABOUT", "svc_returns"]]}
+{"source_id": "thr_01144", "triples": [["team_orbit", "OWNS", "svc_promotions"]]}

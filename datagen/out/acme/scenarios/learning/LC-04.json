@@ -1,0 +1,205 @@
+{
+ "id": "LC-04",
+ "type": "learning",
+ "t0": 1791126000000,
+ "t0_iso": "2026-10-04T15:00:00Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791124299143,
+   "ts_iso": "2026-10-04T14:31:39Z",
+   "data": {
+    "id": "chg_lc04_0806",
+    "kind": "config",
+    "entity_id": "svc_feature-store",
+    "ts": 1791124299143,
+    "ts_iso": "2026-10-04T14:31:39Z",
+    "author_id": "per_0087",
+    "reviewer_ids": [
+     "per_0086"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "feature-store: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791124800000,
+   "ts_iso": "2026-10-04T14:40:00Z",
+   "data": {
+    "id": "chg_lc04_0801",
+    "kind": "config",
+    "entity_id": "ds_pg-billing",
+    "ts": 1791124800000,
+    "ts_iso": "2026-10-04T14:40:00Z",
+    "author_id": "per_0125",
+    "reviewer_ids": [
+     "per_0061",
+     "per_0068"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-billing: db.idle_timeout_s 300 -> 5",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791125634194,
+   "ts_iso": "2026-10-04T14:53:54Z",
+   "data": {
+    "id": "chg_lc04_0808",
+    "kind": "code",
+    "entity_id": "svc_kafka",
+    "ts": 1791125634194,
+    "ts_iso": "2026-10-04T14:53:54Z",
+    "author_id": "per_0110",
+    "reviewer_ids": [
+     "per_0116"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "kafka deploy v3.13.12 (payout batching)",
+    "flag_key": null,
+    "pr_number": 3151,
+    "version_to": "4.8.5",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791125719327,
+   "ts_iso": "2026-10-04T14:55:19Z",
+   "data": {
+    "id": "chg_lc04_0805",
+    "kind": "code",
+    "entity_id": "svc_billing",
+    "ts": 1791125719327,
+    "ts_iso": "2026-10-04T14:55:19Z",
+    "author_id": "per_0056",
+    "reviewer_ids": [
+     "per_0121"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "billing deploy v1.24.18 (currency rounding fix)",
+    "flag_key": null,
+    "pr_number": 2108,
+    "version_to": "1.40.7",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791125772620,
+   "ts_iso": "2026-10-04T14:56:12Z",
+   "data": {
+    "id": "chg_lc04_0807",
+    "kind": "code",
+    "entity_id": "svc_billing",
+    "ts": 1791125772620,
+    "ts_iso": "2026-10-04T14:56:12Z",
+    "author_id": "per_0058",
+    "reviewer_ids": [
+     "per_0121"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "billing release v4.25.7: currency rounding fix",
+    "flag_key": null,
+    "pr_number": 1036,
+    "version_to": "6.23.9",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791126152000,
+   "ts_iso": "2026-10-04T15:02:32Z",
+   "data": {
+    "id": "alt_lc04_0802",
+    "name": "HighErrorRate",
+    "entity_id": "svc_billing",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791126152000,
+    "ts_iso": "2026-10-04T15:02:32Z",
+    "resolved_ts": null,
+    "value": 3.85,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791126187000,
+   "ts_iso": "2026-10-04T15:03:07Z",
+   "data": {
+    "id": "alt_lc04_0803",
+    "name": "5xxSpike",
+    "entity_id": "svc_billing",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791126187000,
+    "ts_iso": "2026-10-04T15:03:07Z",
+    "resolved_ts": null,
+    "value": 4.36,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791126720000,
+   "ts_iso": "2026-10-04T15:12:00Z",
+   "data": {
+    "id": "alt_lc04_0804",
+    "name": "HighErrorRate",
+    "entity_id": "ds_redis-ratelimit",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791126720000,
+    "ts_iso": "2026-10-04T15:12:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_pg-billing"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_lc04_0801"
+  ],
+  "mechanism": [
+   "idle connection timeout lowered"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_billing"
+  ],
+  "correct_team_id": "team_payments",
+  "correct_oncall_id": "per_0061",
+  "expected_experts": [
+   "per_0066",
+   "per_0072",
+   "per_0070"
+  ]
+ },
+ "sequence": 4,
+ "motif_id": "motif_pg_billing_idle_timeout"
+}

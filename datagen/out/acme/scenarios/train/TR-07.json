@@ -1,0 +1,141 @@
+{
+ "id": "TR-07",
+ "type": "change_induced",
+ "t0": 1790952812412,
+ "t0_iso": "2026-10-02T14:53:32Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1790947592412,
+   "ts_iso": "2026-10-02T13:26:32Z",
+   "data": {
+    "id": "chg_tr07_1081",
+    "kind": "dependency_bump",
+    "entity_id": "svc_refunds",
+    "ts": 1790947592412,
+    "ts_iso": "2026-10-02T13:26:32Z",
+    "author_id": "per_0062",
+    "reviewer_ids": [
+     "per_0059"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "refunds: bump netty 1.0 -> 4.7",
+    "flag_key": null,
+    "pr_number": 9215,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790948957875,
+   "ts_iso": "2026-10-02T13:49:17Z",
+   "data": {
+    "id": "chg_tr07_1084",
+    "kind": "config",
+    "entity_id": "ds_es-search",
+    "ts": 1790948957875,
+    "ts_iso": "2026-10-02T13:49:17Z",
+    "author_id": "per_0025",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "es-search: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790951330666,
+   "ts_iso": "2026-10-02T14:28:50Z",
+   "data": {
+    "id": "chg_tr07_1085",
+    "kind": "config",
+    "entity_id": "svc_api-gateway",
+    "ts": 1790951330666,
+    "ts_iso": "2026-10-02T14:28:50Z",
+    "author_id": "per_0008",
+    "reviewer_ids": [
+     "per_0009"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "api-gateway: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790951792412,
+   "ts_iso": "2026-10-02T14:36:32Z",
+   "data": {
+    "id": "alt_tr07_1082",
+    "name": "QueueLag",
+    "entity_id": "svc_reviews",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790951792412,
+    "ts_iso": "2026-10-02T14:36:32Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790952204235,
+   "ts_iso": "2026-10-02T14:43:24Z",
+   "data": {
+    "id": "chg_tr07_1083",
+    "kind": "config",
+    "entity_id": "ds_pg-catalog",
+    "ts": 1790952204235,
+    "ts_iso": "2026-10-02T14:43:24Z",
+    "author_id": "per_0031",
+    "reviewer_ids": [
+     "per_0022"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-catalog: feature.banner off -> on",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_refunds"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_tr07_1081"
+  ],
+  "mechanism": [
+   "client library bump changed default timeout"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [],
+  "correct_team_id": "team_payments",
+  "correct_oncall_id": "per_0061",
+  "expected_experts": [
+   "per_0065",
+   "per_0067",
+   "per_0060"
+  ]
+ },
+ "distractors": 3
+}

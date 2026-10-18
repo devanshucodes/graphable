@@ -1,0 +1,513 @@
+{
+ "id": "TS-27",
+ "type": "non_change",
+ "t0": 1791434491780,
+ "t0_iso": "2026-10-08T04:41:31Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791428163245,
+   "ts_iso": "2026-10-08T02:56:03Z",
+   "data": {
+    "id": "chg_ts27_0501",
+    "kind": "config",
+    "entity_id": "svc_payouts",
+    "ts": 1791428163245,
+    "ts_iso": "2026-10-08T02:56:03Z",
+    "author_id": "per_0066",
+    "reviewer_ids": [
+     "per_0069"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "payouts: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791428325179,
+   "ts_iso": "2026-10-08T02:58:45Z",
+   "data": {
+    "id": "chg_ts27_0504",
+    "kind": "config",
+    "entity_id": "ds_redis-cache",
+    "ts": 1791428325179,
+    "ts_iso": "2026-10-08T02:58:45Z",
+    "author_id": "per_0098",
+    "reviewer_ids": [
+     "per_0104"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-cache: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791429278523,
+   "ts_iso": "2026-10-08T03:14:38Z",
+   "data": {
+    "id": "chg_ts27_0503",
+    "kind": "config",
+    "entity_id": "svc_refunds",
+    "ts": 1791429278523,
+    "ts_iso": "2026-10-08T03:14:38Z",
+    "author_id": "per_0054",
+    "reviewer_ids": [
+     "per_0073",
+     "per_0071"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "refunds: feature.banner off -> on",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791432109597,
+   "ts_iso": "2026-10-08T04:01:49Z",
+   "data": {
+    "id": "chg_ts27_0502",
+    "kind": "config",
+    "entity_id": "svc_checkout",
+    "ts": 1791432109597,
+    "ts_iso": "2026-10-08T04:01:49Z",
+    "author_id": "per_0114",
+    "reviewer_ids": [
+     "per_0047"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "checkout: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791434539780,
+   "ts_iso": "2026-10-08T04:42:19Z",
+   "data": {
+    "id": "alt_ts27_0480",
+    "name": "UpstreamErrors",
+    "entity_id": "ds_ext-paylynx",
+    "metric": "upstreamerrors",
+    "severity": "critical",
+    "ts": 1791434539780,
+    "ts_iso": "2026-10-08T04:42:19Z",
+    "resolved_ts": null,
+    "value": 1.74,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791434572780,
+   "ts_iso": "2026-10-08T04:42:52Z",
+   "data": {
+    "id": "alt_ts27_0479",
+    "name": "HighErrorRate",
+    "entity_id": "ds_ext-paylynx",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791434572780,
+    "ts_iso": "2026-10-08T04:42:52Z",
+    "resolved_ts": null,
+    "value": 2.71,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791434587780,
+   "ts_iso": "2026-10-08T04:43:07Z",
+   "data": {
+    "id": "alt_ts27_0481",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_payments",
+    "metric": "upstreamerrors",
+    "severity": "critical",
+    "ts": 1791434587780,
+    "ts_iso": "2026-10-08T04:43:07Z",
+    "resolved_ts": null,
+    "value": 1.98,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791434618780,
+   "ts_iso": "2026-10-08T04:43:38Z",
+   "data": {
+    "id": "alt_ts27_0484",
+    "name": "HighErrorRate",
+    "entity_id": "svc_checkout",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791434618780,
+    "ts_iso": "2026-10-08T04:43:38Z",
+    "resolved_ts": null,
+    "value": 5.78,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791434745780,
+   "ts_iso": "2026-10-08T04:45:45Z",
+   "data": {
+    "id": "alt_ts27_0483",
+    "name": "5xxSpike",
+    "entity_id": "svc_checkout",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791434745780,
+    "ts_iso": "2026-10-08T04:45:45Z",
+    "resolved_ts": null,
+    "value": 3.86,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791434789780,
+   "ts_iso": "2026-10-08T04:46:29Z",
+   "data": {
+    "id": "alt_ts27_0482",
+    "name": "5xxSpike",
+    "entity_id": "svc_payouts",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791434789780,
+    "ts_iso": "2026-10-08T04:46:29Z",
+    "resolved_ts": null,
+    "value": 3.62,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791434794780,
+   "ts_iso": "2026-10-08T04:46:34Z",
+   "data": {
+    "id": "alt_ts27_0485",
+    "name": "HighErrorRate",
+    "entity_id": "svc_refunds",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791434794780,
+    "ts_iso": "2026-10-08T04:46:34Z",
+    "resolved_ts": null,
+    "value": 3.38,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791434858780,
+   "ts_iso": "2026-10-08T04:47:38Z",
+   "data": {
+    "id": "alt_ts27_0492",
+    "name": "5xxSpike",
+    "entity_id": "svc_mobile-bff",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791434858780,
+    "ts_iso": "2026-10-08T04:47:38Z",
+    "resolved_ts": null,
+    "value": 3.6,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791434869780,
+   "ts_iso": "2026-10-08T04:47:49Z",
+   "data": {
+    "id": "alt_ts27_0487",
+    "name": "HighErrorRate",
+    "entity_id": "svc_orders",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791434869780,
+    "ts_iso": "2026-10-08T04:47:49Z",
+    "resolved_ts": null,
+    "value": 4.07,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791434879780,
+   "ts_iso": "2026-10-08T04:47:59Z",
+   "data": {
+    "id": "alt_ts27_0486",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_refunds",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1791434879780,
+    "ts_iso": "2026-10-08T04:47:59Z",
+    "resolved_ts": null,
+    "value": 2.96,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791434901780,
+   "ts_iso": "2026-10-08T04:48:21Z",
+   "data": {
+    "id": "alt_ts27_0497",
+    "name": "5xxSpike",
+    "entity_id": "svc_returns",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791434901780,
+    "ts_iso": "2026-10-08T04:48:21Z",
+    "resolved_ts": null,
+    "value": 1.27,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791434940780,
+   "ts_iso": "2026-10-08T04:49:00Z",
+   "data": {
+    "id": "alt_ts27_0488",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_orders",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1791434940780,
+    "ts_iso": "2026-10-08T04:49:00Z",
+    "resolved_ts": null,
+    "value": 2.32,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791435000780,
+   "ts_iso": "2026-10-08T04:50:00Z",
+   "data": {
+    "id": "alt_ts27_0499",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_api-gateway",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1791435000780,
+    "ts_iso": "2026-10-08T04:50:00Z",
+    "resolved_ts": null,
+    "value": 5.29,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791435040780,
+   "ts_iso": "2026-10-08T04:50:40Z",
+   "data": {
+    "id": "alt_ts27_0498",
+    "name": "5xxSpike",
+    "entity_id": "svc_api-gateway",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791435040780,
+    "ts_iso": "2026-10-08T04:50:40Z",
+    "resolved_ts": null,
+    "value": 2.4,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791435044780,
+   "ts_iso": "2026-10-08T04:50:44Z",
+   "data": {
+    "id": "alt_ts27_0490",
+    "name": "HighErrorRate",
+    "entity_id": "svc_web-bff",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791435044780,
+    "ts_iso": "2026-10-08T04:50:44Z",
+    "resolved_ts": null,
+    "value": 4.58,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791435211780,
+   "ts_iso": "2026-10-08T04:53:31Z",
+   "data": {
+    "id": "alt_ts27_0500",
+    "name": "5xxSpike",
+    "entity_id": "svc_orders",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791435211780,
+    "ts_iso": "2026-10-08T04:53:31Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791435222780,
+   "ts_iso": "2026-10-08T04:53:42Z",
+   "data": {
+    "id": "alt_ts27_0489",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_web-bff",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1791435222780,
+    "ts_iso": "2026-10-08T04:53:42Z",
+    "resolved_ts": null,
+    "value": 4.53,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791435224780,
+   "ts_iso": "2026-10-08T04:53:44Z",
+   "data": {
+    "id": "alt_ts27_0494",
+    "name": "5xxSpike",
+    "entity_id": "svc_inventory",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791435224780,
+    "ts_iso": "2026-10-08T04:53:44Z",
+    "resolved_ts": null,
+    "value": 5.32,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791435239780,
+   "ts_iso": "2026-10-08T04:53:59Z",
+   "data": {
+    "id": "alt_ts27_0491",
+    "name": "HighErrorRate",
+    "entity_id": "svc_mobile-bff",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791435239780,
+    "ts_iso": "2026-10-08T04:53:59Z",
+    "resolved_ts": null,
+    "value": 3.64,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791435262780,
+   "ts_iso": "2026-10-08T04:54:22Z",
+   "data": {
+    "id": "alt_ts27_0496",
+    "name": "5xxSpike",
+    "entity_id": "svc_shipping",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791435262780,
+    "ts_iso": "2026-10-08T04:54:22Z",
+    "resolved_ts": null,
+    "value": 1.62,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791435271780,
+   "ts_iso": "2026-10-08T04:54:31Z",
+   "data": {
+    "id": "alt_ts27_0493",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_partner-api",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1791435271780,
+    "ts_iso": "2026-10-08T04:54:31Z",
+    "resolved_ts": null,
+    "value": 3.62,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791435275780,
+   "ts_iso": "2026-10-08T04:54:35Z",
+   "data": {
+    "id": "alt_ts27_0495",
+    "name": "HighErrorRate",
+    "entity_id": "svc_inventory",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791435275780,
+    "ts_iso": "2026-10-08T04:54:35Z",
+    "resolved_ts": null,
+    "value": 1.56,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_ext-paylynx"
+  ],
+  "cause_type": "external_outage",
+  "root_change_ids": [],
+  "mechanism": [
+   "PayLynx processor outage"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "ds_ext-paylynx",
+   "svc_api-gateway",
+   "svc_checkout",
+   "svc_inventory",
+   "svc_mobile-bff",
+   "svc_orders",
+   "svc_partner-api",
+   "svc_payments",
+   "svc_payouts",
+   "svc_refunds",
+   "svc_returns",
+   "svc_shipping",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_payments",
+  "correct_oncall_id": "per_0062",
+  "expected_experts": [
+   "per_0070",
+   "per_0059",
+   "per_0062"
+  ]
+ },
+ "distractors": 4
+}

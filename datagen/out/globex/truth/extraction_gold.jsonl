@@ -1,0 +1,45 @@
+{"source_id": "thr_00001", "triples": [["inc_0001", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0001", "RESOLVED_BY", "per_0015"], ["inc_0001", "MITIGATED_WITH", "rb_049"]]}
+{"source_id": "doc_0001", "triples": [["inc_0001", "CAUSED_BY", "ds_ext-paylynx"], ["inc_0001", "RESOLVED_BY", "per_0015"], ["inc_0001", "MITIGATED_WITH", "rb_049"]]}
+{"source_id": "thr_00002", "triples": [["inc_0002", "CAUSED_BY", "chg_000003"], ["inc_0002", "RESOLVED_BY", "per_0020"], ["inc_0002", "MITIGATED_WITH", "rb_029"]]}
+{"source_id": "doc_0002", "triples": [["inc_0002", "CAUSED_BY", "chg_000003"], ["inc_0002", "RESOLVED_BY", "per_0020"], ["inc_0002", "MITIGATED_WITH", "rb_029"]]}
+{"source_id": "thr_00003", "triples": [["inc_0003", "CAUSED_BY", "chg_000056"], ["inc_0003", "RESOLVED_BY", "per_0009"], ["inc_0003", "MITIGATED_WITH", "rb_025"]]}
+{"source_id": "doc_0003", "triples": [["inc_0003", "CAUSED_BY", "chg_000056"], ["inc_0003", "RESOLVED_BY", "per_0009"], ["inc_0003", "MITIGATED_WITH", "rb_025"]]}
+{"source_id": "thr_00004", "triples": [["inc_0004", "CAUSED_BY", "ds_pg-payments"], ["inc_0004", "RESOLVED_BY", "per_0013"], ["inc_0004", "MITIGATED_WITH", "rb_037"]]}
+{"source_id": "doc_0004", "triples": [["inc_0004", "CAUSED_BY", "ds_pg-payments"], ["inc_0004", "RESOLVED_BY", "per_0013"], ["inc_0004", "MITIGATED_WITH", "rb_037"]]}
+{"source_id": "thr_00005", "triples": [["inc_0006", "CAUSED_BY", "chg_000213"], ["inc_0006", "RESOLVED_BY", "per_0013"], ["inc_0006", "MITIGATED_WITH", "rb_017"]]}
+{"source_id": "doc_0005", "triples": [["inc_0006", "CAUSED_BY", "chg_000213"], ["inc_0006", "RESOLVED_BY", "per_0013"], ["inc_0006", "MITIGATED_WITH", "rb_017"]]}
+{"source_id": "thr_00006", "triples": [["inc_0008", "CAUSED_BY", "chg_000245"], ["inc_0008", "RESOLVED_BY", "per_0013"], ["inc_0008", "MITIGATED_WITH", "rb_018"]]}
+{"source_id": "doc_0006", "triples": [["inc_0008", "CAUSED_BY", "chg_000245"], ["inc_0008", "RESOLVED_BY", "per_0013"], ["inc_0008", "MITIGATED_WITH", "rb_018"]]}
+{"source_id": "thr_00007", "triples": [["inc_0012", "CAUSED_BY", "ds_redis-session"], ["inc_0012", "RESOLVED_BY", "per_0004"], ["inc_0012", "MITIGATED_WITH", "rb_041"]]}
+{"source_id": "doc_0007", "triples": [["inc_0012", "CAUSED_BY", "ds_redis-session"], ["inc_0012", "RESOLVED_BY", "per_0004"], ["inc_0012", "MITIGATED_WITH", "rb_041"]]}
+{"source_id": "thr_00008", "triples": [["inc_0016", "CAUSED_BY", "svc_checkout"], ["inc_0016", "RESOLVED_BY", "per_0018"], ["inc_0016", "MITIGATED_WITH", "rb_015"]]}
+{"source_id": "thr_00009", "triples": [["inc_0017", "CAUSED_BY", "chg_000607"], ["inc_0017", "RESOLVED_BY", "per_0011"], ["inc_0017", "MITIGATED_WITH", "rb_015"]]}
+{"source_id": "thr_00010", "triples": [["dec_001", "DECIDED_BY", "per_0004"], ["dec_001", "AFFECTS", "svc_session"]]}
+{"source_id": "thr_00011", "triples": [["dec_002", "DECIDED_BY", "per_0001"], ["dec_002", "AFFECTS", "svc_api-gateway"]]}
+{"source_id": "thr_00012", "triples": [["dec_003", "DECIDED_BY", "per_0013"], ["dec_003", "AFFECTS", "svc_payments"]]}
+{"source_id": "thr_00013", "triples": [["dec_004", "DECIDED_BY", "per_0004"], ["dec_004", "AFFECTS", "svc_auth"]]}
+{"source_id": "thr_00014", "triples": [["per_0002", "ANSWERED_ABOUT", "svc_web-bff"], ["per_0001", "ANSWERED_ABOUT", "svc_web-bff"]]}
+{"source_id": "thr_00015", "triples": [["per_0021", "ANSWERED_ABOUT", "svc_vault"], ["per_0009", "ANSWERED_ABOUT", "svc_vault"]]}
+{"source_id": "thr_00016", "triples": [["per_0005", "ANSWERED_ABOUT", "ds_pg-users"], ["per_0006", "ANSWERED_ABOUT", "ds_pg-users"]]}
+{"source_id": "thr_00017", "triples": [["per_0006", "ANSWERED_ABOUT", "svc_session"], ["per_0004", "ANSWERED_ABOUT", "svc_session"]]}
+{"source_id": "thr_00018", "triples": [["per_0020", "ANSWERED_ABOUT", "svc_service-mesh"]]}
+{"source_id": "thr_00019", "triples": [["per_0006", "ANSWERED_ABOUT", "svc_auth"], ["per_0005", "ANSWERED_ABOUT", "svc_auth"]]}
+{"source_id": "thr_00020", "triples": [["per_0009", "ANSWERED_ABOUT", "svc_search"], ["per_0008", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_00021", "triples": [["per_0005", "ANSWERED_ABOUT", "ds_pg-users"], ["per_0009", "ANSWERED_ABOUT", "ds_pg-users"]]}
+{"source_id": "thr_00022", "triples": [["per_0009", "ANSWERED_ABOUT", "ds_pg-catalog"], ["per_0007", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00023", "triples": [["per_0020", "ANSWERED_ABOUT", "svc_vault"], ["per_0009", "ANSWERED_ABOUT", "svc_vault"]]}
+{"source_id": "thr_00024", "triples": [["per_0003", "ANSWERED_ABOUT", "svc_api-gateway"], ["per_0001", "ANSWERED_ABOUT", "svc_api-gateway"]]}
+{"source_id": "thr_00025", "triples": [["per_0009", "ANSWERED_ABOUT", "ds_es-search"], ["per_0008", "ANSWERED_ABOUT", "ds_es-search"]]}
+{"source_id": "thr_00026", "triples": [["per_0009", "ANSWERED_ABOUT", "ds_pg-catalog"]]}
+{"source_id": "thr_00027", "triples": [["per_0017", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0018", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00028", "triples": [["per_0015", "ANSWERED_ABOUT", "svc_cart"]]}
+{"source_id": "thr_00029", "triples": [["per_0012", "ANSWERED_ABOUT", "svc_checkout"], ["per_0011", "ANSWERED_ABOUT", "svc_checkout"]]}
+{"source_id": "thr_00030", "triples": [["per_0017", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0018", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00031", "triples": [["per_0020", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0019", "ANSWERED_ABOUT", "ds_s3-assets"]]}
+{"source_id": "thr_00032", "triples": [["per_0005", "ANSWERED_ABOUT", "ds_redis-session"], ["per_0006", "ANSWERED_ABOUT", "ds_redis-session"]]}
+{"source_id": "thr_00033", "triples": [["per_0014", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0015", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00034", "triples": [["per_0008", "ANSWERED_ABOUT", "svc_search"]]}
+{"source_id": "thr_00035", "triples": [["per_0003", "ANSWERED_ABOUT", "ds_redis-ratelimit"], ["per_0001", "ANSWERED_ABOUT", "ds_redis-ratelimit"]]}
+{"source_id": "thr_00036", "triples": [["per_0014", "ANSWERED_ABOUT", "ds_ext-paylynx"], ["per_0015", "ANSWERED_ABOUT", "ds_ext-paylynx"]]}
+{"source_id": "thr_00037", "triples": [["per_0017", "ANSWERED_ABOUT", "ds_pg-orders"], ["per_0018", "ANSWERED_ABOUT", "ds_pg-orders"]]}
+{"source_id": "thr_00038", "triples": [["per_0020", "ANSWERED_ABOUT", "ds_s3-assets"], ["per_0019", "ANSWERED_ABOUT", "ds_s3-assets"]]}

@@ -1,0 +1,48 @@
+# Full local stack:  docker compose up --build
+# FalkorDB Browser: http://localhost:3000 · Web app: http://localhost:3001 · API: http://localhost:8000/docs · MCP: http://localhost:8765/mcp
+services:
+  falkordb:
+    image: falkordb/falkordb:6.0.2
+    ports: ["6379:6379", "3000:3000"]
+    environment:
+      FALKORDB_ARGS: "TIMEOUT_DEFAULT 10000 TIMEOUT_MAX 15000"
+    volumes: ["falkordb-data:/var/lib/falkordb/data"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      retries: 20
+
+  init:   # generate synthetic data -> load -> extract knowledge -> golden snapshots (idempotent, ~5 s)
+    build: .
+    command: ["python", "-m", "graphable.bootstrap"]
+    environment: { FALKORDB_HOST: falkordb, GEMINI_API_KEY: "${GEMINI_API_KEY:-}", DATA_DIR: /app/datagen/out }
+    volumes: ["datagen-out:/app/datagen/out"]
+    depends_on: { falkordb: { condition: service_healthy } }
+
+  mcp:
+    build: .
+    command: ["python", "-m", "graphable.mcpserver.server", "--host", "0.0.0.0", "--port", "8765"]
+    environment: { FALKORDB_HOST: falkordb, TENANT_KEYS: "${TENANT_KEYS:-dev-acme:acme,dev-globex:globex,dev-demo:demo_main}" }
+    ports: ["8765:8765"]
+    depends_on: { init: { condition: service_completed_successfully } }
+
+  api:
+    build: .
+    environment:
+      FALKORDB_HOST: falkordb
+      MCP_URL: http://mcp:8765/mcp
+      TENANT_KEYS: "${TENANT_KEYS:-dev-acme:acme,dev-globex:globex,dev-demo:demo_main}"
+      GEMINI_API_KEY: "${GEMINI_API_KEY:-}"
+      DATA_DIR: /app/datagen/out
+    ports: ["8000:8000"]
+    volumes: ["datagen-out:/app/datagen/out"]
+    depends_on: { init: { condition: service_completed_successfully }, mcp: { condition: service_started } }
+
+  web:
+    build: { context: ./apps/web, args: { NEXT_PUBLIC_API_URL: "http://localhost:8000/v1" } }
+    ports: ["3001:3001"]
+    depends_on: [api]
+
+volumes:
+  falkordb-data:
+  datagen-out:

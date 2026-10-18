@@ -1,0 +1,432 @@
+{
+ "id": "TR-18",
+ "type": "change_induced",
+ "t0": 1791217649059,
+ "t0_iso": "2026-10-05T16:27:29Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791210644364,
+   "ts_iso": "2026-10-05T14:30:44Z",
+   "data": {
+    "id": "chg_tr18_1318",
+    "kind": "code",
+    "entity_id": "ds_redis-cache",
+    "ts": 1791210644364,
+    "ts_iso": "2026-10-05T14:30:44Z",
+    "author_id": "per_0097",
+    "reviewer_ids": [
+     "per_0106"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-cache release v5.5.10: image CDN switch",
+    "flag_key": null,
+    "pr_number": 2257,
+    "version_to": "9.33.5",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791211888949,
+   "ts_iso": "2026-10-05T14:51:28Z",
+   "data": {
+    "id": "chg_tr18_1312",
+    "kind": "flag",
+    "entity_id": "svc_partner-api",
+    "ts": 1791211888949,
+    "ts_iso": "2026-10-05T14:51:28Z",
+    "author_id": "per_0010",
+    "reviewer_ids": [
+     "per_0002",
+     "per_0127"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag partner-api.search-synonyms-1 rollout 10% -> 25%",
+    "flag_key": "partner-api.search-synonyms-1",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791212014092,
+   "ts_iso": "2026-10-05T14:53:34Z",
+   "data": {
+    "id": "chg_tr18_1311",
+    "kind": "config",
+    "entity_id": "svc_ledger",
+    "ts": 1791212014092,
+    "ts_iso": "2026-10-05T14:53:34Z",
+    "author_id": "per_0070",
+    "reviewer_ids": [
+     "per_0068"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "ledger: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791213569059,
+   "ts_iso": "2026-10-05T15:19:29Z",
+   "data": {
+    "id": "chg_tr18_1304",
+    "kind": "code",
+    "entity_id": "svc_returns",
+    "ts": 1791213569059,
+    "ts_iso": "2026-10-05T15:19:29Z",
+    "author_id": "per_0083",
+    "reviewer_ids": [
+     "per_0129"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "returns release v5.1.6: bulk price import",
+    "flag_key": null,
+    "pr_number": 4706,
+    "version_to": "3.17.13",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791214172602,
+   "ts_iso": "2026-10-05T15:29:32Z",
+   "data": {
+    "id": "chg_tr18_1316",
+    "kind": "config",
+    "entity_id": "svc_feature-flags",
+    "ts": 1791214172602,
+    "ts_iso": "2026-10-05T15:29:32Z",
+    "author_id": "per_0108",
+    "reviewer_ids": [
+     "per_0116",
+     "per_0104"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "feature-flags: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791214517568,
+   "ts_iso": "2026-10-05T15:35:17Z",
+   "data": {
+    "id": "chg_tr18_1321",
+    "kind": "flag",
+    "entity_id": "svc_pricing",
+    "ts": 1791214517568,
+    "ts_iso": "2026-10-05T15:35:17Z",
+    "author_id": "per_0038",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag pricing.pagination-cleanup-61 rollout 0% -> 25%",
+    "flag_key": "pricing.pagination-cleanup-61",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791214676310,
+   "ts_iso": "2026-10-05T15:37:56Z",
+   "data": {
+    "id": "chg_tr18_1317",
+    "kind": "code",
+    "entity_id": "ds_redis-cache",
+    "ts": 1791214676310,
+    "ts_iso": "2026-10-05T15:37:56Z",
+    "author_id": "per_0109",
+    "reviewer_ids": [
+     "per_0097",
+     "per_0110"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-cache release v7.4.13: promo stacking",
+    "flag_key": null,
+    "pr_number": 6345,
+    "version_to": "4.6.10",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791214712425,
+   "ts_iso": "2026-10-05T15:38:32Z",
+   "data": {
+    "id": "chg_tr18_1319",
+    "kind": "code",
+    "entity_id": "svc_permissions",
+    "ts": 1791214712425,
+    "ts_iso": "2026-10-05T15:38:32Z",
+    "author_id": "per_0120",
+    "reviewer_ids": [
+     "per_0016",
+     "per_0018"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "permissions hotfix v2.33.4: currency rounding fix",
+    "flag_key": null,
+    "pr_number": 2743,
+    "version_to": "9.30.7",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791214839708,
+   "ts_iso": "2026-10-05T15:40:39Z",
+   "data": {
+    "id": "chg_tr18_1315",
+    "kind": "code",
+    "entity_id": "svc_analytics",
+    "ts": 1791214839708,
+    "ts_iso": "2026-10-05T15:40:39Z",
+    "author_id": "per_0096",
+    "reviewer_ids": [
+     "per_0086",
+     "per_0093"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "analytics hotfix v6.8.2: audit logging",
+    "flag_key": null,
+    "pr_number": 6614,
+    "version_to": "8.9.10",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791215296512,
+   "ts_iso": "2026-10-05T15:48:16Z",
+   "data": {
+    "id": "chg_tr18_1320",
+    "kind": "code",
+    "entity_id": "svc_refunds",
+    "ts": 1791215296512,
+    "ts_iso": "2026-10-05T15:48:16Z",
+    "author_id": "per_0067",
+    "reviewer_ids": [
+     "per_0055",
+     "per_0059"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "refunds release v3.38.12: saved cards",
+    "flag_key": null,
+    "pr_number": 5560,
+    "version_to": "2.30.19",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791215592004,
+   "ts_iso": "2026-10-05T15:53:12Z",
+   "data": {
+    "id": "chg_tr18_1313",
+    "kind": "config",
+    "entity_id": "svc_user-profile",
+    "ts": 1791215592004,
+    "ts_iso": "2026-10-05T15:53:12Z",
+    "author_id": "per_0012",
+    "reviewer_ids": [
+     "per_0011"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "user-profile: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791216594123,
+   "ts_iso": "2026-10-05T16:09:54Z",
+   "data": {
+    "id": "chg_tr18_1310",
+    "kind": "code",
+    "entity_id": "svc_event-ingest",
+    "ts": 1791216594123,
+    "ts_iso": "2026-10-05T16:09:54Z",
+    "author_id": "per_0087",
+    "reviewer_ids": [
+     "per_0092",
+     "per_0096"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "event-ingest deploy v5.8.4 (inventory holds)",
+    "flag_key": null,
+    "pr_number": 6652,
+    "version_to": "6.36.5",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791216927738,
+   "ts_iso": "2026-10-05T16:15:27Z",
+   "data": {
+    "id": "chg_tr18_1314",
+    "kind": "code",
+    "entity_id": "svc_shipping",
+    "ts": 1791216927738,
+    "ts_iso": "2026-10-05T16:15:27Z",
+    "author_id": "per_0081",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "shipping hotfix v5.32.4: fraud rule tuning",
+    "flag_key": null,
+    "pr_number": 4520,
+    "version_to": "3.4.12",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791217289059,
+   "ts_iso": "2026-10-05T16:21:29Z",
+   "data": {
+    "id": "alt_tr18_1307",
+    "name": "QueueLag",
+    "entity_id": "svc_api-gateway",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791217289059,
+    "ts_iso": "2026-10-05T16:21:29Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791217409059,
+   "ts_iso": "2026-10-05T16:23:29Z",
+   "data": {
+    "id": "alt_tr18_1308",
+    "name": "HighErrorRate",
+    "entity_id": "svc_address-validation",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791217409059,
+    "ts_iso": "2026-10-05T16:23:29Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791217659059,
+   "ts_iso": "2026-10-05T16:27:39Z",
+   "data": {
+    "id": "alt_tr18_1306",
+    "name": "DeserializationErrors",
+    "entity_id": "svc_returns",
+    "metric": "deserializationerrors",
+    "severity": "critical",
+    "ts": 1791217659059,
+    "ts_iso": "2026-10-05T16:27:39Z",
+    "resolved_ts": null,
+    "value": 1.45,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791217704059,
+   "ts_iso": "2026-10-05T16:28:24Z",
+   "data": {
+    "id": "alt_tr18_1305",
+    "name": "HighErrorRate",
+    "entity_id": "svc_returns",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791217704059,
+    "ts_iso": "2026-10-05T16:28:24Z",
+    "resolved_ts": null,
+    "value": 4.25,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791219449059,
+   "ts_iso": "2026-10-05T16:57:29Z",
+   "data": {
+    "id": "alt_tr18_1309",
+    "name": "SaturationCPU",
+    "entity_id": "svc_refunds",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791219449059,
+    "ts_iso": "2026-10-05T16:57:29Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_returns"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_tr18_1304"
+  ],
+  "mechanism": [
+   "serialization format change"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "svc_returns"
+  ],
+  "correct_team_id": "team_fulfillment",
+  "correct_oncall_id": "per_0079",
+  "expected_experts": [
+   "per_0076",
+   "per_0081",
+   "per_0082"
+  ]
+ },
+ "distractors": 12
+}

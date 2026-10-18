@@ -1,0 +1,163 @@
+{
+ "svc_api-gateway": [
+  "per_0003",
+  "per_0002",
+  "per_0001"
+ ],
+ "svc_web-bff": [
+  "per_0003",
+  "per_0002",
+  "per_0001",
+  "per_0005",
+  "per_0019"
+ ],
+ "svc_auth": [
+  "per_0006",
+  "per_0005",
+  "per_0004",
+  "per_0015",
+  "per_0008"
+ ],
+ "svc_session": [
+  "per_0005",
+  "per_0006",
+  "per_0004",
+  "per_0020",
+  "per_0021"
+ ],
+ "svc_catalog": [
+  "per_0009",
+  "per_0008",
+  "per_0007",
+  "per_0016",
+  "per_0003"
+ ],
+ "svc_search": [
+  "per_0009",
+  "per_0008",
+  "per_0007"
+ ],
+ "svc_cart": [
+  "per_0012",
+  "per_0011",
+  "per_0015",
+  "per_0010",
+  "per_0002"
+ ],
+ "svc_checkout": [
+  "per_0012",
+  "per_0011",
+  "per_0010",
+  "per_0018"
+ ],
+ "svc_payments": [
+  "per_0014",
+  "per_0013",
+  "per_0015",
+  "per_0001"
+ ],
+ "svc_orders": [
+  "per_0017",
+  "per_0018",
+  "per_0016",
+  "per_0003"
+ ],
+ "svc_notifications": [
+  "per_0017",
+  "per_0018",
+  "per_0016"
+ ],
+ "svc_kafka": [
+  "per_0020",
+  "per_0021",
+  "per_0019",
+  "per_0018",
+  "per_0009"
+ ],
+ "svc_config-service": [
+  "per_0020",
+  "per_0021",
+  "per_0009",
+  "per_0017",
+  "per_0005"
+ ],
+ "svc_vault": [
+  "per_0020",
+  "per_0021",
+  "per_0009",
+  "per_0007",
+  "per_0019"
+ ],
+ "svc_service-mesh": [
+  "per_0020",
+  "per_0021",
+  "per_0019",
+  "per_0006",
+  "per_0009"
+ ],
+ "ds_pg-users": [
+  "per_0005",
+  "per_0006",
+  "per_0009",
+  "per_0004"
+ ],
+ "ds_pg-catalog": [
+  "per_0009",
+  "per_0008",
+  "per_0007",
+  "per_0005"
+ ],
+ "ds_pg-orders": [
+  "per_0017",
+  "per_0018",
+  "per_0009",
+  "per_0016"
+ ],
+ "ds_pg-payments": [
+  "per_0014",
+  "per_0015",
+  "per_0013",
+  "per_0009"
+ ],
+ "ds_redis-cache": [
+  "per_0020",
+  "per_0021",
+  "per_0014",
+  "per_0019",
+  "per_0009"
+ ],
+ "ds_redis-session": [
+  "per_0005",
+  "per_0006",
+  "per_0004",
+  "per_0009",
+  "per_0013"
+ ],
+ "ds_redis-ratelimit": [
+  "per_0003",
+  "per_0002",
+  "per_0001",
+  "per_0009",
+  "per_0011"
+ ],
+ "ds_es-search": [
+  "per_0009",
+  "per_0008",
+  "per_0007",
+  "per_0001"
+ ],
+ "ds_s3-assets": [
+  "per_0020",
+  "per_0019",
+  "per_0009",
+  "per_0021",
+  "per_0011"
+ ],
+ "ds_ext-paylynx": [
+  "per_0014",
+  "per_0015",
+  "per_0013",
+  "per_0009",
+  "per_0004"
+ ]
+}

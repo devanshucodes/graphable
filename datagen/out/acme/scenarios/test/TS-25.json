@@ -1,0 +1,195 @@
+{
+ "id": "TS-25",
+ "type": "non_change",
+ "t0": 1791070069092,
+ "t0_iso": "2026-10-03T23:27:49Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791067227631,
+   "ts_iso": "2026-10-03T22:40:27Z",
+   "data": {
+    "id": "chg_ts25_0454",
+    "kind": "code",
+    "entity_id": "svc_warehouse",
+    "ts": 1791067227631,
+    "ts_iso": "2026-10-03T22:40:27Z",
+    "author_id": "per_0083",
+    "reviewer_ids": [
+     "per_0084"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "warehouse hotfix v6.37.15: new tax rounding",
+    "flag_key": null,
+    "pr_number": 6295,
+    "version_to": "9.2.13",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791067365938,
+   "ts_iso": "2026-10-03T22:42:45Z",
+   "data": {
+    "id": "chg_ts25_0455",
+    "kind": "config",
+    "entity_id": "svc_shipping",
+    "ts": 1791067365938,
+    "ts_iso": "2026-10-03T22:42:45Z",
+    "author_id": "per_0081",
+    "reviewer_ids": [
+     "per_0084"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "shipping: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791068810178,
+   "ts_iso": "2026-10-03T23:06:50Z",
+   "data": {
+    "id": "chg_ts25_0456",
+    "kind": "code",
+    "entity_id": "svc_notifications",
+    "ts": 1791068810178,
+    "ts_iso": "2026-10-03T23:06:50Z",
+    "author_id": "per_0082",
+    "reviewer_ids": [
+     "per_0085"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "notifications hotfix v7.17.9: image CDN switch",
+    "flag_key": null,
+    "pr_number": 6351,
+    "version_to": "3.31.19",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791069252440,
+   "ts_iso": "2026-10-03T23:14:12Z",
+   "data": {
+    "id": "chg_ts25_0453",
+    "kind": "code",
+    "entity_id": "svc_analytics",
+    "ts": 1791069252440,
+    "ts_iso": "2026-10-03T23:14:12Z",
+    "author_id": "per_0092",
+    "reviewer_ids": [
+     "per_0096"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "analytics deploy v7.4.9 (address autocomplete)",
+    "flag_key": null,
+    "pr_number": 4907,
+    "version_to": "3.1.15",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791070129092,
+   "ts_iso": "2026-10-03T23:28:49Z",
+   "data": {
+    "id": "alt_ts25_0451",
+    "name": "5xxSpike",
+    "entity_id": "svc_event-ingest",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791070129092,
+    "ts_iso": "2026-10-03T23:28:49Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791070142092,
+   "ts_iso": "2026-10-03T23:29:02Z",
+   "data": {
+    "id": "alt_ts25_0449",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_mobile-bff",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791070142092,
+    "ts_iso": "2026-10-03T23:29:02Z",
+    "resolved_ts": null,
+    "value": 3.76,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791070218092,
+   "ts_iso": "2026-10-03T23:30:18Z",
+   "data": {
+    "id": "alt_ts25_0450",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_api-gateway",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791070218092,
+    "ts_iso": "2026-10-03T23:30:18Z",
+    "resolved_ts": null,
+    "value": 2.5,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791070249092,
+   "ts_iso": "2026-10-03T23:30:49Z",
+   "data": {
+    "id": "alt_ts25_0452",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_returns",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791070249092,
+    "ts_iso": "2026-10-03T23:30:49Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_mobile-bff"
+  ],
+  "cause_type": "capacity",
+  "root_change_ids": [],
+  "mechanism": [
+   "traffic surge beyond capacity"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_mobile-bff"
+  ],
+  "correct_team_id": "team_edge",
+  "correct_oncall_id": "per_0008",
+  "expected_experts": [
+   "per_0010",
+   "per_0009",
+   "per_0007"
+  ]
+ },
+ "distractors": 4
+}

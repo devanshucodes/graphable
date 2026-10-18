@@ -1,0 +1,446 @@
+{
+ "id": "TS-26",
+ "type": "non_change",
+ "t0": 1791244213766,
+ "t0_iso": "2026-10-05T23:50:13Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791240614699,
+   "ts_iso": "2026-10-05T22:50:14Z",
+   "data": {
+    "id": "chg_ts26_0477",
+    "kind": "config",
+    "entity_id": "svc_refunds",
+    "ts": 1791240614699,
+    "ts_iso": "2026-10-05T22:50:14Z",
+    "author_id": "per_0055",
+    "reviewer_ids": [
+     "per_0054",
+     "per_0071"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "refunds: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791240877833,
+   "ts_iso": "2026-10-05T22:54:37Z",
+   "data": {
+    "id": "chg_ts26_0476",
+    "kind": "code",
+    "entity_id": "svc_promotions",
+    "ts": 1791240877833,
+    "ts_iso": "2026-10-05T22:54:37Z",
+    "author_id": "per_0117",
+    "reviewer_ids": [
+     "per_0118",
+     "per_0119"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "promotions deploy v8.34.1 (bulk price import)",
+    "flag_key": null,
+    "pr_number": 2288,
+    "version_to": "1.16.8",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791242413766,
+   "ts_iso": "2026-10-05T23:20:13Z",
+   "data": {
+    "id": "alt_ts26_0472",
+    "name": "GCPauseLong",
+    "entity_id": "svc_feature-flags",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791242413766,
+    "ts_iso": "2026-10-05T23:20:13Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791242413766,
+   "ts_iso": "2026-10-05T23:20:13Z",
+   "data": {
+    "id": "alt_ts26_0473",
+    "name": "CertExpirySoon",
+    "entity_id": "svc_recommendations",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791242413766,
+    "ts_iso": "2026-10-05T23:20:13Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791242953766,
+   "ts_iso": "2026-10-05T23:29:13Z",
+   "data": {
+    "id": "alt_ts26_0474",
+    "name": "CertExpirySoon",
+    "entity_id": "svc_api-gateway",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791242953766,
+    "ts_iso": "2026-10-05T23:29:13Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791243652122,
+   "ts_iso": "2026-10-05T23:40:52Z",
+   "data": {
+    "id": "chg_ts26_0475",
+    "kind": "config",
+    "entity_id": "svc_ledger",
+    "ts": 1791243652122,
+    "ts_iso": "2026-10-05T23:40:52Z",
+    "author_id": "per_0059",
+    "reviewer_ids": [
+     "per_0068",
+     "per_0058"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "ledger: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791243797658,
+   "ts_iso": "2026-10-05T23:43:17Z",
+   "data": {
+    "id": "chg_ts26_0478",
+    "kind": "code",
+    "entity_id": "svc_api-gateway",
+    "ts": 1791243797658,
+    "ts_iso": "2026-10-05T23:43:17Z",
+    "author_id": "per_0006",
+    "reviewer_ids": [
+     "per_0001"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "api-gateway hotfix v1.20.16: promo stacking",
+    "flag_key": null,
+    "pr_number": 5842,
+    "version_to": "7.33.0",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244271766,
+   "ts_iso": "2026-10-05T23:51:11Z",
+   "data": {
+    "id": "alt_ts26_0457",
+    "name": "CertExpired",
+    "entity_id": "ds_pg-catalog",
+    "metric": "certexpired",
+    "severity": "critical",
+    "ts": 1791244271766,
+    "ts_iso": "2026-10-05T23:51:11Z",
+    "resolved_ts": null,
+    "value": 1.4,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244404766,
+   "ts_iso": "2026-10-05T23:53:24Z",
+   "data": {
+    "id": "alt_ts26_0458",
+    "name": "5xxSpike",
+    "entity_id": "svc_catalog",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791244404766,
+    "ts_iso": "2026-10-05T23:53:24Z",
+    "resolved_ts": null,
+    "value": 1.46,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244418766,
+   "ts_iso": "2026-10-05T23:53:38Z",
+   "data": {
+    "id": "alt_ts26_0461",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_reviews",
+    "metric": "upstreamerrors",
+    "severity": "critical",
+    "ts": 1791244418766,
+    "ts_iso": "2026-10-05T23:53:38Z",
+    "resolved_ts": null,
+    "value": 5.07,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244432766,
+   "ts_iso": "2026-10-05T23:53:52Z",
+   "data": {
+    "id": "alt_ts26_0460",
+    "name": "HighErrorRate",
+    "entity_id": "svc_pricing",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791244432766,
+    "ts_iso": "2026-10-05T23:53:52Z",
+    "resolved_ts": null,
+    "value": 2.34,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244465766,
+   "ts_iso": "2026-10-05T23:54:25Z",
+   "data": {
+    "id": "alt_ts26_0459",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_pricing",
+    "metric": "upstreamerrors",
+    "severity": "critical",
+    "ts": 1791244465766,
+    "ts_iso": "2026-10-05T23:54:25Z",
+    "resolved_ts": null,
+    "value": 2.49,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244477766,
+   "ts_iso": "2026-10-05T23:54:37Z",
+   "data": {
+    "id": "alt_ts26_0465",
+    "name": "5xxSpike",
+    "entity_id": "svc_search",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791244477766,
+    "ts_iso": "2026-10-05T23:54:37Z",
+    "resolved_ts": null,
+    "value": 5.08,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244492766,
+   "ts_iso": "2026-10-05T23:54:52Z",
+   "data": {
+    "id": "alt_ts26_0462",
+    "name": "HighErrorRate",
+    "entity_id": "svc_reviews",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791244492766,
+    "ts_iso": "2026-10-05T23:54:52Z",
+    "resolved_ts": null,
+    "value": 1.78,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244529766,
+   "ts_iso": "2026-10-05T23:55:29Z",
+   "data": {
+    "id": "alt_ts26_0463",
+    "name": "HighErrorRate",
+    "entity_id": "svc_promotions",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791244529766,
+    "ts_iso": "2026-10-05T23:55:29Z",
+    "resolved_ts": null,
+    "value": 2.57,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244543766,
+   "ts_iso": "2026-10-05T23:55:43Z",
+   "data": {
+    "id": "alt_ts26_0467",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_partner-api",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1791244543766,
+    "ts_iso": "2026-10-05T23:55:43Z",
+    "resolved_ts": null,
+    "value": 4.31,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244611766,
+   "ts_iso": "2026-10-05T23:56:51Z",
+   "data": {
+    "id": "alt_ts26_0464",
+    "name": "HighErrorRate",
+    "entity_id": "svc_mobile-bff",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791244611766,
+    "ts_iso": "2026-10-05T23:56:51Z",
+    "resolved_ts": null,
+    "value": 3.26,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244699766,
+   "ts_iso": "2026-10-05T23:58:19Z",
+   "data": {
+    "id": "alt_ts26_0466",
+    "name": "HighErrorRate",
+    "entity_id": "svc_partner-api",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791244699766,
+    "ts_iso": "2026-10-05T23:58:19Z",
+    "resolved_ts": null,
+    "value": 4.24,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244737766,
+   "ts_iso": "2026-10-05T23:58:57Z",
+   "data": {
+    "id": "alt_ts26_0468",
+    "name": "5xxSpike",
+    "entity_id": "svc_cart",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791244737766,
+    "ts_iso": "2026-10-05T23:58:57Z",
+    "resolved_ts": null,
+    "value": 4.95,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791244754766,
+   "ts_iso": "2026-10-05T23:59:14Z",
+   "data": {
+    "id": "alt_ts26_0469",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_checkout",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1791244754766,
+    "ts_iso": "2026-10-05T23:59:14Z",
+    "resolved_ts": null,
+    "value": 1.72,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791245007766,
+   "ts_iso": "2026-10-06T00:03:27Z",
+   "data": {
+    "id": "alt_ts26_0470",
+    "name": "5xxSpike",
+    "entity_id": "svc_web-bff",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791245007766,
+    "ts_iso": "2026-10-06T00:03:27Z",
+    "resolved_ts": null,
+    "value": 3.64,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791245190766,
+   "ts_iso": "2026-10-06T00:06:30Z",
+   "data": {
+    "id": "alt_ts26_0471",
+    "name": "HighErrorRate",
+    "entity_id": "svc_api-gateway",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791245190766,
+    "ts_iso": "2026-10-06T00:06:30Z",
+    "resolved_ts": null,
+    "value": 4.95,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_pg-catalog"
+  ],
+  "cause_type": "cert_expiry",
+  "root_change_ids": [],
+  "mechanism": [
+   "TLS certificate expired"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "ds_pg-catalog",
+   "svc_api-gateway",
+   "svc_cart",
+   "svc_catalog",
+   "svc_checkout",
+   "svc_mobile-bff",
+   "svc_partner-api",
+   "svc_pricing",
+   "svc_promotions",
+   "svc_reviews",
+   "svc_search",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_discovery",
+  "correct_oncall_id": "per_0032",
+  "expected_experts": [
+   "per_0028",
+   "per_0031",
+   "per_0032"
+  ]
+ },
+ "distractors": 4
+}

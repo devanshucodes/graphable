@@ -1,0 +1,247 @@
+{
+ "id": "TR-29",
+ "type": "non_change",
+ "t0": 1791385476964,
+ "t0_iso": "2026-10-07T15:04:36Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791379265324,
+   "ts_iso": "2026-10-07T13:21:05Z",
+   "data": {
+    "id": "chg_tr29_1548",
+    "kind": "code",
+    "entity_id": "svc_cart",
+    "ts": 1791379265324,
+    "ts_iso": "2026-10-07T13:21:05Z",
+    "author_id": "per_0128",
+    "reviewer_ids": [
+     "per_0049"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "cart release v6.39.1: guest checkout v2",
+    "flag_key": null,
+    "pr_number": 9809,
+    "version_to": "4.31.17",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791381403844,
+   "ts_iso": "2026-10-07T13:56:43Z",
+   "data": {
+    "id": "chg_tr29_1547",
+    "kind": "code",
+    "entity_id": "svc_cart",
+    "ts": 1791381403844,
+    "ts_iso": "2026-10-07T13:56:43Z",
+    "author_id": "per_0043",
+    "reviewer_ids": [
+     "per_0047",
+     "per_0050"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "cart hotfix v2.1.14: payout batching",
+    "flag_key": null,
+    "pr_number": 8862,
+    "version_to": "1.16.8",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791383065818,
+   "ts_iso": "2026-10-07T14:24:25Z",
+   "data": {
+    "id": "chg_tr29_1550",
+    "kind": "code",
+    "entity_id": "svc_cart",
+    "ts": 1791383065818,
+    "ts_iso": "2026-10-07T14:24:25Z",
+    "author_id": "per_0049",
+    "reviewer_ids": [
+     "per_0114"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "cart hotfix v1.10.12: payout batching",
+    "flag_key": null,
+    "pr_number": 1502,
+    "version_to": "5.32.13",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791384158317,
+   "ts_iso": "2026-10-07T14:42:38Z",
+   "data": {
+    "id": "chg_tr29_1549",
+    "kind": "code",
+    "entity_id": "ds_pg-users",
+    "ts": 1791384158317,
+    "ts_iso": "2026-10-07T14:42:38Z",
+    "author_id": "per_0018",
+    "reviewer_ids": [],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "pg-users deploy v1.27.13 (session refresh)",
+    "flag_key": null,
+    "pr_number": 3430,
+    "version_to": "7.5.2",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791385506964,
+   "ts_iso": "2026-10-07T15:05:06Z",
+   "data": {
+    "id": "alt_tr29_1540",
+    "name": "DataValidationFailed",
+    "entity_id": "svc_promotions",
+    "metric": "datavalidationfailed",
+    "severity": "critical",
+    "ts": 1791385506964,
+    "ts_iso": "2026-10-07T15:05:06Z",
+    "resolved_ts": null,
+    "value": 5.9,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791385629964,
+   "ts_iso": "2026-10-07T15:07:09Z",
+   "data": {
+    "id": "alt_tr29_1543",
+    "name": "5xxSpike",
+    "entity_id": "svc_mobile-bff",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791385629964,
+    "ts_iso": "2026-10-07T15:07:09Z",
+    "resolved_ts": null,
+    "value": 5.28,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791385653964,
+   "ts_iso": "2026-10-07T15:07:33Z",
+   "data": {
+    "id": "alt_tr29_1541",
+    "name": "HighErrorRate",
+    "entity_id": "svc_cart",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791385653964,
+    "ts_iso": "2026-10-07T15:07:33Z",
+    "resolved_ts": null,
+    "value": 1.72,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791385754964,
+   "ts_iso": "2026-10-07T15:09:14Z",
+   "data": {
+    "id": "alt_tr29_1542",
+    "name": "5xxSpike",
+    "entity_id": "svc_cart",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791385754964,
+    "ts_iso": "2026-10-07T15:09:14Z",
+    "resolved_ts": null,
+    "value": 2.8,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791386280964,
+   "ts_iso": "2026-10-07T15:18:00Z",
+   "data": {
+    "id": "alt_tr29_1544",
+    "name": "5xxSpike",
+    "entity_id": "svc_api-gateway",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791386280964,
+    "ts_iso": "2026-10-07T15:18:00Z",
+    "resolved_ts": null,
+    "value": 4.29,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791386436964,
+   "ts_iso": "2026-10-07T15:20:36Z",
+   "data": {
+    "id": "alt_tr29_1546",
+    "name": "DiskUsageHigh",
+    "entity_id": "ds_cassandra-events",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791386436964,
+    "ts_iso": "2026-10-07T15:20:36Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791386976964,
+   "ts_iso": "2026-10-07T15:29:36Z",
+   "data": {
+    "id": "alt_tr29_1545",
+    "name": "QueueLag",
+    "entity_id": "svc_address-validation",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791386976964,
+    "ts_iso": "2026-10-07T15:29:36Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_promotions"
+  ],
+  "cause_type": "data_issue",
+  "root_change_ids": [],
+  "mechanism": [
+   "bad backfill corrupted records"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_cart",
+   "svc_mobile-bff",
+   "svc_promotions"
+  ],
+  "correct_team_id": "team_orbit",
+  "correct_oncall_id": "per_0046",
+  "expected_experts": [
+   "per_0027",
+   "per_0118",
+   "per_0050"
+  ]
+ },
+ "distractors": 4
+}

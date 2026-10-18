@@ -1,0 +1,212 @@
+{
+ "id": "TS-08",
+ "type": "change_induced",
+ "t0": 1791503421801,
+ "t0_iso": "2026-10-08T23:50:21Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791497007698,
+   "ts_iso": "2026-10-08T22:03:27Z",
+   "data": {
+    "id": "chg_ts08_0102",
+    "kind": "code",
+    "entity_id": "svc_billing",
+    "ts": 1791497007698,
+    "ts_iso": "2026-10-08T22:03:27Z",
+    "author_id": "per_0124",
+    "reviewer_ids": [],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "billing release v7.26.17: audit logging",
+    "flag_key": null,
+    "pr_number": 4503,
+    "version_to": "7.35.16",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791499662627,
+   "ts_iso": "2026-10-08T22:47:42Z",
+   "data": {
+    "id": "chg_ts08_0103",
+    "kind": "code",
+    "entity_id": "svc_billing",
+    "ts": 1791499662627,
+    "ts_iso": "2026-10-08T22:47:42Z",
+    "author_id": "per_0063",
+    "reviewer_ids": [
+     "per_0130"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "billing deploy v8.36.13 (inventory holds)",
+    "flag_key": null,
+    "pr_number": 9017,
+    "version_to": "5.18.8",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791501381801,
+   "ts_iso": "2026-10-08T23:16:21Z",
+   "data": {
+    "id": "chg_ts08_0095",
+    "kind": "code",
+    "entity_id": "ds_pg-billing",
+    "ts": 1791501381801,
+    "ts_iso": "2026-10-08T23:16:21Z",
+    "author_id": "per_0059",
+    "reviewer_ids": [
+     "per_0062"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "pg-billing deploy v6.25.5 (session refresh)",
+    "flag_key": null,
+    "pr_number": 6349,
+    "version_to": "8.33.5",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791501559910,
+   "ts_iso": "2026-10-08T23:19:19Z",
+   "data": {
+    "id": "chg_ts08_0101",
+    "kind": "flag",
+    "entity_id": "svc_partner-api",
+    "ts": 1791501559910,
+    "ts_iso": "2026-10-08T23:19:19Z",
+    "author_id": "per_0010",
+    "reviewer_ids": [
+     "per_0009"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag partner-api.bulk-price-import-34 rollout 10% -> 50%",
+    "flag_key": "partner-api.bulk-price-import-34",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791503181801,
+   "ts_iso": "2026-10-08T23:46:21Z",
+   "data": {
+    "id": "alt_ts08_0099",
+    "name": "ProbeFlapping",
+    "entity_id": "svc_billing",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791503181801,
+    "ts_iso": "2026-10-08T23:46:21Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791503181801,
+   "ts_iso": "2026-10-08T23:46:21Z",
+   "data": {
+    "id": "alt_ts08_0100",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_checkout",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791503181801,
+    "ts_iso": "2026-10-08T23:46:21Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791503445801,
+   "ts_iso": "2026-10-08T23:50:45Z",
+   "data": {
+    "id": "alt_ts08_0096",
+    "name": "DBCPUHigh",
+    "entity_id": "ds_pg-billing",
+    "metric": "dbcpuhigh",
+    "severity": "critical",
+    "ts": 1791503445801,
+    "ts_iso": "2026-10-08T23:50:45Z",
+    "resolved_ts": null,
+    "value": 2.3,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791503610801,
+   "ts_iso": "2026-10-08T23:53:30Z",
+   "data": {
+    "id": "alt_ts08_0098",
+    "name": "SlowResponses",
+    "entity_id": "svc_billing",
+    "metric": "slowresponses",
+    "severity": "critical",
+    "ts": 1791503610801,
+    "ts_iso": "2026-10-08T23:53:30Z",
+    "resolved_ts": null,
+    "value": 3.08,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791503677801,
+   "ts_iso": "2026-10-08T23:54:37Z",
+   "data": {
+    "id": "alt_ts08_0097",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_billing",
+    "metric": "upstreamtimeouts",
+    "severity": "critical",
+    "ts": 1791503677801,
+    "ts_iso": "2026-10-08T23:54:37Z",
+    "resolved_ts": null,
+    "value": 3.83,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_pg-billing"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_ts08_0095"
+  ],
+  "mechanism": [
+   "N+1 query regression"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "ds_pg-billing",
+   "svc_billing"
+  ],
+  "correct_team_id": "team_payments",
+  "correct_oncall_id": "per_0062",
+  "expected_experts": [
+   "per_0066",
+   "per_0072",
+   "per_0070"
+  ]
+ },
+ "distractors": 3
+}

@@ -1,0 +1,446 @@
+{
+ "id": "TR-13",
+ "type": "change_induced",
+ "t0": 1791181518743,
+ "t0_iso": "2026-10-05T06:25:18Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791176073534,
+   "ts_iso": "2026-10-05T04:54:33Z",
+   "data": {
+    "id": "chg_tr13_1190",
+    "kind": "code",
+    "entity_id": "svc_cart",
+    "ts": 1791176073534,
+    "ts_iso": "2026-10-05T04:54:33Z",
+    "author_id": "per_0114",
+    "reviewer_ids": [
+     "per_0052"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "cart hotfix v6.18.13: saved cards",
+    "flag_key": null,
+    "pr_number": 6615,
+    "version_to": "8.30.16",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791176314892,
+   "ts_iso": "2026-10-05T04:58:34Z",
+   "data": {
+    "id": "chg_tr13_1189",
+    "kind": "config",
+    "entity_id": "svc_fraud-detection",
+    "ts": 1791176314892,
+    "ts_iso": "2026-10-05T04:58:34Z",
+    "author_id": "per_0057",
+    "reviewer_ids": [
+     "per_0068",
+     "per_0054"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "fraud-detection: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791176732940,
+   "ts_iso": "2026-10-05T05:05:32Z",
+   "data": {
+    "id": "chg_tr13_1186",
+    "kind": "code",
+    "entity_id": "ds_redis-cache",
+    "ts": 1791176732940,
+    "ts_iso": "2026-10-05T05:05:32Z",
+    "author_id": "per_0099",
+    "reviewer_ids": [
+     "per_0106",
+     "per_0110"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-cache hotfix v1.27.9: currency rounding fix",
+    "flag_key": null,
+    "pr_number": 2218,
+    "version_to": "2.20.6",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791177798743,
+   "ts_iso": "2026-10-05T05:23:18Z",
+   "data": {
+    "id": "chg_tr13_1171",
+    "kind": "dependency_bump",
+    "entity_id": "svc_pricing",
+    "ts": 1791177798743,
+    "ts_iso": "2026-10-05T05:23:18Z",
+    "author_id": "per_0126",
+    "reviewer_ids": [
+     "per_0034"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pricing: bump jackson 2.4 -> 4.7",
+    "flag_key": null,
+    "pr_number": 1061,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791179828656,
+   "ts_iso": "2026-10-05T05:57:08Z",
+   "data": {
+    "id": "chg_tr13_1188",
+    "kind": "flag",
+    "entity_id": "svc_web-bff",
+    "ts": 1791179828656,
+    "ts_iso": "2026-10-05T05:57:08Z",
+    "author_id": "per_0010",
+    "reviewer_ids": [
+     "per_0001"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag web-bff.session-refresh-64 rollout 10% -> 50%",
+    "flag_key": "web-bff.session-refresh-64",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791179942969,
+   "ts_iso": "2026-10-05T05:59:02Z",
+   "data": {
+    "id": "chg_tr13_1183",
+    "kind": "code",
+    "entity_id": "svc_reviews",
+    "ts": 1791179942969,
+    "ts_iso": "2026-10-05T05:59:02Z",
+    "author_id": "per_0028",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "reviews deploy v4.26.9 (audit logging)",
+    "flag_key": null,
+    "pr_number": 1974,
+    "version_to": "7.7.18",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791180004042,
+   "ts_iso": "2026-10-05T06:00:04Z",
+   "data": {
+    "id": "chg_tr13_1185",
+    "kind": "flag",
+    "entity_id": "svc_cart",
+    "ts": 1791180004042,
+    "ts_iso": "2026-10-05T06:00:04Z",
+    "author_id": "per_0050",
+    "reviewer_ids": [
+     "per_0052"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag cart.search-synonyms-8 rollout 10% -> 100%",
+    "flag_key": "cart.search-synonyms-8",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791180344363,
+   "ts_iso": "2026-10-05T06:05:44Z",
+   "data": {
+    "id": "chg_tr13_1187",
+    "kind": "code",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1791180344363,
+    "ts_iso": "2026-10-05T06:05:44Z",
+    "author_id": "per_0009",
+    "reviewer_ids": [
+     "per_0006",
+     "per_0002"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "mobile-bff deploy v1.5.7 (image CDN switch)",
+    "flag_key": null,
+    "pr_number": 7519,
+    "version_to": "4.9.17",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791180798743,
+   "ts_iso": "2026-10-05T06:13:18Z",
+   "data": {
+    "id": "alt_tr13_1178",
+    "name": "DiskUsageHigh",
+    "entity_id": "svc_permissions",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791180798743,
+    "ts_iso": "2026-10-05T06:13:18Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791180959141,
+   "ts_iso": "2026-10-05T06:15:59Z",
+   "data": {
+    "id": "chg_tr13_1184",
+    "kind": "code",
+    "entity_id": "ds_es-search",
+    "ts": 1791180959141,
+    "ts_iso": "2026-10-05T06:15:59Z",
+    "author_id": "per_0029",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "es-search deploy v5.27.4 (saved cards)",
+    "flag_key": null,
+    "pr_number": 4693,
+    "version_to": "9.24.1",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791181128322,
+   "ts_iso": "2026-10-05T06:18:48Z",
+   "data": {
+    "id": "chg_tr13_1182",
+    "kind": "config",
+    "entity_id": "svc_api-gateway",
+    "ts": 1791181128322,
+    "ts_iso": "2026-10-05T06:18:48Z",
+    "author_id": "per_0001",
+    "reviewer_ids": [
+     "per_0123",
+     "per_0007"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "api-gateway: feature.banner off -> on",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791181675743,
+   "ts_iso": "2026-10-05T06:27:55Z",
+   "data": {
+    "id": "alt_tr13_1172",
+    "name": "QueueLag",
+    "entity_id": "svc_cart",
+    "metric": "queuelag",
+    "severity": "critical",
+    "ts": 1791181675743,
+    "ts_iso": "2026-10-05T06:27:55Z",
+    "resolved_ts": null,
+    "value": 3.35,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791181900743,
+   "ts_iso": "2026-10-05T06:31:40Z",
+   "data": {
+    "id": "alt_tr13_1174",
+    "name": "SaturationCPU",
+    "entity_id": "svc_mobile-bff",
+    "metric": "saturationcpu",
+    "severity": "warning",
+    "ts": 1791181900743,
+    "ts_iso": "2026-10-05T06:31:40Z",
+    "resolved_ts": null,
+    "value": 3.42,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791181958743,
+   "ts_iso": "2026-10-05T06:32:38Z",
+   "data": {
+    "id": "alt_tr13_1175",
+    "name": "QueueLag",
+    "entity_id": "svc_checkout",
+    "metric": "queuelag",
+    "severity": "warning",
+    "ts": 1791181958743,
+    "ts_iso": "2026-10-05T06:32:38Z",
+    "resolved_ts": null,
+    "value": 5.9,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791181962743,
+   "ts_iso": "2026-10-05T06:32:42Z",
+   "data": {
+    "id": "alt_tr13_1173",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_web-bff",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1791181962743,
+    "ts_iso": "2026-10-05T06:32:42Z",
+    "resolved_ts": null,
+    "value": 1.21,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791182035743,
+   "ts_iso": "2026-10-05T06:33:55Z",
+   "data": {
+    "id": "alt_tr13_1176",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_checkout",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1791182035743,
+    "ts_iso": "2026-10-05T06:33:55Z",
+    "resolved_ts": null,
+    "value": 4.51,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791182136743,
+   "ts_iso": "2026-10-05T06:35:36Z",
+   "data": {
+    "id": "alt_tr13_1177",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_api-gateway",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1791182136743,
+    "ts_iso": "2026-10-05T06:35:36Z",
+    "resolved_ts": null,
+    "value": 2.94,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791182178743,
+   "ts_iso": "2026-10-05T06:36:18Z",
+   "data": {
+    "id": "alt_tr13_1180",
+    "name": "ProbeFlapping",
+    "entity_id": "svc_refunds",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791182178743,
+    "ts_iso": "2026-10-05T06:36:18Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791182538743,
+   "ts_iso": "2026-10-05T06:42:18Z",
+   "data": {
+    "id": "alt_tr13_1179",
+    "name": "PodRestarts",
+    "entity_id": "svc_search",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791182538743,
+    "ts_iso": "2026-10-05T06:42:18Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791183018743,
+   "ts_iso": "2026-10-05T06:50:18Z",
+   "data": {
+    "id": "alt_tr13_1181",
+    "name": "GCPauseLong",
+    "entity_id": "ds_pg-users",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791183018743,
+    "ts_iso": "2026-10-05T06:50:18Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_pricing"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_tr13_1171"
+  ],
+  "mechanism": [
+   "driver bump broke connection reuse"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_cart",
+   "svc_checkout",
+   "svc_mobile-bff",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_pricing_inventory",
+  "correct_oncall_id": "per_0042",
+  "expected_experts": [
+   "per_0038",
+   "per_0039",
+   "per_0042"
+  ]
+ },
+ "distractors": 9
+}

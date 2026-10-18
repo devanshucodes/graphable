@@ -1,0 +1,52 @@
+[
+ {
+  "q": "Who owns promotions now?",
+  "answer": "Orbit",
+  "type": "current_owner"
+ },
+ {
+  "q": "Who owned promotions on 2026-06-15?",
+  "answer": "Checkout",
+  "type": "as_of_owner"
+ },
+ {
+  "q": "Who owns ledger now?",
+  "answer": "Payments",
+  "type": "current_owner"
+ },
+ {
+  "q": "Who owned ledger on 2026-03-01?",
+  "answer": "Money",
+  "type": "as_of_owner"
+ },
+ {
+  "q": "Does search read from pg-catalog today?",
+  "answer": "no",
+  "type": "topology_now"
+ },
+ {
+  "q": "Did search read from pg-catalog on 2026-01-15?",
+  "answer": "yes",
+  "type": "topology_as_of"
+ },
+ {
+  "q": "Is Tomas Brandt still at the company?",
+  "answer": "no (left 2026-06-20)",
+  "type": "person_status"
+ },
+ {
+  "q": "Which team is Sam Okafor on?",
+  "answer": "Checkout",
+  "type": "disambiguation"
+ },
+ {
+  "q": "Which team is Sam Lindqvist on?",
+  "answer": "Data & ML",
+  "type": "disambiguation"
+ },
+ {
+  "q": "Who is primary on-call for Payments on 2026-10-01 12:00 UTC?",
+  "answer": "John de Gruil",
+  "type": "oncall"
+ }
+]

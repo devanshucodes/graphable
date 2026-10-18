@@ -1,0 +1,375 @@
+{
+ "id": "H4",
+ "type": "hero_not_a_change",
+ "t0": 1791862800000,
+ "t0_iso": "2026-10-13T03:40:00Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791856755526,
+   "ts_iso": "2026-10-13T01:59:15Z",
+   "data": {
+    "id": "chg_h4_1005",
+    "kind": "config",
+    "entity_id": "svc_scheduler",
+    "ts": 1791856755526,
+    "ts_iso": "2026-10-13T01:59:15Z",
+    "author_id": "per_0104",
+    "reviewer_ids": [
+     "per_0105"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "scheduler: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791860084292,
+   "ts_iso": "2026-10-13T02:54:44Z",
+   "data": {
+    "id": "chg_h4_1003",
+    "kind": "code",
+    "entity_id": "ds_pg-inventory",
+    "ts": 1791860084292,
+    "ts_iso": "2026-10-13T02:54:44Z",
+    "author_id": "per_0126",
+    "reviewer_ids": [
+     "per_0042"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-inventory deploy v9.3.0 (session refresh)",
+    "flag_key": null,
+    "pr_number": 6914,
+    "version_to": "7.37.1",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791860762974,
+   "ts_iso": "2026-10-13T03:06:02Z",
+   "data": {
+    "id": "chg_h4_1004",
+    "kind": "code",
+    "entity_id": "svc_auth",
+    "ts": 1791860762974,
+    "ts_iso": "2026-10-13T03:06:02Z",
+    "author_id": "per_0019",
+    "reviewer_ids": [
+     "per_0013",
+     "per_0016"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "auth release v1.15.2: faster cart merge",
+    "flag_key": null,
+    "pr_number": 9038,
+    "version_to": "1.26.7",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791861060000,
+   "ts_iso": "2026-10-13T03:11:00Z",
+   "data": {
+    "id": "alt_h4_1000",
+    "name": "5xxSpike",
+    "entity_id": "svc_refunds",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791861060000,
+    "ts_iso": "2026-10-13T03:11:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791861240000,
+   "ts_iso": "2026-10-13T03:14:00Z",
+   "data": {
+    "id": "alt_h4_0999",
+    "name": "5xxSpike",
+    "entity_id": "svc_payouts",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791861240000,
+    "ts_iso": "2026-10-13T03:14:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791862200000,
+   "ts_iso": "2026-10-13T03:30:00Z",
+   "data": {
+    "id": "alt_h4_1001",
+    "name": "GCPauseLong",
+    "entity_id": "ds_clickhouse-analytics",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791862200000,
+    "ts_iso": "2026-10-13T03:30:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791862620000,
+   "ts_iso": "2026-10-13T03:37:00Z",
+   "data": {
+    "id": "alt_h4_1002",
+    "name": "CertExpirySoon",
+    "entity_id": "svc_fraud-detection",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791862620000,
+    "ts_iso": "2026-10-13T03:37:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791862806000,
+   "ts_iso": "2026-10-13T03:40:06Z",
+   "data": {
+    "id": "alt_h4_0989",
+    "name": "TLSHandshakeErrors",
+    "entity_id": "svc_vault",
+    "metric": "tlshandshakeerrors",
+    "severity": "critical",
+    "ts": 1791862806000,
+    "ts_iso": "2026-10-13T03:40:06Z",
+    "resolved_ts": null,
+    "value": 5.46,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791862882000,
+   "ts_iso": "2026-10-13T03:41:22Z",
+   "data": {
+    "id": "alt_h4_0988",
+    "name": "CertExpired",
+    "entity_id": "svc_vault",
+    "metric": "certexpired",
+    "severity": "critical",
+    "ts": 1791862882000,
+    "ts_iso": "2026-10-13T03:41:22Z",
+    "resolved_ts": null,
+    "value": 2.8,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791862958000,
+   "ts_iso": "2026-10-13T03:42:38Z",
+   "data": {
+    "id": "alt_h4_0991",
+    "name": "5xxSpike",
+    "entity_id": "svc_auth",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791862958000,
+    "ts_iso": "2026-10-13T03:42:38Z",
+    "resolved_ts": null,
+    "value": 4.5,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791862983000,
+   "ts_iso": "2026-10-13T03:43:03Z",
+   "data": {
+    "id": "alt_h4_0994",
+    "name": "5xxSpike",
+    "entity_id": "svc_partner-api",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791862983000,
+    "ts_iso": "2026-10-13T03:43:03Z",
+    "resolved_ts": null,
+    "value": 3.88,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791862985000,
+   "ts_iso": "2026-10-13T03:43:05Z",
+   "data": {
+    "id": "alt_h4_0995",
+    "name": "HighErrorRate",
+    "entity_id": "svc_checkout",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791862985000,
+    "ts_iso": "2026-10-13T03:43:05Z",
+    "resolved_ts": null,
+    "value": 3.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791863043000,
+   "ts_iso": "2026-10-13T03:44:03Z",
+   "data": {
+    "id": "alt_h4_0992",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_payments",
+    "metric": "upstreamerrors",
+    "severity": "critical",
+    "ts": 1791863043000,
+    "ts_iso": "2026-10-13T03:44:03Z",
+    "resolved_ts": null,
+    "value": 4.63,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791863058000,
+   "ts_iso": "2026-10-13T03:44:18Z",
+   "data": {
+    "id": "alt_h4_0993",
+    "name": "HighErrorRate",
+    "entity_id": "svc_payouts",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791863058000,
+    "ts_iso": "2026-10-13T03:44:18Z",
+    "resolved_ts": null,
+    "value": 5.75,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791863107000,
+   "ts_iso": "2026-10-13T03:45:07Z",
+   "data": {
+    "id": "alt_h4_0990",
+    "name": "HighErrorRate",
+    "entity_id": "svc_auth",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791863107000,
+    "ts_iso": "2026-10-13T03:45:07Z",
+    "resolved_ts": null,
+    "value": 3.21,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791863202000,
+   "ts_iso": "2026-10-13T03:46:42Z",
+   "data": {
+    "id": "alt_h4_0997",
+    "name": "HighErrorRate",
+    "entity_id": "svc_shipping",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791863202000,
+    "ts_iso": "2026-10-13T03:46:42Z",
+    "resolved_ts": null,
+    "value": 3.47,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791863234000,
+   "ts_iso": "2026-10-13T03:47:14Z",
+   "data": {
+    "id": "alt_h4_0998",
+    "name": "HighErrorRate",
+    "entity_id": "svc_returns",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791863234000,
+    "ts_iso": "2026-10-13T03:47:14Z",
+    "resolved_ts": null,
+    "value": 1.23,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791863248000,
+   "ts_iso": "2026-10-13T03:47:28Z",
+   "data": {
+    "id": "alt_h4_0996",
+    "name": "5xxSpike",
+    "entity_id": "svc_orders",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791863248000,
+    "ts_iso": "2026-10-13T03:47:28Z",
+    "resolved_ts": null,
+    "value": 5.06,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_vault"
+  ],
+  "cause_type": "cert_expiry",
+  "root_change_ids": [],
+  "mechanism": [
+   "TLS certificate expired"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "svc_auth",
+   "svc_checkout",
+   "svc_orders",
+   "svc_partner-api",
+   "svc_payments",
+   "svc_payouts",
+   "svc_returns",
+   "svc_shipping",
+   "svc_vault"
+  ],
+  "correct_team_id": "team_platform",
+  "correct_oncall_id": "per_0109",
+  "expected_experts": [
+   "per_0113",
+   "per_0111",
+   "per_0110"
+  ],
+  "expect_abstain_from_change": true,
+  "departed_expert_id": "per_0112",
+  "expected_successor_id": "per_0113",
+  "expected_bus_factor": 1,
+  "stale_runbooks": [
+   "RB-vault-01",
+   "RB-vault-02",
+   "RB-vault-03"
+  ]
+ },
+ "story": "Vault TLS cert expired; no suspect change; vault expert left 2026-06-20; runbook stale; bus factor 1."
+}

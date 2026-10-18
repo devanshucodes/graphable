@@ -1,0 +1,401 @@
+{
+ "id": "TS-30",
+ "type": "non_change",
+ "t0": 1790946199224,
+ "t0_iso": "2026-10-02T13:03:19Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1790943757553,
+   "ts_iso": "2026-10-02T12:22:37Z",
+   "data": {
+    "id": "chg_ts30_0577",
+    "kind": "code",
+    "entity_id": "svc_promotions",
+    "ts": 1790943757553,
+    "ts_iso": "2026-10-02T12:22:37Z",
+    "author_id": "per_0027",
+    "reviewer_ids": [
+     "per_0046"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "promotions deploy v9.9.3 (pagination cleanup)",
+    "flag_key": null,
+    "pr_number": 5121,
+    "version_to": "1.25.8",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790944866723,
+   "ts_iso": "2026-10-02T12:41:06Z",
+   "data": {
+    "id": "chg_ts30_0576",
+    "kind": "code",
+    "entity_id": "svc_refunds",
+    "ts": 1790944866723,
+    "ts_iso": "2026-10-02T12:41:06Z",
+    "author_id": "per_0066",
+    "reviewer_ids": [
+     "per_0073",
+     "per_0065"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "refunds hotfix v4.8.8: split shipments",
+    "flag_key": null,
+    "pr_number": 6562,
+    "version_to": "7.27.1",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790944894884,
+   "ts_iso": "2026-10-02T12:41:34Z",
+   "data": {
+    "id": "chg_ts30_0578",
+    "kind": "config",
+    "entity_id": "ds_redis-ratelimit",
+    "ts": 1790944894884,
+    "ts_iso": "2026-10-02T12:41:34Z",
+    "author_id": "per_0127",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-ratelimit: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790945048870,
+   "ts_iso": "2026-10-02T12:44:08Z",
+   "data": {
+    "id": "chg_ts30_0579",
+    "kind": "code",
+    "entity_id": "svc_event-ingest",
+    "ts": 1790945048870,
+    "ts_iso": "2026-10-02T12:44:08Z",
+    "author_id": "per_0096",
+    "reviewer_ids": [],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "event-ingest hotfix v2.11.9: promo stacking",
+    "flag_key": null,
+    "pr_number": 7859,
+    "version_to": "3.15.9",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790945419224,
+   "ts_iso": "2026-10-02T12:50:19Z",
+   "data": {
+    "id": "alt_ts30_0574",
+    "name": "ProbeFlapping",
+    "entity_id": "svc_promotions",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790945419224,
+    "ts_iso": "2026-10-02T12:50:19Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946220224,
+   "ts_iso": "2026-10-02T13:03:40Z",
+   "data": {
+    "id": "alt_ts30_0560",
+    "name": "HighErrorRate",
+    "entity_id": "ds_pg-ledger",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1790946220224,
+    "ts_iso": "2026-10-02T13:03:40Z",
+    "resolved_ts": null,
+    "value": 1.85,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946261224,
+   "ts_iso": "2026-10-02T13:04:21Z",
+   "data": {
+    "id": "alt_ts30_0561",
+    "name": "5xxSpike",
+    "entity_id": "ds_pg-ledger",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1790946261224,
+    "ts_iso": "2026-10-02T13:04:21Z",
+    "resolved_ts": null,
+    "value": 1.48,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946331224,
+   "ts_iso": "2026-10-02T13:05:31Z",
+   "data": {
+    "id": "alt_ts30_0562",
+    "name": "HighErrorRate",
+    "entity_id": "svc_ledger",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1790946331224,
+    "ts_iso": "2026-10-02T13:05:31Z",
+    "resolved_ts": null,
+    "value": 1.43,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946408224,
+   "ts_iso": "2026-10-02T13:06:48Z",
+   "data": {
+    "id": "alt_ts30_0566",
+    "name": "5xxSpike",
+    "entity_id": "svc_payments",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1790946408224,
+    "ts_iso": "2026-10-02T13:06:48Z",
+    "resolved_ts": null,
+    "value": 1.57,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946419224,
+   "ts_iso": "2026-10-02T13:06:59Z",
+   "data": {
+    "id": "alt_ts30_0563",
+    "name": "5xxSpike",
+    "entity_id": "svc_payouts",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1790946419224,
+    "ts_iso": "2026-10-02T13:06:59Z",
+    "resolved_ts": null,
+    "value": 4.6,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946439224,
+   "ts_iso": "2026-10-02T13:07:19Z",
+   "data": {
+    "id": "alt_ts30_0572",
+    "name": "HighErrorRate",
+    "entity_id": "svc_inventory",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790946439224,
+    "ts_iso": "2026-10-02T13:07:19Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946499224,
+   "ts_iso": "2026-10-02T13:08:19Z",
+   "data": {
+    "id": "alt_ts30_0571",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_mobile-bff",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1790946499224,
+    "ts_iso": "2026-10-02T13:08:19Z",
+    "resolved_ts": null,
+    "value": 1.45,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946509224,
+   "ts_iso": "2026-10-02T13:08:29Z",
+   "data": {
+    "id": "alt_ts30_0564",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_payouts",
+    "metric": "upstreamerrors",
+    "severity": "critical",
+    "ts": 1790946509224,
+    "ts_iso": "2026-10-02T13:08:29Z",
+    "resolved_ts": null,
+    "value": 5.16,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946569224,
+   "ts_iso": "2026-10-02T13:09:29Z",
+   "data": {
+    "id": "alt_ts30_0567",
+    "name": "HighErrorRate",
+    "entity_id": "svc_checkout",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1790946569224,
+    "ts_iso": "2026-10-02T13:09:29Z",
+    "resolved_ts": null,
+    "value": 1.21,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946644224,
+   "ts_iso": "2026-10-02T13:10:44Z",
+   "data": {
+    "id": "alt_ts30_0570",
+    "name": "HighErrorRate",
+    "entity_id": "svc_refunds",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1790946644224,
+    "ts_iso": "2026-10-02T13:10:44Z",
+    "resolved_ts": null,
+    "value": 4.74,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946717224,
+   "ts_iso": "2026-10-02T13:11:57Z",
+   "data": {
+    "id": "alt_ts30_0565",
+    "name": "HighErrorRate",
+    "entity_id": "svc_payments",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1790946717224,
+    "ts_iso": "2026-10-02T13:11:57Z",
+    "resolved_ts": null,
+    "value": 3.22,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946969224,
+   "ts_iso": "2026-10-02T13:16:09Z",
+   "data": {
+    "id": "alt_ts30_0569",
+    "name": "5xxSpike",
+    "entity_id": "svc_refunds",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1790946969224,
+    "ts_iso": "2026-10-02T13:16:09Z",
+    "resolved_ts": null,
+    "value": 5.65,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790946971224,
+   "ts_iso": "2026-10-02T13:16:11Z",
+   "data": {
+    "id": "alt_ts30_0568",
+    "name": "5xxSpike",
+    "entity_id": "svc_checkout",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1790946971224,
+    "ts_iso": "2026-10-02T13:16:11Z",
+    "resolved_ts": null,
+    "value": 2.32,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790947099224,
+   "ts_iso": "2026-10-02T13:18:19Z",
+   "data": {
+    "id": "alt_ts30_0575",
+    "name": "ProbeFlapping",
+    "entity_id": "svc_search",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790947099224,
+    "ts_iso": "2026-10-02T13:18:19Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790947639224,
+   "ts_iso": "2026-10-02T13:27:19Z",
+   "data": {
+    "id": "alt_ts30_0573",
+    "name": "5xxSpike",
+    "entity_id": "ds_pg-catalog",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790947639224,
+    "ts_iso": "2026-10-02T13:27:19Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_pg-ledger"
+  ],
+  "cause_type": "flag_drift",
+  "root_change_ids": [],
+  "mechanism": [
+   "stale flag targeting rule"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "ds_pg-ledger",
+   "svc_checkout",
+   "svc_ledger",
+   "svc_mobile-bff",
+   "svc_payments",
+   "svc_payouts",
+   "svc_refunds"
+  ],
+  "correct_team_id": "team_payments",
+  "correct_oncall_id": "per_0061",
+  "expected_experts": [
+   "per_0060",
+   "per_0070",
+   "per_0066"
+  ]
+ },
+ "distractors": 4
+}

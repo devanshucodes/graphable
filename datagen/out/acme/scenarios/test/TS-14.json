@@ -1,0 +1,432 @@
+{
+ "id": "TS-14",
+ "type": "change_induced",
+ "t0": 1791505857136,
+ "t0_iso": "2026-10-09T00:30:57Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791499712677,
+   "ts_iso": "2026-10-08T22:48:32Z",
+   "data": {
+    "id": "chg_ts14_0203",
+    "kind": "code",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1791499712677,
+    "ts_iso": "2026-10-08T22:48:32Z",
+    "author_id": "per_0127",
+    "reviewer_ids": [
+     "per_0009"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "mobile-bff hotfix v6.4.17: session refresh",
+    "flag_key": null,
+    "pr_number": 8338,
+    "version_to": "4.29.13",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791499873467,
+   "ts_iso": "2026-10-08T22:51:13Z",
+   "data": {
+    "id": "chg_ts14_0200",
+    "kind": "config",
+    "entity_id": "ds_pg-payments",
+    "ts": 1791499873467,
+    "ts_iso": "2026-10-08T22:51:13Z",
+    "author_id": "per_0061",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-payments: feature.banner off -> on",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791500937136,
+   "ts_iso": "2026-10-08T23:08:57Z",
+   "data": {
+    "id": "chg_ts14_0188",
+    "kind": "config",
+    "entity_id": "svc_address-validation",
+    "ts": 1791500937136,
+    "ts_iso": "2026-10-08T23:08:57Z",
+    "author_id": "per_0044",
+    "reviewer_ids": [
+     "per_0052"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "address-validation: maxmemory-policy allkeys-lru -> volatile-lru",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791501542446,
+   "ts_iso": "2026-10-08T23:19:02Z",
+   "data": {
+    "id": "chg_ts14_0198",
+    "kind": "config",
+    "entity_id": "svc_web-bff",
+    "ts": 1791501542446,
+    "ts_iso": "2026-10-08T23:19:02Z",
+    "author_id": "per_0010",
+    "reviewer_ids": [
+     "per_0001",
+     "per_0008"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "web-bff: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791503210431,
+   "ts_iso": "2026-10-08T23:46:50Z",
+   "data": {
+    "id": "chg_ts14_0201",
+    "kind": "code",
+    "entity_id": "svc_web-bff",
+    "ts": 1791503210431,
+    "ts_iso": "2026-10-08T23:46:50Z",
+    "author_id": "per_0127",
+    "reviewer_ids": [
+     "per_0007",
+     "per_0001"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "web-bff deploy v4.34.1 (guest checkout v2)",
+    "flag_key": null,
+    "pr_number": 3072,
+    "version_to": "9.17.2",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791503449536,
+   "ts_iso": "2026-10-08T23:50:49Z",
+   "data": {
+    "id": "chg_ts14_0199",
+    "kind": "config",
+    "entity_id": "svc_api-gateway",
+    "ts": 1791503449536,
+    "ts_iso": "2026-10-08T23:50:49Z",
+    "author_id": "per_0009",
+    "reviewer_ids": [
+     "per_0123",
+     "per_0001"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "api-gateway: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791504628367,
+   "ts_iso": "2026-10-09T00:10:28Z",
+   "data": {
+    "id": "chg_ts14_0205",
+    "kind": "code",
+    "entity_id": "svc_checkout",
+    "ts": 1791504628367,
+    "ts_iso": "2026-10-09T00:10:28Z",
+    "author_id": "per_0044",
+    "reviewer_ids": [
+     "per_0051",
+     "per_0050"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "checkout hotfix v9.1.14: new tax rounding",
+    "flag_key": null,
+    "pr_number": 9645,
+    "version_to": "3.18.18",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791505096659,
+   "ts_iso": "2026-10-09T00:18:16Z",
+   "data": {
+    "id": "chg_ts14_0206",
+    "kind": "code",
+    "entity_id": "svc_tax",
+    "ts": 1791505096659,
+    "ts_iso": "2026-10-09T00:18:16Z",
+    "author_id": "per_0045",
+    "reviewer_ids": [
+     "per_0050",
+     "per_0043"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "tax deploy v3.15.0 (inventory holds)",
+    "flag_key": null,
+    "pr_number": 5310,
+    "version_to": "8.26.5",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791505651902,
+   "ts_iso": "2026-10-09T00:27:31Z",
+   "data": {
+    "id": "chg_ts14_0202",
+    "kind": "code",
+    "entity_id": "svc_session",
+    "ts": 1791505651902,
+    "ts_iso": "2026-10-09T00:27:31Z",
+    "author_id": "per_0011",
+    "reviewer_ids": [
+     "per_0018"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "session release v8.28.0: faster cart merge",
+    "flag_key": null,
+    "pr_number": 6156,
+    "version_to": "8.1.18",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791505751734,
+   "ts_iso": "2026-10-09T00:29:11Z",
+   "data": {
+    "id": "chg_ts14_0204",
+    "kind": "config",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1791505751734,
+    "ts_iso": "2026-10-09T00:29:11Z",
+    "author_id": "per_0127",
+    "reviewer_ids": [
+     "per_0009"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "mobile-bff: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791506092136,
+   "ts_iso": "2026-10-09T00:34:52Z",
+   "data": {
+    "id": "alt_ts14_0190",
+    "name": "SlowResponses",
+    "entity_id": "svc_tax",
+    "metric": "slowresponses",
+    "severity": "critical",
+    "ts": 1791506092136,
+    "ts_iso": "2026-10-09T00:34:52Z",
+    "resolved_ts": null,
+    "value": 5.61,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791506097136,
+   "ts_iso": "2026-10-09T00:34:57Z",
+   "data": {
+    "id": "alt_ts14_0196",
+    "name": "SlowResponses",
+    "entity_id": "svc_api-gateway",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1791506097136,
+    "ts_iso": "2026-10-09T00:34:57Z",
+    "resolved_ts": null,
+    "value": 2.58,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791506120136,
+   "ts_iso": "2026-10-09T00:35:20Z",
+   "data": {
+    "id": "alt_ts14_0189",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_tax",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791506120136,
+    "ts_iso": "2026-10-09T00:35:20Z",
+    "resolved_ts": null,
+    "value": 3.93,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791506123136,
+   "ts_iso": "2026-10-09T00:35:23Z",
+   "data": {
+    "id": "alt_ts14_0195",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_api-gateway",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1791506123136,
+    "ts_iso": "2026-10-09T00:35:23Z",
+    "resolved_ts": null,
+    "value": 1.54,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791506283136,
+   "ts_iso": "2026-10-09T00:38:03Z",
+   "data": {
+    "id": "alt_ts14_0193",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_web-bff",
+    "metric": "upstreamtimeouts",
+    "severity": "warning",
+    "ts": 1791506283136,
+    "ts_iso": "2026-10-09T00:38:03Z",
+    "resolved_ts": null,
+    "value": 5.99,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791506292136,
+   "ts_iso": "2026-10-09T00:38:12Z",
+   "data": {
+    "id": "alt_ts14_0192",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_web-bff",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1791506292136,
+    "ts_iso": "2026-10-09T00:38:12Z",
+    "resolved_ts": null,
+    "value": 1.29,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791506341136,
+   "ts_iso": "2026-10-09T00:39:01Z",
+   "data": {
+    "id": "alt_ts14_0191",
+    "name": "SlowResponses",
+    "entity_id": "svc_checkout",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1791506341136,
+    "ts_iso": "2026-10-09T00:39:01Z",
+    "resolved_ts": null,
+    "value": 4.02,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791506665136,
+   "ts_iso": "2026-10-09T00:44:25Z",
+   "data": {
+    "id": "alt_ts14_0194",
+    "name": "SlowResponses",
+    "entity_id": "svc_mobile-bff",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1791506665136,
+    "ts_iso": "2026-10-09T00:44:25Z",
+    "resolved_ts": null,
+    "value": 3.33,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791506997136,
+   "ts_iso": "2026-10-09T00:49:57Z",
+   "data": {
+    "id": "alt_ts14_0197",
+    "name": "LatencyP99Breach",
+    "entity_id": "ds_pg-catalog",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791506997136,
+    "ts_iso": "2026-10-09T00:49:57Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_address-validation"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_ts14_0188"
+  ],
+  "mechanism": [
+   "cache eviction policy changed"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_checkout",
+   "svc_mobile-bff",
+   "svc_tax",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_checkout",
+  "correct_oncall_id": "per_0049",
+  "expected_experts": [
+   "per_0050",
+   "per_0049",
+   "per_0052"
+  ]
+ },
+ "distractors": 9
+}

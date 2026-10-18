@@ -1,0 +1,214 @@
+{
+ "id": "TR-30",
+ "type": "non_change",
+ "t0": 1791044538777,
+ "t0_iso": "2026-10-03T16:22:18Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791037721469,
+   "ts_iso": "2026-10-03T14:28:41Z",
+   "data": {
+    "id": "chg_tr30_1556",
+    "kind": "config",
+    "entity_id": "svc_payouts",
+    "ts": 1791037721469,
+    "ts_iso": "2026-10-03T14:28:41Z",
+    "author_id": "per_0055",
+    "reviewer_ids": [
+     "per_0057"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "payouts: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791038364035,
+   "ts_iso": "2026-10-03T14:39:24Z",
+   "data": {
+    "id": "chg_tr30_1557",
+    "kind": "config",
+    "entity_id": "svc_web-bff",
+    "ts": 1791038364035,
+    "ts_iso": "2026-10-03T14:39:24Z",
+    "author_id": "per_0003",
+    "reviewer_ids": [
+     "per_0009"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "web-bff: feature.banner off -> on",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791042720271,
+   "ts_iso": "2026-10-03T15:52:00Z",
+   "data": {
+    "id": "chg_tr30_1559",
+    "kind": "config",
+    "entity_id": "svc_refunds",
+    "ts": 1791042720271,
+    "ts_iso": "2026-10-03T15:52:00Z",
+    "author_id": "per_0070",
+    "reviewer_ids": [
+     "per_0061",
+     "per_0064"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "refunds: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791043839074,
+   "ts_iso": "2026-10-03T16:10:39Z",
+   "data": {
+    "id": "chg_tr30_1558",
+    "kind": "code",
+    "entity_id": "svc_api-gateway",
+    "ts": 1791043839074,
+    "ts_iso": "2026-10-03T16:10:39Z",
+    "author_id": "per_0009",
+    "reviewer_ids": [
+     "per_0001"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "api-gateway release v8.31.2: audit logging",
+    "flag_key": null,
+    "pr_number": 3963,
+    "version_to": "9.5.1",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791044058777,
+   "ts_iso": "2026-10-03T16:14:18Z",
+   "data": {
+    "id": "alt_tr30_1555",
+    "name": "PodRestarts",
+    "entity_id": "svc_promotions",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791044058777,
+    "ts_iso": "2026-10-03T16:14:18Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791044556777,
+   "ts_iso": "2026-10-03T16:22:36Z",
+   "data": {
+    "id": "alt_tr30_1551",
+    "name": "5xxSpike",
+    "entity_id": "svc_checkout",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791044556777,
+    "ts_iso": "2026-10-03T16:22:36Z",
+    "resolved_ts": null,
+    "value": 1.51,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791044702777,
+   "ts_iso": "2026-10-03T16:25:02Z",
+   "data": {
+    "id": "alt_tr30_1553",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_api-gateway",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1791044702777,
+    "ts_iso": "2026-10-03T16:25:02Z",
+    "resolved_ts": null,
+    "value": 4.52,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791044844777,
+   "ts_iso": "2026-10-03T16:27:24Z",
+   "data": {
+    "id": "alt_tr30_1552",
+    "name": "HighErrorRate",
+    "entity_id": "svc_web-bff",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791044844777,
+    "ts_iso": "2026-10-03T16:27:24Z",
+    "resolved_ts": null,
+    "value": 2.65,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791045055777,
+   "ts_iso": "2026-10-03T16:30:55Z",
+   "data": {
+    "id": "alt_tr30_1554",
+    "name": "HighErrorRate",
+    "entity_id": "svc_api-gateway",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791045055777,
+    "ts_iso": "2026-10-03T16:30:55Z",
+    "resolved_ts": null,
+    "value": 3.68,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_checkout"
+  ],
+  "cause_type": "flag_drift",
+  "root_change_ids": [],
+  "mechanism": [
+   "stale flag targeting rule"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_checkout",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_checkout",
+  "correct_oncall_id": "per_0047",
+  "expected_experts": [
+   "per_0050",
+   "per_0052",
+   "per_0128"
+  ]
+ },
+ "distractors": 4
+}

@@ -1,0 +1,502 @@
+{
+ "id": "TR-21",
+ "type": "change_induced",
+ "t0": 1790856593976,
+ "t0_iso": "2026-10-01T12:09:53Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1790850661050,
+   "ts_iso": "2026-10-01T10:31:01Z",
+   "data": {
+    "id": "chg_tr21_1397",
+    "kind": "code",
+    "entity_id": "ds_pg-inventory",
+    "ts": 1790850661050,
+    "ts_iso": "2026-10-01T10:31:01Z",
+    "author_id": "per_0038",
+    "reviewer_ids": [
+     "per_0041"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "pg-inventory release v6.16.15: new tax rounding",
+    "flag_key": null,
+    "pr_number": 6715,
+    "version_to": "4.36.13",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790850810726,
+   "ts_iso": "2026-10-01T10:33:30Z",
+   "data": {
+    "id": "chg_tr21_1400",
+    "kind": "code",
+    "entity_id": "svc_payments",
+    "ts": 1790850810726,
+    "ts_iso": "2026-10-01T10:33:30Z",
+    "author_id": "per_0073",
+    "reviewer_ids": [
+     "per_0125"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "payments hotfix v1.23.3: audit logging",
+    "flag_key": null,
+    "pr_number": 8364,
+    "version_to": "5.13.10",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790850849100,
+   "ts_iso": "2026-10-01T10:34:09Z",
+   "data": {
+    "id": "chg_tr21_1401",
+    "kind": "config",
+    "entity_id": "ds_pg-catalog",
+    "ts": 1790850849100,
+    "ts_iso": "2026-10-01T10:34:09Z",
+    "author_id": "per_0021",
+    "reviewer_ids": [
+     "per_0023"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-catalog: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790851464802,
+   "ts_iso": "2026-10-01T10:44:24Z",
+   "data": {
+    "id": "chg_tr21_1407",
+    "kind": "code",
+    "entity_id": "svc_user-profile",
+    "ts": 1790851464802,
+    "ts_iso": "2026-10-01T10:44:24Z",
+    "author_id": "per_0015",
+    "reviewer_ids": [
+     "per_0017"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "user-profile hotfix v9.34.5: currency rounding fix",
+    "flag_key": null,
+    "pr_number": 3593,
+    "version_to": "3.26.13",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790852608319,
+   "ts_iso": "2026-10-01T11:03:28Z",
+   "data": {
+    "id": "chg_tr21_1403",
+    "kind": "code",
+    "entity_id": "ds_es-search",
+    "ts": 1790852608319,
+    "ts_iso": "2026-10-01T11:03:28Z",
+    "author_id": "per_0024",
+    "reviewer_ids": [
+     "per_0025"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "es-search hotfix v7.0.4: bulk price import",
+    "flag_key": null,
+    "pr_number": 3302,
+    "version_to": "3.27.14",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790852659262,
+   "ts_iso": "2026-10-01T11:04:19Z",
+   "data": {
+    "id": "chg_tr21_1406",
+    "kind": "config",
+    "entity_id": "ds_pg-payments",
+    "ts": 1790852659262,
+    "ts_iso": "2026-10-01T11:04:19Z",
+    "author_id": "per_0066",
+    "reviewer_ids": [
+     "per_0055"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-payments: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790853534668,
+   "ts_iso": "2026-10-01T11:18:54Z",
+   "data": {
+    "id": "chg_tr21_1394",
+    "kind": "config",
+    "entity_id": "svc_feature-flags",
+    "ts": 1790853534668,
+    "ts_iso": "2026-10-01T11:18:54Z",
+    "author_id": "per_0105",
+    "reviewer_ids": [
+     "per_0101"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "feature-flags: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790854124248,
+   "ts_iso": "2026-10-01T11:28:44Z",
+   "data": {
+    "id": "chg_tr21_1398",
+    "kind": "config",
+    "entity_id": "svc_feature-flags",
+    "ts": 1790854124248,
+    "ts_iso": "2026-10-01T11:28:44Z",
+    "author_id": "per_0111",
+    "reviewer_ids": [
+     "per_0102"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "feature-flags: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790854602871,
+   "ts_iso": "2026-10-01T11:36:42Z",
+   "data": {
+    "id": "chg_tr21_1395",
+    "kind": "config",
+    "entity_id": "svc_event-ingest",
+    "ts": 1790854602871,
+    "ts_iso": "2026-10-01T11:36:42Z",
+    "author_id": "per_0089",
+    "reviewer_ids": [
+     "per_0093"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "event-ingest: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790854673976,
+   "ts_iso": "2026-10-01T11:37:53Z",
+   "data": {
+    "id": "chg_tr21_1387",
+    "kind": "code",
+    "entity_id": "svc_shipping",
+    "ts": 1790854673976,
+    "ts_iso": "2026-10-01T11:37:53Z",
+    "author_id": "per_0075",
+    "reviewer_ids": [
+     "per_0081",
+     "per_0085"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "shipping hotfix v1.20.2: address autocomplete",
+    "flag_key": null,
+    "pr_number": 2048,
+    "version_to": "2.28.13",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790854973976,
+   "ts_iso": "2026-10-01T11:42:53Z",
+   "data": {
+    "id": "alt_tr21_1390",
+    "name": "ProbeFlapping",
+    "entity_id": "svc_feature-store",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790854973976,
+    "ts_iso": "2026-10-01T11:42:53Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790855376178,
+   "ts_iso": "2026-10-01T11:49:36Z",
+   "data": {
+    "id": "chg_tr21_1393",
+    "kind": "code",
+    "entity_id": "svc_payments",
+    "ts": 1790855376178,
+    "ts_iso": "2026-10-01T11:49:36Z",
+    "author_id": "per_0130",
+    "reviewer_ids": [
+     "per_0072"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "payments release v6.39.18: pagination cleanup",
+    "flag_key": null,
+    "pr_number": 2917,
+    "version_to": "6.29.7",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790855495398,
+   "ts_iso": "2026-10-01T11:51:35Z",
+   "data": {
+    "id": "chg_tr21_1399",
+    "kind": "config",
+    "entity_id": "svc_vault",
+    "ts": 1790855495398,
+    "ts_iso": "2026-10-01T11:51:35Z",
+    "author_id": "per_0107",
+    "reviewer_ids": [
+     "per_0098",
+     "per_0108"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "vault: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790855659398,
+   "ts_iso": "2026-10-01T11:54:19Z",
+   "data": {
+    "id": "chg_tr21_1402",
+    "kind": "config",
+    "entity_id": "svc_feature-flags",
+    "ts": 1790855659398,
+    "ts_iso": "2026-10-01T11:54:19Z",
+    "author_id": "per_0099",
+    "reviewer_ids": [
+     "per_0109",
+     "per_0102"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "feature-flags: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790855813976,
+   "ts_iso": "2026-10-01T11:56:53Z",
+   "data": {
+    "id": "alt_tr21_1389",
+    "name": "DiskUsageHigh",
+    "entity_id": "svc_catalog",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790855813976,
+    "ts_iso": "2026-10-01T11:56:53Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790856027908,
+   "ts_iso": "2026-10-01T12:00:27Z",
+   "data": {
+    "id": "chg_tr21_1396",
+    "kind": "code",
+    "entity_id": "svc_api-gateway",
+    "ts": 1790856027908,
+    "ts_iso": "2026-10-01T12:00:27Z",
+    "author_id": "per_0002",
+    "reviewer_ids": [
+     "per_0001"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "api-gateway hotfix v6.26.12: promo stacking",
+    "flag_key": null,
+    "pr_number": 8071,
+    "version_to": "3.23.8",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790856116775,
+   "ts_iso": "2026-10-01T12:01:56Z",
+   "data": {
+    "id": "chg_tr21_1405",
+    "kind": "code",
+    "entity_id": "ds_cassandra-events",
+    "ts": 1790856116775,
+    "ts_iso": "2026-10-01T12:01:56Z",
+    "author_id": "per_0087",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "cassandra-events deploy v1.28.4 (async receipts)",
+    "flag_key": null,
+    "pr_number": 6478,
+    "version_to": "3.37.9",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790856366362,
+   "ts_iso": "2026-10-01T12:06:06Z",
+   "data": {
+    "id": "chg_tr21_1404",
+    "kind": "code",
+    "entity_id": "ds_s3-assets",
+    "ts": 1790856366362,
+    "ts_iso": "2026-10-01T12:06:06Z",
+    "author_id": "per_0110",
+    "reviewer_ids": [
+     "per_0106"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "s3-assets release v8.3.13: guest checkout v2",
+    "flag_key": null,
+    "pr_number": 5269,
+    "version_to": "6.17.6",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790856615976,
+   "ts_iso": "2026-10-01T12:10:15Z",
+   "data": {
+    "id": "alt_tr21_1388",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_shipping",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1790856615976,
+    "ts_iso": "2026-10-01T12:10:15Z",
+    "resolved_ts": null,
+    "value": 5.64,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790856833976,
+   "ts_iso": "2026-10-01T12:13:53Z",
+   "data": {
+    "id": "alt_tr21_1392",
+    "name": "ProbeFlapping",
+    "entity_id": "ds_redis-session",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790856833976,
+    "ts_iso": "2026-10-01T12:13:53Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790856893976,
+   "ts_iso": "2026-10-01T12:14:53Z",
+   "data": {
+    "id": "alt_tr21_1391",
+    "name": "GCPauseLong",
+    "entity_id": "svc_address-validation",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790856893976,
+    "ts_iso": "2026-10-01T12:14:53Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_shipping"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_tr21_1387"
+  ],
+  "mechanism": [
+   "thread pool exhaustion under load"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "svc_shipping"
+  ],
+  "correct_team_id": "team_fulfillment",
+  "correct_oncall_id": "per_0078",
+  "expected_experts": [
+   "per_0082",
+   "per_0081",
+   "per_0076"
+  ]
+ },
+ "distractors": 15
+}

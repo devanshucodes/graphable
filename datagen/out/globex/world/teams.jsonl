@@ -1,0 +1,7 @@
+{"id": "team_edge", "key": "edge", "name": "Edge", "created_at": 1707782400000, "created_at_iso": "2024-02-13T00:00:00Z", "dissolved_at": null, "em_id": "per_0001"}
+{"id": "team_identity", "key": "identity", "name": "Identity", "created_at": 1707782400000, "created_at_iso": "2024-02-13T00:00:00Z", "dissolved_at": null, "em_id": "per_0004"}
+{"id": "team_discovery", "key": "discovery", "name": "Discovery", "created_at": 1707782400000, "created_at_iso": "2024-02-13T00:00:00Z", "dissolved_at": null, "em_id": "per_0007"}
+{"id": "team_checkout", "key": "checkout", "name": "Checkout", "created_at": 1707782400000, "created_at_iso": "2024-02-13T00:00:00Z", "dissolved_at": null, "em_id": "per_0010"}
+{"id": "team_payments", "key": "payments", "name": "Payments", "created_at": 1707782400000, "created_at_iso": "2024-02-13T00:00:00Z", "dissolved_at": null, "em_id": "per_0013"}
+{"id": "team_fulfillment", "key": "fulfillment", "name": "Fulfillment", "created_at": 1707782400000, "created_at_iso": "2024-02-13T00:00:00Z", "dissolved_at": null, "em_id": "per_0016"}
+{"id": "team_platform", "key": "platform", "name": "Platform/SRE", "created_at": 1707782400000, "created_at_iso": "2024-02-13T00:00:00Z", "dissolved_at": null, "em_id": "per_0019"}

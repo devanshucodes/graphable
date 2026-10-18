@@ -1,0 +1,291 @@
+{
+ "fragility": {
+  "svc_api-gateway": 0.411,
+  "svc_web-bff": 0.197,
+  "svc_auth": 0.363,
+  "svc_session": 0.267,
+  "svc_catalog": 0.483,
+  "svc_search": 0.282,
+  "svc_cart": 0.387,
+  "svc_checkout": 0.346,
+  "svc_payments": 0.491,
+  "svc_orders": 0.31,
+  "svc_notifications": 0.034,
+  "svc_kafka": 0.634,
+  "svc_config-service": 0.373,
+  "svc_vault": 0.505,
+  "svc_service-mesh": 0.368,
+  "ds_pg-users": 0.612,
+  "ds_pg-catalog": 0.098,
+  "ds_pg-orders": 0.481,
+  "ds_pg-payments": 0.537,
+  "ds_redis-cache": 0.419,
+  "ds_redis-session": 0.513,
+  "ds_redis-ratelimit": 0.283,
+  "ds_es-search": 0.237,
+  "ds_s3-assets": 0.435,
+  "ds_ext-paylynx": 0.694
+ },
+ "review_rigor": {
+  "team_edge": 0.48,
+  "team_identity": 0.58,
+  "team_discovery": 0.54,
+  "team_checkout": 0.41,
+  "team_payments": 0.63,
+  "team_fulfillment": 0.89,
+  "team_platform": 0.45
+ },
+ "expertise": {
+  "per_0001": {
+   "svc_api-gateway": 0.468,
+   "svc_web-bff": 0.411,
+   "ds_redis-ratelimit": 0.332,
+   "ds_es-search": 0.54,
+   "svc_payments": 0.34
+  },
+  "per_0002": {
+   "svc_api-gateway": 0.514,
+   "svc_web-bff": 0.567,
+   "ds_redis-ratelimit": 0.464,
+   "svc_cart": 0.48,
+   "svc_config-service": 0.26,
+   "ds_ext-paylynx": 0.23
+  },
+  "per_0003": {
+   "svc_api-gateway": 0.769,
+   "svc_web-bff": 0.732,
+   "ds_redis-ratelimit": 0.695,
+   "svc_orders": 0.42,
+   "svc_catalog": 0.29
+  },
+  "per_0004": {
+   "svc_auth": 0.425,
+   "svc_session": 0.435,
+   "ds_pg-users": 0.403,
+   "ds_redis-session": 0.43,
+   "svc_service-mesh": 0.4,
+   "ds_ext-paylynx": 0.38
+  },
+  "per_0005": {
+   "svc_auth": 0.56,
+   "svc_session": 0.8,
+   "ds_pg-users": 0.784,
+   "ds_redis-session": 0.699,
+   "svc_web-bff": 0.52,
+   "ds_pg-catalog": 0.57,
+   "svc_config-service": 0.55
+  },
+  "per_0006": {
+   "svc_auth": 0.797,
+   "svc_session": 0.69,
+   "ds_pg-users": 0.649,
+   "ds_redis-session": 0.53,
+   "ds_s3-assets": 0.27,
+   "svc_service-mesh": 0.57
+  },
+  "per_0007": {
+   "svc_catalog": 0.39,
+   "svc_search": 0.467,
+   "ds_pg-catalog": 0.36,
+   "ds_es-search": 0.376,
+   "svc_vault": 0.51
+  },
+  "per_0008": {
+   "svc_catalog": 0.462,
+   "svc_search": 0.52,
+   "ds_pg-catalog": 0.39,
+   "ds_es-search": 0.429,
+   "svc_auth": 0.41,
+   "svc_vault": 0.41
+  },
+  "per_0009": {
+   "svc_catalog": 0.519,
+   "svc_search": 0.697,
+   "ds_pg-catalog": 0.694,
+   "ds_es-search": 0.54,
+   "ds_ext-paylynx": 0.48,
+   "svc_kafka": 0.52,
+   "svc_service-mesh": 0.56,
+   "svc_config-service": 0.68,
+   "svc_vault": 0.66,
+   "ds_pg-users": 0.68,
+   "ds_pg-orders": 0.63,
+   "ds_pg-payments": 0.4,
+   "ds_redis-cache": 0.44,
+   "ds_redis-session": 0.64,
+   "ds_redis-ratelimit": 0.55,
+   "ds_s3-assets": 0.62
+  },
+  "per_0010": {
+   "svc_cart": 0.316,
+   "svc_checkout": 0.418
+  },
+  "per_0011": {
+   "svc_cart": 0.357,
+   "svc_checkout": 0.543,
+   "ds_redis-ratelimit": 0.46,
+   "ds_s3-assets": 0.43
+  },
+  "per_0012": {
+   "svc_cart": 0.555,
+   "svc_checkout": 0.607,
+   "ds_s3-assets": 0.22
+  },
+  "per_0013": {
+   "svc_payments": 0.58,
+   "ds_pg-payments": 0.364,
+   "ds_ext-paylynx": 0.366,
+   "ds_redis-session": 0.36,
+   "svc_vault": 0.24
+  },
+  "per_0014": {
+   "svc_payments": 0.614,
+   "ds_pg-payments": 0.59,
+   "ds_ext-paylynx": 0.791,
+   "ds_redis-cache": 0.59
+  },
+  "per_0015": {
+   "svc_payments": 0.457,
+   "ds_pg-payments": 0.387,
+   "ds_ext-paylynx": 0.544,
+   "svc_auth": 0.59,
+   "svc_cart": 0.57
+  },
+  "per_0016": {
+   "svc_orders": 0.432,
+   "svc_notifications": 0.389,
+   "ds_pg-orders": 0.347,
+   "svc_catalog": 0.56
+  },
+  "per_0017": {
+   "svc_orders": 0.771,
+   "svc_notifications": 0.794,
+   "ds_pg-orders": 0.746,
+   "svc_config-service": 0.56,
+   "svc_session": 0.36,
+   "svc_kafka": 0.47
+  },
+  "per_0018": {
+   "svc_orders": 0.578,
+   "svc_notifications": 0.627,
+   "ds_pg-orders": 0.696,
+   "svc_checkout": 0.27,
+   "svc_kafka": 0.56
+  },
+  "per_0019": {
+   "svc_kafka": 0.481,
+   "svc_service-mesh": 0.396,
+   "svc_config-service": 0.317,
+   "svc_vault": 0.299,
+   "ds_redis-cache": 0.306,
+   "ds_s3-assets": 0.422,
+   "svc_web-bff": 0.48
+  },
+  "per_0020": {
+   "svc_kafka": 0.597,
+   "svc_service-mesh": 0.765,
+   "svc_config-service": 0.547,
+   "svc_vault": 0.686,
+   "ds_redis-cache": 0.753,
+   "ds_s3-assets": 0.578,
+   "svc_session": 0.54
+  },
+  "per_0021": {
+   "svc_kafka": 0.569,
+   "svc_service-mesh": 0.53,
+   "svc_config-service": 0.466,
+   "svc_vault": 0.555,
+   "ds_redis-cache": 0.55,
+   "ds_s3-assets": 0.363,
+   "svc_session": 0.39
+  }
+ },
+ "special_people": {},
+ "motifs": [
+  {
+   "id": "motif_01",
+   "entity_id": "svc_service-mesh",
+   "kind": "code",
+   "mechanism": "serialization format change",
+   "symptom": "errors",
+   "alerts": [
+    "DeserializationErrors",
+    "HighErrorRate"
+   ],
+   "fix": "rollback",
+   "topic": "schema-compat",
+   "occurrences": 1
+  },
+  {
+   "id": "motif_02",
+   "entity_id": "svc_payments",
+   "kind": "code",
+   "mechanism": "null handling bug on new field",
+   "symptom": "errors",
+   "alerts": [
+    "HighErrorRate",
+    "5xxSpike"
+   ],
+   "fix": "rollback",
+   "topic": "error-spike",
+   "occurrences": 1
+  },
+  {
+   "id": "motif_03",
+   "entity_id": "svc_payments",
+   "kind": "config",
+   "mechanism": "timeout lowered below dependency p99",
+   "symptom": "errors",
+   "alerts": [
+    "5xxSpike",
+    "UpstreamTimeouts"
+   ],
+   "fix": "rollback",
+   "topic": "timeouts",
+   "occurrences": 1
+  },
+  {
+   "id": "motif_04",
+   "entity_id": "svc_payments",
+   "kind": "flag",
+   "mechanism": "flag enabled untested code path",
+   "symptom": "errors",
+   "alerts": [
+    "HighErrorRate",
+    "5xxSpike"
+   ],
+   "fix": "flag_off",
+   "topic": "flag-rollback",
+   "occurrences": 1
+  },
+  {
+   "id": "motif_05",
+   "entity_id": "svc_checkout",
+   "kind": "flag",
+   "mechanism": "flag rollout jumped to 100%",
+   "symptom": "saturation",
+   "alerts": [
+    "SaturationCPU",
+    "LatencyP99Breach"
+   ],
+   "fix": "flag_off",
+   "topic": "flag-rollback",
+   "occurrences": 1
+  },
+  {
+   "id": "motif_06",
+   "entity_id": "svc_search",
+   "kind": "config",
+   "mechanism": "connection pool max lowered",
+   "symptom": "latency",
+   "alerts": [
+    "LatencyP99Breach",
+    "ConnPoolExhausted"
+   ],
+   "fix": "rollback",
+   "topic": "connection-pool",
+   "occurrences": 1
+  }
+ ],
+ "injection_artifact_ids": []
+}

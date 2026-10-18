@@ -1,0 +1,217 @@
+{
+ "id": "LC-03",
+ "type": "learning",
+ "t0": 1791039600000,
+ "t0_iso": "2026-10-03T15:00:00Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791034008792,
+   "ts_iso": "2026-10-03T13:26:48Z",
+   "data": {
+    "id": "chg_lc03_0798",
+    "kind": "code",
+    "entity_id": "svc_promotions",
+    "ts": 1791034008792,
+    "ts_iso": "2026-10-03T13:26:48Z",
+    "author_id": "per_0119",
+    "reviewer_ids": [
+     "per_0046"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "promotions deploy v4.18.3 (audit logging)",
+    "flag_key": null,
+    "pr_number": 9764,
+    "version_to": "9.2.12",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791034662629,
+   "ts_iso": "2026-10-03T13:37:42Z",
+   "data": {
+    "id": "chg_lc03_0799",
+    "kind": "code",
+    "entity_id": "svc_billing",
+    "ts": 1791034662629,
+    "ts_iso": "2026-10-03T13:37:42Z",
+    "author_id": "per_0067",
+    "reviewer_ids": [
+     "per_0125"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "billing hotfix v7.2.4: new tax rounding",
+    "flag_key": null,
+    "pr_number": 6931,
+    "version_to": "1.25.2",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791038760000,
+   "ts_iso": "2026-10-03T14:46:00Z",
+   "data": {
+    "id": "chg_lc03_0792",
+    "kind": "config",
+    "entity_id": "ds_pg-billing",
+    "ts": 1791038760000,
+    "ts_iso": "2026-10-03T14:46:00Z",
+    "author_id": "per_0060",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-billing: db.idle_timeout_s 300 -> 5",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791038977744,
+   "ts_iso": "2026-10-03T14:49:37Z",
+   "data": {
+    "id": "chg_lc03_0797",
+    "kind": "config",
+    "entity_id": "svc_scheduler",
+    "ts": 1791038977744,
+    "ts_iso": "2026-10-03T14:49:37Z",
+    "author_id": "per_0111",
+    "reviewer_ids": [
+     "per_0098"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "scheduler: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791039103460,
+   "ts_iso": "2026-10-03T14:51:43Z",
+   "data": {
+    "id": "chg_lc03_0800",
+    "kind": "config",
+    "entity_id": "svc_billing",
+    "ts": 1791039103460,
+    "ts_iso": "2026-10-03T14:51:43Z",
+    "author_id": "per_0066",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "billing: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791039360000,
+   "ts_iso": "2026-10-03T14:56:00Z",
+   "data": {
+    "id": "alt_lc03_0795",
+    "name": "5xxSpike",
+    "entity_id": "svc_reviews",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791039360000,
+    "ts_iso": "2026-10-03T14:56:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791039360000,
+   "ts_iso": "2026-10-03T14:56:00Z",
+   "data": {
+    "id": "alt_lc03_0796",
+    "name": "DiskUsageHigh",
+    "entity_id": "svc_api-gateway",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791039360000,
+    "ts_iso": "2026-10-03T14:56:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791039680000,
+   "ts_iso": "2026-10-03T15:01:20Z",
+   "data": {
+    "id": "alt_lc03_0793",
+    "name": "HighErrorRate",
+    "entity_id": "svc_billing",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791039680000,
+    "ts_iso": "2026-10-03T15:01:20Z",
+    "resolved_ts": null,
+    "value": 3.55,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791039735000,
+   "ts_iso": "2026-10-03T15:02:15Z",
+   "data": {
+    "id": "alt_lc03_0794",
+    "name": "5xxSpike",
+    "entity_id": "svc_billing",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791039735000,
+    "ts_iso": "2026-10-03T15:02:15Z",
+    "resolved_ts": null,
+    "value": 5.75,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_pg-billing"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_lc03_0792"
+  ],
+  "mechanism": [
+   "idle connection timeout lowered"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_billing"
+  ],
+  "correct_team_id": "team_payments",
+  "correct_oncall_id": "per_0061",
+  "expected_experts": [
+   "per_0066",
+   "per_0072",
+   "per_0070"
+  ]
+ },
+ "sequence": 3,
+ "motif_id": "motif_pg_billing_idle_timeout"
+}

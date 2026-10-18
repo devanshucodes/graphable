@@ -1,0 +1,327 @@
+{
+ "id": "TS-13",
+ "type": "change_induced",
+ "t0": 1791533553953,
+ "t0_iso": "2026-10-09T08:12:33Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791526572748,
+   "ts_iso": "2026-10-09T06:16:12Z",
+   "data": {
+    "id": "chg_ts13_0184",
+    "kind": "code",
+    "entity_id": "svc_payouts",
+    "ts": 1791526572748,
+    "ts_iso": "2026-10-09T06:16:12Z",
+    "author_id": "per_0071",
+    "reviewer_ids": [
+     "per_0056"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "payouts hotfix v8.37.0: promo stacking",
+    "flag_key": null,
+    "pr_number": 9010,
+    "version_to": "7.3.4",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791527230834,
+   "ts_iso": "2026-10-09T06:27:10Z",
+   "data": {
+    "id": "chg_ts13_0183",
+    "kind": "config",
+    "entity_id": "ds_s3-assets",
+    "ts": 1791527230834,
+    "ts_iso": "2026-10-09T06:27:10Z",
+    "author_id": "per_0099",
+    "reviewer_ids": [
+     "per_0116",
+     "per_0110"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "s3-assets: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791527592295,
+   "ts_iso": "2026-10-09T06:33:12Z",
+   "data": {
+    "id": "chg_ts13_0181",
+    "kind": "code",
+    "entity_id": "ds_redis-ratelimit",
+    "ts": 1791527592295,
+    "ts_iso": "2026-10-09T06:33:12Z",
+    "author_id": "per_0007",
+    "reviewer_ids": [
+     "per_0001",
+     "per_0009"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-ratelimit hotfix v5.19.17: async receipts",
+    "flag_key": null,
+    "pr_number": 2156,
+    "version_to": "8.15.10",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791529173953,
+   "ts_iso": "2026-10-09T06:59:33Z",
+   "data": {
+    "id": "chg_ts13_0175",
+    "kind": "config",
+    "entity_id": "ds_s3-assets",
+    "ts": 1791529173953,
+    "ts_iso": "2026-10-09T06:59:33Z",
+    "author_id": "per_0099",
+    "reviewer_ids": [
+     "per_0113",
+     "per_0101"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "s3-assets: ratelimit.rps 500 -> 120",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791530490749,
+   "ts_iso": "2026-10-09T07:21:30Z",
+   "data": {
+    "id": "chg_ts13_0186",
+    "kind": "config",
+    "entity_id": "ds_pg-ledger",
+    "ts": 1791530490749,
+    "ts_iso": "2026-10-09T07:21:30Z",
+    "author_id": "per_0060",
+    "reviewer_ids": [
+     "per_0068"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-ledger: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791530578581,
+   "ts_iso": "2026-10-09T07:22:58Z",
+   "data": {
+    "id": "chg_ts13_0187",
+    "kind": "code",
+    "entity_id": "svc_feature-store",
+    "ts": 1791530578581,
+    "ts_iso": "2026-10-09T07:22:58Z",
+    "author_id": "per_0086",
+    "reviewer_ids": [
+     "per_0096",
+     "per_0090"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "feature-store release v8.36.15: split shipments",
+    "flag_key": null,
+    "pr_number": 9945,
+    "version_to": "8.12.4",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791531727434,
+   "ts_iso": "2026-10-09T07:42:07Z",
+   "data": {
+    "id": "chg_ts13_0180",
+    "kind": "code",
+    "entity_id": "svc_returns",
+    "ts": 1791531727434,
+    "ts_iso": "2026-10-09T07:42:07Z",
+    "author_id": "per_0075",
+    "reviewer_ids": [
+     "per_0082"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "returns release v1.39.1: async receipts",
+    "flag_key": null,
+    "pr_number": 8765,
+    "version_to": "4.3.18",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791532293551,
+   "ts_iso": "2026-10-09T07:51:33Z",
+   "data": {
+    "id": "chg_ts13_0185",
+    "kind": "config",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1791532293551,
+    "ts_iso": "2026-10-09T07:51:33Z",
+    "author_id": "per_0009",
+    "reviewer_ids": [
+     "per_0008"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "mobile-bff: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791532648855,
+   "ts_iso": "2026-10-09T07:57:28Z",
+   "data": {
+    "id": "chg_ts13_0182",
+    "kind": "code",
+    "entity_id": "svc_kafka",
+    "ts": 1791532648855,
+    "ts_iso": "2026-10-09T07:57:28Z",
+    "author_id": "per_0108",
+    "reviewer_ids": [
+     "per_0122"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "kafka deploy v5.13.15 (payout batching)",
+    "flag_key": null,
+    "pr_number": 6132,
+    "version_to": "7.30.6",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791533253953,
+   "ts_iso": "2026-10-09T08:07:33Z",
+   "data": {
+    "id": "alt_ts13_0178",
+    "name": "5xxSpike",
+    "entity_id": "ds_cassandra-events",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791533253953,
+    "ts_iso": "2026-10-09T08:07:33Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791533487854,
+   "ts_iso": "2026-10-09T08:11:27Z",
+   "data": {
+    "id": "chg_ts13_0179",
+    "kind": "config",
+    "entity_id": "svc_feature-flags",
+    "ts": 1791533487854,
+    "ts_iso": "2026-10-09T08:11:27Z",
+    "author_id": "per_0108",
+    "reviewer_ids": [
+     "per_0098"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "feature-flags: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791533631953,
+   "ts_iso": "2026-10-09T08:13:51Z",
+   "data": {
+    "id": "alt_ts13_0176",
+    "name": "HighErrorRate",
+    "entity_id": "ds_s3-assets",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791533631953,
+    "ts_iso": "2026-10-09T08:13:51Z",
+    "resolved_ts": null,
+    "value": 5.68,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791534933953,
+   "ts_iso": "2026-10-09T08:35:33Z",
+   "data": {
+    "id": "alt_ts13_0177",
+    "name": "QueueLag",
+    "entity_id": "ds_cassandra-events",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791534933953,
+    "ts_iso": "2026-10-09T08:35:33Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_s3-assets"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_ts13_0175"
+  ],
+  "mechanism": [
+   "rate limit threshold lowered"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "ds_s3-assets"
+  ],
+  "correct_team_id": "team_platform",
+  "correct_oncall_id": "per_0108",
+  "expected_experts": [
+   "per_0108",
+   "per_0111",
+   "per_0098"
+  ]
+ },
+ "distractors": 9
+}

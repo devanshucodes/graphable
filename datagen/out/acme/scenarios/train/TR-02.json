@@ -1,0 +1,200 @@
+{
+ "id": "TR-02",
+ "type": "change_induced",
+ "t0": 1791251634645,
+ "t0_iso": "2026-10-06T01:53:54Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791246414645,
+   "ts_iso": "2026-10-06T00:26:54Z",
+   "data": {
+    "id": "chg_tr02_1023",
+    "kind": "dependency_bump",
+    "entity_id": "svc_web-bff",
+    "ts": 1791246414645,
+    "ts_iso": "2026-10-06T00:26:54Z",
+    "author_id": "per_0001",
+    "reviewer_ids": [
+     "per_0123"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "web-bff: bump okhttp 1.6 -> 5.0",
+    "flag_key": null,
+    "pr_number": 9483,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791248289093,
+   "ts_iso": "2026-10-06T00:58:09Z",
+   "data": {
+    "id": "chg_tr02_1031",
+    "kind": "flag",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1791248289093,
+    "ts_iso": "2026-10-06T00:58:09Z",
+    "author_id": "per_0007",
+    "reviewer_ids": [
+     "per_0123"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag mobile-bff.inventory-holds-50 rollout 5% -> 50%",
+    "flag_key": "mobile-bff.inventory-holds-50",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791250914645,
+   "ts_iso": "2026-10-06T01:41:54Z",
+   "data": {
+    "id": "alt_tr02_1028",
+    "name": "PodRestarts",
+    "entity_id": "svc_search",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791250914645,
+    "ts_iso": "2026-10-06T01:41:54Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791251094645,
+   "ts_iso": "2026-10-06T01:44:54Z",
+   "data": {
+    "id": "alt_tr02_1029",
+    "name": "SaturationCPU",
+    "entity_id": "svc_recommendations",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791251094645,
+    "ts_iso": "2026-10-06T01:44:54Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791251661645,
+   "ts_iso": "2026-10-06T01:54:21Z",
+   "data": {
+    "id": "alt_tr02_1025",
+    "name": "HighErrorRate",
+    "entity_id": "svc_web-bff",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791251661645,
+    "ts_iso": "2026-10-06T01:54:21Z",
+    "resolved_ts": null,
+    "value": 4.97,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791251714645,
+   "ts_iso": "2026-10-06T01:55:14Z",
+   "data": {
+    "id": "alt_tr02_1024",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_web-bff",
+    "metric": "upstreamtimeouts",
+    "severity": "critical",
+    "ts": 1791251714645,
+    "ts_iso": "2026-10-06T01:55:14Z",
+    "resolved_ts": null,
+    "value": 5.4,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791251758645,
+   "ts_iso": "2026-10-06T01:55:58Z",
+   "data": {
+    "id": "alt_tr02_1026",
+    "name": "5xxSpike",
+    "entity_id": "svc_api-gateway",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791251758645,
+    "ts_iso": "2026-10-06T01:55:58Z",
+    "resolved_ts": null,
+    "value": 4.6,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791251869645,
+   "ts_iso": "2026-10-06T01:57:49Z",
+   "data": {
+    "id": "alt_tr02_1027",
+    "name": "HighErrorRate",
+    "entity_id": "svc_api-gateway",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791251869645,
+    "ts_iso": "2026-10-06T01:57:49Z",
+    "resolved_ts": null,
+    "value": 1.7,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791252414645,
+   "ts_iso": "2026-10-06T02:06:54Z",
+   "data": {
+    "id": "alt_tr02_1030",
+    "name": "SaturationCPU",
+    "entity_id": "ds_ext-paylynx",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791252414645,
+    "ts_iso": "2026-10-06T02:06:54Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_web-bff"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_tr02_1023"
+  ],
+  "mechanism": [
+   "client library bump changed default timeout"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_edge",
+  "correct_oncall_id": "per_0009",
+  "expected_experts": [
+   "per_0010",
+   "per_0006",
+   "per_0007"
+  ]
+ },
+ "distractors": 1
+}

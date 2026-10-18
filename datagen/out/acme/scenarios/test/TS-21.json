@@ -1,0 +1,569 @@
+{
+ "id": "TS-21",
+ "type": "change_induced",
+ "t0": 1791363250520,
+ "t0_iso": "2026-10-07T08:54:10Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791356149664,
+   "ts_iso": "2026-10-07T06:55:49Z",
+   "data": {
+    "id": "chg_ts21_0371",
+    "kind": "code",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1791356149664,
+    "ts_iso": "2026-10-07T06:55:49Z",
+    "author_id": "per_0006",
+    "reviewer_ids": [
+     "per_0123"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "mobile-bff deploy v9.35.12 (fraud rule tuning)",
+    "flag_key": null,
+    "pr_number": 1309,
+    "version_to": "1.38.7",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791357970520,
+   "ts_iso": "2026-10-07T07:26:10Z",
+   "data": {
+    "id": "chg_ts21_0356",
+    "kind": "config",
+    "entity_id": "svc_ledger",
+    "ts": 1791357970520,
+    "ts_iso": "2026-10-07T07:26:10Z",
+    "author_id": "per_0072",
+    "reviewer_ids": [
+     "per_0121",
+     "per_0068"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "ledger: retry.max_attempts 2 -> 6",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791358460016,
+   "ts_iso": "2026-10-07T07:34:20Z",
+   "data": {
+    "id": "chg_ts21_0376",
+    "kind": "code",
+    "entity_id": "svc_payments",
+    "ts": 1791358460016,
+    "ts_iso": "2026-10-07T07:34:20Z",
+    "author_id": "per_0060",
+    "reviewer_ids": [
+     "per_0064"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "payments release v8.33.4: session refresh",
+    "flag_key": null,
+    "pr_number": 1605,
+    "version_to": "6.18.19",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791358905979,
+   "ts_iso": "2026-10-07T07:41:45Z",
+   "data": {
+    "id": "chg_ts21_0366",
+    "kind": "config",
+    "entity_id": "svc_config-service",
+    "ts": 1791358905979,
+    "ts_iso": "2026-10-07T07:41:45Z",
+    "author_id": "per_0097",
+    "reviewer_ids": [
+     "per_0113"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "config-service: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791359599807,
+   "ts_iso": "2026-10-07T07:53:19Z",
+   "data": {
+    "id": "chg_ts21_0373",
+    "kind": "code",
+    "entity_id": "svc_cart",
+    "ts": 1791359599807,
+    "ts_iso": "2026-10-07T07:53:19Z",
+    "author_id": "per_0051",
+    "reviewer_ids": [
+     "per_0053"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "cart hotfix v3.39.10: inventory holds",
+    "flag_key": null,
+    "pr_number": 6112,
+    "version_to": "4.16.7",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791359783330,
+   "ts_iso": "2026-10-07T07:56:23Z",
+   "data": {
+    "id": "chg_ts21_0379",
+    "kind": "flag",
+    "entity_id": "svc_payments",
+    "ts": 1791359783330,
+    "ts_iso": "2026-10-07T07:56:23Z",
+    "author_id": "per_0066",
+    "reviewer_ids": [
+     "per_0125"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag payments.new-tax-rounding-81 rollout 5% -> 25%",
+    "flag_key": "payments.new-tax-rounding-81",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791359870402,
+   "ts_iso": "2026-10-07T07:57:50Z",
+   "data": {
+    "id": "chg_ts21_0375",
+    "kind": "config",
+    "entity_id": "svc_payouts",
+    "ts": 1791359870402,
+    "ts_iso": "2026-10-07T07:57:50Z",
+    "author_id": "per_0065",
+    "reviewer_ids": [
+     "per_0121"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "payouts: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791361141626,
+   "ts_iso": "2026-10-07T08:19:01Z",
+   "data": {
+    "id": "chg_ts21_0380",
+    "kind": "code",
+    "entity_id": "svc_payments",
+    "ts": 1791361141626,
+    "ts_iso": "2026-10-07T08:19:01Z",
+    "author_id": "per_0067",
+    "reviewer_ids": [],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "payments deploy v6.20.11 (bulk price import)",
+    "flag_key": null,
+    "pr_number": 9459,
+    "version_to": "1.32.18",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791361510520,
+   "ts_iso": "2026-10-07T08:25:10Z",
+   "data": {
+    "id": "alt_ts21_0364",
+    "name": "CertExpirySoon",
+    "entity_id": "svc_inventory",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791361510520,
+    "ts_iso": "2026-10-07T08:25:10Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791361579283,
+   "ts_iso": "2026-10-07T08:26:19Z",
+   "data": {
+    "id": "chg_ts21_0374",
+    "kind": "config",
+    "entity_id": "svc_payments",
+    "ts": 1791361579283,
+    "ts_iso": "2026-10-07T08:26:19Z",
+    "author_id": "per_0062",
+    "reviewer_ids": [
+     "per_0064"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "payments: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791361631468,
+   "ts_iso": "2026-10-07T08:27:11Z",
+   "data": {
+    "id": "chg_ts21_0369",
+    "kind": "flag",
+    "entity_id": "svc_payments",
+    "ts": 1791361631468,
+    "ts_iso": "2026-10-07T08:27:11Z",
+    "author_id": "per_0056",
+    "reviewer_ids": [
+     "per_0124"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag payments.new-tax-rounding-81 rollout 5% -> 25%",
+    "flag_key": "payments.new-tax-rounding-81",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791361863723,
+   "ts_iso": "2026-10-07T08:31:03Z",
+   "data": {
+    "id": "chg_ts21_0372",
+    "kind": "config",
+    "entity_id": "svc_permissions",
+    "ts": 1791361863723,
+    "ts_iso": "2026-10-07T08:31:03Z",
+    "author_id": "per_0013",
+    "reviewer_ids": [
+     "per_0019",
+     "per_0120"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "permissions: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791361910561,
+   "ts_iso": "2026-10-07T08:31:50Z",
+   "data": {
+    "id": "chg_ts21_0377",
+    "kind": "code",
+    "entity_id": "ds_pg-billing",
+    "ts": 1791361910561,
+    "ts_iso": "2026-10-07T08:31:50Z",
+    "author_id": "per_0057",
+    "reviewer_ids": [
+     "per_0130"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-billing deploy v7.27.6 (split shipments)",
+    "flag_key": null,
+    "pr_number": 5183,
+    "version_to": "4.30.5",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791361990520,
+   "ts_iso": "2026-10-07T08:33:10Z",
+   "data": {
+    "id": "alt_ts21_0365",
+    "name": "GCPauseLong",
+    "entity_id": "svc_inventory",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791361990520,
+    "ts_iso": "2026-10-07T08:33:10Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791362073202,
+   "ts_iso": "2026-10-07T08:34:33Z",
+   "data": {
+    "id": "chg_ts21_0367",
+    "kind": "flag",
+    "entity_id": "svc_payments",
+    "ts": 1791362073202,
+    "ts_iso": "2026-10-07T08:34:33Z",
+    "author_id": "per_0059",
+    "reviewer_ids": [
+     "per_0054"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag payments.faster-cart-merge-47 rollout 5% -> 100%",
+    "flag_key": "payments.faster-cart-merge-47",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791362369490,
+   "ts_iso": "2026-10-07T08:39:29Z",
+   "data": {
+    "id": "chg_ts21_0378",
+    "kind": "code",
+    "entity_id": "svc_config-service",
+    "ts": 1791362369490,
+    "ts_iso": "2026-10-07T08:39:29Z",
+    "author_id": "per_0100",
+    "reviewer_ids": [
+     "per_0099"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "config-service hotfix v5.23.2: inventory holds",
+    "flag_key": null,
+    "pr_number": 4735,
+    "version_to": "6.15.14",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791362510921,
+   "ts_iso": "2026-10-07T08:41:50Z",
+   "data": {
+    "id": "chg_ts21_0368",
+    "kind": "code",
+    "entity_id": "svc_auth",
+    "ts": 1791362510921,
+    "ts_iso": "2026-10-07T08:41:50Z",
+    "author_id": "per_0018",
+    "reviewer_ids": [
+     "per_0012"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "auth deploy v3.12.10 (session refresh)",
+    "flag_key": null,
+    "pr_number": 8243,
+    "version_to": "4.34.19",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791363025467,
+   "ts_iso": "2026-10-07T08:50:25Z",
+   "data": {
+    "id": "chg_ts21_0370",
+    "kind": "code",
+    "entity_id": "svc_partner-api",
+    "ts": 1791363025467,
+    "ts_iso": "2026-10-07T08:50:25Z",
+    "author_id": "per_0008",
+    "reviewer_ids": [],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "partner-api release v1.39.4: address autocomplete",
+    "flag_key": null,
+    "pr_number": 9679,
+    "version_to": "7.29.17",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791363374520,
+   "ts_iso": "2026-10-07T08:56:14Z",
+   "data": {
+    "id": "alt_ts21_0359",
+    "name": "SaturationCPU",
+    "entity_id": "svc_payouts",
+    "metric": "saturationcpu",
+    "severity": "critical",
+    "ts": 1791363374520,
+    "ts_iso": "2026-10-07T08:56:14Z",
+    "resolved_ts": null,
+    "value": 4.74,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791363395520,
+   "ts_iso": "2026-10-07T08:56:35Z",
+   "data": {
+    "id": "alt_ts21_0357",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_payments",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791363395520,
+    "ts_iso": "2026-10-07T08:56:35Z",
+    "resolved_ts": null,
+    "value": 4.65,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791363503520,
+   "ts_iso": "2026-10-07T08:58:23Z",
+   "data": {
+    "id": "alt_ts21_0361",
+    "name": "QueueLag",
+    "entity_id": "svc_refunds",
+    "metric": "queuelag",
+    "severity": "critical",
+    "ts": 1791363503520,
+    "ts_iso": "2026-10-07T08:58:23Z",
+    "resolved_ts": null,
+    "value": 4.07,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791363545520,
+   "ts_iso": "2026-10-07T08:59:05Z",
+   "data": {
+    "id": "alt_ts21_0358",
+    "name": "SaturationCPU",
+    "entity_id": "svc_payments",
+    "metric": "saturationcpu",
+    "severity": "critical",
+    "ts": 1791363545520,
+    "ts_iso": "2026-10-07T08:59:05Z",
+    "resolved_ts": null,
+    "value": 4.6,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791363577520,
+   "ts_iso": "2026-10-07T08:59:37Z",
+   "data": {
+    "id": "alt_ts21_0360",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_refunds",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791363577520,
+    "ts_iso": "2026-10-07T08:59:37Z",
+    "resolved_ts": null,
+    "value": 2.15,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791364150520,
+   "ts_iso": "2026-10-07T09:09:10Z",
+   "data": {
+    "id": "alt_ts21_0362",
+    "name": "SaturationCPU",
+    "entity_id": "svc_event-ingest",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791364150520,
+    "ts_iso": "2026-10-07T09:09:10Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791364270520,
+   "ts_iso": "2026-10-07T09:11:10Z",
+   "data": {
+    "id": "alt_ts21_0363",
+    "name": "SaturationCPU",
+    "entity_id": "svc_mobile-bff",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791364270520,
+    "ts_iso": "2026-10-07T09:11:10Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_ledger"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_ts21_0356"
+  ],
+  "mechanism": [
+   "retry policy made aggressive"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_payments",
+   "svc_payouts",
+   "svc_refunds"
+  ],
+  "correct_team_id": "team_payments",
+  "correct_oncall_id": "per_0062",
+  "expected_experts": [
+   "per_0066",
+   "per_0070",
+   "per_0125"
+  ]
+ },
+ "distractors": 15
+}

@@ -1,0 +1,290 @@
+{
+ "id": "TS-02",
+ "type": "change_induced",
+ "t0": 1791085739097,
+ "t0_iso": "2026-10-04T03:48:59Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791081839097,
+   "ts_iso": "2026-10-04T02:43:59Z",
+   "data": {
+    "id": "chg_ts02_0020",
+    "kind": "config",
+    "entity_id": "ds_pg-orders",
+    "ts": 1791081839097,
+    "ts_iso": "2026-10-04T02:43:59Z",
+    "author_id": "per_0076",
+    "reviewer_ids": [
+     "per_0083"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-orders: retry.max_attempts 2 -> 6",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791085379097,
+   "ts_iso": "2026-10-04T03:42:59Z",
+   "data": {
+    "id": "alt_ts02_0031",
+    "name": "HighErrorRate",
+    "entity_id": "svc_kafka",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791085379097,
+    "ts_iso": "2026-10-04T03:42:59Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791085628723,
+   "ts_iso": "2026-10-04T03:47:08Z",
+   "data": {
+    "id": "chg_ts02_0033",
+    "kind": "code",
+    "entity_id": "ds_pg-ledger",
+    "ts": 1791085628723,
+    "ts_iso": "2026-10-04T03:47:08Z",
+    "author_id": "per_0125",
+    "reviewer_ids": [
+     "per_0072"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-ledger release v8.6.20: fraud rule tuning",
+    "flag_key": null,
+    "pr_number": 1666,
+    "version_to": "2.23.16",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791085872097,
+   "ts_iso": "2026-10-04T03:51:12Z",
+   "data": {
+    "id": "alt_ts02_0021",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_orders",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791085872097,
+    "ts_iso": "2026-10-04T03:51:12Z",
+    "resolved_ts": null,
+    "value": 2.05,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791085878097,
+   "ts_iso": "2026-10-04T03:51:18Z",
+   "data": {
+    "id": "alt_ts02_0025",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_shipping",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1791085878097,
+    "ts_iso": "2026-10-04T03:51:18Z",
+    "resolved_ts": null,
+    "value": 5.55,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791085887097,
+   "ts_iso": "2026-10-04T03:51:27Z",
+   "data": {
+    "id": "alt_ts02_0027",
+    "name": "QueueLag",
+    "entity_id": "svc_returns",
+    "metric": "queuelag",
+    "severity": "warning",
+    "ts": 1791085887097,
+    "ts_iso": "2026-10-04T03:51:27Z",
+    "resolved_ts": null,
+    "value": 1.9,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791085919097,
+   "ts_iso": "2026-10-04T03:51:59Z",
+   "data": {
+    "id": "alt_ts02_0028",
+    "name": "SaturationCPU",
+    "entity_id": "svc_api-gateway",
+    "metric": "saturationcpu",
+    "severity": "warning",
+    "ts": 1791085919097,
+    "ts_iso": "2026-10-04T03:51:59Z",
+    "resolved_ts": null,
+    "value": 4.37,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791085998097,
+   "ts_iso": "2026-10-04T03:53:18Z",
+   "data": {
+    "id": "alt_ts02_0022",
+    "name": "SaturationCPU",
+    "entity_id": "svc_orders",
+    "metric": "saturationcpu",
+    "severity": "critical",
+    "ts": 1791085998097,
+    "ts_iso": "2026-10-04T03:53:18Z",
+    "resolved_ts": null,
+    "value": 4.95,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791086008097,
+   "ts_iso": "2026-10-04T03:53:28Z",
+   "data": {
+    "id": "alt_ts02_0024",
+    "name": "SaturationCPU",
+    "entity_id": "svc_checkout",
+    "metric": "saturationcpu",
+    "severity": "warning",
+    "ts": 1791086008097,
+    "ts_iso": "2026-10-04T03:53:28Z",
+    "resolved_ts": null,
+    "value": 4.63,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791086039097,
+   "ts_iso": "2026-10-04T03:53:59Z",
+   "data": {
+    "id": "alt_ts02_0032",
+    "name": "LatencyP99Breach",
+    "entity_id": "ds_redis-ratelimit",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791086039097,
+    "ts_iso": "2026-10-04T03:53:59Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791086105097,
+   "ts_iso": "2026-10-04T03:55:05Z",
+   "data": {
+    "id": "alt_ts02_0023",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_partner-api",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1791086105097,
+    "ts_iso": "2026-10-04T03:55:05Z",
+    "resolved_ts": null,
+    "value": 5.95,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791086111097,
+   "ts_iso": "2026-10-04T03:55:11Z",
+   "data": {
+    "id": "alt_ts02_0029",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_web-bff",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1791086111097,
+    "ts_iso": "2026-10-04T03:55:11Z",
+    "resolved_ts": null,
+    "value": 3.02,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791086139097,
+   "ts_iso": "2026-10-04T03:55:39Z",
+   "data": {
+    "id": "alt_ts02_0026",
+    "name": "QueueLag",
+    "entity_id": "svc_shipping",
+    "metric": "queuelag",
+    "severity": "warning",
+    "ts": 1791086139097,
+    "ts_iso": "2026-10-04T03:55:39Z",
+    "resolved_ts": null,
+    "value": 2.66,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791086510097,
+   "ts_iso": "2026-10-04T04:01:50Z",
+   "data": {
+    "id": "alt_ts02_0030",
+    "name": "QueueLag",
+    "entity_id": "svc_web-bff",
+    "metric": "queuelag",
+    "severity": "warning",
+    "ts": 1791086510097,
+    "ts_iso": "2026-10-04T04:01:50Z",
+    "resolved_ts": null,
+    "value": 4.18,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_pg-orders"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_ts02_0020"
+  ],
+  "mechanism": [
+   "retry policy made aggressive"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_checkout",
+   "svc_orders",
+   "svc_partner-api",
+   "svc_returns",
+   "svc_shipping",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_fulfillment",
+  "correct_oncall_id": "per_0078",
+  "expected_experts": [
+   "per_0082",
+   "per_0076",
+   "per_0081"
+  ]
+ },
+ "distractors": 1
+}

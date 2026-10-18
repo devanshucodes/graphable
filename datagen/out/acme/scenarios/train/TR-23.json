@@ -1,0 +1,577 @@
+{
+ "id": "TR-23",
+ "type": "change_induced",
+ "t0": 1791354716521,
+ "t0_iso": "2026-10-07T06:31:56Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791347756737,
+   "ts_iso": "2026-10-07T04:35:56Z",
+   "data": {
+    "id": "chg_tr23_1443",
+    "kind": "flag",
+    "entity_id": "svc_search",
+    "ts": 1791347756737,
+    "ts_iso": "2026-10-07T04:35:56Z",
+    "author_id": "per_0020",
+    "reviewer_ids": [
+     "per_0029",
+     "per_0023"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag search.currency-rounding-fix-11 rollout 10% -> 25%",
+    "flag_key": "search.currency-rounding-fix-11",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791348286478,
+   "ts_iso": "2026-10-07T04:44:46Z",
+   "data": {
+    "id": "chg_tr23_1449",
+    "kind": "config",
+    "entity_id": "svc_search",
+    "ts": 1791348286478,
+    "ts_iso": "2026-10-07T04:44:46Z",
+    "author_id": "per_0024",
+    "reviewer_ids": [
+     "per_0032"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "search: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791348345839,
+   "ts_iso": "2026-10-07T04:45:45Z",
+   "data": {
+    "id": "chg_tr23_1452",
+    "kind": "config",
+    "entity_id": "svc_auth",
+    "ts": 1791348345839,
+    "ts_iso": "2026-10-07T04:45:45Z",
+    "author_id": "per_0012",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "auth: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791348700679,
+   "ts_iso": "2026-10-07T04:51:40Z",
+   "data": {
+    "id": "chg_tr23_1453",
+    "kind": "config",
+    "entity_id": "ds_cassandra-events",
+    "ts": 1791348700679,
+    "ts_iso": "2026-10-07T04:51:40Z",
+    "author_id": "per_0091",
+    "reviewer_ids": [
+     "per_0095",
+     "per_0092"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "cassandra-events: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791350214552,
+   "ts_iso": "2026-10-07T05:16:54Z",
+   "data": {
+    "id": "chg_tr23_1444",
+    "kind": "code",
+    "entity_id": "svc_api-gateway",
+    "ts": 1791350214552,
+    "ts_iso": "2026-10-07T05:16:54Z",
+    "author_id": "per_0127",
+    "reviewer_ids": [
+     "per_0003"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "api-gateway deploy v4.7.18 (session refresh)",
+    "flag_key": null,
+    "pr_number": 5606,
+    "version_to": "1.28.20",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791351560174,
+   "ts_iso": "2026-10-07T05:39:20Z",
+   "data": {
+    "id": "chg_tr23_1441",
+    "kind": "config",
+    "entity_id": "svc_web-bff",
+    "ts": 1791351560174,
+    "ts_iso": "2026-10-07T05:39:20Z",
+    "author_id": "per_0007",
+    "reviewer_ids": [
+     "per_0009"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "web-bff: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791351746022,
+   "ts_iso": "2026-10-07T05:42:26Z",
+   "data": {
+    "id": "chg_tr23_1446",
+    "kind": "code",
+    "entity_id": "svc_web-bff",
+    "ts": 1791351746022,
+    "ts_iso": "2026-10-07T05:42:26Z",
+    "author_id": "per_0010",
+    "reviewer_ids": [
+     "per_0003",
+     "per_0008"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "web-bff deploy v9.14.0 (currency rounding fix)",
+    "flag_key": null,
+    "pr_number": 9792,
+    "version_to": "1.9.13",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791351836521,
+   "ts_iso": "2026-10-07T05:43:56Z",
+   "data": {
+    "id": "chg_tr23_1429",
+    "kind": "config",
+    "entity_id": "ds_es-search",
+    "ts": 1791351836521,
+    "ts_iso": "2026-10-07T05:43:56Z",
+    "author_id": "per_0026",
+    "reviewer_ids": [
+     "per_0022"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "es-search: http.client.timeout_ms 2000 -> 250",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791352353989,
+   "ts_iso": "2026-10-07T05:52:33Z",
+   "data": {
+    "id": "chg_tr23_1440",
+    "kind": "config",
+    "entity_id": "svc_search",
+    "ts": 1791352353989,
+    "ts_iso": "2026-10-07T05:52:33Z",
+    "author_id": "per_0024",
+    "reviewer_ids": [
+     "per_0028"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "search: feature.banner off -> on",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791352443240,
+   "ts_iso": "2026-10-07T05:54:03Z",
+   "data": {
+    "id": "chg_tr23_1442",
+    "kind": "code",
+    "entity_id": "svc_analytics",
+    "ts": 1791352443240,
+    "ts_iso": "2026-10-07T05:54:03Z",
+    "author_id": "per_0090",
+    "reviewer_ids": [
+     "per_0096"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "analytics release v2.8.20: audit logging",
+    "flag_key": null,
+    "pr_number": 3533,
+    "version_to": "2.36.4",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791352548279,
+   "ts_iso": "2026-10-07T05:55:48Z",
+   "data": {
+    "id": "chg_tr23_1450",
+    "kind": "config",
+    "entity_id": "svc_refunds",
+    "ts": 1791352548279,
+    "ts_iso": "2026-10-07T05:55:48Z",
+    "author_id": "per_0068",
+    "reviewer_ids": [
+     "per_0063"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "refunds: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791352682865,
+   "ts_iso": "2026-10-07T05:58:02Z",
+   "data": {
+    "id": "chg_tr23_1451",
+    "kind": "code",
+    "entity_id": "svc_orders",
+    "ts": 1791352682865,
+    "ts_iso": "2026-10-07T05:58:02Z",
+    "author_id": "per_0131",
+    "reviewer_ids": [
+     "per_0074"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "orders hotfix v2.4.13: faster cart merge",
+    "flag_key": null,
+    "pr_number": 8695,
+    "version_to": "9.37.5",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791353276521,
+   "ts_iso": "2026-10-07T06:07:56Z",
+   "data": {
+    "id": "alt_tr23_1438",
+    "name": "DiskUsageHigh",
+    "entity_id": "svc_event-ingest",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791353276521,
+    "ts_iso": "2026-10-07T06:07:56Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791353516521,
+   "ts_iso": "2026-10-07T06:11:56Z",
+   "data": {
+    "id": "alt_tr23_1437",
+    "name": "GCPauseLong",
+    "entity_id": "svc_warehouse",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791353516521,
+    "ts_iso": "2026-10-07T06:11:56Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791353679353,
+   "ts_iso": "2026-10-07T06:14:39Z",
+   "data": {
+    "id": "chg_tr23_1439",
+    "kind": "code",
+    "entity_id": "svc_web-bff",
+    "ts": 1791353679353,
+    "ts_iso": "2026-10-07T06:14:39Z",
+    "author_id": "per_0010",
+    "reviewer_ids": [
+     "per_0127",
+     "per_0003"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "web-bff hotfix v7.29.0: faster cart merge",
+    "flag_key": null,
+    "pr_number": 7398,
+    "version_to": "9.5.6",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791354119476,
+   "ts_iso": "2026-10-07T06:21:59Z",
+   "data": {
+    "id": "chg_tr23_1448",
+    "kind": "code",
+    "entity_id": "svc_payouts",
+    "ts": 1791354119476,
+    "ts_iso": "2026-10-07T06:21:59Z",
+    "author_id": "per_0059",
+    "reviewer_ids": [
+     "per_0063",
+     "per_0071"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "payouts deploy v1.22.4 (search synonyms)",
+    "flag_key": null,
+    "pr_number": 2536,
+    "version_to": "2.11.17",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791354159814,
+   "ts_iso": "2026-10-07T06:22:39Z",
+   "data": {
+    "id": "chg_tr23_1445",
+    "kind": "code",
+    "entity_id": "ds_redis-cache",
+    "ts": 1791354159814,
+    "ts_iso": "2026-10-07T06:22:39Z",
+    "author_id": "per_0106",
+    "reviewer_ids": [
+     "per_0110",
+     "per_0100"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-cache hotfix v5.8.0: payout batching",
+    "flag_key": null,
+    "pr_number": 7745,
+    "version_to": "1.32.9",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791354505665,
+   "ts_iso": "2026-10-07T06:28:25Z",
+   "data": {
+    "id": "chg_tr23_1447",
+    "kind": "code",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1791354505665,
+    "ts_iso": "2026-10-07T06:28:25Z",
+    "author_id": "per_0010",
+    "reviewer_ids": [
+     "per_0009",
+     "per_0002"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "mobile-bff release v3.25.17: bulk price import",
+    "flag_key": null,
+    "pr_number": 3196,
+    "version_to": "7.37.12",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791354761521,
+   "ts_iso": "2026-10-07T06:32:41Z",
+   "data": {
+    "id": "alt_tr23_1431",
+    "name": "5xxSpike",
+    "entity_id": "ds_es-search",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791354761521,
+    "ts_iso": "2026-10-07T06:32:41Z",
+    "resolved_ts": null,
+    "value": 2.86,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791354778521,
+   "ts_iso": "2026-10-07T06:32:58Z",
+   "data": {
+    "id": "alt_tr23_1430",
+    "name": "UpstreamTimeouts",
+    "entity_id": "ds_es-search",
+    "metric": "upstreamtimeouts",
+    "severity": "critical",
+    "ts": 1791354778521,
+    "ts_iso": "2026-10-07T06:32:58Z",
+    "resolved_ts": null,
+    "value": 2.06,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791354843521,
+   "ts_iso": "2026-10-07T06:34:03Z",
+   "data": {
+    "id": "alt_tr23_1434",
+    "name": "HighErrorRate",
+    "entity_id": "svc_web-bff",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1791354843521,
+    "ts_iso": "2026-10-07T06:34:03Z",
+    "resolved_ts": null,
+    "value": 3.84,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791354849521,
+   "ts_iso": "2026-10-07T06:34:09Z",
+   "data": {
+    "id": "alt_tr23_1432",
+    "name": "5xxSpike",
+    "entity_id": "svc_search",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791354849521,
+    "ts_iso": "2026-10-07T06:34:09Z",
+    "resolved_ts": null,
+    "value": 2.8,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791355136521,
+   "ts_iso": "2026-10-07T06:38:56Z",
+   "data": {
+    "id": "alt_tr23_1436",
+    "name": "QueueLag",
+    "entity_id": "svc_analytics",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791355136521,
+    "ts_iso": "2026-10-07T06:38:56Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791355142521,
+   "ts_iso": "2026-10-07T06:39:02Z",
+   "data": {
+    "id": "alt_tr23_1433",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_web-bff",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1791355142521,
+    "ts_iso": "2026-10-07T06:39:02Z",
+    "resolved_ts": null,
+    "value": 5.63,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791355278521,
+   "ts_iso": "2026-10-07T06:41:18Z",
+   "data": {
+    "id": "alt_tr23_1435",
+    "name": "5xxSpike",
+    "entity_id": "svc_api-gateway",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1791355278521,
+    "ts_iso": "2026-10-07T06:41:18Z",
+    "resolved_ts": null,
+    "value": 2.28,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_es-search"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_tr23_1429"
+  ],
+  "mechanism": [
+   "timeout lowered below dependency p99"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "ds_es-search",
+   "svc_api-gateway",
+   "svc_search",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_discovery",
+  "correct_oncall_id": "per_0032",
+  "expected_experts": [
+   "per_0028",
+   "per_0032",
+   "per_0024"
+  ]
+ },
+ "distractors": 15
+}

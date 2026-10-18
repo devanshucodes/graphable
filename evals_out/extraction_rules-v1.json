@@ -1,0 +1,44 @@
+{
+ "CAUSED_BY": {
+  "gold": 199,
+  "extracted": 192,
+  "precision": 0.932,
+  "recall": 0.899
+ },
+ "MITIGATED_WITH": {
+  "gold": 199,
+  "extracted": 197,
+  "precision": 0.904,
+  "recall": 0.894
+ },
+ "DECIDED_BY": {
+  "gold": 120,
+  "extracted": 115,
+  "precision": 1.0,
+  "recall": 0.958
+ },
+ "AFFECTS": {
+  "gold": 129,
+  "extracted": 145,
+  "precision": 0.579,
+  "recall": 0.651
+ },
+ "SUPERSEDES": {
+  "gold": 26,
+  "extracted": 25,
+  "precision": 1.0,
+  "recall": 0.962
+ },
+ "OWNS": {
+  "gold": 1,
+  "extracted": 0,
+  "precision": null,
+  "recall": 0.0
+ },
+ "help_thread_entity_recall": 0.935,
+ "micro": {
+  "precision": 0.862,
+  "recall": 0.862
+ },
+ "extractor": "rules-v1"
+}

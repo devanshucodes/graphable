@@ -1,0 +1,387 @@
+{
+ "svc_api-gateway": [
+  "per_0010",
+  "per_0006",
+  "per_0009",
+  "per_0008",
+  "per_0002"
+ ],
+ "svc_web-bff": [
+  "per_0010",
+  "per_0006",
+  "per_0007",
+  "per_0009",
+  "per_0008"
+ ],
+ "svc_mobile-bff": [
+  "per_0010",
+  "per_0009",
+  "per_0007",
+  "per_0006",
+  "per_0002"
+ ],
+ "svc_partner-api": [
+  "per_0010",
+  "per_0008",
+  "per_0007",
+  "per_0009",
+  "per_0006"
+ ],
+ "svc_auth": [
+  "per_0019",
+  "per_0013",
+  "per_0017",
+  "per_0015",
+  "per_0120"
+ ],
+ "svc_user-profile": [
+  "per_0013",
+  "per_0019",
+  "per_0017",
+  "per_0012",
+  "per_0015"
+ ],
+ "svc_session": [
+  "per_0019",
+  "per_0013",
+  "per_0120",
+  "per_0012",
+  "per_0016"
+ ],
+ "svc_permissions": [
+  "per_0013",
+  "per_0019",
+  "per_0017",
+  "per_0015",
+  "per_0012"
+ ],
+ "svc_catalog": [
+  "per_0025",
+  "per_0032",
+  "per_0031",
+  "per_0028",
+  "per_0024"
+ ],
+ "svc_search": [
+  "per_0028",
+  "per_0025",
+  "per_0032",
+  "per_0021",
+  "per_0024"
+ ],
+ "svc_recommendations": [
+  "per_0028",
+  "per_0032",
+  "per_0031",
+  "per_0025",
+  "per_0024"
+ ],
+ "svc_pricing": [
+  "per_0038",
+  "per_0039",
+  "per_0042",
+  "per_0040",
+  "per_0041"
+ ],
+ "svc_inventory": [
+  "per_0038",
+  "per_0042",
+  "per_0039",
+  "per_0034",
+  "per_0036"
+ ],
+ "svc_reviews": [
+  "per_0032",
+  "per_0024",
+  "per_0028",
+  "per_0025",
+  "per_0031"
+ ],
+ "svc_cart": [
+  "per_0050",
+  "per_0049",
+  "per_0114",
+  "per_0043",
+  "per_0052"
+ ],
+ "svc_checkout": [
+  "per_0050",
+  "per_0052",
+  "per_0128",
+  "per_0049",
+  "per_0114"
+ ],
+ "svc_promotions": [
+  "per_0027",
+  "per_0118",
+  "per_0050",
+  "per_0048",
+  "per_0049"
+ ],
+ "svc_tax": [
+  "per_0050",
+  "per_0052",
+  "per_0049",
+  "per_0128",
+  "per_0114"
+ ],
+ "svc_address-validation": [
+  "per_0050",
+  "per_0049",
+  "per_0052",
+  "per_0047",
+  "per_0114"
+ ],
+ "svc_payments": [
+  "per_0070",
+  "per_0066",
+  "per_0059",
+  "per_0067",
+  "per_0061"
+ ],
+ "svc_fraud-detection": [
+  "per_0062",
+  "per_0060",
+  "per_0072",
+  "per_0069",
+  "per_0067"
+ ],
+ "svc_ledger": [
+  "per_0066",
+  "per_0070",
+  "per_0125",
+  "per_0069",
+  "per_0056"
+ ],
+ "svc_payouts": [
+  "per_0066",
+  "per_0059",
+  "per_0060",
+  "per_0062",
+  "per_0067"
+ ],
+ "svc_refunds": [
+  "per_0065",
+  "per_0067",
+  "per_0060",
+  "per_0066",
+  "per_0070"
+ ],
+ "svc_billing": [
+  "per_0072",
+  "per_0062",
+  "per_0066",
+  "per_0060",
+  "per_0070"
+ ],
+ "svc_orders": [
+  "per_0081",
+  "per_0076",
+  "per_0082",
+  "per_0131",
+  "per_0129"
+ ],
+ "svc_shipping": [
+  "per_0082",
+  "per_0081",
+  "per_0076",
+  "per_0131",
+  "per_0129"
+ ],
+ "svc_warehouse": [
+  "per_0081",
+  "per_0082",
+  "per_0083",
+  "per_0076",
+  "per_0131"
+ ],
+ "svc_returns": [
+  "per_0076",
+  "per_0081",
+  "per_0082",
+  "per_0083",
+  "per_0129"
+ ],
+ "svc_notifications": [
+  "per_0076",
+  "per_0082",
+  "per_0081",
+  "per_0129",
+  "per_0083"
+ ],
+ "svc_event-ingest": [
+  "per_0091",
+  "per_0095",
+  "per_0092",
+  "per_0089",
+  "per_0115"
+ ],
+ "svc_feature-store": [
+  "per_0089",
+  "per_0095",
+  "per_0094",
+  "per_0093",
+  "per_0115"
+ ],
+ "svc_analytics": [
+  "per_0095",
+  "per_0094",
+  "per_0091",
+  "per_0092",
+  "per_0089"
+ ],
+ "svc_ml-scoring": [
+  "per_0093",
+  "per_0095",
+  "per_0115",
+  "per_0089",
+  "per_0091"
+ ],
+ "svc_kafka": [
+  "per_0108",
+  "per_0111",
+  "per_0109",
+  "per_0104",
+  "per_0106"
+ ],
+ "svc_service-mesh": [
+  "per_0108",
+  "per_0099",
+  "per_0111",
+  "per_0110",
+  "per_0098"
+ ],
+ "svc_config-service": [
+  "per_0108",
+  "per_0099",
+  "per_0098",
+  "per_0104",
+  "per_0111"
+ ],
+ "svc_feature-flags": [
+  "per_0099",
+  "per_0108",
+  "per_0111",
+  "per_0110",
+  "per_0104"
+ ],
+ "svc_vault": [
+  "per_0113",
+  "per_0111",
+  "per_0110",
+  "per_0109",
+  "per_0108"
+ ],
+ "svc_scheduler": [
+  "per_0111",
+  "per_0108",
+  "per_0099",
+  "per_0109",
+  "per_0110"
+ ],
+ "ds_pg-users": [
+  "per_0013",
+  "per_0019",
+  "per_0017",
+  "per_0012",
+  "per_0016"
+ ],
+ "ds_pg-catalog": [
+  "per_0028",
+  "per_0031",
+  "per_0032",
+  "per_0025",
+  "per_0024"
+ ],
+ "ds_pg-inventory": [
+  "per_0038",
+  "per_0042",
+  "per_0036",
+  "per_0108",
+  "per_0010"
+ ],
+ "ds_pg-orders": [
+  "per_0082",
+  "per_0076",
+  "per_0081",
+  "per_0131",
+  "per_0129"
+ ],
+ "ds_pg-payments": [
+  "per_0062",
+  "per_0066",
+  "per_0060",
+  "per_0055",
+  "per_0070"
+ ],
+ "ds_pg-ledger": [
+  "per_0060",
+  "per_0070",
+  "per_0066",
+  "per_0072",
+  "per_0061"
+ ],
+ "ds_pg-billing": [
+  "per_0066",
+  "per_0072",
+  "per_0070",
+  "per_0062",
+  "per_0069"
+ ],
+ "ds_redis-cache": [
+  "per_0111",
+  "per_0108",
+  "per_0099",
+  "per_0104",
+  "per_0106"
+ ],
+ "ds_redis-session": [
+  "per_0019",
+  "per_0013",
+  "per_0017",
+  "per_0012",
+  "per_0016"
+ ],
+ "ds_redis-ratelimit": [
+  "per_0010",
+  "per_0007",
+  "per_0008",
+  "per_0002",
+  "per_0009"
+ ],
+ "ds_es-search": [
+  "per_0028",
+  "per_0032",
+  "per_0024",
+  "per_0025",
+  "per_0031"
+ ],
+ "ds_cassandra-events": [
+  "per_0095",
+  "per_0089",
+  "per_0093",
+  "per_0094",
+  "per_0115"
+ ],
+ "ds_clickhouse-analytics": [
+  "per_0089",
+  "per_0093",
+  "per_0091",
+  "per_0095",
+  "per_0092"
+ ],
+ "ds_s3-assets": [
+  "per_0108",
+  "per_0111",
+  "per_0098",
+  "per_0099",
+  "per_0109"
+ ],
+ "ds_ext-paylynx": [
+  "per_0070",
+  "per_0059",
+  "per_0062",
+  "per_0060",
+  "per_0061"
+ ]
+}

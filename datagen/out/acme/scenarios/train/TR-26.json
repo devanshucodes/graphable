@@ -1,0 +1,158 @@
+{
+ "id": "TR-26",
+ "type": "non_change",
+ "t0": 1790941537424,
+ "t0_iso": "2026-10-02T11:45:37Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1790936848005,
+   "ts_iso": "2026-10-02T10:27:28Z",
+   "data": {
+    "id": "chg_tr26_1501",
+    "kind": "config",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1790936848005,
+    "ts_iso": "2026-10-02T10:27:28Z",
+    "author_id": "per_0008",
+    "reviewer_ids": [
+     "per_0007",
+     "per_0001"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "mobile-bff: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790938690292,
+   "ts_iso": "2026-10-02T10:58:10Z",
+   "data": {
+    "id": "chg_tr26_1499",
+    "kind": "config",
+    "entity_id": "svc_user-profile",
+    "ts": 1790938690292,
+    "ts_iso": "2026-10-02T10:58:10Z",
+    "author_id": "per_0019",
+    "reviewer_ids": [
+     "per_0012",
+     "per_0016"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "user-profile: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790939125543,
+   "ts_iso": "2026-10-02T11:05:25Z",
+   "data": {
+    "id": "chg_tr26_1500",
+    "kind": "config",
+    "entity_id": "svc_promotions",
+    "ts": 1790939125543,
+    "ts_iso": "2026-10-02T11:05:25Z",
+    "author_id": "per_0048",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "promotions: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790939439159,
+   "ts_iso": "2026-10-02T11:10:39Z",
+   "data": {
+    "id": "chg_tr26_1502",
+    "kind": "code",
+    "entity_id": "svc_refunds",
+    "ts": 1790939439159,
+    "ts_iso": "2026-10-02T11:10:39Z",
+    "author_id": "per_0065",
+    "reviewer_ids": [],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "refunds release v9.12.4: pagination cleanup",
+    "flag_key": null,
+    "pr_number": 2684,
+    "version_to": "1.0.3",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790941546424,
+   "ts_iso": "2026-10-02T11:45:46Z",
+   "data": {
+    "id": "alt_tr26_1497",
+    "name": "CertExpired",
+    "entity_id": "svc_checkout",
+    "metric": "certexpired",
+    "severity": "critical",
+    "ts": 1790941546424,
+    "ts_iso": "2026-10-02T11:45:46Z",
+    "resolved_ts": null,
+    "value": 4.01,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790941717424,
+   "ts_iso": "2026-10-02T11:48:37Z",
+   "data": {
+    "id": "alt_tr26_1498",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_returns",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790941717424,
+    "ts_iso": "2026-10-02T11:48:37Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_checkout"
+  ],
+  "cause_type": "cert_expiry",
+  "root_change_ids": [],
+  "mechanism": [
+   "TLS certificate expired"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "svc_checkout"
+  ],
+  "correct_team_id": "team_checkout",
+  "correct_oncall_id": "per_0047",
+  "expected_experts": [
+   "per_0050",
+   "per_0052",
+   "per_0128"
+  ]
+ },
+ "distractors": 4
+}

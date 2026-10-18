@@ -1,0 +1,320 @@
+{
+ "id": "TS-07",
+ "type": "change_induced",
+ "t0": 1790995092773,
+ "t0_iso": "2026-10-03T02:38:12Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1790988565705,
+   "ts_iso": "2026-10-03T00:49:25Z",
+   "data": {
+    "id": "chg_ts07_0094",
+    "kind": "code",
+    "entity_id": "svc_event-ingest",
+    "ts": 1790988565705,
+    "ts_iso": "2026-10-03T00:49:25Z",
+    "author_id": "per_0095",
+    "reviewer_ids": [
+     "per_0087",
+     "per_0115"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "event-ingest release v4.7.5: address autocomplete",
+    "flag_key": null,
+    "pr_number": 5091,
+    "version_to": "3.15.15",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790989083054,
+   "ts_iso": "2026-10-03T00:58:03Z",
+   "data": {
+    "id": "chg_ts07_0093",
+    "kind": "config",
+    "entity_id": "svc_api-gateway",
+    "ts": 1790989083054,
+    "ts_iso": "2026-10-03T00:58:03Z",
+    "author_id": "per_0002",
+    "reviewer_ids": [
+     "per_0127"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "api-gateway: feature.banner off -> on",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790990292773,
+   "ts_iso": "2026-10-03T01:18:12Z",
+   "data": {
+    "id": "chg_ts07_0080",
+    "kind": "dependency_bump",
+    "entity_id": "svc_session",
+    "ts": 1790990292773,
+    "ts_iso": "2026-10-03T01:18:12Z",
+    "author_id": "per_0013",
+    "reviewer_ids": [
+     "per_0016"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "session: bump netty 2.5 -> 6.0",
+    "flag_key": null,
+    "pr_number": 5791,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790991089736,
+   "ts_iso": "2026-10-03T01:31:29Z",
+   "data": {
+    "id": "chg_ts07_0092",
+    "kind": "config",
+    "entity_id": "svc_api-gateway",
+    "ts": 1790991089736,
+    "ts_iso": "2026-10-03T01:31:29Z",
+    "author_id": "per_0007",
+    "reviewer_ids": [
+     "per_0008"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "api-gateway: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790993352773,
+   "ts_iso": "2026-10-03T02:09:12Z",
+   "data": {
+    "id": "alt_ts07_0091",
+    "name": "HighErrorRate",
+    "entity_id": "ds_pg-inventory",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790993352773,
+    "ts_iso": "2026-10-03T02:09:12Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790993532773,
+   "ts_iso": "2026-10-03T02:12:12Z",
+   "data": {
+    "id": "alt_ts07_0088",
+    "name": "SaturationCPU",
+    "entity_id": "ds_redis-session",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790993532773,
+    "ts_iso": "2026-10-03T02:12:12Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790994492773,
+   "ts_iso": "2026-10-03T02:28:12Z",
+   "data": {
+    "id": "alt_ts07_0089",
+    "name": "ProbeFlapping",
+    "entity_id": "ds_pg-orders",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790994492773,
+    "ts_iso": "2026-10-03T02:28:12Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790995113773,
+   "ts_iso": "2026-10-03T02:38:33Z",
+   "data": {
+    "id": "alt_ts07_0082",
+    "name": "ConnPoolExhausted",
+    "entity_id": "svc_session",
+    "metric": "connpoolexhausted",
+    "severity": "critical",
+    "ts": 1790995113773,
+    "ts_iso": "2026-10-03T02:38:33Z",
+    "resolved_ts": null,
+    "value": 3.11,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790995166773,
+   "ts_iso": "2026-10-03T02:39:26Z",
+   "data": {
+    "id": "alt_ts07_0081",
+    "name": "SaturationCPU",
+    "entity_id": "svc_session",
+    "metric": "saturationcpu",
+    "severity": "critical",
+    "ts": 1790995166773,
+    "ts_iso": "2026-10-03T02:39:26Z",
+    "resolved_ts": null,
+    "value": 5.54,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790995202773,
+   "ts_iso": "2026-10-03T02:40:02Z",
+   "data": {
+    "id": "alt_ts07_0083",
+    "name": "QueueLag",
+    "entity_id": "svc_web-bff",
+    "metric": "queuelag",
+    "severity": "critical",
+    "ts": 1790995202773,
+    "ts_iso": "2026-10-03T02:40:02Z",
+    "resolved_ts": null,
+    "value": 4.76,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790995289773,
+   "ts_iso": "2026-10-03T02:41:29Z",
+   "data": {
+    "id": "alt_ts07_0086",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_api-gateway",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1790995289773,
+    "ts_iso": "2026-10-03T02:41:29Z",
+    "resolved_ts": null,
+    "value": 2.87,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790995344773,
+   "ts_iso": "2026-10-03T02:42:24Z",
+   "data": {
+    "id": "alt_ts07_0087",
+    "name": "SaturationCPU",
+    "entity_id": "svc_checkout",
+    "metric": "saturationcpu",
+    "severity": "warning",
+    "ts": 1790995344773,
+    "ts_iso": "2026-10-03T02:42:24Z",
+    "resolved_ts": null,
+    "value": 4.32,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790995395773,
+   "ts_iso": "2026-10-03T02:43:15Z",
+   "data": {
+    "id": "alt_ts07_0084",
+    "name": "SaturationCPU",
+    "entity_id": "svc_cart",
+    "metric": "saturationcpu",
+    "severity": "critical",
+    "ts": 1790995395773,
+    "ts_iso": "2026-10-03T02:43:15Z",
+    "resolved_ts": null,
+    "value": 3.41,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790995600773,
+   "ts_iso": "2026-10-03T02:46:40Z",
+   "data": {
+    "id": "alt_ts07_0085",
+    "name": "QueueLag",
+    "entity_id": "svc_api-gateway",
+    "metric": "queuelag",
+    "severity": "warning",
+    "ts": 1790995600773,
+    "ts_iso": "2026-10-03T02:46:40Z",
+    "resolved_ts": null,
+    "value": 2.52,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790996232773,
+   "ts_iso": "2026-10-03T02:57:12Z",
+   "data": {
+    "id": "alt_ts07_0090",
+    "name": "HighErrorRate",
+    "entity_id": "svc_returns",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790996232773,
+    "ts_iso": "2026-10-03T02:57:12Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_session"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_ts07_0080"
+  ],
+  "mechanism": [
+   "driver bump broke connection reuse"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_cart",
+   "svc_checkout",
+   "svc_session",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_identity",
+  "correct_oncall_id": "per_0019",
+  "expected_experts": [
+   "per_0019",
+   "per_0013",
+   "per_0120"
+  ]
+ },
+ "distractors": 3
+}

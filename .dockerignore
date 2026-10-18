@@ -1,0 +1,6 @@
+.venv
+**/__pycache__
+apps
+datagen/out
+datagen/.cache
+tests

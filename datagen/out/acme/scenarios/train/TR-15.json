@@ -1,0 +1,606 @@
+{
+ "id": "TR-15",
+ "type": "change_induced",
+ "t0": 1790857671104,
+ "t0_iso": "2026-10-01T12:27:51Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1790852871104,
+   "ts_iso": "2026-10-01T11:07:51Z",
+   "data": {
+    "id": "chg_tr15_1227",
+    "kind": "config",
+    "entity_id": "ds_pg-inventory",
+    "ts": 1790852871104,
+    "ts_iso": "2026-10-01T11:07:51Z",
+    "author_id": "per_0036",
+    "reviewer_ids": [
+     "per_0037"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-inventory: http.client.timeout_ms 2000 -> 250",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790853269166,
+   "ts_iso": "2026-10-01T11:14:29Z",
+   "data": {
+    "id": "chg_tr15_1249",
+    "kind": "config",
+    "entity_id": "ds_clickhouse-analytics",
+    "ts": 1790853269166,
+    "ts_iso": "2026-10-01T11:14:29Z",
+    "author_id": "per_0115",
+    "reviewer_ids": [
+     "per_0088"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "clickhouse-analytics: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790853703798,
+   "ts_iso": "2026-10-01T11:21:43Z",
+   "data": {
+    "id": "chg_tr15_1252",
+    "kind": "code",
+    "entity_id": "ds_es-search",
+    "ts": 1790853703798,
+    "ts_iso": "2026-10-01T11:21:43Z",
+    "author_id": "per_0022",
+    "reviewer_ids": [
+     "per_0020"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "es-search deploy v8.20.9 (image CDN switch)",
+    "flag_key": null,
+    "pr_number": 7318,
+    "version_to": "9.5.0",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790854051107,
+   "ts_iso": "2026-10-01T11:27:31Z",
+   "data": {
+    "id": "chg_tr15_1255",
+    "kind": "code",
+    "entity_id": "svc_warehouse",
+    "ts": 1790854051107,
+    "ts_iso": "2026-10-01T11:27:31Z",
+    "author_id": "per_0074",
+    "reviewer_ids": [
+     "per_0075"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "warehouse deploy v4.39.8 (currency rounding fix)",
+    "flag_key": null,
+    "pr_number": 1858,
+    "version_to": "3.26.15",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790854614197,
+   "ts_iso": "2026-10-01T11:36:54Z",
+   "data": {
+    "id": "chg_tr15_1247",
+    "kind": "flag",
+    "entity_id": "svc_orders",
+    "ts": 1790854614197,
+    "ts_iso": "2026-10-01T11:36:54Z",
+    "author_id": "per_0082",
+    "reviewer_ids": [
+     "per_0075",
+     "per_0081"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag orders.faster-cart-merge-83 rollout 10% -> 100%",
+    "flag_key": "orders.faster-cart-merge-83",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790855423440,
+   "ts_iso": "2026-10-01T11:50:23Z",
+   "data": {
+    "id": "chg_tr15_1248",
+    "kind": "code",
+    "entity_id": "svc_partner-api",
+    "ts": 1790855423440,
+    "ts_iso": "2026-10-01T11:50:23Z",
+    "author_id": "per_0007",
+    "reviewer_ids": [
+     "per_0010"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "partner-api deploy v7.7.10 (search synonyms)",
+    "flag_key": null,
+    "pr_number": 3385,
+    "version_to": "9.17.9",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790855718142,
+   "ts_iso": "2026-10-01T11:55:18Z",
+   "data": {
+    "id": "chg_tr15_1250",
+    "kind": "config",
+    "entity_id": "svc_auth",
+    "ts": 1790855718142,
+    "ts_iso": "2026-10-01T11:55:18Z",
+    "author_id": "per_0013",
+    "reviewer_ids": [
+     "per_0014",
+     "per_0015"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "auth: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790856008482,
+   "ts_iso": "2026-10-01T12:00:08Z",
+   "data": {
+    "id": "chg_tr15_1253",
+    "kind": "code",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1790856008482,
+    "ts_iso": "2026-10-01T12:00:08Z",
+    "author_id": "per_0127",
+    "reviewer_ids": [
+     "per_0010"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "mobile-bff hotfix v1.28.0: address autocomplete",
+    "flag_key": null,
+    "pr_number": 3890,
+    "version_to": "7.14.14",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790856642604,
+   "ts_iso": "2026-10-01T12:10:42Z",
+   "data": {
+    "id": "chg_tr15_1254",
+    "kind": "config",
+    "entity_id": "ds_redis-session",
+    "ts": 1790856642604,
+    "ts_iso": "2026-10-01T12:10:42Z",
+    "author_id": "per_0014",
+    "reviewer_ids": [
+     "per_0017",
+     "per_0013"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-session: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790857194986,
+   "ts_iso": "2026-10-01T12:19:54Z",
+   "data": {
+    "id": "chg_tr15_1251",
+    "kind": "config",
+    "entity_id": "svc_web-bff",
+    "ts": 1790857194986,
+    "ts_iso": "2026-10-01T12:19:54Z",
+    "author_id": "per_0127",
+    "reviewer_ids": [
+     "per_0008"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "web-bff: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790857611104,
+   "ts_iso": "2026-10-01T12:26:51Z",
+   "data": {
+    "id": "alt_tr15_1244",
+    "name": "PodRestarts",
+    "entity_id": "svc_service-mesh",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790857611104,
+    "ts_iso": "2026-10-01T12:26:51Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790857802104,
+   "ts_iso": "2026-10-01T12:30:02Z",
+   "data": {
+    "id": "alt_tr15_1236",
+    "name": "HighErrorRate",
+    "entity_id": "svc_orders",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1790857802104,
+    "ts_iso": "2026-10-01T12:30:02Z",
+    "resolved_ts": null,
+    "value": 5.66,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790857815104,
+   "ts_iso": "2026-10-01T12:30:15Z",
+   "data": {
+    "id": "alt_tr15_1232",
+    "name": "5xxSpike",
+    "entity_id": "svc_cart",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1790857815104,
+    "ts_iso": "2026-10-01T12:30:15Z",
+    "resolved_ts": null,
+    "value": 5.9,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790857817104,
+   "ts_iso": "2026-10-01T12:30:17Z",
+   "data": {
+    "id": "alt_tr15_1235",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_orders",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1790857817104,
+    "ts_iso": "2026-10-01T12:30:17Z",
+    "resolved_ts": null,
+    "value": 5.05,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790857836104,
+   "ts_iso": "2026-10-01T12:30:36Z",
+   "data": {
+    "id": "alt_tr15_1234",
+    "name": "HighErrorRate",
+    "entity_id": "svc_checkout",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1790857836104,
+    "ts_iso": "2026-10-01T12:30:36Z",
+    "resolved_ts": null,
+    "value": 2.83,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790857869104,
+   "ts_iso": "2026-10-01T12:31:09Z",
+   "data": {
+    "id": "alt_tr15_1229",
+    "name": "5xxSpike",
+    "entity_id": "svc_inventory",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1790857869104,
+    "ts_iso": "2026-10-01T12:31:09Z",
+    "resolved_ts": null,
+    "value": 3.79,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790857877104,
+   "ts_iso": "2026-10-01T12:31:17Z",
+   "data": {
+    "id": "alt_tr15_1240",
+    "name": "HighErrorRate",
+    "entity_id": "svc_web-bff",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1790857877104,
+    "ts_iso": "2026-10-01T12:31:17Z",
+    "resolved_ts": null,
+    "value": 1.53,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790857898104,
+   "ts_iso": "2026-10-01T12:31:38Z",
+   "data": {
+    "id": "alt_tr15_1228",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_inventory",
+    "metric": "upstreamerrors",
+    "severity": "critical",
+    "ts": 1790857898104,
+    "ts_iso": "2026-10-01T12:31:38Z",
+    "resolved_ts": null,
+    "value": 4.73,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790858034104,
+   "ts_iso": "2026-10-01T12:33:54Z",
+   "data": {
+    "id": "alt_tr15_1238",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_warehouse",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1790858034104,
+    "ts_iso": "2026-10-01T12:33:54Z",
+    "resolved_ts": null,
+    "value": 2.57,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790858060104,
+   "ts_iso": "2026-10-01T12:34:20Z",
+   "data": {
+    "id": "alt_tr15_1241",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_mobile-bff",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1790858060104,
+    "ts_iso": "2026-10-01T12:34:20Z",
+    "resolved_ts": null,
+    "value": 1.56,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790858068104,
+   "ts_iso": "2026-10-01T12:34:28Z",
+   "data": {
+    "id": "alt_tr15_1233",
+    "name": "HighErrorRate",
+    "entity_id": "svc_cart",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1790858068104,
+    "ts_iso": "2026-10-01T12:34:28Z",
+    "resolved_ts": null,
+    "value": 5.97,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790858164104,
+   "ts_iso": "2026-10-01T12:36:04Z",
+   "data": {
+    "id": "alt_tr15_1231",
+    "name": "HighErrorRate",
+    "entity_id": "svc_partner-api",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1790858164104,
+    "ts_iso": "2026-10-01T12:36:04Z",
+    "resolved_ts": null,
+    "value": 2.03,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790858175104,
+   "ts_iso": "2026-10-01T12:36:15Z",
+   "data": {
+    "id": "alt_tr15_1230",
+    "name": "5xxSpike",
+    "entity_id": "svc_partner-api",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1790858175104,
+    "ts_iso": "2026-10-01T12:36:15Z",
+    "resolved_ts": null,
+    "value": 4.55,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790858182104,
+   "ts_iso": "2026-10-01T12:36:22Z",
+   "data": {
+    "id": "alt_tr15_1237",
+    "name": "5xxSpike",
+    "entity_id": "svc_warehouse",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1790858182104,
+    "ts_iso": "2026-10-01T12:36:22Z",
+    "resolved_ts": null,
+    "value": 5.75,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790858249104,
+   "ts_iso": "2026-10-01T12:37:29Z",
+   "data": {
+    "id": "alt_tr15_1239",
+    "name": "5xxSpike",
+    "entity_id": "svc_web-bff",
+    "metric": "5xxspike",
+    "severity": "warning",
+    "ts": 1790858249104,
+    "ts_iso": "2026-10-01T12:37:29Z",
+    "resolved_ts": null,
+    "value": 2.22,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790858271104,
+   "ts_iso": "2026-10-01T12:37:51Z",
+   "data": {
+    "id": "alt_tr15_1246",
+    "name": "ProbeFlapping",
+    "entity_id": "ds_s3-assets",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790858271104,
+    "ts_iso": "2026-10-01T12:37:51Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790858450104,
+   "ts_iso": "2026-10-01T12:40:50Z",
+   "data": {
+    "id": "alt_tr15_1243",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_api-gateway",
+    "metric": "upstreamerrors",
+    "severity": "warning",
+    "ts": 1790858450104,
+    "ts_iso": "2026-10-01T12:40:50Z",
+    "resolved_ts": null,
+    "value": 5.04,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790858638104,
+   "ts_iso": "2026-10-01T12:43:58Z",
+   "data": {
+    "id": "alt_tr15_1242",
+    "name": "HighErrorRate",
+    "entity_id": "svc_api-gateway",
+    "metric": "higherrorrate",
+    "severity": "warning",
+    "ts": 1790858638104,
+    "ts_iso": "2026-10-01T12:43:58Z",
+    "resolved_ts": null,
+    "value": 5.34,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790859231104,
+   "ts_iso": "2026-10-01T12:53:51Z",
+   "data": {
+    "id": "alt_tr15_1245",
+    "name": "ProbeFlapping",
+    "entity_id": "svc_cart",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790859231104,
+    "ts_iso": "2026-10-01T12:53:51Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_pg-inventory"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_tr15_1227"
+  ],
+  "mechanism": [
+   "timeout lowered below dependency p99"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_cart",
+   "svc_checkout",
+   "svc_inventory",
+   "svc_mobile-bff",
+   "svc_orders",
+   "svc_partner-api",
+   "svc_warehouse",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_pricing_inventory",
+  "correct_oncall_id": "per_0042",
+  "expected_experts": [
+   "per_0038",
+   "per_0042",
+   "per_0036"
+  ]
+ },
+ "distractors": 9
+}

@@ -1,0 +1,245 @@
+{
+ "id": "TR-08",
+ "type": "change_induced",
+ "t0": 1791040957406,
+ "t0_iso": "2026-10-03T15:22:37Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791033839201,
+   "ts_iso": "2026-10-03T13:23:59Z",
+   "data": {
+    "id": "chg_tr08_1096",
+    "kind": "flag",
+    "entity_id": "svc_web-bff",
+    "ts": 1791033839201,
+    "ts_iso": "2026-10-03T13:23:59Z",
+    "author_id": "per_0002",
+    "reviewer_ids": [
+     "per_0008"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag web-bff.pagination-cleanup-17 rollout 0% -> 100%",
+    "flag_key": "web-bff.pagination-cleanup-17",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791034416463,
+   "ts_iso": "2026-10-03T13:33:36Z",
+   "data": {
+    "id": "chg_tr08_1095",
+    "kind": "config",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1791034416463,
+    "ts_iso": "2026-10-03T13:33:36Z",
+    "author_id": "per_0002",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "mobile-bff: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791035797406,
+   "ts_iso": "2026-10-03T13:56:37Z",
+   "data": {
+    "id": "chg_tr08_1086",
+    "kind": "code",
+    "entity_id": "ds_es-search",
+    "ts": 1791035797406,
+    "ts_iso": "2026-10-03T13:56:37Z",
+    "author_id": "per_0022",
+    "reviewer_ids": [
+     "per_0021"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "es-search release v9.33.9: faster cart merge",
+    "flag_key": null,
+    "pr_number": 9555,
+    "version_to": "2.26.12",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791037256474,
+   "ts_iso": "2026-10-03T14:20:56Z",
+   "data": {
+    "id": "chg_tr08_1094",
+    "kind": "flag",
+    "entity_id": "svc_web-bff",
+    "ts": 1791037256474,
+    "ts_iso": "2026-10-03T14:20:56Z",
+    "author_id": "per_0001",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag web-bff.session-refresh-64 rollout 10% -> 100%",
+    "flag_key": "web-bff.session-refresh-64",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791040777406,
+   "ts_iso": "2026-10-03T15:19:37Z",
+   "data": {
+    "id": "alt_tr08_1093",
+    "name": "QueueLag",
+    "entity_id": "svc_user-profile",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791040777406,
+    "ts_iso": "2026-10-03T15:19:37Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791040897406,
+   "ts_iso": "2026-10-03T15:21:37Z",
+   "data": {
+    "id": "alt_tr08_1092",
+    "name": "DiskUsageHigh",
+    "entity_id": "svc_user-profile",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791040897406,
+    "ts_iso": "2026-10-03T15:21:37Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791041095406,
+   "ts_iso": "2026-10-03T15:24:55Z",
+   "data": {
+    "id": "alt_tr08_1087",
+    "name": "SlowResponses",
+    "entity_id": "svc_search",
+    "metric": "slowresponses",
+    "severity": "critical",
+    "ts": 1791041095406,
+    "ts_iso": "2026-10-03T15:24:55Z",
+    "resolved_ts": null,
+    "value": 4.66,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791041158406,
+   "ts_iso": "2026-10-03T15:25:58Z",
+   "data": {
+    "id": "alt_tr08_1088",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_web-bff",
+    "metric": "upstreamtimeouts",
+    "severity": "warning",
+    "ts": 1791041158406,
+    "ts_iso": "2026-10-03T15:25:58Z",
+    "resolved_ts": null,
+    "value": 1.71,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791041197406,
+   "ts_iso": "2026-10-03T15:26:37Z",
+   "data": {
+    "id": "alt_tr08_1091",
+    "name": "SaturationCPU",
+    "entity_id": "ds_pg-payments",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791041197406,
+    "ts_iso": "2026-10-03T15:26:37Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791041370406,
+   "ts_iso": "2026-10-03T15:29:30Z",
+   "data": {
+    "id": "alt_tr08_1089",
+    "name": "SlowResponses",
+    "entity_id": "svc_web-bff",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1791041370406,
+    "ts_iso": "2026-10-03T15:29:30Z",
+    "resolved_ts": null,
+    "value": 5.8,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791041536406,
+   "ts_iso": "2026-10-03T15:32:16Z",
+   "data": {
+    "id": "alt_tr08_1090",
+    "name": "SlowResponses",
+    "entity_id": "svc_api-gateway",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1791041536406,
+    "ts_iso": "2026-10-03T15:32:16Z",
+    "resolved_ts": null,
+    "value": 5.67,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_es-search"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_tr08_1086"
+  ],
+  "mechanism": [
+   "thread pool exhaustion under load"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_search",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_discovery",
+  "correct_oncall_id": "per_0031",
+  "expected_experts": [
+   "per_0028",
+   "per_0032",
+   "per_0024"
+  ]
+ },
+ "distractors": 3
+}

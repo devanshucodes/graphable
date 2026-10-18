@@ -1,0 +1,27 @@
+[project]
+name = "graphable"
+version = "0.1.0"
+description = "Graph-native multi-agent incident response with a company brain, on FalkorDB"
+requires-python = ">=3.12"
+dependencies = [
+    "faker>=30.0",
+    "falkordb>=1.7",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "sse-starlette>=2.0",
+    "pydantic>=2.8",
+    "mcp[cli]>=1.20,<2",          # langchain-mcp-adapters 0.3.x is not yet compatible with mcp 2.x
+    "langgraph>=1.0",
+    "langchain-core>=1.0",
+    "langchain-mcp-adapters>=0.3",
+    "langchain-google-genai>=4.0",
+    "google-genai>=1.0",
+    "networkx>=3.3",
+    "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false

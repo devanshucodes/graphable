@@ -1,0 +1,257 @@
+{
+ "id": "LC-06",
+ "type": "learning",
+ "t0": 1791298800000,
+ "t0_iso": "2026-10-06T15:00:00Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791291722046,
+   "ts_iso": "2026-10-06T13:02:02Z",
+   "data": {
+    "id": "chg_lc06_0826",
+    "kind": "config",
+    "entity_id": "svc_search",
+    "ts": 1791291722046,
+    "ts_iso": "2026-10-06T13:02:02Z",
+    "author_id": "per_0022",
+    "reviewer_ids": [
+     "per_0029"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "search: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791296855093,
+   "ts_iso": "2026-10-06T14:27:35Z",
+   "data": {
+    "id": "chg_lc06_0827",
+    "kind": "code",
+    "entity_id": "svc_billing",
+    "ts": 1791296855093,
+    "ts_iso": "2026-10-06T14:27:35Z",
+    "author_id": "per_0060",
+    "reviewer_ids": [
+     "per_0121"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "billing deploy v2.27.0 (address autocomplete)",
+    "flag_key": null,
+    "pr_number": 6552,
+    "version_to": "8.16.15",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791297120000,
+   "ts_iso": "2026-10-06T14:32:00Z",
+   "data": {
+    "id": "alt_lc06_0822",
+    "name": "GCPauseLong",
+    "entity_id": "svc_payouts",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791297120000,
+    "ts_iso": "2026-10-06T14:32:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791297300000,
+   "ts_iso": "2026-10-06T14:35:00Z",
+   "data": {
+    "id": "chg_lc06_0818",
+    "kind": "config",
+    "entity_id": "ds_pg-billing",
+    "ts": 1791297300000,
+    "ts_iso": "2026-10-06T14:35:00Z",
+    "author_id": "per_0069",
+    "reviewer_ids": [
+     "per_0065",
+     "per_0067"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-billing: db.idle_timeout_s 300 -> 5",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791297420000,
+   "ts_iso": "2026-10-06T14:37:00Z",
+   "data": {
+    "id": "alt_lc06_0821",
+    "name": "QueueLag",
+    "entity_id": "ds_redis-cache",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791297420000,
+    "ts_iso": "2026-10-06T14:37:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791297440917,
+   "ts_iso": "2026-10-06T14:37:20Z",
+   "data": {
+    "id": "chg_lc06_0828",
+    "kind": "code",
+    "entity_id": "svc_permissions",
+    "ts": 1791297440917,
+    "ts_iso": "2026-10-06T14:37:20Z",
+    "author_id": "per_0014",
+    "reviewer_ids": [
+     "per_0013",
+     "per_0012"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "permissions deploy v6.19.20 (new tax rounding)",
+    "flag_key": null,
+    "pr_number": 9183,
+    "version_to": "3.5.4",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791297928482,
+   "ts_iso": "2026-10-06T14:45:28Z",
+   "data": {
+    "id": "chg_lc06_0825",
+    "kind": "code",
+    "entity_id": "ds_redis-session",
+    "ts": 1791297928482,
+    "ts_iso": "2026-10-06T14:45:28Z",
+    "author_id": "per_0016",
+    "reviewer_ids": [
+     "per_0012"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-session release v9.16.0: audit logging",
+    "flag_key": null,
+    "pr_number": 9855,
+    "version_to": "8.21.17",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791298920000,
+   "ts_iso": "2026-10-06T15:02:00Z",
+   "data": {
+    "id": "alt_lc06_0819",
+    "name": "HighErrorRate",
+    "entity_id": "svc_billing",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791298920000,
+    "ts_iso": "2026-10-06T15:02:00Z",
+    "resolved_ts": null,
+    "value": 3.27,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791298980000,
+   "ts_iso": "2026-10-06T15:03:00Z",
+   "data": {
+    "id": "alt_lc06_0824",
+    "name": "GCPauseLong",
+    "entity_id": "ds_clickhouse-analytics",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791298980000,
+    "ts_iso": "2026-10-06T15:03:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791299096000,
+   "ts_iso": "2026-10-06T15:04:56Z",
+   "data": {
+    "id": "alt_lc06_0820",
+    "name": "5xxSpike",
+    "entity_id": "svc_billing",
+    "metric": "5xxspike",
+    "severity": "critical",
+    "ts": 1791299096000,
+    "ts_iso": "2026-10-06T15:04:56Z",
+    "resolved_ts": null,
+    "value": 3.88,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791299700000,
+   "ts_iso": "2026-10-06T15:15:00Z",
+   "data": {
+    "id": "alt_lc06_0823",
+    "name": "QueueLag",
+    "entity_id": "svc_tax",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791299700000,
+    "ts_iso": "2026-10-06T15:15:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_pg-billing"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_lc06_0818"
+  ],
+  "mechanism": [
+   "idle connection timeout lowered"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_billing"
+  ],
+  "correct_team_id": "team_payments",
+  "correct_oncall_id": "per_0062",
+  "expected_experts": [
+   "per_0066",
+   "per_0072",
+   "per_0070"
+  ]
+ },
+ "sequence": 6,
+ "motif_id": "motif_pg_billing_idle_timeout"
+}

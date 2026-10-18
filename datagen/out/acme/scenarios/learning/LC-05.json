@@ -1,0 +1,218 @@
+{
+ "id": "LC-05",
+ "type": "learning",
+ "t0": 1791212400000,
+ "t0_iso": "2026-10-05T15:00:00Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791206037552,
+   "ts_iso": "2026-10-05T13:13:57Z",
+   "data": {
+    "id": "chg_lc05_0815",
+    "kind": "config",
+    "entity_id": "svc_reviews",
+    "ts": 1791206037552,
+    "ts_iso": "2026-10-05T13:13:57Z",
+    "author_id": "per_0029",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "reviews: feature.banner off -> on",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791209583391,
+   "ts_iso": "2026-10-05T14:13:03Z",
+   "data": {
+    "id": "chg_lc05_0816",
+    "kind": "code",
+    "entity_id": "svc_orders",
+    "ts": 1791209583391,
+    "ts_iso": "2026-10-05T14:13:03Z",
+    "author_id": "per_0074",
+    "reviewer_ids": [
+     "per_0081"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "orders deploy v8.9.14 (currency rounding fix)",
+    "flag_key": null,
+    "pr_number": 3274,
+    "version_to": "4.19.2",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791211560000,
+   "ts_iso": "2026-10-05T14:46:00Z",
+   "data": {
+    "id": "chg_lc05_0809",
+    "kind": "config",
+    "entity_id": "ds_pg-billing",
+    "ts": 1791211560000,
+    "ts_iso": "2026-10-05T14:46:00Z",
+    "author_id": "per_0066",
+    "reviewer_ids": [
+     "per_0065"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-billing: db.idle_timeout_s 300 -> 5",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791211983984,
+   "ts_iso": "2026-10-05T14:53:03Z",
+   "data": {
+    "id": "chg_lc05_0814",
+    "kind": "config",
+    "entity_id": "svc_billing",
+    "ts": 1791211983984,
+    "ts_iso": "2026-10-05T14:53:03Z",
+    "author_id": "per_0059",
+    "reviewer_ids": [
+     "per_0073",
+     "per_0065"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "billing: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791212159681,
+   "ts_iso": "2026-10-05T14:55:59Z",
+   "data": {
+    "id": "chg_lc05_0817",
+    "kind": "code",
+    "entity_id": "svc_billing",
+    "ts": 1791212159681,
+    "ts_iso": "2026-10-05T14:55:59Z",
+    "author_id": "per_0056",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "billing release v8.6.5: payout batching",
+    "flag_key": null,
+    "pr_number": 8502,
+    "version_to": "3.31.7",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791212515000,
+   "ts_iso": "2026-10-05T15:01:55Z",
+   "data": {
+    "id": "alt_lc05_0810",
+    "name": "HighErrorRate",
+    "entity_id": "svc_billing",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1791212515000,
+    "ts_iso": "2026-10-05T15:01:55Z",
+    "resolved_ts": null,
+    "value": 5.83,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791212573000,
+   "ts_iso": "2026-10-05T15:02:53Z",
+   "data": {
+    "id": "alt_lc05_0811",
+    "name": "UpstreamErrors",
+    "entity_id": "svc_billing",
+    "metric": "upstreamerrors",
+    "severity": "critical",
+    "ts": 1791212573000,
+    "ts_iso": "2026-10-05T15:02:53Z",
+    "resolved_ts": null,
+    "value": 4.08,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791212700000,
+   "ts_iso": "2026-10-05T15:05:00Z",
+   "data": {
+    "id": "alt_lc05_0812",
+    "name": "DiskUsageHigh",
+    "entity_id": "svc_user-profile",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791212700000,
+    "ts_iso": "2026-10-05T15:05:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791213360000,
+   "ts_iso": "2026-10-05T15:16:00Z",
+   "data": {
+    "id": "alt_lc05_0813",
+    "name": "SaturationCPU",
+    "entity_id": "svc_event-ingest",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791213360000,
+    "ts_iso": "2026-10-05T15:16:00Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_pg-billing"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_lc05_0809"
+  ],
+  "mechanism": [
+   "idle connection timeout lowered"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_billing"
+  ],
+  "correct_team_id": "team_payments",
+  "correct_oncall_id": "per_0062",
+  "expected_experts": [
+   "per_0066",
+   "per_0072",
+   "per_0070"
+  ]
+ },
+ "sequence": 5,
+ "motif_id": "motif_pg_billing_idle_timeout"
+}

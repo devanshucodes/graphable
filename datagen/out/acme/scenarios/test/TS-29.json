@@ -1,0 +1,229 @@
+{
+ "id": "TS-29",
+ "type": "non_change",
+ "t0": 1790933840893,
+ "t0_iso": "2026-10-02T09:37:20Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1790926759055,
+   "ts_iso": "2026-10-02T07:39:19Z",
+   "data": {
+    "id": "chg_ts29_0557",
+    "kind": "config",
+    "entity_id": "ds_s3-assets",
+    "ts": 1790926759055,
+    "ts_iso": "2026-10-02T07:39:19Z",
+    "author_id": "per_0106",
+    "reviewer_ids": [
+     "per_0105"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "s3-assets: feature.banner off -> on",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790928138044,
+   "ts_iso": "2026-10-02T08:02:18Z",
+   "data": {
+    "id": "chg_ts29_0556",
+    "kind": "code",
+    "entity_id": "ds_es-search",
+    "ts": 1790928138044,
+    "ts_iso": "2026-10-02T08:02:18Z",
+    "author_id": "per_0032",
+    "reviewer_ids": [
+     "per_0021"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "es-search hotfix v8.7.12: retry jitter",
+    "flag_key": null,
+    "pr_number": 6205,
+    "version_to": "5.24.13",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790931025651,
+   "ts_iso": "2026-10-02T08:50:25Z",
+   "data": {
+    "id": "chg_ts29_0558",
+    "kind": "config",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1790931025651,
+    "ts_iso": "2026-10-02T08:50:25Z",
+    "author_id": "per_0010",
+    "reviewer_ids": [
+     "per_0007",
+     "per_0127"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "mobile-bff: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790932220893,
+   "ts_iso": "2026-10-02T09:10:20Z",
+   "data": {
+    "id": "alt_ts29_0553",
+    "name": "QueueLag",
+    "entity_id": "svc_config-service",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790932220893,
+    "ts_iso": "2026-10-02T09:10:20Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790932331144,
+   "ts_iso": "2026-10-02T09:12:11Z",
+   "data": {
+    "id": "chg_ts29_0559",
+    "kind": "config",
+    "entity_id": "svc_session",
+    "ts": 1790932331144,
+    "ts_iso": "2026-10-02T09:12:11Z",
+    "author_id": "per_0017",
+    "reviewer_ids": [
+     "per_0019"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "session: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790933660893,
+   "ts_iso": "2026-10-02T09:34:20Z",
+   "data": {
+    "id": "alt_ts29_0554",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_warehouse",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790933660893,
+    "ts_iso": "2026-10-02T09:34:20Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790933852893,
+   "ts_iso": "2026-10-02T09:37:32Z",
+   "data": {
+    "id": "alt_ts29_0550",
+    "name": "DataValidationFailed",
+    "entity_id": "ds_redis-ratelimit",
+    "metric": "datavalidationfailed",
+    "severity": "critical",
+    "ts": 1790933852893,
+    "ts_iso": "2026-10-02T09:37:32Z",
+    "resolved_ts": null,
+    "value": 2.72,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790933888893,
+   "ts_iso": "2026-10-02T09:38:08Z",
+   "data": {
+    "id": "alt_ts29_0551",
+    "name": "HighErrorRate",
+    "entity_id": "ds_redis-ratelimit",
+    "metric": "higherrorrate",
+    "severity": "critical",
+    "ts": 1790933888893,
+    "ts_iso": "2026-10-02T09:38:08Z",
+    "resolved_ts": null,
+    "value": 2.39,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790934320893,
+   "ts_iso": "2026-10-02T09:45:20Z",
+   "data": {
+    "id": "alt_ts29_0552",
+    "name": "CertExpirySoon",
+    "entity_id": "ds_pg-payments",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790934320893,
+    "ts_iso": "2026-10-02T09:45:20Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790934440893,
+   "ts_iso": "2026-10-02T09:47:20Z",
+   "data": {
+    "id": "alt_ts29_0555",
+    "name": "CertExpirySoon",
+    "entity_id": "svc_api-gateway",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790934440893,
+    "ts_iso": "2026-10-02T09:47:20Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_redis-ratelimit"
+  ],
+  "cause_type": "data_issue",
+  "root_change_ids": [],
+  "mechanism": [
+   "bad backfill corrupted records"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "ds_redis-ratelimit"
+  ],
+  "correct_team_id": "team_edge",
+  "correct_oncall_id": "per_0008",
+  "expected_experts": [
+   "per_0010",
+   "per_0007",
+   "per_0008"
+  ]
+ },
+ "distractors": 4
+}

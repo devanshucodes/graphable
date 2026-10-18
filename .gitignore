@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+datagen/.cache/
+.env
+apps/web/node_modules/
+apps/web/.next/
+.pytest_cache/
+
+# OS / editor / logs
+.DS_Store
+*.log
+apps/web/.env*

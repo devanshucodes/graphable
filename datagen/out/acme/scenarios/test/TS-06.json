@@ -1,0 +1,357 @@
+{
+ "id": "TS-06",
+ "type": "change_induced",
+ "t0": 1791158851883,
+ "t0_iso": "2026-10-05T00:07:31Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791157111883,
+   "ts_iso": "2026-10-04T23:38:31Z",
+   "data": {
+    "id": "chg_ts06_0063",
+    "kind": "config",
+    "entity_id": "ds_redis-session",
+    "ts": 1791157111883,
+    "ts_iso": "2026-10-04T23:38:31Z",
+    "author_id": "per_0013",
+    "reviewer_ids": [
+     "per_0015"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-session: db.pool.max 64 -> 16",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791157675729,
+   "ts_iso": "2026-10-04T23:47:55Z",
+   "data": {
+    "id": "chg_ts06_0078",
+    "kind": "config",
+    "entity_id": "ds_pg-orders",
+    "ts": 1791157675729,
+    "ts_iso": "2026-10-04T23:47:55Z",
+    "author_id": "per_0075",
+    "reviewer_ids": [
+     "per_0079"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-orders: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791157991646,
+   "ts_iso": "2026-10-04T23:53:11Z",
+   "data": {
+    "id": "chg_ts06_0079",
+    "kind": "config",
+    "entity_id": "svc_vault",
+    "ts": 1791157991646,
+    "ts_iso": "2026-10-04T23:53:11Z",
+    "author_id": "per_0105",
+    "reviewer_ids": [
+     "per_0102"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "vault: feature.banner off -> on",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791158441060,
+   "ts_iso": "2026-10-05T00:00:41Z",
+   "data": {
+    "id": "chg_ts06_0077",
+    "kind": "flag",
+    "entity_id": "svc_partner-api",
+    "ts": 1791158441060,
+    "ts_iso": "2026-10-05T00:00:41Z",
+    "author_id": "per_0009",
+    "reviewer_ids": [
+     "per_0008",
+     "per_0007"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag partner-api.refund-webhooks-8 rollout 0% -> 25%",
+    "flag_key": "partner-api.refund-webhooks-8",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791158851883,
+   "ts_iso": "2026-10-05T00:07:31Z",
+   "data": {
+    "id": "alt_ts06_0076",
+    "name": "QueueLag",
+    "entity_id": "ds_redis-ratelimit",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791158851883,
+    "ts_iso": "2026-10-05T00:07:31Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791158908883,
+   "ts_iso": "2026-10-05T00:08:28Z",
+   "data": {
+    "id": "alt_ts06_0064",
+    "name": "LatencyP99Breach",
+    "entity_id": "ds_redis-session",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791158908883,
+    "ts_iso": "2026-10-05T00:08:28Z",
+    "resolved_ts": null,
+    "value": 2.78,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791158921883,
+   "ts_iso": "2026-10-05T00:08:41Z",
+   "data": {
+    "id": "alt_ts06_0066",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_auth",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791158921883,
+    "ts_iso": "2026-10-05T00:08:41Z",
+    "resolved_ts": null,
+    "value": 5.8,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791158994883,
+   "ts_iso": "2026-10-05T00:09:54Z",
+   "data": {
+    "id": "alt_ts06_0065",
+    "name": "SlowResponses",
+    "entity_id": "svc_auth",
+    "metric": "slowresponses",
+    "severity": "critical",
+    "ts": 1791158994883,
+    "ts_iso": "2026-10-05T00:09:54Z",
+    "resolved_ts": null,
+    "value": 5.63,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791159025883,
+   "ts_iso": "2026-10-05T00:10:25Z",
+   "data": {
+    "id": "alt_ts06_0067",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_session",
+    "metric": "upstreamtimeouts",
+    "severity": "critical",
+    "ts": 1791159025883,
+    "ts_iso": "2026-10-05T00:10:25Z",
+    "resolved_ts": null,
+    "value": 1.48,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791159042883,
+   "ts_iso": "2026-10-05T00:10:42Z",
+   "data": {
+    "id": "alt_ts06_0074",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_checkout",
+    "metric": "upstreamtimeouts",
+    "severity": "warning",
+    "ts": 1791159042883,
+    "ts_iso": "2026-10-05T00:10:42Z",
+    "resolved_ts": null,
+    "value": 5.5,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791159059883,
+   "ts_iso": "2026-10-05T00:10:59Z",
+   "data": {
+    "id": "alt_ts06_0069",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_api-gateway",
+    "metric": "upstreamtimeouts",
+    "severity": "warning",
+    "ts": 1791159059883,
+    "ts_iso": "2026-10-05T00:10:59Z",
+    "resolved_ts": null,
+    "value": 2.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791159097883,
+   "ts_iso": "2026-10-05T00:11:37Z",
+   "data": {
+    "id": "alt_ts06_0072",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_mobile-bff",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1791159097883,
+    "ts_iso": "2026-10-05T00:11:37Z",
+    "resolved_ts": null,
+    "value": 1.94,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791159131883,
+   "ts_iso": "2026-10-05T00:12:11Z",
+   "data": {
+    "id": "alt_ts06_0071",
+    "name": "SlowResponses",
+    "entity_id": "svc_partner-api",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1791159131883,
+    "ts_iso": "2026-10-05T00:12:11Z",
+    "resolved_ts": null,
+    "value": 2.2,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791159162883,
+   "ts_iso": "2026-10-05T00:12:42Z",
+   "data": {
+    "id": "alt_ts06_0068",
+    "name": "SlowResponses",
+    "entity_id": "svc_api-gateway",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1791159162883,
+    "ts_iso": "2026-10-05T00:12:42Z",
+    "resolved_ts": null,
+    "value": 4.18,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791159212883,
+   "ts_iso": "2026-10-05T00:13:32Z",
+   "data": {
+    "id": "alt_ts06_0073",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_cart",
+    "metric": "upstreamtimeouts",
+    "severity": "warning",
+    "ts": 1791159212883,
+    "ts_iso": "2026-10-05T00:13:32Z",
+    "resolved_ts": null,
+    "value": 3.22,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791159282883,
+   "ts_iso": "2026-10-05T00:14:42Z",
+   "data": {
+    "id": "alt_ts06_0075",
+    "name": "SlowResponses",
+    "entity_id": "svc_checkout",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1791159282883,
+    "ts_iso": "2026-10-05T00:14:42Z",
+    "resolved_ts": null,
+    "value": 2.25,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791159299883,
+   "ts_iso": "2026-10-05T00:14:59Z",
+   "data": {
+    "id": "alt_ts06_0070",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_partner-api",
+    "metric": "upstreamtimeouts",
+    "severity": "warning",
+    "ts": 1791159299883,
+    "ts_iso": "2026-10-05T00:14:59Z",
+    "resolved_ts": null,
+    "value": 1.99,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_redis-session"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_ts06_0063"
+  ],
+  "mechanism": [
+   "connection pool max lowered"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "ds_redis-session",
+   "svc_api-gateway",
+   "svc_auth",
+   "svc_cart",
+   "svc_checkout",
+   "svc_mobile-bff",
+   "svc_partner-api",
+   "svc_session"
+  ],
+  "correct_team_id": "team_identity",
+  "correct_oncall_id": "per_0019",
+  "expected_experts": [
+   "per_0019",
+   "per_0013",
+   "per_0017"
+  ]
+ },
+ "distractors": 3
+}

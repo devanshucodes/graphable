@@ -1,0 +1,470 @@
+{
+ "id": "TS-22",
+ "type": "change_induced",
+ "t0": 1791144693633,
+ "t0_iso": "2026-10-04T20:11:33Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791137722447,
+   "ts_iso": "2026-10-04T18:15:22Z",
+   "data": {
+    "id": "chg_ts22_0387",
+    "kind": "config",
+    "entity_id": "svc_billing",
+    "ts": 1791137722447,
+    "ts_iso": "2026-10-04T18:15:22Z",
+    "author_id": "per_0130",
+    "reviewer_ids": [
+     "per_0068",
+     "per_0071"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "billing: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791137746272,
+   "ts_iso": "2026-10-04T18:15:46Z",
+   "data": {
+    "id": "chg_ts22_0392",
+    "kind": "config",
+    "entity_id": "svc_billing",
+    "ts": 1791137746272,
+    "ts_iso": "2026-10-04T18:15:46Z",
+    "author_id": "per_0071",
+    "reviewer_ids": [
+     "per_0058"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "billing: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791138107066,
+   "ts_iso": "2026-10-04T18:21:47Z",
+   "data": {
+    "id": "chg_ts22_0393",
+    "kind": "code",
+    "entity_id": "svc_ledger",
+    "ts": 1791138107066,
+    "ts_iso": "2026-10-04T18:21:47Z",
+    "author_id": "per_0070",
+    "reviewer_ids": [
+     "per_0068"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "ledger release v8.22.15: address autocomplete",
+    "flag_key": null,
+    "pr_number": 7100,
+    "version_to": "2.17.5",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791138462194,
+   "ts_iso": "2026-10-04T18:27:42Z",
+   "data": {
+    "id": "chg_ts22_0395",
+    "kind": "config",
+    "entity_id": "svc_billing",
+    "ts": 1791138462194,
+    "ts_iso": "2026-10-04T18:27:42Z",
+    "author_id": "per_0068",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "billing: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791138831275,
+   "ts_iso": "2026-10-04T18:33:51Z",
+   "data": {
+    "id": "chg_ts22_0386",
+    "kind": "config",
+    "entity_id": "ds_pg-billing",
+    "ts": 1791138831275,
+    "ts_iso": "2026-10-04T18:33:51Z",
+    "author_id": "per_0059",
+    "reviewer_ids": [
+     "per_0064"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-billing: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791140710617,
+   "ts_iso": "2026-10-04T19:05:10Z",
+   "data": {
+    "id": "chg_ts22_0399",
+    "kind": "config",
+    "entity_id": "svc_inventory",
+    "ts": 1791140710617,
+    "ts_iso": "2026-10-04T19:05:10Z",
+    "author_id": "per_0038",
+    "reviewer_ids": [
+     "per_0040"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "inventory: http.keepalive_s 60 -> 90",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791141402256,
+   "ts_iso": "2026-10-04T19:16:42Z",
+   "data": {
+    "id": "chg_ts22_0398",
+    "kind": "config",
+    "entity_id": "svc_reviews",
+    "ts": 1791141402256,
+    "ts_iso": "2026-10-04T19:16:42Z",
+    "author_id": "per_0024",
+    "reviewer_ids": [
+     "per_0025"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "reviews: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791141753633,
+   "ts_iso": "2026-10-04T19:22:33Z",
+   "data": {
+    "id": "chg_ts22_0381",
+    "kind": "migration",
+    "entity_id": "ds_pg-billing",
+    "ts": 1791141753633,
+    "ts_iso": "2026-10-04T19:22:33Z",
+    "author_id": "per_0125",
+    "reviewer_ids": [
+     "per_0069",
+     "per_0070"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-billing migration m409: add column on orders_items",
+    "flag_key": null,
+    "pr_number": 4751,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791142391933,
+   "ts_iso": "2026-10-04T19:33:11Z",
+   "data": {
+    "id": "chg_ts22_0389",
+    "kind": "config",
+    "entity_id": "svc_billing",
+    "ts": 1791142391933,
+    "ts_iso": "2026-10-04T19:33:11Z",
+    "author_id": "per_0060",
+    "reviewer_ids": [
+     "per_0121"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "billing: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791142777463,
+   "ts_iso": "2026-10-04T19:39:37Z",
+   "data": {
+    "id": "chg_ts22_0391",
+    "kind": "code",
+    "entity_id": "svc_api-gateway",
+    "ts": 1791142777463,
+    "ts_iso": "2026-10-04T19:39:37Z",
+    "author_id": "per_0123",
+    "reviewer_ids": [
+     "per_0007"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "api-gateway release v5.11.10: image CDN switch",
+    "flag_key": null,
+    "pr_number": 2579,
+    "version_to": "4.1.16",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791143394825,
+   "ts_iso": "2026-10-04T19:49:54Z",
+   "data": {
+    "id": "chg_ts22_0385",
+    "kind": "flag",
+    "entity_id": "svc_recommendations",
+    "ts": 1791143394825,
+    "ts_iso": "2026-10-04T19:49:54Z",
+    "author_id": "per_0031",
+    "reviewer_ids": [
+     "per_0021"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag recommendations.image-cdn-switch-17 rollout 0% -> 50%",
+    "flag_key": "recommendations.image-cdn-switch-17",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791143875943,
+   "ts_iso": "2026-10-04T19:57:55Z",
+   "data": {
+    "id": "chg_ts22_0397",
+    "kind": "config",
+    "entity_id": "svc_scheduler",
+    "ts": 1791143875943,
+    "ts_iso": "2026-10-04T19:57:55Z",
+    "author_id": "per_0107",
+    "reviewer_ids": [
+     "per_0100",
+     "per_0105"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "scheduler: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791143957434,
+   "ts_iso": "2026-10-04T19:59:17Z",
+   "data": {
+    "id": "chg_ts22_0394",
+    "kind": "config",
+    "entity_id": "svc_billing",
+    "ts": 1791143957434,
+    "ts_iso": "2026-10-04T19:59:17Z",
+    "author_id": "per_0121",
+    "reviewer_ids": [
+     "per_0070"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "billing: batch.size 100 -> 200",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791144347506,
+   "ts_iso": "2026-10-04T20:05:47Z",
+   "data": {
+    "id": "chg_ts22_0388",
+    "kind": "code",
+    "entity_id": "svc_tax",
+    "ts": 1791144347506,
+    "ts_iso": "2026-10-04T20:05:47Z",
+    "author_id": "per_0052",
+    "reviewer_ids": [
+     "per_0128"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "tax deploy v7.31.0 (session refresh)",
+    "flag_key": null,
+    "pr_number": 2488,
+    "version_to": "9.15.7",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791144432490,
+   "ts_iso": "2026-10-04T20:07:12Z",
+   "data": {
+    "id": "chg_ts22_0396",
+    "kind": "code",
+    "entity_id": "svc_billing",
+    "ts": 1791144432490,
+    "ts_iso": "2026-10-04T20:07:12Z",
+    "author_id": "per_0070",
+    "reviewer_ids": [
+     "per_0063"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "billing release v9.29.15: currency rounding fix",
+    "flag_key": null,
+    "pr_number": 7682,
+    "version_to": "2.18.8",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791144616423,
+   "ts_iso": "2026-10-04T20:10:16Z",
+   "data": {
+    "id": "chg_ts22_0390",
+    "kind": "code",
+    "entity_id": "svc_billing",
+    "ts": 1791144616423,
+    "ts_iso": "2026-10-04T20:10:16Z",
+    "author_id": "per_0067",
+    "reviewer_ids": [
+     "per_0057",
+     "per_0124"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "billing release v9.4.4: address autocomplete",
+    "flag_key": null,
+    "pr_number": 6137,
+    "version_to": "3.4.14",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791144714633,
+   "ts_iso": "2026-10-04T20:11:54Z",
+   "data": {
+    "id": "alt_ts22_0382",
+    "name": "SlowQueries",
+    "entity_id": "ds_pg-billing",
+    "metric": "slowqueries",
+    "severity": "critical",
+    "ts": 1791144714633,
+    "ts_iso": "2026-10-04T20:11:54Z",
+    "resolved_ts": null,
+    "value": 4.01,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791144813633,
+   "ts_iso": "2026-10-04T20:13:33Z",
+   "data": {
+    "id": "alt_ts22_0384",
+    "name": "HighErrorRate",
+    "entity_id": "ds_pg-payments",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791144813633,
+    "ts_iso": "2026-10-04T20:13:33Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791144835633,
+   "ts_iso": "2026-10-04T20:13:55Z",
+   "data": {
+    "id": "alt_ts22_0383",
+    "name": "SlowResponses",
+    "entity_id": "svc_billing",
+    "metric": "slowresponses",
+    "severity": "critical",
+    "ts": 1791144835633,
+    "ts_iso": "2026-10-04T20:13:55Z",
+    "resolved_ts": null,
+    "value": 3.98,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "ds_pg-billing"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_ts22_0381"
+  ],
+  "mechanism": [
+   "dropped index still in use"
+  ],
+  "silent_root": false,
+  "alerting_entity_ids": [
+   "ds_pg-billing",
+   "svc_billing"
+  ],
+  "correct_team_id": "team_payments",
+  "correct_oncall_id": "per_0061",
+  "expected_experts": [
+   "per_0066",
+   "per_0072",
+   "per_0070"
+  ]
+ },
+ "distractors": 15
+}

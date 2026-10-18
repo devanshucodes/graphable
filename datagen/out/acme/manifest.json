@@ -1,0 +1,103 @@
+{
+ "tenant": "acme",
+ "company": "Acme Commerce",
+ "seed": 20261015,
+ "render_mode": "gemini",
+ "history_window": [
+  "2025-10-01T00:00:00Z",
+  "2026-09-30T23:59:59Z"
+ ],
+ "test_window": [
+  "2026-10-01T00:00:00Z",
+  "2026-10-14T23:59:00Z"
+ ],
+ "counts": {
+  "services": 40,
+  "datastores": 15,
+  "regions": 3,
+  "endpoints": 328,
+  "flags": 200,
+  "teams": 11,
+  "people": 131,
+  "memberships": 142,
+  "ownership": 61,
+  "reporting": 106,
+  "dependencies": 224,
+  "oncall": 1078,
+  "changes": 9697,
+  "alerts": 7143,
+  "incidents": 397,
+  "org_events": 25,
+  "threads": 1905,
+  "messages": 15484,
+  "tickets": 2854,
+  "docs": 439,
+  "runbooks": 170,
+  "decisions_meta": 120
+ },
+ "runbook_steps": 722,
+ "estimated_graph_nodes_before_extraction": 40737,
+ "change_kinds": {
+  "code": 5906,
+  "flag": 572,
+  "config": 2068,
+  "cert": 296,
+  "dependency_bump": 431,
+  "migration": 424
+ },
+ "incident_causes": {
+  "change": 247,
+  "cert_expiry": 20,
+  "capacity": 45,
+  "external_outage": 25,
+  "data_issue": 20,
+  "node_failure": 25,
+  "flag_drift": 15
+ },
+ "severity": {
+  "SEV3": 139,
+  "SEV4": 119,
+  "SEV5": 79,
+  "SEV2": 48,
+  "SEV1": 12
+ },
+ "silent_root_share": 0.353,
+ "scenarios": {
+  "test": 40,
+  "learning": 8,
+  "hero": 4,
+  "train": 40
+ },
+ "validation": {
+  "errors": [],
+  "warnings": [],
+  "ok": true
+ },
+ "checksums": {
+  "artifacts/decisions_meta.jsonl": "55e2d2f89b7ebbbd",
+  "artifacts/docs.jsonl": "a59a08d0e8cc12dc",
+  "artifacts/messages.jsonl": "6ca393d8d575c53e",
+  "artifacts/runbooks.jsonl": "6fe12d261425a869",
+  "artifacts/threads.jsonl": "c78fe6c7eabfd054",
+  "artifacts/tickets.jsonl": "9223274b5818f000",
+  "events/alerts.jsonl": "3118b1895faf99fc",
+  "events/changes.jsonl": "cdda03ec5795c647",
+  "events/incidents.jsonl": "af4dacf8126adca5",
+  "events/org_events.jsonl": "dc4bd1f1762fcb02",
+  "truth/extraction_gold.jsonl": "5b86c7272a8204c2",
+  "truth/fact_cards.jsonl": "ae2ac7e0a4126f1b",
+  "truth/incidents_truth.jsonl": "179337e985de5fee",
+  "world/datastores.jsonl": "384f931d9cab23c5",
+  "world/dependencies.jsonl": "f0411ab82e1164bc",
+  "world/endpoints.jsonl": "36bcc503543a97bf",
+  "world/flags.jsonl": "b3b298c7dbe6d141",
+  "world/memberships.jsonl": "19fe06f3b9754001",
+  "world/oncall.jsonl": "9a74d70dcedd9fcf",
+  "world/ownership.jsonl": "86719984af74272a",
+  "world/people.jsonl": "257ef8302e37fa08",
+  "world/regions.jsonl": "4281e0e3d1aaf477",
+  "world/reporting.jsonl": "57d9497e3b388b09",
+  "world/services.jsonl": "ac598d63b4341ce5",
+  "world/teams.jsonl": "152a8d34dee7cb08"
+ }
+}

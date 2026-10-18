@@ -1,0 +1,351 @@
+{
+ "id": "TS-40",
+ "type": "look_alike",
+ "t0": 1790986179323,
+ "t0_iso": "2026-10-03T00:09:39Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1790981126816,
+   "ts_iso": "2026-10-02T22:45:26Z",
+   "data": {
+    "id": "chg_ts40_0772",
+    "kind": "config",
+    "entity_id": "svc_cart",
+    "ts": 1790981126816,
+    "ts_iso": "2026-10-02T22:45:26Z",
+    "author_id": "per_0053",
+    "reviewer_ids": [
+     "per_0051"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "cart: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790981140555,
+   "ts_iso": "2026-10-02T22:45:40Z",
+   "data": {
+    "id": "chg_ts40_0769",
+    "kind": "config",
+    "entity_id": "svc_permissions",
+    "ts": 1790981140555,
+    "ts_iso": "2026-10-02T22:45:40Z",
+    "author_id": "per_0019",
+    "reviewer_ids": [
+     "per_0014"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "permissions: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790981185047,
+   "ts_iso": "2026-10-02T22:46:25Z",
+   "data": {
+    "id": "chg_ts40_0770",
+    "kind": "config",
+    "entity_id": "svc_address-validation",
+    "ts": 1790981185047,
+    "ts_iso": "2026-10-02T22:46:25Z",
+    "author_id": "per_0128",
+    "reviewer_ids": [
+     "per_0051"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "address-validation: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790983119323,
+   "ts_iso": "2026-10-02T23:18:39Z",
+   "data": {
+    "id": "chg_ts40_0759",
+    "kind": "config",
+    "entity_id": "svc_pricing",
+    "ts": 1790983119323,
+    "ts_iso": "2026-10-02T23:18:39Z",
+    "author_id": "per_0038",
+    "reviewer_ids": [
+     "per_0035",
+     "per_0034"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pricing: db.pool.max 64 -> 16",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790984158688,
+   "ts_iso": "2026-10-02T23:35:58Z",
+   "data": {
+    "id": "chg_ts40_0773",
+    "kind": "code",
+    "entity_id": "svc_api-gateway",
+    "ts": 1790984158688,
+    "ts_iso": "2026-10-02T23:35:58Z",
+    "author_id": "per_0010",
+    "reviewer_ids": [
+     "per_0006",
+     "per_0127"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "api-gateway release v6.12.19: retry jitter",
+    "flag_key": null,
+    "pr_number": 5647,
+    "version_to": "9.23.9",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790984212441,
+   "ts_iso": "2026-10-02T23:36:52Z",
+   "data": {
+    "id": "chg_ts40_0768",
+    "kind": "code",
+    "entity_id": "ds_redis-ratelimit",
+    "ts": 1790984212441,
+    "ts_iso": "2026-10-02T23:36:52Z",
+    "author_id": "per_0127",
+    "reviewer_ids": [
+     "per_0006"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "redis-ratelimit release v3.29.7: bulk price import",
+    "flag_key": null,
+    "pr_number": 2509,
+    "version_to": "6.29.10",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790985219323,
+   "ts_iso": "2026-10-02T23:53:39Z",
+   "data": {
+    "id": "alt_ts40_0765",
+    "name": "HighErrorRate",
+    "entity_id": "ds_redis-ratelimit",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790985219323,
+    "ts_iso": "2026-10-02T23:53:39Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790985399323,
+   "ts_iso": "2026-10-02T23:56:39Z",
+   "data": {
+    "id": "alt_ts40_0766",
+    "name": "DiskUsageHigh",
+    "entity_id": "svc_reviews",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1790985399323,
+    "ts_iso": "2026-10-02T23:56:39Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790985699323,
+   "ts_iso": "2026-10-03T00:01:39Z",
+   "data": {
+    "id": "chg_ts40_0767",
+    "kind": "config",
+    "entity_id": "ds_redis-cache",
+    "ts": 1790985699323,
+    "ts_iso": "2026-10-03T00:01:39Z",
+    "author_id": "per_0108",
+    "reviewer_ids": [
+     "per_0102",
+     "per_0109"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-cache: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1790985907100,
+   "ts_iso": "2026-10-03T00:05:07Z",
+   "data": {
+    "id": "chg_ts40_0771",
+    "kind": "config",
+    "entity_id": "ds_pg-payments",
+    "ts": 1790985907100,
+    "ts_iso": "2026-10-03T00:05:07Z",
+    "author_id": "per_0063",
+    "reviewer_ids": [
+     "per_0069",
+     "per_0065"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pg-payments: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790986347323,
+   "ts_iso": "2026-10-03T00:12:27Z",
+   "data": {
+    "id": "alt_ts40_0762",
+    "name": "SlowResponses",
+    "entity_id": "svc_web-bff",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1790986347323,
+    "ts_iso": "2026-10-03T00:12:27Z",
+    "resolved_ts": null,
+    "value": 3.92,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790986374323,
+   "ts_iso": "2026-10-03T00:12:54Z",
+   "data": {
+    "id": "alt_ts40_0760",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_cart",
+    "metric": "upstreamtimeouts",
+    "severity": "critical",
+    "ts": 1790986374323,
+    "ts_iso": "2026-10-03T00:12:54Z",
+    "resolved_ts": null,
+    "value": 1.58,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790986460323,
+   "ts_iso": "2026-10-03T00:14:20Z",
+   "data": {
+    "id": "alt_ts40_0761",
+    "name": "SlowResponses",
+    "entity_id": "svc_cart",
+    "metric": "slowresponses",
+    "severity": "critical",
+    "ts": 1790986460323,
+    "ts_iso": "2026-10-03T00:14:20Z",
+    "resolved_ts": null,
+    "value": 4.48,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790986542323,
+   "ts_iso": "2026-10-03T00:15:42Z",
+   "data": {
+    "id": "alt_ts40_0764",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_checkout",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1790986542323,
+    "ts_iso": "2026-10-03T00:15:42Z",
+    "resolved_ts": null,
+    "value": 3.2,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1790986733323,
+   "ts_iso": "2026-10-03T00:18:53Z",
+   "data": {
+    "id": "alt_ts40_0763",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_mobile-bff",
+    "metric": "upstreamtimeouts",
+    "severity": "warning",
+    "ts": 1790986733323,
+    "ts_iso": "2026-10-03T00:18:53Z",
+    "resolved_ts": null,
+    "value": 5.13,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_pricing"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_ts40_0759"
+  ],
+  "mechanism": [
+   "connection pool max lowered"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_cart",
+   "svc_checkout",
+   "svc_mobile-bff",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_pricing_inventory",
+  "correct_oncall_id": "per_0042",
+  "expected_experts": [
+   "per_0038",
+   "per_0039",
+   "per_0042"
+  ],
+  "look_alike_of": "motif_redis_evict"
+ },
+ "distractors": 7
+}

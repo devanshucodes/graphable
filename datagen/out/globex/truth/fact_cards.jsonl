@@ -1,0 +1,718 @@
+{"id": "msg_000001", "intent": "alert_ack", "facts": {"incident": "INC-0001", "entity": "payments", "alerts": ["5xxSpike", "HighErrorRate", "UpstreamErrors"]}}
+{"id": "msg_000002", "intent": "observation", "facts": {"entities": ["svc_payments", "svc_orders", "svc_web-bff", "svc_checkout"]}}
+{"id": "msg_000003", "intent": "investigating", "facts": {"entity": "svc_payments"}}
+{"id": "msg_000004", "intent": "investigating", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000005", "intent": "investigating", "facts": {"entity": "svc_orders"}}
+{"id": "msg_000006", "intent": "investigating", "facts": {"entity": "svc_orders"}}
+{"id": "msg_000007", "intent": "investigating", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000008", "intent": "found_cause", "facts": {"root": "ds_ext-paylynx", "mechanism": "PayLynx processor outage", "change_id": null, "change_summary": null, "change_author": null, "cause_type": "external_outage", "pr": null, "change_ts": null}}
+{"id": "msg_000009", "intent": "action", "facts": {"mitigation": "failover_vendor", "runbook": "RB-ext-01", "by": "per_0015"}}
+{"id": "msg_000010", "intent": "chat", "facts": {}}
+{"id": "msg_000011", "intent": "chat", "facts": {}}
+{"id": "msg_000012", "intent": "chat", "facts": {}}
+{"id": "msg_000013", "intent": "chat", "facts": {}}
+{"id": "msg_000014", "intent": "chat", "facts": {}}
+{"id": "msg_000015", "intent": "chat", "facts": {}}
+{"id": "msg_000016", "intent": "chat", "facts": {}}
+{"id": "msg_000017", "intent": "mitigated", "facts": {"by": "per_0015", "verified": false}}
+{"id": "msg_000018", "intent": "resolved", "facts": {"followups": ["PAY-101", "PAY-102", "PAY-103"]}}
+{"id": "msg_000019", "intent": "alert_ack", "facts": {"incident": "INC-0002", "entity": "search", "alerts": ["5xxSpike", "DeserializationErrors", "HighErrorRate"]}}
+{"id": "msg_000020", "intent": "observation", "facts": {"entities": ["svc_service-mesh", "svc_api-gateway", "svc_web-bff", "svc_auth"]}}
+{"id": "msg_000021", "intent": "investigating", "facts": {"entity": "svc_orders"}}
+{"id": "msg_000022", "intent": "investigating", "facts": {"entity": "svc_payments"}}
+{"id": "msg_000023", "intent": "investigating", "facts": {"entity": "svc_search"}}
+{"id": "msg_000024", "intent": "investigating", "facts": {"entity": "svc_orders"}}
+{"id": "msg_000025", "intent": "investigating", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000026", "intent": "investigating", "facts": {"entity": "svc_service-mesh"}}
+{"id": "msg_000027", "intent": "investigating", "facts": {"entity": "svc_api-gateway"}}
+{"id": "msg_000028", "intent": "investigating", "facts": {"entity": "svc_catalog"}}
+{"id": "msg_000029", "intent": "investigating", "facts": {"entity": "svc_service-mesh"}}
+{"id": "msg_000030", "intent": "investigating", "facts": {"entity": "svc_catalog"}}
+{"id": "msg_000031", "intent": "found_cause", "facts": {"root": "svc_service-mesh", "mechanism": "serialization format change", "change_id": "chg_000003", "change_summary": "service-mesh deploy v2.35.2 (new tax rounding)", "change_author": "per_0020", "cause_type": "change", "pr": 9040, "change_ts": 1785682680000}}
+{"id": "msg_000032", "intent": "action", "facts": {"mitigation": "rollback", "runbook": "RB-servic-01", "by": "per_0020"}}
+{"id": "msg_000033", "intent": "chat", "facts": {}}
+{"id": "msg_000034", "intent": "chat", "facts": {}}
+{"id": "msg_000035", "intent": "chat", "facts": {}}
+{"id": "msg_000036", "intent": "chat", "facts": {}}
+{"id": "msg_000037", "intent": "chat", "facts": {}}
+{"id": "msg_000038", "intent": "mitigated", "facts": {"by": "per_0020", "verified": true}}
+{"id": "msg_000039", "intent": "resolved", "facts": {"followups": ["PLAT-101", "PLAT-102"]}}
+{"id": "msg_000040", "intent": "alert_ack", "facts": {"incident": "INC-0003", "entity": "orders", "alerts": ["5xxSpike", "HighErrorRate", "UpstreamErrors"]}}
+{"id": "msg_000041", "intent": "observation", "facts": {"entities": ["svc_api-gateway", "svc_web-bff", "svc_auth", "svc_session"]}}
+{"id": "msg_000042", "intent": "wrong_guess", "facts": {"entity": "svc_orders"}}
+{"id": "msg_000043", "intent": "investigating", "facts": {"entity": "svc_notifications"}}
+{"id": "msg_000044", "intent": "investigating", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000045", "intent": "investigating", "facts": {"entity": "svc_session"}}
+{"id": "msg_000046", "intent": "investigating", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000047", "intent": "investigating", "facts": {"entity": "svc_notifications"}}
+{"id": "msg_000048", "intent": "investigating", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000049", "intent": "investigating", "facts": {"entity": "svc_session"}}
+{"id": "msg_000050", "intent": "investigating", "facts": {"entity": "svc_catalog"}}
+{"id": "msg_000051", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000052", "intent": "found_cause", "facts": {"root": "svc_config-service", "mechanism": "null handling bug on new field", "change_id": "chg_000056", "change_summary": "config-service deploy v7.24.4 (inventory holds)", "change_author": "per_0020", "cause_type": "change", "pr": 4876, "change_ts": 1786011600000}}
+{"id": "msg_000053", "intent": "action", "facts": {"mitigation": "rollback", "runbook": "RB-config-01", "by": "per_0009"}}
+{"id": "msg_000054", "intent": "chat", "facts": {}}
+{"id": "msg_000055", "intent": "chat", "facts": {}}
+{"id": "msg_000056", "intent": "chat", "facts": {}}
+{"id": "msg_000057", "intent": "chat", "facts": {}}
+{"id": "msg_000058", "intent": "chat", "facts": {}}
+{"id": "msg_000059", "intent": "chat", "facts": {}}
+{"id": "msg_000060", "intent": "chat", "facts": {}}
+{"id": "msg_000061", "intent": "chat", "facts": {}}
+{"id": "msg_000062", "intent": "mitigated", "facts": {"by": "per_0009", "verified": true}}
+{"id": "msg_000063", "intent": "resolved", "facts": {"followups": ["PLAT-103", "PLAT-104", "PLAT-105"]}}
+{"id": "msg_000064", "intent": "alert_ack", "facts": {"incident": "INC-0004", "entity": "checkout", "alerts": ["5xxSpike", "HighErrorRate", "UpstreamErrors"]}}
+{"id": "msg_000065", "intent": "observation", "facts": {"entities": ["svc_payments", "svc_checkout", "svc_orders", "svc_web-bff"]}}
+{"id": "msg_000066", "intent": "investigating", "facts": {"entity": "svc_api-gateway"}}
+{"id": "msg_000067", "intent": "investigating", "facts": {"entity": "svc_orders"}}
+{"id": "msg_000068", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000069", "intent": "investigating", "facts": {"entity": "svc_api-gateway"}}
+{"id": "msg_000070", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000071", "intent": "investigating", "facts": {"entity": "ds_pg-payments"}}
+{"id": "msg_000072", "intent": "found_cause", "facts": {"root": "ds_pg-payments", "mechanism": "TLS certificate expired", "change_id": null, "change_summary": null, "change_author": null, "cause_type": "cert_expiry", "pr": null, "change_ts": null}}
+{"id": "msg_000073", "intent": "action", "facts": {"mitigation": "renew_cert", "runbook": "RB-pg-01", "by": "per_0013"}}
+{"id": "msg_000074", "intent": "chat", "facts": {}}
+{"id": "msg_000075", "intent": "chat", "facts": {}}
+{"id": "msg_000076", "intent": "chat", "facts": {}}
+{"id": "msg_000077", "intent": "chat", "facts": {}}
+{"id": "msg_000078", "intent": "mitigated", "facts": {"by": "per_0013", "verified": true}}
+{"id": "msg_000079", "intent": "resolved", "facts": {"followups": ["PAY-104", "PAY-105", "PAY-106"]}}
+{"id": "msg_000080", "intent": "alert_ack", "facts": {"incident": "INC-0006", "entity": "payments", "alerts": ["5xxSpike", "HighErrorRate", "UpstreamErrors"]}}
+{"id": "msg_000081", "intent": "observation", "facts": {"entities": ["svc_payments", "svc_checkout", "svc_orders", "svc_web-bff"]}}
+{"id": "msg_000082", "intent": "investigating", "facts": {"entity": "svc_api-gateway"}}
+{"id": "msg_000083", "intent": "investigating", "facts": {"entity": "svc_payments"}}
+{"id": "msg_000084", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000085", "intent": "investigating", "facts": {"entity": "svc_api-gateway"}}
+{"id": "msg_000086", "intent": "investigating", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000087", "intent": "investigating", "facts": {"entity": "svc_orders"}}
+{"id": "msg_000088", "intent": "found_cause", "facts": {"root": "svc_payments", "mechanism": "null handling bug on new field", "change_id": "chg_000213", "change_summary": "payments hotfix v3.22.8: address autocomplete", "change_author": "per_0013", "cause_type": "change", "pr": 9034, "change_ts": 1787319660000}}
+{"id": "msg_000089", "intent": "action", "facts": {"mitigation": "rollback", "runbook": "RB-paymen-01", "by": "per_0013"}}
+{"id": "msg_000090", "intent": "chat", "facts": {}}
+{"id": "msg_000091", "intent": "chat", "facts": {}}
+{"id": "msg_000092", "intent": "chat", "facts": {}}
+{"id": "msg_000093", "intent": "chat", "facts": {}}
+{"id": "msg_000094", "intent": "mitigated", "facts": {"by": "per_0013", "verified": true}}
+{"id": "msg_000095", "intent": "resolved", "facts": {"followups": ["PAY-107", "PAY-108", "PAY-109"]}}
+{"id": "msg_000096", "intent": "alert_ack", "facts": {"incident": "INC-0008", "entity": "payments", "alerts": ["5xxSpike", "HighErrorRate", "UpstreamErrors"]}}
+{"id": "msg_000097", "intent": "observation", "facts": {"entities": ["svc_payments", "svc_checkout", "svc_orders", "svc_web-bff"]}}
+{"id": "msg_000098", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000099", "intent": "investigating", "facts": {"entity": "svc_payments"}}
+{"id": "msg_000100", "intent": "investigating", "facts": {"entity": "svc_orders"}}
+{"id": "msg_000101", "intent": "investigating", "facts": {"entity": "svc_payments"}}
+{"id": "msg_000102", "intent": "found_cause", "facts": {"root": "svc_payments", "mechanism": "timeout lowered below dependency p99", "change_id": "chg_000245", "change_summary": "payments: http.client.timeout_ms 2000 -> 250", "change_author": "per_0013", "cause_type": "change", "pr": null, "change_ts": 1787668560000}}
+{"id": "msg_000103", "intent": "action", "facts": {"mitigation": "rollback", "runbook": "RB-paymen-02", "by": "per_0013"}}
+{"id": "msg_000104", "intent": "chat", "facts": {}}
+{"id": "msg_000105", "intent": "chat", "facts": {}}
+{"id": "msg_000106", "intent": "chat", "facts": {}}
+{"id": "msg_000107", "intent": "chat", "facts": {}}
+{"id": "msg_000108", "intent": "chat", "facts": {}}
+{"id": "msg_000109", "intent": "chat", "facts": {}}
+{"id": "msg_000110", "intent": "chat", "facts": {}}
+{"id": "msg_000111", "intent": "chat", "facts": {}}
+{"id": "msg_000112", "intent": "mitigated", "facts": {"by": "per_0013", "verified": true}}
+{"id": "msg_000113", "intent": "resolved", "facts": {"followups": ["PAY-110", "PAY-111", "PAY-112"]}}
+{"id": "msg_000114", "intent": "alert_ack", "facts": {"incident": "INC-0012", "entity": "redis-session", "alerts": ["5xxSpike", "HighErrorRate", "UpstreamErrors"]}}
+{"id": "msg_000115", "intent": "observation", "facts": {"entities": ["ds_redis-session", "svc_auth", "svc_session", "svc_checkout"]}}
+{"id": "msg_000116", "intent": "wrong_guess", "facts": {"entity": "svc_session"}}
+{"id": "msg_000117", "intent": "investigating", "facts": {"entity": "svc_api-gateway"}}
+{"id": "msg_000118", "intent": "investigating", "facts": {"entity": "ds_redis-session"}}
+{"id": "msg_000119", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000120", "intent": "investigating", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000121", "intent": "investigating", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000122", "intent": "investigating", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000123", "intent": "investigating", "facts": {"entity": "ds_redis-session"}}
+{"id": "msg_000124", "intent": "investigating", "facts": {"entity": "ds_redis-session"}}
+{"id": "msg_000125", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000126", "intent": "found_cause", "facts": {"root": "ds_redis-session", "mechanism": "bad backfill corrupted records", "change_id": null, "change_summary": null, "change_author": null, "cause_type": "data_issue", "pr": null, "change_ts": null}}
+{"id": "msg_000127", "intent": "action", "facts": {"mitigation": "data_fix", "runbook": "RB-redis-01", "by": "per_0004"}}
+{"id": "msg_000128", "intent": "chat", "facts": {}}
+{"id": "msg_000129", "intent": "chat", "facts": {}}
+{"id": "msg_000130", "intent": "chat", "facts": {}}
+{"id": "msg_000131", "intent": "chat", "facts": {}}
+{"id": "msg_000132", "intent": "mitigated", "facts": {"by": "per_0004", "verified": true}}
+{"id": "msg_000133", "intent": "resolved", "facts": {"followups": ["IDN-101", "IDN-102", "IDN-103"]}}
+{"id": "msg_000134", "intent": "alert_ack", "facts": {"incident": "INC-0016", "entity": "checkout", "alerts": ["HighErrorRate", "UpstreamErrors"]}}
+{"id": "msg_000135", "intent": "observation", "facts": {"entities": ["svc_checkout", "svc_web-bff", "svc_api-gateway"]}}
+{"id": "msg_000136", "intent": "wrong_guess", "facts": {"entity": "svc_api-gateway"}}
+{"id": "msg_000137", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000138", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000139", "intent": "investigating", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000140", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000141", "intent": "investigating", "facts": {"entity": "svc_api-gateway"}}
+{"id": "msg_000142", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000143", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000144", "intent": "found_cause", "facts": {"root": "svc_checkout", "mechanism": "node pool failure in one zone", "change_id": null, "change_summary": null, "change_author": null, "cause_type": "node_failure", "pr": null, "change_ts": null}}
+{"id": "msg_000145", "intent": "action", "facts": {"mitigation": "failover_zone", "runbook": "RB-checko-01", "by": "per_0018"}}
+{"id": "msg_000146", "intent": "chat", "facts": {}}
+{"id": "msg_000147", "intent": "chat", "facts": {}}
+{"id": "msg_000148", "intent": "chat", "facts": {}}
+{"id": "msg_000149", "intent": "chat", "facts": {}}
+{"id": "msg_000150", "intent": "chat", "facts": {}}
+{"id": "msg_000151", "intent": "chat", "facts": {}}
+{"id": "msg_000152", "intent": "chat", "facts": {}}
+{"id": "msg_000153", "intent": "mitigated", "facts": {"by": "per_0018", "verified": true}}
+{"id": "msg_000154", "intent": "resolved", "facts": {"followups": ["CHK-102"]}}
+{"id": "msg_000155", "intent": "alert_ack", "facts": {"incident": "INC-0017", "entity": "checkout", "alerts": ["5xxSpike", "HighErrorRate", "UpstreamErrors"]}}
+{"id": "msg_000156", "intent": "observation", "facts": {"entities": ["svc_checkout", "svc_web-bff", "svc_api-gateway"]}}
+{"id": "msg_000157", "intent": "investigating", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000158", "intent": "investigating", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000159", "intent": "investigating", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000160", "intent": "investigating", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000161", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000162", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000163", "intent": "investigating", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000164", "intent": "investigating", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000165", "intent": "found_cause", "facts": {"root": "svc_checkout", "mechanism": "flag enabled untested code path", "change_id": "chg_000607", "change_summary": "flag checkout.saved-cards-69 rollout 10% -> 25%", "change_author": "per_0011", "cause_type": "change", "pr": null, "change_ts": 1790251860000}}
+{"id": "msg_000166", "intent": "action", "facts": {"mitigation": "flag_off", "runbook": "RB-checko-01", "by": "per_0011"}}
+{"id": "msg_000167", "intent": "chat", "facts": {}}
+{"id": "msg_000168", "intent": "chat", "facts": {}}
+{"id": "msg_000169", "intent": "chat", "facts": {}}
+{"id": "msg_000170", "intent": "chat", "facts": {}}
+{"id": "msg_000171", "intent": "chat", "facts": {}}
+{"id": "msg_000172", "intent": "chat", "facts": {}}
+{"id": "msg_000173", "intent": "mitigated", "facts": {"by": "per_0011", "verified": true}}
+{"id": "msg_000174", "intent": "resolved", "facts": {"followups": ["CHK-103", "CHK-104", "CHK-105"]}}
+{"id": "msg_000175", "intent": "propose", "facts": {"title": "Adopt structured logging across Identity services", "entity": "svc_session"}}
+{"id": "msg_000176", "intent": "agree", "facts": {"entity": "svc_session", "option": "add a cache layer"}}
+{"id": "msg_000177", "intent": "agree", "facts": {"entity": "svc_session", "option": "use a different datastore"}}
+{"id": "msg_000178", "intent": "concern", "facts": {"entity": "svc_session", "option": "add a cache layer"}}
+{"id": "msg_000179", "intent": "question", "facts": {"entity": "svc_session", "option": "use a different datastore"}}
+{"id": "msg_000180", "intent": "question", "facts": {"entity": "svc_session", "option": "add a cache layer"}}
+{"id": "msg_000181", "intent": "question", "facts": {"entity": "svc_session", "option": "add a cache layer"}}
+{"id": "msg_000182", "intent": "agree", "facts": {"entity": "svc_session", "option": "add a cache layer"}}
+{"id": "msg_000183", "intent": "option", "facts": {"entity": "svc_session", "option": "add a cache layer"}}
+{"id": "msg_000184", "intent": "decide", "facts": {"title": "Adopt structured logging across Identity services", "key": "ADR-001", "supersedes": null}}
+{"id": "msg_000185", "intent": "propose", "facts": {"title": "Adopt structured logging across Edge services", "entity": "svc_api-gateway"}}
+{"id": "msg_000186", "intent": "concern", "facts": {"entity": "svc_api-gateway", "option": "rewrite the service"}}
+{"id": "msg_000187", "intent": "agree", "facts": {"entity": "svc_api-gateway", "option": "do nothing"}}
+{"id": "msg_000188", "intent": "question", "facts": {"entity": "svc_api-gateway", "option": "rewrite the service"}}
+{"id": "msg_000189", "intent": "option", "facts": {"entity": "svc_api-gateway", "option": "rewrite the service"}}
+{"id": "msg_000190", "intent": "question", "facts": {"entity": "svc_api-gateway", "option": "rewrite the service"}}
+{"id": "msg_000191", "intent": "question", "facts": {"entity": "svc_api-gateway", "option": "do nothing"}}
+{"id": "msg_000192", "intent": "option", "facts": {"entity": "svc_api-gateway", "option": "do nothing"}}
+{"id": "msg_000193", "intent": "concern", "facts": {"entity": "svc_api-gateway", "option": "rewrite the service"}}
+{"id": "msg_000194", "intent": "agree", "facts": {"entity": "svc_api-gateway", "option": "do nothing"}}
+{"id": "msg_000195", "intent": "question", "facts": {"entity": "svc_api-gateway", "option": "do nothing"}}
+{"id": "msg_000196", "intent": "agree", "facts": {"entity": "svc_api-gateway", "option": "rewrite the service"}}
+{"id": "msg_000197", "intent": "question", "facts": {"entity": "svc_api-gateway", "option": "do nothing"}}
+{"id": "msg_000198", "intent": "decide", "facts": {"title": "Adopt structured logging across Edge services", "key": "ADR-002", "supersedes": null}}
+{"id": "msg_000199", "intent": "propose", "facts": {"title": "Deprecate v1 endpoints of payments", "entity": "svc_payments"}}
+{"id": "msg_000200", "intent": "concern", "facts": {"entity": "svc_payments", "option": "buy a vendor product"}}
+{"id": "msg_000201", "intent": "option", "facts": {"entity": "svc_payments", "option": "buy a vendor product"}}
+{"id": "msg_000202", "intent": "option", "facts": {"entity": "svc_payments", "option": "buy a vendor product"}}
+{"id": "msg_000203", "intent": "agree", "facts": {"entity": "svc_payments", "option": "add more replicas"}}
+{"id": "msg_000204", "intent": "option", "facts": {"entity": "svc_payments", "option": "buy a vendor product"}}
+{"id": "msg_000205", "intent": "option", "facts": {"entity": "svc_payments", "option": "add more replicas"}}
+{"id": "msg_000206", "intent": "question", "facts": {"entity": "svc_payments", "option": "buy a vendor product"}}
+{"id": "msg_000207", "intent": "concern", "facts": {"entity": "svc_payments", "option": "buy a vendor product"}}
+{"id": "msg_000208", "intent": "question", "facts": {"entity": "svc_payments", "option": "buy a vendor product"}}
+{"id": "msg_000209", "intent": "decide", "facts": {"title": "Deprecate v1 endpoints of payments", "key": "ADR-003", "supersedes": null}}
+{"id": "msg_000210", "intent": "propose", "facts": {"title": "Require two reviewers for auth config", "entity": "svc_auth"}}
+{"id": "msg_000211", "intent": "agree", "facts": {"entity": "svc_auth", "option": "buy a vendor product"}}
+{"id": "msg_000212", "intent": "option", "facts": {"entity": "svc_auth", "option": "do nothing"}}
+{"id": "msg_000213", "intent": "option", "facts": {"entity": "svc_auth", "option": "do nothing"}}
+{"id": "msg_000214", "intent": "concern", "facts": {"entity": "svc_auth", "option": "buy a vendor product"}}
+{"id": "msg_000215", "intent": "agree", "facts": {"entity": "svc_auth", "option": "buy a vendor product"}}
+{"id": "msg_000216", "intent": "concern", "facts": {"entity": "svc_auth", "option": "buy a vendor product"}}
+{"id": "msg_000217", "intent": "question", "facts": {"entity": "svc_auth", "option": "buy a vendor product"}}
+{"id": "msg_000218", "intent": "decide", "facts": {"title": "Require two reviewers for auth config", "key": "ADR-004", "supersedes": null}}
+{"id": "msg_000219", "intent": "ask", "facts": {"entity": "svc_web-bff", "qtype": "who_knows"}}
+{"id": "msg_000220", "intent": "answer", "facts": {"entity": "svc_web-bff", "qtype": "who_knows", "runbook": null, "refer_to": null}}
+{"id": "msg_000221", "intent": "answer", "facts": {"entity": "svc_web-bff", "qtype": "who_knows", "runbook": null, "refer_to": "per_0002"}}
+{"id": "msg_000222", "intent": "followup_q", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000223", "intent": "answer", "facts": {"entity": "svc_web-bff", "qtype": "how_to", "runbook": null, "refer_to": null}}
+{"id": "msg_000224", "intent": "thanks", "facts": {}}
+{"id": "msg_000225", "intent": "ask", "facts": {"entity": "svc_vault", "qtype": "how_to"}}
+{"id": "msg_000226", "intent": "answer", "facts": {"entity": "svc_vault", "qtype": "how_to", "runbook": "RB-vault-01", "refer_to": "per_0020"}}
+{"id": "msg_000227", "intent": "answer", "facts": {"entity": "svc_vault", "qtype": "how_to", "runbook": "RB-vault-01", "refer_to": "per_0020"}}
+{"id": "msg_000228", "intent": "thanks", "facts": {}}
+{"id": "msg_000229", "intent": "ask", "facts": {"entity": "ds_pg-users", "qtype": "who_knows"}}
+{"id": "msg_000230", "intent": "answer", "facts": {"entity": "ds_pg-users", "qtype": "who_knows", "runbook": null, "refer_to": null}}
+{"id": "msg_000231", "intent": "answer", "facts": {"entity": "ds_pg-users", "qtype": "who_knows", "runbook": null, "refer_to": "per_0005"}}
+{"id": "msg_000232", "intent": "followup_q", "facts": {"entity": "ds_pg-users"}}
+{"id": "msg_000233", "intent": "answer", "facts": {"entity": "ds_pg-users", "qtype": "how_to", "runbook": null, "refer_to": null}}
+{"id": "msg_000234", "intent": "thanks", "facts": {}}
+{"id": "msg_000235", "intent": "ask", "facts": {"entity": "svc_session", "qtype": "how_to"}}
+{"id": "msg_000236", "intent": "answer", "facts": {"entity": "svc_session", "qtype": "how_to", "runbook": "RB-sessio-01", "refer_to": "per_0005"}}
+{"id": "msg_000237", "intent": "answer", "facts": {"entity": "svc_session", "qtype": "how_to", "runbook": "RB-sessio-01", "refer_to": "per_0005"}}
+{"id": "msg_000238", "intent": "followup_q", "facts": {"entity": "svc_session"}}
+{"id": "msg_000239", "intent": "answer", "facts": {"entity": "svc_session", "qtype": "how_to", "runbook": "RB-sessio-01", "refer_to": null}}
+{"id": "msg_000240", "intent": "thanks", "facts": {}}
+{"id": "msg_000241", "intent": "ask", "facts": {"entity": "svc_service-mesh", "qtype": "who_knows"}}
+{"id": "msg_000242", "intent": "answer", "facts": {"entity": "svc_service-mesh", "qtype": "who_knows", "runbook": null, "refer_to": null}}
+{"id": "msg_000243", "intent": "thanks", "facts": {}}
+{"id": "msg_000244", "intent": "ask", "facts": {"entity": "svc_auth", "qtype": "how_to"}}
+{"id": "msg_000245", "intent": "answer", "facts": {"entity": "svc_auth", "qtype": "how_to", "runbook": "RB-auth-01", "refer_to": null}}
+{"id": "msg_000246", "intent": "answer", "facts": {"entity": "svc_auth", "qtype": "how_to", "runbook": "RB-auth-01", "refer_to": "per_0006"}}
+{"id": "msg_000247", "intent": "followup_q", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000248", "intent": "answer", "facts": {"entity": "svc_auth", "qtype": "how_to", "runbook": "RB-auth-01", "refer_to": null}}
+{"id": "msg_000249", "intent": "thanks", "facts": {}}
+{"id": "msg_000250", "intent": "ask", "facts": {"entity": "svc_search", "qtype": "why"}}
+{"id": "msg_000251", "intent": "answer", "facts": {"entity": "svc_search", "qtype": "why", "runbook": null, "refer_to": null}}
+{"id": "msg_000252", "intent": "answer", "facts": {"entity": "svc_search", "qtype": "why", "runbook": null, "refer_to": "per_0009"}}
+{"id": "msg_000253", "intent": "followup_q", "facts": {"entity": "svc_search"}}
+{"id": "msg_000254", "intent": "answer", "facts": {"entity": "svc_search", "qtype": "how_to", "runbook": null, "refer_to": null}}
+{"id": "msg_000255", "intent": "thanks", "facts": {}}
+{"id": "msg_000256", "intent": "ask", "facts": {"entity": "ds_pg-users", "qtype": "who_knows"}}
+{"id": "msg_000257", "intent": "answer", "facts": {"entity": "ds_pg-users", "qtype": "who_knows", "runbook": null, "refer_to": null}}
+{"id": "msg_000258", "intent": "answer", "facts": {"entity": "ds_pg-users", "qtype": "who_knows", "runbook": null, "refer_to": "per_0005"}}
+{"id": "msg_000259", "intent": "followup_q", "facts": {"entity": "ds_pg-users"}}
+{"id": "msg_000260", "intent": "answer", "facts": {"entity": "ds_pg-users", "qtype": "how_to", "runbook": null, "refer_to": null}}
+{"id": "msg_000261", "intent": "thanks", "facts": {}}
+{"id": "msg_000262", "intent": "ask", "facts": {"entity": "ds_pg-catalog", "qtype": "how_to"}}
+{"id": "msg_000263", "intent": "answer", "facts": {"entity": "ds_pg-catalog", "qtype": "how_to", "runbook": "RB-pg-01", "refer_to": null}}
+{"id": "msg_000264", "intent": "answer", "facts": {"entity": "ds_pg-catalog", "qtype": "how_to", "runbook": "RB-pg-01", "refer_to": "per_0009"}}
+{"id": "msg_000265", "intent": "followup_q", "facts": {"entity": "ds_pg-catalog"}}
+{"id": "msg_000266", "intent": "answer", "facts": {"entity": "ds_pg-catalog", "qtype": "how_to", "runbook": "RB-pg-01", "refer_to": null}}
+{"id": "msg_000267", "intent": "thanks", "facts": {}}
+{"id": "msg_000268", "intent": "ask", "facts": {"entity": "svc_vault", "qtype": "why"}}
+{"id": "msg_000269", "intent": "answer", "facts": {"entity": "svc_vault", "qtype": "why", "runbook": null, "refer_to": null}}
+{"id": "msg_000270", "intent": "answer", "facts": {"entity": "svc_vault", "qtype": "why", "runbook": null, "refer_to": "per_0020"}}
+{"id": "msg_000271", "intent": "thanks", "facts": {}}
+{"id": "msg_000272", "intent": "ask", "facts": {"entity": "svc_api-gateway", "qtype": "why"}}
+{"id": "msg_000273", "intent": "answer", "facts": {"entity": "svc_api-gateway", "qtype": "why", "runbook": null, "refer_to": null}}
+{"id": "msg_000274", "intent": "answer", "facts": {"entity": "svc_api-gateway", "qtype": "why", "runbook": null, "refer_to": "per_0003"}}
+{"id": "msg_000275", "intent": "thanks", "facts": {}}
+{"id": "msg_000276", "intent": "ask", "facts": {"entity": "ds_es-search", "qtype": "who_knows"}}
+{"id": "msg_000277", "intent": "answer", "facts": {"entity": "ds_es-search", "qtype": "who_knows", "runbook": null, "refer_to": null}}
+{"id": "msg_000278", "intent": "answer", "facts": {"entity": "ds_es-search", "qtype": "who_knows", "runbook": null, "refer_to": "per_0009"}}
+{"id": "msg_000279", "intent": "thanks", "facts": {}}
+{"id": "msg_000280", "intent": "ask", "facts": {"entity": "ds_pg-catalog", "qtype": "why"}}
+{"id": "msg_000281", "intent": "answer", "facts": {"entity": "ds_pg-catalog", "qtype": "why", "runbook": null, "refer_to": null}}
+{"id": "msg_000282", "intent": "followup_q", "facts": {"entity": "ds_pg-catalog"}}
+{"id": "msg_000283", "intent": "answer", "facts": {"entity": "ds_pg-catalog", "qtype": "how_to", "runbook": null, "refer_to": null}}
+{"id": "msg_000284", "intent": "thanks", "facts": {}}
+{"id": "msg_000285", "intent": "ask", "facts": {"entity": "ds_pg-orders", "qtype": "how_to"}}
+{"id": "msg_000286", "intent": "answer", "facts": {"entity": "ds_pg-orders", "qtype": "how_to", "runbook": "RB-pg-01", "refer_to": null}}
+{"id": "msg_000287", "intent": "answer", "facts": {"entity": "ds_pg-orders", "qtype": "how_to", "runbook": "RB-pg-01", "refer_to": "per_0017"}}
+{"id": "msg_000288", "intent": "thanks", "facts": {}}
+{"id": "msg_000289", "intent": "ask", "facts": {"entity": "svc_cart", "qtype": "who_knows"}}
+{"id": "msg_000290", "intent": "answer", "facts": {"entity": "svc_cart", "qtype": "who_knows", "runbook": null, "refer_to": "per_0012"}}
+{"id": "msg_000291", "intent": "followup_q", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000292", "intent": "answer", "facts": {"entity": "svc_cart", "qtype": "how_to", "runbook": null, "refer_to": null}}
+{"id": "msg_000293", "intent": "thanks", "facts": {}}
+{"id": "msg_000294", "intent": "ask", "facts": {"entity": "svc_checkout", "qtype": "how_to"}}
+{"id": "msg_000295", "intent": "answer", "facts": {"entity": "svc_checkout", "qtype": "how_to", "runbook": "RB-checko-01", "refer_to": null}}
+{"id": "msg_000296", "intent": "answer", "facts": {"entity": "svc_checkout", "qtype": "how_to", "runbook": "RB-checko-01", "refer_to": "per_0012"}}
+{"id": "msg_000297", "intent": "followup_q", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000298", "intent": "answer", "facts": {"entity": "svc_checkout", "qtype": "how_to", "runbook": "RB-checko-01", "refer_to": null}}
+{"id": "msg_000299", "intent": "thanks", "facts": {}}
+{"id": "msg_000300", "intent": "ask", "facts": {"entity": "ds_pg-orders", "qtype": "how_to"}}
+{"id": "msg_000301", "intent": "answer", "facts": {"entity": "ds_pg-orders", "qtype": "how_to", "runbook": "RB-pg-01", "refer_to": null}}
+{"id": "msg_000302", "intent": "answer", "facts": {"entity": "ds_pg-orders", "qtype": "how_to", "runbook": "RB-pg-01", "refer_to": "per_0017"}}
+{"id": "msg_000303", "intent": "thanks", "facts": {}}
+{"id": "msg_000304", "intent": "ask", "facts": {"entity": "ds_s3-assets", "qtype": "who_knows"}}
+{"id": "msg_000305", "intent": "answer", "facts": {"entity": "ds_s3-assets", "qtype": "who_knows", "runbook": null, "refer_to": null}}
+{"id": "msg_000306", "intent": "answer", "facts": {"entity": "ds_s3-assets", "qtype": "who_knows", "runbook": null, "refer_to": "per_0020"}}
+{"id": "msg_000307", "intent": "thanks", "facts": {}}
+{"id": "msg_000308", "intent": "ask", "facts": {"entity": "ds_redis-session", "qtype": "why"}}
+{"id": "msg_000309", "intent": "answer", "facts": {"entity": "ds_redis-session", "qtype": "why", "runbook": null, "refer_to": null}}
+{"id": "msg_000310", "intent": "answer", "facts": {"entity": "ds_redis-session", "qtype": "why", "runbook": null, "refer_to": "per_0005"}}
+{"id": "msg_000311", "intent": "thanks", "facts": {}}
+{"id": "msg_000312", "intent": "ask", "facts": {"entity": "ds_ext-paylynx", "qtype": "who_knows"}}
+{"id": "msg_000313", "intent": "answer", "facts": {"entity": "ds_ext-paylynx", "qtype": "who_knows", "runbook": null, "refer_to": null}}
+{"id": "msg_000314", "intent": "answer", "facts": {"entity": "ds_ext-paylynx", "qtype": "who_knows", "runbook": null, "refer_to": "per_0014"}}
+{"id": "msg_000315", "intent": "followup_q", "facts": {"entity": "ds_ext-paylynx"}}
+{"id": "msg_000316", "intent": "answer", "facts": {"entity": "ds_ext-paylynx", "qtype": "how_to", "runbook": null, "refer_to": null}}
+{"id": "msg_000317", "intent": "thanks", "facts": {}}
+{"id": "msg_000318", "intent": "ask", "facts": {"entity": "svc_search", "qtype": "who_knows"}}
+{"id": "msg_000319", "intent": "answer", "facts": {"entity": "svc_search", "qtype": "who_knows", "runbook": null, "refer_to": "per_0009"}}
+{"id": "msg_000320", "intent": "followup_q", "facts": {"entity": "svc_search"}}
+{"id": "msg_000321", "intent": "answer", "facts": {"entity": "svc_search", "qtype": "how_to", "runbook": null, "refer_to": null}}
+{"id": "msg_000322", "intent": "thanks", "facts": {}}
+{"id": "msg_000323", "intent": "ask", "facts": {"entity": "ds_redis-ratelimit", "qtype": "how_to"}}
+{"id": "msg_000324", "intent": "answer", "facts": {"entity": "ds_redis-ratelimit", "qtype": "how_to", "runbook": "RB-redis-01", "refer_to": null}}
+{"id": "msg_000325", "intent": "answer", "facts": {"entity": "ds_redis-ratelimit", "qtype": "how_to", "runbook": "RB-redis-01", "refer_to": "per_0003"}}
+{"id": "msg_000326", "intent": "followup_q", "facts": {"entity": "ds_redis-ratelimit"}}
+{"id": "msg_000327", "intent": "answer", "facts": {"entity": "ds_redis-ratelimit", "qtype": "how_to", "runbook": "RB-redis-01", "refer_to": null}}
+{"id": "msg_000328", "intent": "thanks", "facts": {}}
+{"id": "msg_000329", "intent": "ask", "facts": {"entity": "ds_ext-paylynx", "qtype": "who_knows"}}
+{"id": "msg_000330", "intent": "answer", "facts": {"entity": "ds_ext-paylynx", "qtype": "who_knows", "runbook": null, "refer_to": null}}
+{"id": "msg_000331", "intent": "answer", "facts": {"entity": "ds_ext-paylynx", "qtype": "who_knows", "runbook": null, "refer_to": "per_0014"}}
+{"id": "msg_000332", "intent": "thanks", "facts": {}}
+{"id": "msg_000333", "intent": "ask", "facts": {"entity": "ds_pg-orders", "qtype": "who_knows"}}
+{"id": "msg_000334", "intent": "answer", "facts": {"entity": "ds_pg-orders", "qtype": "who_knows", "runbook": null, "refer_to": null}}
+{"id": "msg_000335", "intent": "answer", "facts": {"entity": "ds_pg-orders", "qtype": "who_knows", "runbook": null, "refer_to": "per_0017"}}
+{"id": "msg_000336", "intent": "thanks", "facts": {}}
+{"id": "msg_000337", "intent": "ask", "facts": {"entity": "ds_s3-assets", "qtype": "why"}}
+{"id": "msg_000338", "intent": "answer", "facts": {"entity": "ds_s3-assets", "qtype": "why", "runbook": null, "refer_to": null}}
+{"id": "msg_000339", "intent": "answer", "facts": {"entity": "ds_s3-assets", "qtype": "why", "runbook": null, "refer_to": "per_0020"}}
+{"id": "msg_000340", "intent": "thanks", "facts": {}}
+{"id": "msg_000341", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000342", "intent": "chat", "facts": {"entity": "ds_es-search"}}
+{"id": "msg_000343", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000344", "intent": "chat", "facts": {"entity": "svc_catalog"}}
+{"id": "msg_000345", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000346", "intent": "chat", "facts": {"entity": "svc_notifications"}}
+{"id": "msg_000347", "intent": "chat", "facts": {"entity": "ds_pg-orders"}}
+{"id": "msg_000348", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000349", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000350", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000351", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000352", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000353", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000354", "intent": "chat", "facts": {"entity": "ds_pg-users"}}
+{"id": "msg_000355", "intent": "chat", "facts": {"entity": "svc_session"}}
+{"id": "msg_000356", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000357", "intent": "chat", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000358", "intent": "chat", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000359", "intent": "chat", "facts": {"entity": "ds_pg-users"}}
+{"id": "msg_000360", "intent": "chat", "facts": {"entity": "svc_session"}}
+{"id": "msg_000361", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000362", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000363", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000364", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000365", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000366", "intent": "chat", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000367", "intent": "chat", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000368", "intent": "standup", "facts": {"entity": "ds_pg-users"}}
+{"id": "msg_000369", "intent": "standup", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000370", "intent": "standup", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000371", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000372", "intent": "standup", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000373", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000374", "intent": "standup", "facts": {"entity": "ds_pg-users"}}
+{"id": "msg_000375", "intent": "standup", "facts": {"entity": "svc_session"}}
+{"id": "msg_000376", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000377", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000378", "intent": "chat", "facts": {"entity": "ds_pg-users"}}
+{"id": "msg_000379", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000380", "intent": "chat", "facts": {"entity": "svc_session"}}
+{"id": "msg_000381", "intent": "chat", "facts": {"entity": "svc_session"}}
+{"id": "msg_000382", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000383", "intent": "chat", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000384", "intent": "chat", "facts": {"entity": "ds_redis-session"}}
+{"id": "msg_000385", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000386", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000387", "intent": "chat", "facts": {"entity": "svc_catalog"}}
+{"id": "msg_000388", "intent": "chat", "facts": {"entity": "svc_search"}}
+{"id": "msg_000389", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000390", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000391", "intent": "chat", "facts": {"entity": "ds_pg-catalog"}}
+{"id": "msg_000392", "intent": "chat", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000393", "intent": "chat", "facts": {"entity": "ds_redis-session"}}
+{"id": "msg_000394", "intent": "chat", "facts": {"entity": "svc_session"}}
+{"id": "msg_000395", "intent": "chat", "facts": {"entity": "ds_pg-users"}}
+{"id": "msg_000396", "intent": "standup", "facts": {"entity": "svc_session"}}
+{"id": "msg_000397", "intent": "standup", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000398", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000399", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000400", "intent": "standup", "facts": {"entity": "ds_pg-users"}}
+{"id": "msg_000401", "intent": "standup", "facts": {"entity": "ds_pg-users"}}
+{"id": "msg_000402", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000403", "intent": "standup", "facts": {"entity": "ds_redis-session"}}
+{"id": "msg_000404", "intent": "standup", "facts": {"entity": "ds_pg-users"}}
+{"id": "msg_000405", "intent": "standup", "facts": {"entity": "ds_pg-users"}}
+{"id": "msg_000406", "intent": "standup", "facts": {"entity": "svc_session"}}
+{"id": "msg_000407", "intent": "standup", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000408", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000409", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000410", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000411", "intent": "standup", "facts": {"entity": "svc_session"}}
+{"id": "msg_000412", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000413", "intent": "chat", "facts": {"entity": "svc_orders"}}
+{"id": "msg_000414", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000415", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000416", "intent": "chat", "facts": {"entity": "svc_notifications"}}
+{"id": "msg_000417", "intent": "chat", "facts": {"entity": "ds_pg-orders"}}
+{"id": "msg_000418", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000419", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000420", "intent": "chat", "facts": {"entity": "svc_payments"}}
+{"id": "msg_000421", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000422", "intent": "chat", "facts": {"entity": "ds_pg-payments"}}
+{"id": "msg_000423", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000424", "intent": "chat", "facts": {"entity": "ds_ext-paylynx"}}
+{"id": "msg_000425", "intent": "chat", "facts": {"entity": "ds_ext-paylynx"}}
+{"id": "msg_000426", "intent": "chat", "facts": {"entity": "svc_payments"}}
+{"id": "msg_000427", "intent": "standup", "facts": {"entity": "svc_search"}}
+{"id": "msg_000428", "intent": "standup", "facts": {"entity": "ds_pg-catalog"}}
+{"id": "msg_000429", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000430", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000431", "intent": "standup", "facts": {"entity": "svc_catalog"}}
+{"id": "msg_000432", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000433", "intent": "standup", "facts": {"entity": "ds_ext-paylynx"}}
+{"id": "msg_000434", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000435", "intent": "standup", "facts": {"entity": "ds_pg-payments"}}
+{"id": "msg_000436", "intent": "standup", "facts": {"entity": "svc_payments"}}
+{"id": "msg_000437", "intent": "standup", "facts": {"entity": "ds_pg-payments"}}
+{"id": "msg_000438", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000439", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000440", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000441", "intent": "standup", "facts": {"entity": "ds_s3-assets"}}
+{"id": "msg_000442", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000443", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000444", "intent": "standup", "facts": {"entity": "ds_s3-assets"}}
+{"id": "msg_000445", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000446", "intent": "chat", "facts": {"entity": "ds_s3-assets"}}
+{"id": "msg_000447", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000448", "intent": "chat", "facts": {"entity": "ds_s3-assets"}}
+{"id": "msg_000449", "intent": "chat", "facts": {"entity": "svc_config-service"}}
+{"id": "msg_000450", "intent": "chat", "facts": {"entity": "svc_kafka"}}
+{"id": "msg_000451", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000452", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000453", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000454", "intent": "standup", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000455", "intent": "standup", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000456", "intent": "standup", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000457", "intent": "chat", "facts": {"entity": "svc_catalog"}}
+{"id": "msg_000458", "intent": "chat", "facts": {"entity": "svc_search"}}
+{"id": "msg_000459", "intent": "chat", "facts": {"entity": "ds_pg-catalog"}}
+{"id": "msg_000460", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000461", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000462", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000463", "intent": "chat", "facts": {"entity": "ds_pg-catalog"}}
+{"id": "msg_000464", "intent": "chat", "facts": {"entity": "svc_catalog"}}
+{"id": "msg_000465", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000466", "intent": "chat", "facts": {"entity": "ds_pg-catalog"}}
+{"id": "msg_000467", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000468", "intent": "chat", "facts": {"entity": "svc_api-gateway"}}
+{"id": "msg_000469", "intent": "chat", "facts": {"entity": "ds_redis-ratelimit"}}
+{"id": "msg_000470", "intent": "chat", "facts": {"entity": "svc_api-gateway"}}
+{"id": "msg_000471", "intent": "chat", "facts": {"entity": "svc_web-bff"}}
+{"id": "msg_000472", "intent": "chat", "facts": {"entity": "ds_redis-ratelimit"}}
+{"id": "msg_000473", "intent": "chat", "facts": {"entity": "svc_notifications"}}
+{"id": "msg_000474", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000475", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000476", "intent": "chat", "facts": {"entity": "svc_orders"}}
+{"id": "msg_000477", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000478", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000479", "intent": "chat", "facts": {"entity": "svc_orders"}}
+{"id": "msg_000480", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000481", "intent": "chat", "facts": {"entity": "svc_notifications"}}
+{"id": "msg_000482", "intent": "chat", "facts": {"entity": "svc_orders"}}
+{"id": "msg_000483", "intent": "chat", "facts": {"entity": "ds_pg-orders"}}
+{"id": "msg_000484", "intent": "standup", "facts": {"entity": "ds_pg-payments"}}
+{"id": "msg_000485", "intent": "standup", "facts": {"entity": "svc_payments"}}
+{"id": "msg_000486", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000487", "intent": "standup", "facts": {"entity": "ds_pg-payments"}}
+{"id": "msg_000488", "intent": "standup", "facts": {"entity": "svc_payments"}}
+{"id": "msg_000489", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000490", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000491", "intent": "standup", "facts": {"entity": "ds_pg-payments"}}
+{"id": "msg_000492", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000493", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000494", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000495", "intent": "chat", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000496", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000497", "intent": "chat", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000498", "intent": "chat", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000499", "intent": "chat", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000500", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000501", "intent": "chat", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000502", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000503", "intent": "chat", "facts": {"entity": "svc_session"}}
+{"id": "msg_000504", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000505", "intent": "chat", "facts": {"entity": "ds_redis-session"}}
+{"id": "msg_000506", "intent": "chat", "facts": {"entity": "svc_session"}}
+{"id": "msg_000507", "intent": "chat", "facts": {"entity": "svc_session"}}
+{"id": "msg_000508", "intent": "chat", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000509", "intent": "standup", "facts": {"entity": "ds_s3-assets"}}
+{"id": "msg_000510", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000511", "intent": "standup", "facts": {"entity": "svc_kafka"}}
+{"id": "msg_000512", "intent": "standup", "facts": {"entity": "svc_vault"}}
+{"id": "msg_000513", "intent": "standup", "facts": {"entity": "svc_service-mesh"}}
+{"id": "msg_000514", "intent": "standup", "facts": {"entity": "ds_s3-assets"}}
+{"id": "msg_000515", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000516", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000517", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000518", "intent": "standup", "facts": {"entity": null}}
+{"id": "msg_000519", "intent": "standup", "facts": {"entity": "svc_auth"}}
+{"id": "msg_000520", "intent": "chat", "facts": {"entity": "svc_vault"}}
+{"id": "msg_000521", "intent": "chat", "facts": {"entity": "svc_config-service"}}
+{"id": "msg_000522", "intent": "chat", "facts": {"entity": "svc_vault"}}
+{"id": "msg_000523", "intent": "chat", "facts": {"entity": "svc_kafka"}}
+{"id": "msg_000524", "intent": "chat", "facts": {"entity": "ds_redis-cache"}}
+{"id": "msg_000525", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000526", "intent": "chat", "facts": {"entity": "svc_service-mesh"}}
+{"id": "msg_000527", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000528", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000529", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000530", "intent": "chat", "facts": {"entity": "ds_s3-assets"}}
+{"id": "msg_000531", "intent": "chat", "facts": {"entity": "ds_s3-assets"}}
+{"id": "msg_000532", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000533", "intent": "chat", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000534", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000535", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000536", "intent": "chat", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000537", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000538", "intent": "chat", "facts": {"entity": "svc_checkout"}}
+{"id": "msg_000539", "intent": "chat", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000540", "intent": "chat", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000541", "intent": "chat", "facts": {"entity": "svc_cart"}}
+{"id": "msg_000542", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000543", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000544", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000545", "intent": "chat", "facts": {"entity": "svc_kafka"}}
+{"id": "msg_000546", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000547", "intent": "chat", "facts": {"entity": "svc_vault"}}
+{"id": "msg_000548", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000549", "intent": "chat", "facts": {"entity": "svc_service-mesh"}}
+{"id": "msg_000550", "intent": "chat", "facts": {"entity": "svc_vault"}}
+{"id": "msg_000551", "intent": "chat", "facts": {"entity": "svc_config-service"}}
+{"id": "msg_000552", "intent": "chat", "facts": {"entity": "ds_redis-cache"}}
+{"id": "msg_000553", "intent": "chat", "facts": {"entity": "svc_vault"}}
+{"id": "msg_000554", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000555", "intent": "chat", "facts": {"entity": "svc_payments"}}
+{"id": "msg_000556", "intent": "chat", "facts": {"entity": "ds_ext-paylynx"}}
+{"id": "msg_000557", "intent": "chat", "facts": {"entity": null}}
+{"id": "msg_000558", "intent": "chat", "facts": {"entity": "ds_ext-paylynx"}}
+{"id": "msg_000559", "intent": "chat", "facts": {"entity": "ds_ext-paylynx"}}
+{"id": "msg_000560", "intent": "chat", "facts": {"entity": "ds_pg-payments"}}
+{"id": "msg_000561", "intent": "chat", "facts": {"entity": "ds_pg-payments"}}
+{"id": "msg_000562", "intent": "chat", "facts": {"entity": "ds_ext-paylynx"}}
+{"id": "msg_000563", "intent": "chat", "facts": {"entity": "ds_pg-payments"}}
+{"id": "msg_000564", "intent": "chat", "facts": {"entity": "ds_ext-paylynx"}}
+{"id": "msg_000565", "intent": "chat", "facts": {"entity": "svc_payments"}}
+{"id": "msg_000566", "intent": "chat", "facts": {"entity": "ds_pg-payments"}}
+{"id": "tkt_00001", "facts": {"entity": "ds_ext-paylynx", "symptom_or_goal": "Guardrail: validate PayLynx processor outage in CI", "incident": "inc_0001"}}
+{"id": "tkt_00002", "facts": {"entity": "ds_ext-paylynx", "symptom_or_goal": "Add alerting on ext-paylynx root signal", "incident": "inc_0001"}}
+{"id": "tkt_00003", "facts": {"entity": "ds_ext-paylynx", "symptom_or_goal": "Load test ext-paylynx after fix", "incident": "inc_0001"}}
+{"id": "tkt_00004", "facts": {"entity": "svc_service-mesh", "symptom_or_goal": "Update runbook for service-mesh", "incident": "inc_0002"}}
+{"id": "tkt_00005", "facts": {"entity": "svc_service-mesh", "symptom_or_goal": "Add alerting on service-mesh root signal", "incident": "inc_0002"}}
+{"id": "tkt_00006", "facts": {"entity": "svc_config-service", "symptom_or_goal": "Guardrail: validate null handling bug on new field in CI", "incident": "inc_0003"}}
+{"id": "tkt_00007", "facts": {"entity": "svc_config-service", "symptom_or_goal": "Add canary analysis for config-service changes", "incident": "inc_0003"}}
+{"id": "tkt_00008", "facts": {"entity": "svc_config-service", "symptom_or_goal": "Load test config-service after fix", "incident": "inc_0003"}}
+{"id": "tkt_00009", "facts": {"entity": "ds_pg-payments", "symptom_or_goal": "Add alerting on pg-payments root signal", "incident": "inc_0004"}}
+{"id": "tkt_00010", "facts": {"entity": "ds_pg-payments", "symptom_or_goal": "Add alerting on pg-payments root signal", "incident": "inc_0004"}}
+{"id": "tkt_00011", "facts": {"entity": "ds_pg-payments", "symptom_or_goal": "Update runbook for pg-payments", "incident": "inc_0004"}}
+{"id": "tkt_00012", "facts": {"entity": "svc_payments", "symptom_or_goal": "Update runbook for payments", "incident": "inc_0006"}}
+{"id": "tkt_00013", "facts": {"entity": "svc_payments", "symptom_or_goal": "Guardrail: validate null handling bug on new field in CI", "incident": "inc_0006"}}
+{"id": "tkt_00014", "facts": {"entity": "svc_payments", "symptom_or_goal": "Add alerting on payments root signal", "incident": "inc_0006"}}
+{"id": "tkt_00015", "facts": {"entity": "svc_checkout", "symptom_or_goal": "Guardrail: validate traffic surge beyond capacity in CI", "incident": "inc_0007"}}
+{"id": "tkt_00016", "facts": {"entity": "svc_payments", "symptom_or_goal": "Add canary analysis for payments changes", "incident": "inc_0008"}}
+{"id": "tkt_00017", "facts": {"entity": "svc_payments", "symptom_or_goal": "Load test payments after fix", "incident": "inc_0008"}}
+{"id": "tkt_00018", "facts": {"entity": "svc_payments", "symptom_or_goal": "Add canary analysis for payments changes", "incident": "inc_0008"}}
+{"id": "tkt_00019", "facts": {"entity": "svc_search", "symptom_or_goal": "Update runbook for search", "incident": "inc_0009"}}
+{"id": "tkt_00020", "facts": {"entity": "svc_payments", "symptom_or_goal": "Add alerting on payments root signal", "incident": "inc_0011"}}
+{"id": "tkt_00021", "facts": {"entity": "ds_redis-session", "symptom_or_goal": "Load test redis-session after fix", "incident": "inc_0012"}}
+{"id": "tkt_00022", "facts": {"entity": "ds_redis-session", "symptom_or_goal": "Update runbook for redis-session", "incident": "inc_0012"}}
+{"id": "tkt_00023", "facts": {"entity": "ds_redis-session", "symptom_or_goal": "Load test redis-session after fix", "incident": "inc_0012"}}
+{"id": "tkt_00024", "facts": {"entity": "svc_search", "symptom_or_goal": "Update runbook for search", "incident": "inc_0015"}}
+{"id": "tkt_00025", "facts": {"entity": "svc_checkout", "symptom_or_goal": "Add canary analysis for checkout changes", "incident": "inc_0016"}}
+{"id": "tkt_00026", "facts": {"entity": "svc_checkout", "symptom_or_goal": "Update runbook for checkout", "incident": "inc_0017"}}
+{"id": "tkt_00027", "facts": {"entity": "svc_checkout", "symptom_or_goal": "Add alerting on checkout root signal", "incident": "inc_0017"}}
+{"id": "tkt_00028", "facts": {"entity": "svc_checkout", "symptom_or_goal": "Add alerting on checkout root signal", "incident": "inc_0017"}}
+{"id": "tkt_00029", "facts": {"entity": "ds_s3-assets", "symptom_or_goal": "Add alerting on s3-assets root signal", "incident": "inc_0018"}}
+{"id": "tkt_00030", "facts": {"entity": "svc_cart", "symptom_or_goal": "cart: stale cache after update", "steps": 5}}
+{"id": "tkt_00031", "facts": {"entity": "svc_vault", "symptom_or_goal": "vault: memory grows over 24h", "steps": 5}}
+{"id": "tkt_00032", "facts": {"entity": "ds_s3-assets", "symptom_or_goal": "s3-assets: 500 on /v1/status when payload is empty", "steps": 2}}
+{"id": "tkt_00033", "facts": {"entity": "svc_vault", "symptom_or_goal": "vault: wrong currency rounding", "steps": 2}}
+{"id": "tkt_00034", "facts": {"entity": "svc_vault", "symptom_or_goal": "vault: incorrect error code on validation", "steps": 2}}
+{"id": "tkt_00035", "facts": {"entity": "svc_checkout", "symptom_or_goal": "checkout: 500 on /v1/session/{id} when payload is empty", "steps": 3}}
+{"id": "tkt_00036", "facts": {"entity": "svc_session", "symptom_or_goal": "session: memory grows over 24h", "steps": 4}}
+{"id": "tkt_00037", "facts": {"entity": "svc_kafka", "symptom_or_goal": "kafka: duplicate events emitted", "steps": 2}}
+{"id": "tkt_00038", "facts": {"entity": "svc_catalog", "symptom_or_goal": "catalog: incorrect error code on validation", "steps": 4}}
+{"id": "tkt_00039", "facts": {"entity": "svc_payments", "symptom_or_goal": "payments: incorrect error code on validation", "steps": 4}}
+{"id": "tkt_00040", "facts": {"entity": "ds_pg-catalog", "symptom_or_goal": "pg-catalog: 500 on /v1/status when payload is empty", "steps": 3}}
+{"id": "tkt_00041", "facts": {"entity": "svc_search", "symptom_or_goal": "search: stale cache after update", "steps": 4}}
+{"id": "tkt_00042", "facts": {"entity": "svc_notifications", "symptom_or_goal": "notifications: timeout under batch load", "steps": 4}}
+{"id": "tkt_00043", "facts": {"entity": "svc_payments", "symptom_or_goal": "payments: pagination skips last page", "steps": 5}}
+{"id": "tkt_00044", "facts": {"entity": "svc_web-bff", "symptom_or_goal": "web-bff: incorrect error code on validation", "steps": 5}}
+{"id": "tkt_00045", "facts": {"entity": "svc_auth", "symptom_or_goal": "auth: memory grows over 24h", "steps": 4}}
+{"id": "tkt_00046", "facts": {"entity": "svc_config-service", "symptom_or_goal": "config-service: memory grows over 24h", "steps": 5}}
+{"id": "tkt_00047", "facts": {"entity": "svc_session", "symptom_or_goal": "session: wrong currency rounding", "steps": 3}}
+{"id": "tkt_00048", "facts": {"entity": "svc_kafka", "symptom_or_goal": "kafka: wrong currency rounding", "steps": 4}}
+{"id": "tkt_00049", "facts": {"entity": "svc_service-mesh", "symptom_or_goal": "service-mesh: pagination skips last page", "steps": 4}}
+{"id": "tkt_00050", "facts": {"entity": "ds_pg-catalog", "symptom_or_goal": "pg-catalog: incorrect error code on validation", "steps": 2}}
+{"id": "tkt_00051", "facts": {"entity": "svc_kafka", "symptom_or_goal": "kafka: pagination skips last page", "steps": 5}}
+{"id": "tkt_00052", "facts": {"entity": "svc_search", "symptom_or_goal": "search: memory grows over 24h", "steps": 2}}
+{"id": "tkt_00053", "facts": {"entity": "svc_service-mesh", "symptom_or_goal": "service-mesh: stale cache after update", "steps": 3}}
+{"id": "tkt_00054", "facts": {"entity": "ds_pg-users", "symptom_or_goal": "pg-users: timeout under batch load", "steps": 3}}
+{"id": "tkt_00055", "facts": {"entity": "svc_kafka", "symptom_or_goal": "kafka: wrong currency rounding", "steps": 5}}
+{"id": "tkt_00056", "facts": {"entity": "svc_service-mesh", "symptom_or_goal": "service-mesh: 500 on /v2/admin/{id}/status when payload is empty", "steps": 5}}
+{"id": "tkt_00057", "facts": {"entity": "svc_service-mesh", "symptom_or_goal": "service-mesh: wrong currency rounding", "steps": 4}}
+{"id": "tkt_00058", "facts": {"entity": "ds_pg-catalog", "symptom_or_goal": "pg-catalog: memory grows over 24h", "steps": 3}}
+{"id": "tkt_00059", "facts": {"entity": "svc_session", "symptom_or_goal": "session: incorrect error code on validation", "steps": 2}}
+{"id": "tkt_00060", "facts": {"entity": "svc_checkout", "symptom_or_goal": "checkout: pagination skips last page", "steps": 5}}
+{"id": "tkt_00061", "facts": {"entity": "ds_pg-orders", "symptom_or_goal": "pg-orders: 500 on /v1/status when payload is empty", "steps": 5}}
+{"id": "tkt_00062", "facts": {"entity": "svc_catalog", "symptom_or_goal": "catalog: 500 on /v2/categories/{id} when payload is empty", "steps": 3}}
+{"id": "tkt_00063", "facts": {"entity": "svc_orders", "symptom_or_goal": "orders: duplicate events emitted", "steps": 5}}
+{"id": "tkt_00064", "facts": {"entity": "svc_kafka", "symptom_or_goal": "kafka: pagination skips last page", "steps": 2}}
+{"id": "tkt_00065", "facts": {"entity": "svc_service-mesh", "symptom_or_goal": "service-mesh: timeout under batch load", "steps": 3}}
+{"id": "tkt_00066", "facts": {"entity": "svc_vault", "symptom_or_goal": "vault: incorrect error code on validation", "steps": 5}}
+{"id": "tkt_00067", "facts": {"entity": "svc_cart", "symptom_or_goal": "cart: memory grows over 24h", "steps": 5}}
+{"id": "tkt_00068", "facts": {"entity": "svc_catalog", "symptom_or_goal": "catalog: timeout under batch load", "steps": 4}}
+{"id": "tkt_00069", "facts": {"entity": "svc_vault", "symptom_or_goal": "vault: wrong currency rounding", "steps": 5}}
+{"id": "tkt_00070", "facts": {"entity": "svc_payments", "symptom_or_goal": "payments: reduce cold start time", "steps": 3}}
+{"id": "tkt_00071", "facts": {"entity": "svc_search", "symptom_or_goal": "search: reduce cold start time", "steps": 4}}
+{"id": "tkt_00072", "facts": {"entity": "svc_payments", "symptom_or_goal": "payments: deprecate v1 endpoints", "steps": 3}}
+{"id": "tkt_00073", "facts": {"entity": "ds_redis-session", "symptom_or_goal": "redis-session: upgrade base image", "steps": 2}}
+{"id": "tkt_00074", "facts": {"entity": "svc_orders", "symptom_or_goal": "orders: add tracing to /v1/cancel/batch", "steps": 4}}
+{"id": "tkt_00075", "facts": {"entity": "ds_redis-cache", "symptom_or_goal": "redis-cache: add tracing to /v1/status", "steps": 3}}
+{"id": "tkt_00076", "facts": {"entity": "svc_notifications", "symptom_or_goal": "notifications: document on-call runbook", "steps": 3}}
+{"id": "tkt_00077", "facts": {"entity": "svc_vault", "symptom_or_goal": "vault: write load test suite", "steps": 5}}
+{"id": "tkt_00078", "facts": {"entity": "svc_orders", "symptom_or_goal": "orders: upgrade base image", "steps": 2}}
+{"id": "tkt_00079", "facts": {"entity": "svc_checkout", "symptom_or_goal": "checkout: upgrade base image", "steps": 4}}
+{"id": "tkt_00080", "facts": {"entity": "ds_pg-users", "symptom_or_goal": "pg-users: deprecate v1 endpoints", "steps": 2}}
+{"id": "tkt_00081", "facts": {"entity": "svc_api-gateway", "symptom_or_goal": "api-gateway: reduce cold start time", "steps": 4}}
+{"id": "tkt_00082", "facts": {"entity": "svc_catalog", "symptom_or_goal": "catalog: upgrade base image", "steps": 5}}
+{"id": "tkt_00083", "facts": {"entity": "svc_payments", "symptom_or_goal": "payments: reduce cold start time", "steps": 3}}
+{"id": "tkt_00084", "facts": {"entity": "svc_cart", "symptom_or_goal": "cart: reduce cold start time", "steps": 4}}
+{"id": "tkt_00085", "facts": {"entity": "ds_pg-orders", "symptom_or_goal": "pg-orders: deprecate v1 endpoints", "steps": 5}}
+{"id": "tkt_00086", "facts": {"entity": "svc_catalog", "symptom_or_goal": "catalog: migrate to new config schema", "steps": 2}}
+{"id": "tkt_00087", "facts": {"entity": "svc_service-mesh", "symptom_or_goal": "service-mesh: migrate to new config schema", "steps": 4}}
+{"id": "tkt_00088", "facts": {"entity": "svc_auth", "symptom_or_goal": "auth: add tracing to /v1/refresh/{id}", "steps": 5}}
+{"id": "tkt_00089", "facts": {"entity": "svc_checkout", "symptom_or_goal": "checkout: reduce cold start time", "steps": 2}}
+{"id": "tkt_00090", "facts": {"entity": "svc_orders", "symptom_or_goal": "orders: deprecate v1 endpoints", "steps": 3}}
+{"id": "tkt_00091", "facts": {"entity": "ds_pg-payments", "symptom_or_goal": "pg-payments: upgrade base image", "steps": 2}}
+{"id": "tkt_00092", "facts": {"entity": "svc_vault", "symptom_or_goal": "vault: deprecate v1 endpoints", "steps": 4}}
+{"id": "tkt_00093", "facts": {"entity": "svc_api-gateway", "symptom_or_goal": "api-gateway: deprecate v1 endpoints", "steps": 5}}
+{"id": "tkt_00094", "facts": {"entity": "svc_orders", "symptom_or_goal": "orders: add tracing to /v1/cancel", "steps": 4}}
+{"id": "tkt_00095", "facts": {"entity": "svc_service-mesh", "symptom_or_goal": "service-mesh: upgrade base image", "steps": 5}}
+{"id": "tkt_00096", "facts": {"entity": "svc_search", "symptom_or_goal": "search: add tracing to /v1/reindex/{id}", "steps": 5}}
+{"id": "tkt_00097", "facts": {"entity": "ds_redis-ratelimit", "symptom_or_goal": "redis-ratelimit: add tracing to /v1/status", "steps": 4}}
+{"id": "tkt_00098", "facts": {"entity": "svc_search", "symptom_or_goal": "search: deprecate v1 endpoints", "steps": 2}}
+{"id": "tkt_00099", "facts": {"entity": "svc_checkout", "symptom_or_goal": "checkout: upgrade base image", "steps": 4}}
+{"id": "tkt_00100", "facts": {"entity": "svc_payments", "symptom_or_goal": "payments: grant read access to analytics", "steps": 3}}
+{"id": "tkt_00101", "facts": {"entity": "svc_checkout", "symptom_or_goal": "checkout: rotate service credentials", "steps": 3}}
+{"id": "tkt_00102", "facts": {"entity": "svc_api-gateway", "symptom_or_goal": "api-gateway: grant read access to analytics", "steps": 2}}
+{"id": "tkt_00103", "facts": {"entity": "svc_payments", "symptom_or_goal": "payments: restore staging snapshot", "steps": 3}}
+{"id": "tkt_00104", "facts": {"entity": "svc_catalog", "symptom_or_goal": "catalog: grant read access to analytics", "steps": 3}}
+{"id": "tkt_00105", "facts": {"entity": "svc_config-service", "symptom_or_goal": "config-service: rotate service credentials", "steps": 4}}
+{"id": "tkt_00106", "facts": {"entity": "svc_config-service", "symptom_or_goal": "config-service: grant read access to analytics", "steps": 3}}
+{"id": "tkt_00107", "facts": {"entity": "svc_catalog", "symptom_or_goal": "catalog: increase quota in ap-south", "steps": 4}}
+{"id": "doc_0001", "facts": {"incident": "INC-0001", "sev": 3, "impact": "~2.4% of requests affected for 72 min", "root": "ds_ext-paylynx", "mechanism": "PayLynx processor outage", "cause_type": "external_outage", "change_id": null, "change_summary": null, "change_author": null, "detected_by": "team_payments", "resolver": "per_0015", "runbook": "RB-ext-01", "mitigation": "failover_vendor", "silent_root": true, "timeline": {"started": 1785650324984, "detected": 1785650514984, "mitigated": 1785654835956, "resolved": 1785658375956}, "action_items": ["PAY-101", "PAY-102", "PAY-103"], "lesson": "pre-scale before sale events"}}
+{"id": "doc_0002", "facts": {"incident": "INC-0002", "sev": 2, "impact": "~4.4% of requests affected for 48 min", "root": "svc_service-mesh", "mechanism": "serialization format change", "cause_type": "change", "change_id": "chg_000003", "change_summary": "service-mesh deploy v2.35.2 (new tax rounding)", "change_author": "per_0020", "detected_by": "team_discovery", "resolver": "per_0020", "runbook": "RB-servic-01", "mitigation": "rollback", "silent_root": false, "timeline": {"started": 1785685123300, "detected": 1785685184300, "mitigated": 1785688099574, "resolved": 1785689959574}, "action_items": ["PLAT-101", "PLAT-102"], "lesson": "pre-scale before sale events"}}
+{"id": "doc_0003", "facts": {"incident": "INC-0003", "sev": 1, "impact": "~21.3% of requests affected for 54 min", "root": "svc_config-service", "mechanism": "null handling bug on new field", "cause_type": "change", "change_id": "chg_000056", "change_summary": "config-service deploy v7.24.4 (inventory holds)", "change_author": "per_0020", "detected_by": "team_fulfillment", "resolver": "per_0009", "runbook": "RB-config-01", "mitigation": "rollback", "silent_root": true, "timeline": {"started": 1786012830173, "detected": 1786012900173, "mitigated": 1786016168717, "resolved": 1786019168717}, "action_items": ["PLAT-103", "PLAT-104", "PLAT-105"], "lesson": "require review from a domain expert"}}
+{"id": "doc_0004", "facts": {"incident": "INC-0004", "sev": 3, "impact": "~3.2% of requests affected for 61 min", "root": "ds_pg-payments", "mechanism": "TLS certificate expired", "cause_type": "cert_expiry", "change_id": null, "change_summary": null, "change_author": null, "detected_by": "team_checkout", "resolver": "per_0013", "runbook": "RB-pg-01", "mitigation": "renew_cert", "silent_root": true, "timeline": {"started": 1786048645554, "detected": 1786048837554, "mitigated": 1786052521560, "resolved": 1786054981560}, "action_items": ["PAY-104", "PAY-105", "PAY-106"], "lesson": "keep runbook current"}}
+{"id": "doc_0005", "facts": {"incident": "INC-0006", "sev": 2, "impact": "~2.8% of requests affected for 122 min", "root": "svc_payments", "mechanism": "null handling bug on new field", "cause_type": "change", "change_id": "chg_000213", "change_summary": "payments hotfix v3.22.8: address autocomplete", "change_author": "per_0013", "detected_by": "team_payments", "resolver": "per_0013", "runbook": "RB-paymen-01", "mitigation": "rollback", "silent_root": false, "timeline": {"started": 1787320650297, "detected": 1787320693297, "mitigated": 1787328058876, "resolved": 1787332378876}, "action_items": ["PAY-107", "PAY-108", "PAY-109"], "lesson": "keep runbook current"}}
+{"id": "doc_0006", "facts": {"incident": "INC-0008", "sev": 3, "impact": "~1.4% of requests affected for 161 min", "root": "svc_payments", "mechanism": "timeout lowered below dependency p99", "cause_type": "change", "change_id": "chg_000245", "change_summary": "payments: http.client.timeout_ms 2000 -> 250", "change_author": "per_0013", "detected_by": "team_payments", "resolver": "per_0013", "runbook": "RB-paymen-02", "mitigation": "rollback", "silent_root": false, "timeline": {"started": 1787669768146, "detected": 1787669817146, "mitigated": 1787679485974, "resolved": 1787683325974}, "action_items": ["PAY-110", "PAY-111", "PAY-112"], "lesson": "validate config in CI"}}
+{"id": "doc_0007", "facts": {"incident": "INC-0012", "sev": 3, "impact": "~3.3% of requests affected for 46 min", "root": "ds_redis-session", "mechanism": "bad backfill corrupted records", "cause_type": "data_issue", "change_id": null, "change_summary": null, "change_author": null, "detected_by": "team_identity", "resolver": "per_0004", "runbook": "RB-redis-01", "mitigation": "data_fix", "silent_root": false, "timeline": {"started": 1788531325775, "detected": 1788531381775, "mitigated": 1788534181148, "resolved": 1788539101148}, "action_items": ["IDN-101", "IDN-102", "IDN-103"], "lesson": "require review from a domain expert"}}
+{"id": "doc_0008", "facts": {"context": "session needs a change: adopt structured logging across identity services", "options_rejected": ["use a different datastore", "add a cache layer"], "consequences": "simpler on-call", "decision": "Adopt structured logging across Identity services", "key": "ADR-001", "supersedes": null, "decider": "per_0004"}}
+{"id": "doc_0009", "facts": {"context": "api-gateway needs a change: adopt structured logging across edge services", "options_rejected": ["rewrite the service", "do nothing"], "consequences": "lower latency, higher cost", "decision": "Adopt structured logging across Edge services", "key": "ADR-002", "supersedes": null, "decider": "per_0001"}}
+{"id": "doc_0010", "facts": {"context": "payments needs a change: deprecate v1 endpoints of payments", "options_rejected": ["buy a vendor product", "add more replicas"], "consequences": "more operational load for one quarter", "decision": "Deprecate v1 endpoints of payments", "key": "ADR-003", "supersedes": null, "decider": "per_0013"}}
+{"id": "doc_0011", "facts": {"context": "auth needs a change: require two reviewers for auth config", "options_rejected": ["do nothing", "buy a vendor product"], "consequences": "lower latency, higher cost", "decision": "Require two reviewers for auth config", "key": "ADR-004", "supersedes": null, "decider": "per_0004"}}
+{"id": "doc_0012", "facts": {"entity": "svc_api-gateway", "owner": "team_edge", "depends_on": ["svc_web-bff", "svc_auth", "ds_redis-ratelimit", "svc_service-mesh", "svc_config-service"], "tier": 0, "slo": 99.95}}
+{"id": "doc_0013", "facts": {"entity": "svc_web-bff", "owner": "team_edge", "depends_on": ["svc_catalog", "svc_search", "svc_cart", "svc_checkout", "svc_orders", "svc_session", "svc_service-mesh", "svc_config-service"], "tier": 0, "slo": 99.95}}
+{"id": "doc_0014", "facts": {"entity": "svc_auth", "owner": "team_identity", "depends_on": ["ds_pg-users", "ds_redis-session", "svc_vault", "svc_service-mesh", "svc_config-service"], "tier": 0, "slo": 99.95}}
+{"id": "doc_0015", "facts": {"entity": "svc_session", "owner": "team_identity", "depends_on": ["ds_redis-session", "svc_auth", "svc_service-mesh", "svc_config-service"], "tier": 0, "slo": 99.95}}
+{"id": "doc_0016", "facts": {"entity": "svc_catalog", "owner": "team_discovery", "depends_on": ["ds_pg-catalog", "ds_redis-cache", "svc_kafka", "ds_s3-assets", "svc_service-mesh", "svc_config-service"], "tier": 1, "slo": 99.9}}
+{"id": "doc_0017", "facts": {"entity": "svc_search", "owner": "team_discovery", "depends_on": ["ds_es-search", "ds_pg-catalog", "svc_catalog", "ds_redis-cache", "svc_service-mesh", "svc_config-service"], "tier": 1, "slo": 99.9}}
+{"id": "doc_0018", "facts": {"entity": "svc_cart", "owner": "team_checkout", "depends_on": ["ds_redis-cache", "svc_session", "svc_service-mesh", "svc_config-service"], "tier": 0, "slo": 99.95}}
+{"id": "doc_0019", "facts": {"entity": "svc_checkout", "owner": "team_checkout", "depends_on": ["svc_cart", "svc_payments", "svc_orders", "svc_auth", "svc_service-mesh", "svc_config-service"], "tier": 0, "slo": 99.95}}
+{"id": "doc_0020", "facts": {"entity": "svc_payments", "owner": "team_payments", "depends_on": ["ds_pg-payments", "svc_vault", "svc_kafka", "ds_redis-cache", "ds_ext-paylynx", "svc_service-mesh", "svc_config-service"], "tier": 0, "slo": 99.95}}
+{"id": "doc_0021", "facts": {"entity": "svc_orders", "owner": "team_fulfillment", "depends_on": ["ds_pg-orders", "svc_kafka", "svc_payments", "svc_notifications", "svc_service-mesh", "svc_config-service"], "tier": 0, "slo": 99.95}}
+{"id": "doc_0022", "facts": {"entity": "svc_notifications", "owner": "team_fulfillment", "depends_on": ["svc_kafka", "ds_redis-cache", "svc_service-mesh", "svc_config-service"], "tier": 1, "slo": 99.9}}
+{"id": "doc_0023", "facts": {"entity": "svc_kafka", "owner": "team_platform", "depends_on": [], "tier": 0, "slo": 99.95}}
+{"id": "doc_0024", "facts": {"entity": "svc_config-service", "owner": "team_platform", "depends_on": [], "tier": 0, "slo": 99.95}}
+{"id": "doc_0025", "facts": {"entity": "svc_vault", "owner": "team_platform", "depends_on": [], "tier": 0, "slo": 99.95}}
+{"id": "doc_0026", "facts": {"entity": "svc_service-mesh", "owner": "team_platform", "depends_on": [], "tier": 0, "slo": 99.95}}
+{"id": "doc_0027", "facts": {"team": "team_edge"}}
+{"id": "doc_0028", "facts": {"team": "team_identity"}}
+{"id": "doc_0029", "facts": {"team": "team_discovery"}}
+{"id": "doc_0030", "facts": {"team": "team_checkout"}}
+{"id": "doc_0031", "facts": {"team": "team_payments"}}
+{"id": "doc_0032", "facts": {"team": "team_fulfillment"}}
+{"id": "doc_0033", "facts": {"team": "team_platform"}}
+{"id": "doc_0034", "facts": {"entity": "svc_web-bff", "cites_decision": null}}
+{"id": "doc_0035", "facts": {"entity": "svc_vault", "cites_decision": "dec_003"}}
+{"id": "doc_0036", "facts": {"entity": "ds_pg-orders", "cites_decision": null}}
+{"id": "doc_0037", "facts": {"entity": "svc_service-mesh", "cites_decision": null}}
+{"id": "doc_0038", "facts": {"entity": "svc_config-service", "cites_decision": null}}
+{"id": "doc_0039", "facts": {"entity": "ds_pg-users", "cites_decision": null}}
+{"id": "doc_0040", "facts": {"entity": "svc_vault", "cites_decision": null}}
+{"id": "doc_0041", "facts": {"entity": "svc_orders", "cites_decision": null}}
+{"id": "dec_001", "facts": {"context": "session needs a change: adopt structured logging across identity services", "options_rejected": ["use a different datastore", "add a cache layer"], "consequences": "simpler on-call"}}
+{"id": "dec_002", "facts": {"context": "api-gateway needs a change: adopt structured logging across edge services", "options_rejected": ["rewrite the service", "do nothing"], "consequences": "lower latency, higher cost"}}
+{"id": "dec_003", "facts": {"context": "payments needs a change: deprecate v1 endpoints of payments", "options_rejected": ["buy a vendor product", "add more replicas"], "consequences": "more operational load for one quarter"}}
+{"id": "dec_004", "facts": {"context": "auth needs a change: require two reviewers for auth config", "options_rejected": ["do nothing", "buy a vendor product"], "consequences": "lower latency, higher cost"}}

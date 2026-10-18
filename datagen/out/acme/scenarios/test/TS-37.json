@@ -1,0 +1,433 @@
+{
+ "id": "TS-37",
+ "type": "look_alike",
+ "t0": 1791074333132,
+ "t0_iso": "2026-10-04T00:38:53Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791067997885,
+   "ts_iso": "2026-10-03T22:53:17Z",
+   "data": {
+    "id": "chg_ts37_0724",
+    "kind": "code",
+    "entity_id": "svc_config-service",
+    "ts": 1791067997885,
+    "ts_iso": "2026-10-03T22:53:17Z",
+    "author_id": "per_0099",
+    "reviewer_ids": [
+     "per_0110",
+     "per_0108"
+    ],
+    "canary": true,
+    "rollout_pct": 10,
+    "summary": "config-service deploy v7.31.16 (session refresh)",
+    "flag_key": null,
+    "pr_number": 3524,
+    "version_to": "4.32.1",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791069682159,
+   "ts_iso": "2026-10-03T23:21:22Z",
+   "data": {
+    "id": "chg_ts37_0721",
+    "kind": "code",
+    "entity_id": "svc_orders",
+    "ts": 1791069682159,
+    "ts_iso": "2026-10-03T23:21:22Z",
+    "author_id": "per_0082",
+    "reviewer_ids": [],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "orders release v9.0.4: session refresh",
+    "flag_key": null,
+    "pr_number": 5711,
+    "version_to": "7.39.11",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791072043421,
+   "ts_iso": "2026-10-04T00:00:43Z",
+   "data": {
+    "id": "chg_ts37_0725",
+    "kind": "code",
+    "entity_id": "svc_partner-api",
+    "ts": 1791072043421,
+    "ts_iso": "2026-10-04T00:00:43Z",
+    "author_id": "per_0001",
+    "reviewer_ids": [],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "partner-api release v6.40.16: promo stacking",
+    "flag_key": null,
+    "pr_number": 5330,
+    "version_to": "3.12.9",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791072573017,
+   "ts_iso": "2026-10-04T00:09:33Z",
+   "data": {
+    "id": "chg_ts37_0722",
+    "kind": "code",
+    "entity_id": "svc_reviews",
+    "ts": 1791072573017,
+    "ts_iso": "2026-10-04T00:09:33Z",
+    "author_id": "per_0032",
+    "reviewer_ids": [
+     "per_0031",
+     "per_0023"
+    ],
+    "canary": true,
+    "rollout_pct": 5,
+    "summary": "reviews release v8.23.9: inventory holds",
+    "flag_key": null,
+    "pr_number": 5337,
+    "version_to": "4.36.12",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791072773132,
+   "ts_iso": "2026-10-04T00:12:53Z",
+   "data": {
+    "id": "chg_ts37_0706",
+    "kind": "config",
+    "entity_id": "svc_pricing",
+    "ts": 1791072773132,
+    "ts_iso": "2026-10-04T00:12:53Z",
+    "author_id": "per_0036",
+    "reviewer_ids": [
+     "per_0040"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "pricing: db.pool.max 64 -> 16",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791072981971,
+   "ts_iso": "2026-10-04T00:16:21Z",
+   "data": {
+    "id": "chg_ts37_0720",
+    "kind": "code",
+    "entity_id": "svc_partner-api",
+    "ts": 1791072981971,
+    "ts_iso": "2026-10-04T00:16:21Z",
+    "author_id": "per_0010",
+    "reviewer_ids": [
+     "per_0003"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "partner-api release v3.3.13: audit logging",
+    "flag_key": null,
+    "pr_number": 4372,
+    "version_to": "6.18.1",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791073201403,
+   "ts_iso": "2026-10-04T00:20:01Z",
+   "data": {
+    "id": "chg_ts37_0723",
+    "kind": "config",
+    "entity_id": "svc_mobile-bff",
+    "ts": 1791073201403,
+    "ts_iso": "2026-10-04T00:20:01Z",
+    "author_id": "per_0127",
+    "reviewer_ids": [
+     "per_0008"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "mobile-bff: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791073373132,
+   "ts_iso": "2026-10-04T00:22:53Z",
+   "data": {
+    "id": "alt_ts37_0715",
+    "name": "5xxSpike",
+    "entity_id": "svc_service-mesh",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791073373132,
+    "ts_iso": "2026-10-04T00:22:53Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791073733132,
+   "ts_iso": "2026-10-04T00:28:53Z",
+   "data": {
+    "id": "alt_ts37_0716",
+    "name": "GCPauseLong",
+    "entity_id": "svc_session",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791073733132,
+    "ts_iso": "2026-10-04T00:28:53Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791073793132,
+   "ts_iso": "2026-10-04T00:29:53Z",
+   "data": {
+    "id": "chg_ts37_0719",
+    "kind": "config",
+    "entity_id": "ds_redis-cache",
+    "ts": 1791073793132,
+    "ts_iso": "2026-10-04T00:29:53Z",
+    "author_id": "per_0108",
+    "reviewer_ids": [
+     "per_0110",
+     "per_0100"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-cache: metrics.sample_rate 0.1 -> 0.2",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791074463132,
+   "ts_iso": "2026-10-04T00:41:03Z",
+   "data": {
+    "id": "alt_ts37_0708",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_partner-api",
+    "metric": "upstreamtimeouts",
+    "severity": "critical",
+    "ts": 1791074463132,
+    "ts_iso": "2026-10-04T00:41:03Z",
+    "resolved_ts": null,
+    "value": 5.83,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791074517132,
+   "ts_iso": "2026-10-04T00:41:57Z",
+   "data": {
+    "id": "alt_ts37_0710",
+    "name": "SlowResponses",
+    "entity_id": "svc_cart",
+    "metric": "slowresponses",
+    "severity": "critical",
+    "ts": 1791074517132,
+    "ts_iso": "2026-10-04T00:41:57Z",
+    "resolved_ts": null,
+    "value": 3.81,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791074583132,
+   "ts_iso": "2026-10-04T00:43:03Z",
+   "data": {
+    "id": "alt_ts37_0709",
+    "name": "UpstreamTimeouts",
+    "entity_id": "svc_cart",
+    "metric": "upstreamtimeouts",
+    "severity": "critical",
+    "ts": 1791074583132,
+    "ts_iso": "2026-10-04T00:43:03Z",
+    "resolved_ts": null,
+    "value": 3.68,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791074630132,
+   "ts_iso": "2026-10-04T00:43:50Z",
+   "data": {
+    "id": "alt_ts37_0707",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_partner-api",
+    "metric": "latencyp99breach",
+    "severity": "critical",
+    "ts": 1791074630132,
+    "ts_iso": "2026-10-04T00:43:50Z",
+    "resolved_ts": null,
+    "value": 2.42,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791074731132,
+   "ts_iso": "2026-10-04T00:45:31Z",
+   "data": {
+    "id": "alt_ts37_0712",
+    "name": "SlowResponses",
+    "entity_id": "svc_web-bff",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1791074731132,
+    "ts_iso": "2026-10-04T00:45:31Z",
+    "resolved_ts": null,
+    "value": 3.56,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791074766132,
+   "ts_iso": "2026-10-04T00:46:06Z",
+   "data": {
+    "id": "alt_ts37_0713",
+    "name": "SlowResponses",
+    "entity_id": "svc_mobile-bff",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1791074766132,
+    "ts_iso": "2026-10-04T00:46:06Z",
+    "resolved_ts": null,
+    "value": 4.88,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791074848132,
+   "ts_iso": "2026-10-04T00:47:28Z",
+   "data": {
+    "id": "alt_ts37_0711",
+    "name": "LatencyP99Breach",
+    "entity_id": "svc_api-gateway",
+    "metric": "latencyp99breach",
+    "severity": "warning",
+    "ts": 1791074848132,
+    "ts_iso": "2026-10-04T00:47:28Z",
+    "resolved_ts": null,
+    "value": 2.6,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791074876132,
+   "ts_iso": "2026-10-04T00:47:56Z",
+   "data": {
+    "id": "alt_ts37_0714",
+    "name": "SlowResponses",
+    "entity_id": "svc_checkout",
+    "metric": "slowresponses",
+    "severity": "warning",
+    "ts": 1791074876132,
+    "ts_iso": "2026-10-04T00:47:56Z",
+    "resolved_ts": null,
+    "value": 2.8,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791075293132,
+   "ts_iso": "2026-10-04T00:54:53Z",
+   "data": {
+    "id": "alt_ts37_0717",
+    "name": "ProbeFlapping",
+    "entity_id": "svc_vault",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791075293132,
+    "ts_iso": "2026-10-04T00:54:53Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791075293132,
+   "ts_iso": "2026-10-04T00:54:53Z",
+   "data": {
+    "id": "alt_ts37_0718",
+    "name": "5xxSpike",
+    "entity_id": "svc_inventory",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791075293132,
+    "ts_iso": "2026-10-04T00:54:53Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_pricing"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_ts37_0706"
+  ],
+  "mechanism": [
+   "connection pool max lowered"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [
+   "svc_api-gateway",
+   "svc_cart",
+   "svc_checkout",
+   "svc_mobile-bff",
+   "svc_partner-api",
+   "svc_web-bff"
+  ],
+  "correct_team_id": "team_pricing_inventory",
+  "correct_oncall_id": "per_0042",
+  "expected_experts": [
+   "per_0038",
+   "per_0039",
+   "per_0042"
+  ],
+  "look_alike_of": "motif_redis_evict"
+ },
+ "distractors": 7
+}

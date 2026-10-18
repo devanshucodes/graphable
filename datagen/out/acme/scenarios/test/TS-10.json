@@ -1,0 +1,250 @@
+{
+ "id": "TS-10",
+ "type": "change_induced",
+ "t0": 1791063944148,
+ "t0_iso": "2026-10-03T21:45:44Z",
+ "events": [
+  {
+   "kind": "change",
+   "ts": 1791056832026,
+   "ts_iso": "2026-10-03T19:47:12Z",
+   "data": {
+    "id": "chg_ts10_0122",
+    "kind": "config",
+    "entity_id": "ds_redis-session",
+    "ts": 1791056832026,
+    "ts_iso": "2026-10-03T19:47:12Z",
+    "author_id": "per_0019",
+    "reviewer_ids": [
+     "per_0013"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "redis-session: feature.banner off -> on",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791057032305,
+   "ts_iso": "2026-10-03T19:50:32Z",
+   "data": {
+    "id": "chg_ts10_0123",
+    "kind": "config",
+    "entity_id": "svc_fraud-detection",
+    "ts": 1791057032305,
+    "ts_iso": "2026-10-03T19:50:32Z",
+    "author_id": "per_0125",
+    "reviewer_ids": [
+     "per_0071",
+     "per_0059"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "fraud-detection: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791059971160,
+   "ts_iso": "2026-10-03T20:39:31Z",
+   "data": {
+    "id": "chg_ts10_0125",
+    "kind": "config",
+    "entity_id": "ds_clickhouse-analytics",
+    "ts": 1791059971160,
+    "ts_iso": "2026-10-03T20:39:31Z",
+    "author_id": "per_0094",
+    "reviewer_ids": [],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "clickhouse-analytics: cache.ttl_s 300 -> 600",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791060161974,
+   "ts_iso": "2026-10-03T20:42:41Z",
+   "data": {
+    "id": "chg_ts10_0126",
+    "kind": "code",
+    "entity_id": "svc_user-profile",
+    "ts": 1791060161974,
+    "ts_iso": "2026-10-03T20:42:41Z",
+    "author_id": "per_0017",
+    "reviewer_ids": [
+     "per_0012",
+     "per_0019"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "user-profile hotfix v6.35.4: faster cart merge",
+    "flag_key": null,
+    "pr_number": 8967,
+    "version_to": "3.38.5",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791062384148,
+   "ts_iso": "2026-10-03T21:19:44Z",
+   "data": {
+    "id": "alt_ts10_0118",
+    "name": "5xxSpike",
+    "entity_id": "svc_inventory",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791062384148,
+    "ts_iso": "2026-10-03T21:19:44Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791062684148,
+   "ts_iso": "2026-10-03T21:24:44Z",
+   "data": {
+    "id": "alt_ts10_0120",
+    "name": "HighErrorRate",
+    "entity_id": "svc_web-bff",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791062684148,
+    "ts_iso": "2026-10-03T21:24:44Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791063044148,
+   "ts_iso": "2026-10-03T21:30:44Z",
+   "data": {
+    "id": "chg_ts10_0117",
+    "kind": "flag",
+    "entity_id": "svc_web-bff",
+    "ts": 1791063044148,
+    "ts_iso": "2026-10-03T21:30:44Z",
+    "author_id": "per_0010",
+    "reviewer_ids": [
+     "per_0003",
+     "per_0001"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "flag web-bff.session-refresh-64 rollout 0% -> 100%",
+    "flag_key": "web-bff.session-refresh-64",
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791063381627,
+   "ts_iso": "2026-10-03T21:36:21Z",
+   "data": {
+    "id": "chg_ts10_0121",
+    "kind": "code",
+    "entity_id": "svc_pricing",
+    "ts": 1791063381627,
+    "ts_iso": "2026-10-03T21:36:21Z",
+    "author_id": "per_0039",
+    "reviewer_ids": [
+     "per_0036"
+    ],
+    "canary": true,
+    "rollout_pct": 25,
+    "summary": "pricing hotfix v1.25.5: new tax rounding",
+    "flag_key": null,
+    "pr_number": 6439,
+    "version_to": "7.33.1",
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "change",
+   "ts": 1791063729096,
+   "ts_iso": "2026-10-03T21:42:09Z",
+   "data": {
+    "id": "chg_ts10_0124",
+    "kind": "config",
+    "entity_id": "svc_event-ingest",
+    "ts": 1791063729096,
+    "ts_iso": "2026-10-03T21:42:09Z",
+    "author_id": "per_0115",
+    "reviewer_ids": [
+     "per_0095"
+    ],
+    "canary": false,
+    "rollout_pct": 100,
+    "summary": "event-ingest: log.level info -> debug",
+    "flag_key": null,
+    "pr_number": null,
+    "version_to": null,
+    "rolled_back": false,
+    "rollback_of": null
+   }
+  },
+  {
+   "kind": "alert",
+   "ts": 1791065084148,
+   "ts_iso": "2026-10-03T22:04:44Z",
+   "data": {
+    "id": "alt_ts10_0119",
+    "name": "CertExpirySoon",
+    "entity_id": "ds_clickhouse-analytics",
+    "metric": "noise",
+    "severity": "warning",
+    "ts": 1791065084148,
+    "ts_iso": "2026-10-03T22:04:44Z",
+    "resolved_ts": null,
+    "value": 1.1,
+    "threshold": 1.0
+   }
+  }
+ ],
+ "truth": {
+  "root_entity_ids": [
+   "svc_web-bff"
+  ],
+  "cause_type": "change",
+  "root_change_ids": [
+   "chg_ts10_0117"
+  ],
+  "mechanism": [
+   "flag enabled untested code path"
+  ],
+  "silent_root": true,
+  "alerting_entity_ids": [],
+  "correct_team_id": "team_edge",
+  "correct_oncall_id": "per_0008",
+  "expected_experts": [
+   "per_0010",
+   "per_0006",
+   "per_0007"
+  ]
+ },
+ "distractors": 6
+}
