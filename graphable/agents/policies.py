@@ -263,7 +263,7 @@ async def investigate_gemini(bus, st: dict) -> dict:  # pragma: no cover - needs
         tools = _wrap_tools(bus, await bus.tools())
         llm = ChatGoogleGenerativeAI(model=settings.gemini_model_pro, temperature=0, google_api_key=settings.gemini_api_key,
                                      timeout=120, max_retries=1)
-        agent = create_react_agent(llm, tools, prompt=INVESTIGATOR_PROMPT, response_format=InvestigationOut)
+        agent = create_react_agent(llm, tools, prompt=INVESTIGATOR_PROMPT)
         hand = st.get("inbox") or {}  # Triage's handoff, read from the graph
         brief = {"incident_id": st["incident_id"], "triage": hand.get("summary") or st["triage"]["summary"],
                  "open_questions": hand.get("open_questions", []), "handoff_evidence_ids": hand.get("evidence_ids", []),
@@ -274,7 +274,10 @@ async def investigate_gemini(bus, st: dict) -> dict:  # pragma: no cover - needs
                  "similar_past_incidents": [{k: s[k] for k in ("key", "similarity", "root_cause", "fixed_by", "evidence_id")} for s in base.get("similar", [])]}
         # bounded: if Gemini is slow or down, the graph-based conclusion stands on its own (caught below)
         res = await asyncio.wait_for(agent.ainvoke({"messages": [("user", json.dumps(brief, default=str))]}, {"recursion_limit": 40}), 180)
-        out: InvestigationOut = res["structured_response"]
+        # the structured decision is asked for in a closing user turn: newer Gemini models reject a request that ends
+        # with the model's own turn (which is how a react agent's built-in response_format step calls it)
+        out: InvestigationOut = await asyncio.wait_for(llm.with_structured_output(InvestigationOut).ainvoke(
+            [("system", INVESTIGATOR_PROMPT)] + res["messages"] + [("user", "Give your final decision now, in the required format.")]), 60)
         root = base.get("root") or {}
         agree = (out.decision == "accept" and (not out.root_change_id or out.root_change_id == root.get("change_id"))) or \
                 (out.decision == "non_change" and root.get("type") == "non_change")

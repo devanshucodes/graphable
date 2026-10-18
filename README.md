@@ -32,7 +32,7 @@
 6. **Evaluation**: measured results against baselines on 40 held-out incidents.
 
 - Free-plan timing: after a quiet spell the backend needs about a minute to wake up. The graph's answer appears in about 20–30 s (about 2 s locally). At most 3 runs go at once.
-- Gemini is on: after the graph's answer appears (marked provisional), Gemini reviews it with the same tools, which takes 1–2 minutes. Free-form Brain questions are answered by Gemini choosing the graph tools itself.
+- Gemini is on: after the graph's answer appears (marked provisional), Gemini reviews it with the same tools, which takes about 15–30 s (the demo runs the review on Gemini Flash; the evaluation below used Gemini Pro, about 2 minutes per incident). Free-form Brain questions are answered by Gemini choosing the graph tools itself.
 - MCP: `https://graphable-api.onrender.com/mcp` with the header `Authorization: Bearer dev-demo` (outside clients get the read-only tools). API docs: https://graphable-api.onrender.com/docs
 
 ## Demo video
