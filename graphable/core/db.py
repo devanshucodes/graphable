@@ -6,14 +6,20 @@ import threading
 from functools import lru_cache
 
 from falkordb import FalkorDB
+from redis.backoff import ExponentialBackoff
+from redis.exceptions import ConnectionError as RedisConnectionError, TimeoutError as RedisTimeoutError
+from redis.retry import Retry
 
 from ..settings import settings
 
 
 @lru_cache(maxsize=1)
 def client() -> FalkorDB:
+    # a remote database (FalkorDB Cloud) can drop idle pooled connections: check them before use, reconnect and retry
     return FalkorDB(host=settings.falkordb_host, port=settings.falkordb_port,
-                    username=settings.falkordb_username, password=settings.falkordb_password)
+                    username=settings.falkordb_username, password=settings.falkordb_password,
+                    retry=Retry(ExponentialBackoff(cap=2, base=0.2), 3), retry_on_error=[RedisConnectionError, RedisTimeoutError],
+                    health_check_interval=30, socket_keepalive=True)
 
 
 @lru_cache(maxsize=1)
